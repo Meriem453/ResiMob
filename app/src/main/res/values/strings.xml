@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Residence_App</string>
-    <string name="mail_adress">Mail Address</string>
+    <string name="mail_adress">Email Address</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="forgot_password">Forgot password ? contact us</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="add_user">Add User</string>
 
 </resources>
