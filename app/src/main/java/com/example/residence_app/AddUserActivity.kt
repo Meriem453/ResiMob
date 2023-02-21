@@ -23,6 +23,8 @@ class AddUserActivity : AppCompatActivity() {
     private lateinit var etCpassword: EditText
     private lateinit var addUserBtn: Button
     private lateinit var image: ImageView
+    private lateinit var progressBar: ProgressBar
+    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +37,7 @@ class AddUserActivity : AppCompatActivity() {
         etCpassword = findViewById(R.id.confirm_password)
         addUserBtn = findViewById(R.id.btn_add_user)
         image = findViewById(R.id.imageView)
-
+        progressBar = findViewById(R.id.progress_bar)
         val galleryImage = registerForActivityResult(
             ActivityResultContracts.GetContent(),
             ActivityResultCallback { image.setImageURI(it) }
@@ -46,7 +48,7 @@ class AddUserActivity : AppCompatActivity() {
 
 
         addUserBtn.setOnClickListener {
-
+            progressBar.visibility = View.VISIBLE
             val sFname = etFirstName.text.toString().trim()
             val sLname = etLastName.text.toString().trim()
             val sEmail = etEmail.text.toString().trim()
@@ -55,23 +57,29 @@ class AddUserActivity : AppCompatActivity() {
 
 
 
-            if (sFname.isEmpty() || sLname.isEmpty() || sEmail.isEmpty() || sPassword.isEmpty() || sCpassword.isEmpty()) {
+            if (sFname.isEmpty() || sLname.isEmpty() || sEmail.isEmpty() || sPassword.isEmpty() || sCpassword.isEmpty() || sPassword.length<6) {
                 if (sFname.isEmpty()){
                     etFirstName.error = "Enter the first name"
                 }
                 if (sLname.isEmpty()){
-                    etFirstName.error = "Enter the last name"
+                    etLastName.error = "Enter the last name"
                 }
                 if (sEmail.isEmpty()){
-                    etFirstName.error = "Enter the email"
+                    etEmail.error = "Enter the email"
+                }
+                if (sFname.isEmpty() ){
+                    etPassword.error = "Enter the password"
                 }
                 if (sFname.isEmpty()){
-                    etFirstName.error = "Enter the password"
+                    etCpassword.error = "Confirm the password"
                 }
-                if (sFname.isEmpty()){
-                    etFirstName.error = "Confirm the password"
+                if (sPassword.length < 6){
+                    etPassword.error = "you must enter more than 5 letters"
                 }
                 Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE
+            }else{if (!sEmail.matches(emailPattern.toRegex())) {
+                etEmail.error = "Enter valid email"
             }else{
                 if (sCpassword == sPassword) {
                     val userMap = hashMapOf(
@@ -85,20 +93,27 @@ class AddUserActivity : AppCompatActivity() {
                         )
 
 
-
-                    db.collection("user").document("1").set(userMap).addOnSuccessListener {
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(sEmail,sPassword).addOnCompleteListener{
+                        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+                    db.collection("user").document(userId).set(userMap).addOnSuccessListener {
                         Toast.makeText(this, "Successfully Added!", Toast.LENGTH_SHORT).show()
+                            etFirstName.text.clear()
+                            etLastName.text.clear()
+                            etEmail.text.clear()
+                            etPassword.text.clear()
+                            etCpassword.text.clear()
 
 
                     }.addOnFailureListener {
                         Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
-                    }
+                    }}
                 }else{
                     etCpassword.error = "Password Invalid"
                     Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
 
                 }
-            }
+                progressBar.visibility = View.GONE
+            }}
         }
     }
 }
