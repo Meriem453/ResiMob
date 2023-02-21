@@ -8,151 +8,150 @@
     tools:context=".AddUserActivity">
 
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/login_card"
-        app:cardCornerRadius="50dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-        <ProgressBar
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_centerInParent="true"
-            android:id="@+id/progress_bar"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"
-            android:visibility="gone"
-            />
 
-        <LinearLayout
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginVertical="10dp"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:textColorHint="@color/blue_botton"
+            android:layout_marginTop="15dp"
             >
 
-
-
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/first_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginVertical="10dp"
-                android:layout_weight="1"
-                android:textColorHint="@color/blue_botton">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/first_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/first_name"
-                    android:textColorHint="@color/blue_botton" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginVertical="10dp"
-                android:layout_weight="1"
-                android:textColorHint="@color/blue_botton">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/last_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/last_name"
-                    android:textColorHint="@color/blue_botton" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginVertical="10dp"
-                android:layout_weight="1"
-                android:textColorHint="@color/blue_botton">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/email_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/mail_adress"
-                    android:textColorHint="@color/blue_botton" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginVertical="10dp"
-                android:layout_weight="1"
-                android:textColorHint="@color/blue_botton">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/password"
-                    android:textColorHint="@color/blue_botton" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginVertical="10dp"
-                android:layout_weight="1"
-                android:textColorHint="@color/blue_botton"
-
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/confirm_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/confirm_password"
-                    android:textColorHint="@color/blue_botton" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/btn_add_user"
-                android:layout_width="208dp"
-                android:layout_height="51dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginVertical="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/button"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
-                android:text="@string/add_user"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:hint="@string/first_name"
+                android:textColorHint="@color/blue_botton" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:textColorHint="@color/blue_botton">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/last_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/last_name"
+                android:textColorHint="@color/blue_botton" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:textColorHint="@color/blue_botton">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/mail_adress"
+                android:textColorHint="@color/blue_botton"
+                android:inputType="textEmailAddress"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:textColorHint="@color/blue_botton">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/password"
+                android:textColorHint="@color/blue_botton"
+                android:inputType="textPassword"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:textColorHint="@color/blue_botton"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/confirm_password"
+                android:textColorHint="@color/blue_botton"
+                android:inputType="textPassword"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_add_user"
+            android:layout_width="208dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/add_user"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+    </LinearLayout>
 
 
-    </androidx.cardview.widget.CardView>
-
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView"
-        android:layout_width="170dp"
-        android:layout_height="176dp"
-        android:background="@drawable/circle"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        android:layout_width="184dp"
+        android:layout_height="184dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:shapeAppearanceOverlay="@style/circular"
+android:background="@drawable/circle"
+
+
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
