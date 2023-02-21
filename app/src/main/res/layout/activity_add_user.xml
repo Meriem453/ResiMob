@@ -33,11 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:textColorHint="@color/blue_botton"
             android:layout_marginTop="15dp"
-            >
+            android:layout_weight="1"
+            android:textColorHint="@color/blue_botton">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/first_name"
@@ -52,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginVertical="10dp"
+
             android:layout_weight="1"
             android:textColorHint="@color/blue_botton">
 
@@ -69,7 +67,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginVertical="10dp"
             android:layout_weight="1"
             android:textColorHint="@color/blue_botton">
 
@@ -88,7 +85,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginVertical="10dp"
             android:layout_weight="1"
             android:textColorHint="@color/blue_botton">
 
@@ -107,7 +103,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginVertical="10dp"
             android:layout_weight="1"
             android:textColorHint="@color/blue_botton"
 
