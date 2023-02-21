@@ -1,27 +1,39 @@
 package com.example.residence_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
+
+import android.widget.ImageView
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintSet.Layout
+import androidx.core.view.ViewCompat
+
 
 class LoginActivity : AppCompatActivity() {
-    //variables
-    private lateinit var etEmail: EditText
-    private lateinit var etPassword: EditText
-    private lateinit var buttonLogin: Button
-    //progressbar li yetaficha
-    private lateinit var progressBar: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        etEmail = findViewById(R.id.mail)
-        etPassword = findViewById(R.id.passwrd)
-        buttonLogin = findViewById(R.id.btn_login)
 
-        buttonLogin.setOnClickListener{}
+
+
+        val eclipse=findViewById<ImageView>(R.id.eclipse)
+        val card =findViewById<CardView>(R.id.cardView)
+        val login=findViewById<Button>(R.id.btn_login)
+       eclipse.bringToFront()
+        eclipse.invalidate()
+        card.invalidate()
+
+        login.setOnClickListener {
+            val intent=Intent(this,AddUserActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
     }
 }

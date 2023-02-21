@@ -4,38 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginAvtivity"
+    tools:context=".LoginActivity"
+    android:background="@color/white"
 
     >
 
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/login_bg" />
 
-
-        android:layout_marginBottom="320dp"
+    <ImageView
+        android:id="@+id/eclipse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/login_bg" />
+        app:srcCompat="@drawable/eclipse"
+
+
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/login_card"
-app:cardCornerRadius="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/eclipse">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_marginVertical="15dp"
 
 
             >
@@ -43,7 +51,6 @@ app:cardCornerRadius="50dp"
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
@@ -90,16 +97,15 @@ app:cardCornerRadius="50dp"
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="208dp"
-                android:layout_height="38dp"
+                android:layout_height="51dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="15dp"
                 android:layout_weight="1"
                 android:background="@drawable/button"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/login"
                 android:textColor="@color/white"
-                android:textSize="25sp"
-                android:layout_marginVertical="15dp"
-                />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/tv_contct"
@@ -108,16 +114,7 @@ app:cardCornerRadius="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_medium"
-                android:text="@string/forgot_password"
-                android:layout_marginBottom="15dp"/>
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ellipse"
-                />
+                android:text="@string/forgot_password" />
 
 
         </LinearLayout>
