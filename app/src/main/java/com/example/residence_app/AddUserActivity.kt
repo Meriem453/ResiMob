@@ -1,5 +1,7 @@
 package com.example.residence_app
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -25,6 +27,7 @@ class AddUserActivity : AppCompatActivity() {
     private lateinit var image: ImageView
     private lateinit var progressBar: ProgressBar
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private var imageUri : Uri?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,17 +41,17 @@ class AddUserActivity : AppCompatActivity() {
         addUserBtn = findViewById(R.id.btn_add_user)
         image = findViewById(R.id.imageView)
         progressBar = findViewById(R.id.progress_bar)
-        val galleryImage = registerForActivityResult(
-            ActivityResultContracts.GetContent(),
-            ActivityResultCallback { image.setImageURI(it) }
-        )
+
         image.setOnClickListener {
-            galleryImage.launch("image/*")
+            val intent = Intent()
+            intent.action = Intent.ACTION_GET_CONTENT
+            intent.type ="image/*"
+            startActivityForResult(intent,1)
         }
 
 
         addUserBtn.setOnClickListener {
-            progressBar.visibility = View.VISIBLE
+            //progressBar.visibility = View.VISIBLE
             val sFname = etFirstName.text.toString().trim()
             val sLname = etLastName.text.toString().trim()
             val sEmail = etEmail.text.toString().trim()
@@ -57,7 +60,7 @@ class AddUserActivity : AppCompatActivity() {
 
 
 
-            if (sFname.isEmpty() || sLname.isEmpty() || sEmail.isEmpty() || sPassword.isEmpty() || sCpassword.isEmpty() || sPassword.length<6) {
+            if (sFname.isEmpty() || sLname.isEmpty() || sEmail.isEmpty() || sPassword.isEmpty() || sCpassword.isEmpty() || sPassword.length<6 || imageUri == null) {
                 if (sFname.isEmpty()){
                     etFirstName.error = "Enter the first name"
                 }
@@ -76,8 +79,12 @@ class AddUserActivity : AppCompatActivity() {
                 if (sPassword.length < 6){
                     etPassword.error = "you must enter more than 5 letters"
                 }
-                Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
-                progressBar.visibility = View.GONE
+                if (imageUri == null) {
+                    Toast.makeText(this, "Enter the image!", Toast.LENGTH_SHORT).show()
+                }
+                    Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
+
+                //progressBar.visibility = View.GONE
             }else{if (!sEmail.matches(emailPattern.toRegex())) {
                 etEmail.error = "Enter valid email"
             }else{
@@ -87,7 +94,7 @@ class AddUserActivity : AppCompatActivity() {
                         "lname" to sLname,
                         "email" to sEmail,
                         "password" to sPassword,
-                        "image" to "image",
+                        "image" to imageUri,
                         "isadmin" to false,
 
                         )
@@ -112,8 +119,18 @@ class AddUserActivity : AppCompatActivity() {
                     Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
 
                 }
-                progressBar.visibility = View.GONE
+                //progressBar.visibility = View.GONE
             }}
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (data!=null){
+            if (data.data!=null){
+                imageUri=data.data!!
+                image.setImageURI(imageUri)
+            }
         }
     }
 }
