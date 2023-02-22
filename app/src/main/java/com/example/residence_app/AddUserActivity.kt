@@ -12,9 +12,14 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
+import java.util.*
 
 class AddUserActivity : AppCompatActivity() {
     private var db = Firebase.firestore
@@ -102,6 +107,7 @@ class AddUserActivity : AppCompatActivity() {
 
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(sEmail,sPassword).addOnCompleteListener{
                         val userId = FirebaseAuth.getInstance().currentUser!!.uid
+                        uploadImageToFirebase(imageUri!!,userId)
                     db.collection("user").document(userId).set(userMap).addOnSuccessListener {
                         Toast.makeText(this, "Successfully Added!", Toast.LENGTH_SHORT).show()
                             etFirstName.text.clear()
@@ -131,6 +137,24 @@ class AddUserActivity : AppCompatActivity() {
                 imageUri=data.data!!
                 image.setImageURI(imageUri)
             }
+        }
+    }
+    private fun uploadImageToFirebase(fileUri: Uri,userId: String) {
+        if (fileUri != null) {
+            val fileName = userId +".jpg"
+            val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
+
+            refStorage.putFile(fileUri)
+                .addOnSuccessListener(
+                    OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                        taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                            val imageUrl = it.toString()
+                        }
+                    })
+
+                ?.addOnFailureListener(OnFailureListener { e ->
+                    print(e.message)
+                })
         }
     }
 }

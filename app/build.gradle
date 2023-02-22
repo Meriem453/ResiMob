@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.4.3'
     implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
+    implementation 'com.google.firebase:firebase-storage:20.0.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
