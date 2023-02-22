@@ -7,17 +7,16 @@
     android:background="@drawable/add_user_bg"
     tools:context=".AddUserActivity">
 
+
     <ProgressBar
         android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -77,8 +76,9 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/mail_adress"
+                android:textColorHint="@color/blue_botton"
                 android:inputType="textEmailAddress"
-                android:textColorHint="@color/blue_botton" />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -94,8 +94,9 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/password"
+                android:textColorHint="@color/blue_botton"
                 android:inputType="textPassword"
-                android:textColorHint="@color/blue_botton" />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -113,8 +114,9 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/confirm_password"
+                android:textColorHint="@color/blue_botton"
                 android:inputType="textPassword"
-                android:textColorHint="@color/blue_botton" />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -138,12 +140,14 @@
         android:layout_width="184dp"
         android:layout_height="184dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toTopOf="@+id/progress_bar"
-
-
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/circular" />
+
+
+        app:shapeAppearanceOverlay="@style/circular"
+        app:srcCompat="@drawable/img_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
