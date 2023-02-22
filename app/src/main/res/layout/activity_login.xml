@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
     android:background="@color/white"
+    tools:context=".LoginActivity"
 
     >
 
@@ -14,111 +14,113 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login_bg" />
-
-    <ImageView
-        android:id="@+id/eclipse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/eclipse"
+        app:srcCompat="@drawable/login_bg" />
 
-
-        />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/login_card"
-        app:cardCornerRadius="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/eclipse">
 
-        <LinearLayout
+
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginVertical="15dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center_horizontal"
+            android:text="App name"
+            android:textColor="@color/blue_title"
+            android:textSize="30sp"
+            android:layout_marginTop="15dp"
+            />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_weight="1"
+            android:textColorHint="@color/blue_botton"
+            app:startIconDrawable="@drawable/__icon__user_">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/mail_adress"
+                android:textColorHint="@color/blue_botton"
+                android:inputType="textEmailAddress"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_weight="1"
+            android:textColorHint="@color/blue_botton"
+            app:startIconDrawable="@drawable/__icon__locked_"
 
             >
 
-            <TextView
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwrd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
-                android:gravity="center_horizontal"
-                android:text="App name"
-                android:textColor="@color/blue_title"
-                android:textSize="30sp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_weight="1"
+                android:hint="@string/password"
                 android:textColorHint="@color/blue_botton"
-                app:startIconDrawable="@drawable/__icon__user_">
+                android:inputType="textPassword"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/mail_adress"
-                    android:textColorHint="@color/blue_botton" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="208dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_weight="1"
-                android:textColorHint="@color/blue_botton"
-                app:startIconDrawable="@drawable/__icon__locked_"
+        <TextView
+            android:id="@+id/tv_contct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/forgot_password"
+            android:layout_marginBottom="15dp"
+            />
 
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passwrd"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/password"
-                    android:textColorHint="@color/blue_botton" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/btn_login"
-                android:layout_width="208dp"
-                android:layout_height="51dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginVertical="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/button"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/login"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/tv_contct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/forgot_password" />
+        <ImageView
+            android:id="@+id/eclipse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/intersect"
 
 
-        </LinearLayout>
+            />
+    </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
