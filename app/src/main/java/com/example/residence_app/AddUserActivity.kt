@@ -56,7 +56,7 @@ class AddUserActivity : AppCompatActivity() {
 
 
         addUserBtn.setOnClickListener {
-            //progressBar.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
             val sFname = etFirstName.text.toString().trim()
             val sLname = etLastName.text.toString().trim()
             val sEmail = etEmail.text.toString().trim()
@@ -88,9 +88,11 @@ class AddUserActivity : AppCompatActivity() {
                     Toast.makeText(this, "Enter the image!", Toast.LENGTH_SHORT).show()
                 }
                     Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE
 
-                //progressBar.visibility = View.GONE
-            }else{if (!sEmail.matches(emailPattern.toRegex())) {
+            }else{
+                if (!sEmail.matches(emailPattern.toRegex())) {
+                    progressBar.visibility = View.GONE
                 etEmail.error = "Enter valid email"
             }else{
                 if (sCpassword == sPassword) {
@@ -115,19 +117,24 @@ class AddUserActivity : AppCompatActivity() {
                             etEmail.text.clear()
                             etPassword.text.clear()
                             etCpassword.text.clear()
-
+                            image.setImageResource(0)
+                            progressBar.visibility = View.GONE
 
                     }.addOnFailureListener {
+                        progressBar.visibility = View.GONE
                         Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
-                    }}
-                }else{
+                    }
+                    }
+                    }else{
+                    progressBar.visibility = View.GONE
                     etCpassword.error = "Password Invalid"
                     Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
 
                 }
-                //progressBar.visibility = View.GONE
+
             }}
-        }
+
+         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -158,3 +165,4 @@ class AddUserActivity : AppCompatActivity() {
         }
     }
 }
+
