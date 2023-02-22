@@ -139,14 +139,15 @@
         android:id="@+id/imageView"
         android:layout_width="184dp"
         android:layout_height="184dp"
+        android:background="@drawable/circle"
+        android:foregroundGravity="center"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+
+
         app:shapeAppearanceOverlay="@style/circular"
-android:background="@drawable/circle"
-
-
-        />
+        app:srcCompat="@drawable/img_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
