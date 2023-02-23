@@ -58,4 +58,12 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
 
     }
+
+    override fun onStart() {
+        super.onStart()
+        if(auth.currentUser != null){
+            val intent = Intent(this,HomeUserActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }
