@@ -19,11 +19,7 @@ binding=ActivityLoginBinding.inflate(layoutInflater)
 
 
 
-        val eclipse=findViewById<ImageView>(R.id.eclipse)
 
-
-       eclipse.bringToFront()
-        eclipse.invalidate()
 
 
         binding.btnLogin.setOnClickListener {

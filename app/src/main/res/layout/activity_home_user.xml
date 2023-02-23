@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeUserActivity">
+    tools:context=".HomeUserActivity"
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -13,10 +15,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,13 +23,15 @@
             android:layout_gravity="clip_horizontal"
             android:orientation="horizontal">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageView3"
                 android:layout_width="62dp"
                 android:layout_height="62dp"
                 android:layout_gravity="start|center_vertical"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/img_add" />
+                app:srcCompat="@drawable/img_add"
+                app:shapeAppearanceOverlay="@style/circular"
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -62,8 +63,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_light"
                     android:text="room"
-                    android:textColor="@color/material_dynamic_neutral60"
-                    />
+                    android:textColor="@color/gray" />
             </LinearLayout>
 
             <ImageView
@@ -80,14 +80,12 @@
             android:id="@+id/imageView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             app:srcCompat="@drawable/line" />
 
         <TextView
             android:id="@+id/good_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:text="Hi!"
@@ -99,23 +97,20 @@
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_weight="1"
+        android:foregroundGravity="top"
         app:columnCount="2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:rowCount="4">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
             app:cardCornerRadius="20dp"
-            app:layout_columnWeight="1"
 
+            app:layout_columnWeight="1"
             app:layout_rowWeight="1">
 
             <LinearLayout
@@ -138,16 +133,16 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
                     android:text="@string/restaurant"
-                    android:textColor="@color/material_dynamic_neutral50"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
             app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -172,16 +167,16 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
                     android:text="@string/doctor"
-                    android:textColor="@color/material_dynamic_neutral50"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
             app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -206,16 +201,16 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
                     android:text="@string/gym"
-                    android:textColor="@color/material_dynamic_neutral50"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
             app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -240,16 +235,16 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
                     android:text="@string/administration"
-                    android:textColor="@color/material_dynamic_neutral50"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
             app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -274,16 +269,16 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
                     android:text="@string/sport_room"
-                    android:textColor="@color/material_dynamic_neutral50"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
             app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -308,7 +303,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
                     android:text="@string/bathroom"
-                    android:textColor="@color/material_dynamic_neutral50"
+                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -320,32 +315,32 @@
     </androidx.gridlayout.widget.GridLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout">
+        android:layout_marginHorizontal="20dp"
+      >
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="@color/blue_botton"
+            android:background="@drawable/button"
+            android:gravity="center"
             android:text="@string/feedback"
-            android:textColor="@color/white"
-            android:layout_marginHorizontal="10dp"
-            />
+            android:textColor="@color/white" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="@color/blue_botton"
+            android:background="@drawable/button"
+            android:gravity="center"
             android:text="@string/problem"
             android:textColor="@color/white" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

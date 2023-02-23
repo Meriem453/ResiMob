@@ -50,7 +50,7 @@ class HomeUserActivity : AppCompatActivity() {
             tUserName.setText(name)
             tUserEmail.setText(email)
             tRoom.setText(room)
-            tGoodday.setText("Hi! "+name)
+            tGoodday.text  = String.format(resources.getString(R.string.hi),name)
 
         }
         val localfile = File.createTempFile("tempimage","jpg")

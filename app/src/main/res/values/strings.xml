@@ -8,11 +8,11 @@
     <string name="last_name">Last Name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="add_user">Add User</string>
-    <string name="good_day">Good Day, </string>
+    <string name="hi">Hi! %1$s</string>
     <string name="restaurant">Restaurant</string>
     <string name="doctor">Doctor</string>
     <string name="gym">Gym</string>
-    <string name="administration">Admin</string>
+    <string name="administration">Administration</string>
     <string name="sport_room">Sport Room</string>
     <string name="bathroom">Bathroom</string>
     <string name="feedback">Feedback</string>
