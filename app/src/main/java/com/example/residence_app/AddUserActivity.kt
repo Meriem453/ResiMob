@@ -1,15 +1,12 @@
 package com.example.residence_app
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.tasks.OnFailureListener
@@ -28,6 +25,7 @@ class AddUserActivity : AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var etCpassword: EditText
+    private lateinit var etRoom: EditText
     private lateinit var addUserBtn: Button
     private lateinit var image: ImageView
     private lateinit var progressBar: ProgressBar
@@ -35,6 +33,7 @@ class AddUserActivity : AppCompatActivity() {
     private var imageUri : Uri?=null
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_user)
@@ -43,6 +42,7 @@ class AddUserActivity : AppCompatActivity() {
         etEmail = findViewById(R.id.email_address)
         etPassword = findViewById(R.id.password)
         etCpassword = findViewById(R.id.confirm_password)
+        etRoom = findViewById(R.id.room)
         addUserBtn = findViewById(R.id.btn_add_user)
         image = findViewById(R.id.imageView)
         progressBar = findViewById(R.id.progress_bar)
@@ -62,10 +62,10 @@ class AddUserActivity : AppCompatActivity() {
             val sEmail = etEmail.text.toString().trim()
             val sPassword = etPassword.text.toString().trim()
             val sCpassword = etCpassword.text.toString().trim()
+            val sRoom = etRoom.text.toString().trim()
 
 
-
-            if (sFname.isEmpty() || sLname.isEmpty() || sEmail.isEmpty() || sPassword.isEmpty() || sCpassword.isEmpty() || sPassword.length<6 || imageUri == null) {
+            if (sFname.isEmpty() || sLname.isEmpty() || sEmail.isEmpty() || sPassword.isEmpty() || sCpassword.isEmpty() || sPassword.length<6 || imageUri == null || sRoom.isEmpty()) {
                 if (sFname.isEmpty()){
                     etFirstName.error = "Enter the first name"
                 }
@@ -87,6 +87,9 @@ class AddUserActivity : AppCompatActivity() {
                 if (imageUri == null) {
                     Toast.makeText(this, "Enter the image!", Toast.LENGTH_SHORT).show()
                 }
+                if (sRoom.isEmpty()){
+                    etRoom.error = "Enter the Room details"
+                }
                     Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
                 progressBar.visibility = View.GONE
 
@@ -103,6 +106,7 @@ class AddUserActivity : AppCompatActivity() {
                         "password" to sPassword,
                         "image" to imageUri,
                         "isadmin" to false,
+                        "room" to sRoom,
 
                         )
 
@@ -117,6 +121,7 @@ class AddUserActivity : AppCompatActivity() {
                             etEmail.text.clear()
                             etPassword.text.clear()
                             etCpassword.text.clear()
+                            etRoom.text.clear()
                             image.setImageResource(0)
                             progressBar.visibility = View.GONE
 

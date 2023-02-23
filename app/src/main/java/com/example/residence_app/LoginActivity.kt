@@ -27,7 +27,7 @@ binding=ActivityLoginBinding.inflate(layoutInflater)
 
 
         binding.btnLogin.setOnClickListener {
-            val intent=Intent(this,AddUserActivity::class.java)
+            val intent=Intent(this,HomeUserActivity::class.java)
             startActivity(intent)
         }
 
