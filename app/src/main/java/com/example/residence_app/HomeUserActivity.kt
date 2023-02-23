@@ -39,8 +39,8 @@ class HomeUserActivity : AppCompatActivity() {
 
 
         var documentReference : DocumentReference
-        //var uid : String = FirebaseAuth.getInstance().currentUser!!.uid
-        var  uid :String = "WR5P8YBpxLXC68fuNgzFu5OoXSg2"
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+
         val storageReference = FirebaseStorage.getInstance().reference.child("images/$uid.jpg")
         documentReference = db.collection("user").document(uid)
         documentReference.get().addOnCompleteListener {

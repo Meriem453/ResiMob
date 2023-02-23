@@ -9,6 +9,17 @@
 
     >
 
+    <ProgressBar
+        android:id="@+id/login_progress_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -54,7 +65,7 @@
             app:startIconDrawable="@drawable/__icon__user_">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mail"
+                android:id="@+id/login_mail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
@@ -75,7 +86,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwrd"
+                android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
