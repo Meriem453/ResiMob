@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeUserActivity"
     android:orientation="vertical"
-    >
+    android:weightSum="17"
+    tools:context=".HomeUserActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -15,12 +15,14 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="clip_horizontal"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -29,9 +31,8 @@
                 android:layout_height="62dp"
                 android:layout_gravity="start|center_vertical"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/img_add"
                 app:shapeAppearanceOverlay="@style/circular"
-                />
+                app:srcCompat="@drawable/img_add" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -86,11 +87,11 @@
             android:id="@+id/good_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
-            android:text="Hi!"
             android:textColor="@color/blue_layout"
-            android:textSize="30sp" />
+            android:textSize="23sp" />
 
     </LinearLayout>
 
@@ -99,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
-        android:layout_weight="1"
+        android:layout_weight="14"
         android:foregroundGravity="top"
         app:columnCount="2"
         app:rowCount="4">
@@ -107,7 +108,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             app:cardCornerRadius="20dp"
 
             app:layout_columnWeight="1"
@@ -142,7 +143,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -176,7 +177,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -210,7 +211,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -236,7 +237,7 @@
                     android:gravity="center"
                     android:text="@string/administration"
                     android:textColor="@color/gray"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -244,7 +245,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -270,7 +271,7 @@
                     android:gravity="center"
                     android:text="@string/sport_room"
                     android:textColor="@color/gray"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -278,7 +279,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -318,29 +319,33 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginHorizontal="20dp"
-      >
+        android:layout_marginVertical="30dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="208dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/button"
             android:gravity="center"
             android:text="@string/feedback"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="208dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/button"
             android:gravity="center"
             android:text="@string/problem"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>

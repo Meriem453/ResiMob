@@ -23,6 +23,9 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         binding=ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val progressBar = binding.loginProgressBar
+        progressBar.bringToFront()
+        progressBar.invalidate()
+        binding.resImg.invalidate()
         auth = FirebaseAuth.getInstance()
 
         binding.btnLogin.setOnClickListener {
@@ -59,11 +62,11 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     }
     //ida l user dakhl men qbl wla nn
-    //override fun onStart() {
-        //super.onStart()
-        //if(auth.currentUser != null){
-           // val intent = Intent(this,HomeUserActivity::class.java)
-            //startActivity(intent)
-        //}
-    //}
+    override fun onStart() {
+        super.onStart()
+        if(auth.currentUser != null){
+            val intent = Intent(this,HomeUserActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }
