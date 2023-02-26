@@ -37,6 +37,7 @@ class AddUserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_user)
+        supportActionBar?.hide()
         etFirstName = findViewById(R.id.first_name)
         etLastName = findViewById(R.id.last_name)
         etEmail = findViewById(R.id.email_address)

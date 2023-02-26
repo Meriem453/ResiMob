@@ -17,5 +17,8 @@
     <string name="bathroom">Bathroom</string>
     <string name="feedback">Feedback</string>
     <string name="problem">Problem</string>
+   <string name="timings">Timings</string>
+    <string name="programme">Programme</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

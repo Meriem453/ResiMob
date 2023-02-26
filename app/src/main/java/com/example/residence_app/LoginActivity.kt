@@ -22,6 +22,7 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         super.onCreate(savedInstanceState)
         binding=ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
         val progressBar = binding.loginProgressBar
         progressBar.bringToFront()
         progressBar.invalidate()

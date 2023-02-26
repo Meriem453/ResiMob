@@ -1,12 +1,14 @@
 package com.example.residence_app
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.residence_app.databinding.ActivityHomeUserBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
@@ -24,10 +26,14 @@ class HomeUserActivity : AppCompatActivity() {
     private lateinit var tUserName: TextView
     private lateinit var tRoom: TextView
     private lateinit var tGoodday : TextView
+    private lateinit var binding: ActivityHomeUserBinding
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_user)
+        supportActionBar?.hide()
+        binding=ActivityHomeUserBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         db = FirebaseFirestore.getInstance()
         tUserName = findViewById(R.id.user_name)
@@ -36,7 +42,11 @@ class HomeUserActivity : AppCompatActivity() {
         tGoodday = findViewById(R.id.good_day)
         userImage = findViewById(R.id.imageView3)
 
+binding.restaurant.setOnClickListener {
+    val intent=Intent(baseContext,RestaurantDetails::class.java)
+    startActivity(intent)
 
+}
 
         var documentReference : DocumentReference
         val uid = FirebaseAuth.getInstance().currentUser!!.uid

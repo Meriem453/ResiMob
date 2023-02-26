@@ -106,11 +106,12 @@
         app:rowCount="4">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/restaurant"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
-            app:cardCornerRadius="20dp"
 
+            app:cardCornerRadius="20dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
 
