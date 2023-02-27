@@ -4,11 +4,7 @@
     <shape android:shape="oval">
         <solid android:color="#1E7CFF"/>
         <size android:height="184dp" android:width="184dp"/>
-
     </shape>
-
-
-
 </item>
 
     <item android:drawable="@drawable/photo_camera_02" android:state_pressed="false"/>

@@ -1,6 +1,6 @@
 package com.example.residence_app.data
 
-data class ResteurantTimingCardData (
+data class TimingCardData (
     val title:String,
     val label1:String,
     val label2:String,
