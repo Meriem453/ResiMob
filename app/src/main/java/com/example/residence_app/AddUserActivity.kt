@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.*
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.residence_app.data.UserInfo
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
@@ -110,7 +111,6 @@ class AddUserActivity : AppCompatActivity() {
                         "room" to sRoom,
 
                         )
-
 
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(sEmail,sPassword).addOnCompleteListener{
                         val userId = FirebaseAuth.getInstance().currentUser!!.uid

@@ -52,6 +52,7 @@ binding.restaurant.setOnClickListener {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
         val storageReference = FirebaseStorage.getInstance().reference.child("images/$uid.jpg")
+        //user name...
         documentReference = db.collection("user").document(uid)
         documentReference.get().addOnCompleteListener {
             var name :String = it.result!!.data?.getValue("lname").toString().trim()
@@ -63,6 +64,7 @@ binding.restaurant.setOnClickListener {
             tGoodday.text  = String.format(resources.getString(R.string.hi),name)
 
         }
+        //image
         val localfile = File.createTempFile("tempimage","jpg")
         storageReference.getFile(localfile).addOnCompleteListener {
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
