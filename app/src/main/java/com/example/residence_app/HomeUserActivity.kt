@@ -52,6 +52,15 @@ binding.restaurant.setOnClickListener {
             startActivity(intent)
         }
 
+        binding.administration.setOnClickListener {
+            val intent=Intent(baseContext,AdministrationDetails::class.java)
+            startActivity(intent)
+        }
+        binding.bathroom.setOnClickListener {
+            val intent=Intent(baseContext,BathroomDetails::class.java)
+            startActivity(intent)
+        }
+
         var documentReference : DocumentReference
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
 

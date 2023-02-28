@@ -20,5 +20,7 @@
     <string name="timings">Timings</string>
     <string name="programme">Programme</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="boys">Boys</string>
+    <string name="girls">Girls</string>
 
 </resources>

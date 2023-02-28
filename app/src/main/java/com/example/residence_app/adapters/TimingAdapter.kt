@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.residence_app.R
 import com.example.residence_app.data.TimingCardData
 
-class DoctorTimingAdapter(var c:Context): RecyclerView.Adapter<DoctorTimingAdapter.TimingVH>() {
+class TimingAdapter(var c:Context): RecyclerView.Adapter<TimingAdapter.TimingVH>() {
     private var data=ArrayList<TimingCardData>()
     inner class TimingVH(itemView: View): ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.restaurant_timing_card_title)
@@ -39,10 +39,31 @@ class DoctorTimingAdapter(var c:Context): RecyclerView.Adapter<DoctorTimingAdapt
         }
     }
 
-    fun getData(){
-        data.add(TimingCardData("saturday","morning","","08:00---11:00",""))
+    fun getDoctorData(){
+        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
         data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
 
 
         notifyDataSetChanged() }
+    fun getAdministrationData(){
+        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
+        data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
+        data.add(TimingCardData("monday","morning","evening","08:00---11:00","14:00--16:00"))
+
+        notifyDataSetChanged()
+    }
+
+    fun getBathroomGirlsTimingData(){
+        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
+        data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
+        data.add(TimingCardData("monday","morning","evening","08:00---11:00","14:00--16:00"))
+        notifyDataSetChanged()
+    }
+
+    fun getBathroomBoysTimingData(){
+        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
+        data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
+        data.add(TimingCardData("monday","morning","evening","08:00---11:00","14:00--16:00"))
+        notifyDataSetChanged()
+    }
 }
