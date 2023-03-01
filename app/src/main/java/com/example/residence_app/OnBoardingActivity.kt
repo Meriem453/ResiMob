@@ -39,7 +39,7 @@ class OnBoardingActivity : AppCompatActivity() {
              )
          )
             fun navigateActivity(){
-                startActivity(Intent(applicationContext,MainActivity::class.java))
+                startActivity(Intent(applicationContext,LoginActivity::class.java))
                 finish()
             }
             val ViewPager = findViewById<ViewPager2>(R.id.viewPagerID)
