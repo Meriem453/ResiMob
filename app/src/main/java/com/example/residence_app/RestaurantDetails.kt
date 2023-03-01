@@ -27,8 +27,8 @@ class RestaurantDetails : AppCompatActivity() {
     }
 
     private fun initTabs(tabs: TabLayout, viewpager: ViewPager) {
-        tabs.addTab(binding.tabLayoutRestaurant.newTab().setText(baseContext.resources.getString(R.string.timings)))
-        tabs.addTab(binding.tabLayoutRestaurant.newTab().setText(baseContext.resources.getString(R.string.programme)))
+        tabs.addTab(tabs.newTab().setText(baseContext.resources.getString(R.string.timings)))
+        tabs.addTab(tabs.newTab().setText(baseContext.resources.getString(R.string.programme)))
         tabs.tabGravity=TabLayout.GRAVITY_FILL
         val adapter=RestaurantTabsAdapter(baseContext,supportFragmentManager,tabs.tabCount)
         viewpager.adapter=adapter
