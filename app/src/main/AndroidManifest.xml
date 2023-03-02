@@ -13,18 +13,34 @@
         tools:replace="allowBackup, label"
         tools:targetApi="31">
         <activity
-            android:name=".RestaurantDetails"
+            android:name=".BathroomDetails"
             android:exported="false"
             android:parentActivityName=".HomeUserActivity"
             />
         <activity
+            android:name=".AdministrationDetails"
+            android:exported="false"
+            android:parentActivityName=".HomeUserActivity"
+            />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorDetails"
+            android:exported="false"
+            android:parentActivityName=".HomeUserActivity" />
+        <activity
+            android:name=".RestaurantDetails"
+            android:exported="false"
+            android:parentActivityName=".HomeUserActivity" />
+        <activity
             android:name=".HomeUserActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".AddUserActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".OnBoardingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

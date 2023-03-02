@@ -17,8 +17,16 @@
     <string name="bathroom">Bathroom</string>
     <string name="feedback">Feedback</string>
     <string name="problem">Problem</string>
-   <string name="timings">Timings</string>
+    <string name="timings">Timings</string>
     <string name="programme">Programme</string>
+    <string name="girls">Girls</string>
+    <string name="boys">Boys</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="OnBoardingMainText1">fdsjsdfjkdksfkjdsf</string>
+    <string name="OnBoardingSecondText1">hdsfkjdsflhkdasfdfkdsjksadfkdsfldsakhsdfkhfdshdsffdshkhkdsfkd</string>
+    <string name="OnBoardingMainText2">fdsjsdfjkdksfkjdsf</string>
+    <string name="OnBoardingSecondText2">hdsfkjdsflhkdasfdfkdsjksadfkdsfldsakhsdfkhfdshdsffdshkhkdsfkd</string>
+    <string name="OnBoardingMainText3">fdsjsdfjkdksfkjdsf</string>
+    <string name="OnBoardingSecondText3">hdsfkjdsflhkdasfdfkdsjksadfkdsfldsakhsdfkhfdshdsffdshkhkdsfkd</string>
 
 </resources>

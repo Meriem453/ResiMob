@@ -4,25 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RestaurantDetails"
+    tools:context=".BathroomDetails"
     android:orientation="vertical"
     >
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout_restaurant"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_botton"
-        app:tabTextColor="@color/white"
-
-        />
-
+<com.google.android.material.tabs.TabLayout
+    android:id="@+id/tabLayout_bathroom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blue_botton"
+    app:tabTextColor="@color/white"
+    />
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager_restaurant"
+        android:id="@+id/view_pager_bathroom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-
-
+        android:layout_weight="1"/>
 </LinearLayout>

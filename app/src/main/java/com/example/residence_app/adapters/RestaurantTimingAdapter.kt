@@ -1,7 +1,6 @@
 package com.example.residence_app.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,17 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.residence_app.R
-import com.example.residence_app.data.ResteurantTimingCardData
-import com.google.firebase.firestore.DocumentChange
+import com.example.residence_app.data.TimingCardData
 import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
-import org.w3c.dom.DocumentType
 
 class RestaurantTimingAdapter(var c:Context): RecyclerView.Adapter<RestaurantTimingAdapter.TimingVH>() {
-    private var data=ArrayList<ResteurantTimingCardData>()
+    private var data=ArrayList<TimingCardData>()
     private lateinit var db : FirebaseFirestore
 
     inner class TimingVH(itemView: View) : ViewHolder(itemView){
@@ -62,7 +56,7 @@ return data.size
             var label2 = it.result!!.data?.getValue("label2").toString().trim()
             var timing1 = it.result!!.data?.getValue("timing1").toString().trim()
             var timing2 = it.result!!.data?.getValue("timing2").toString().trim()
-            data.add(ResteurantTimingCardData(title,label1,label2,timing1,timing2))
+            data.add(TimingCardData(title,label1,label2,timing1,timing2))
             notifyDataSetChanged()
 
             dr2.get().addOnCompleteListener() {
@@ -71,7 +65,7 @@ return data.size
                 var label2 = it.result!!.data?.getValue("label2").toString().trim()
                 var timing1 = it.result!!.data?.getValue("timing1").toString().trim()
                 var timing2 = it.result!!.data?.getValue("timing2").toString().trim()
-                data.add(ResteurantTimingCardData(title,label1,label2,timing1,timing2))
+                data.add(TimingCardData(title,label1,label2,timing1,timing2))
                 notifyDataSetChanged()
 
                 dr3.get().addOnCompleteListener() {
@@ -80,7 +74,7 @@ return data.size
                     var label2 = it.result!!.data?.getValue("label2").toString().trim()
                     var timing1 = it.result!!.data?.getValue("timing1").toString().trim()
                     var timing2 = it.result!!.data?.getValue("timing2").toString().trim()
-                    data.add(ResteurantTimingCardData(title,label1,label2,timing1,timing2))
+                    data.add(TimingCardData(title,label1,label2,timing1,timing2))
                     notifyDataSetChanged()
                 }
             }
