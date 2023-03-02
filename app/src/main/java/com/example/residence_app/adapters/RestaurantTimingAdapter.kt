@@ -25,7 +25,7 @@ class RestaurantTimingAdapter(var c:Context): RecyclerView.Adapter<RestaurantTim
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimingVH {
-        val itemView=LayoutInflater.from(c).inflate(R.layout.restaurant_timing_card,parent,false)
+        val itemView=LayoutInflater.from(c).inflate(R.layout.timing_card,parent,false)
         return TimingVH(itemView)
 
     }

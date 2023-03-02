@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Restaurant_timings">
+    tools:context=".fragments.FootballNational">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/resturant_timing_rec"
+        android:id="@+id/football_national_rec"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/timing_card" />
+        android:layout_height="match_parent" />
 </FrameLayout>

@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.residence_app.adapters.DoctorTimingAdapter
+import com.example.residence_app.adapters.TimingAdapter
 import com.example.residence_app.databinding.ActivityDoctorDetailsBinding
 
 class DoctorDetails : AppCompatActivity() {
@@ -17,8 +17,8 @@ class DoctorDetails : AppCompatActivity() {
         supportActionBar?.title=resources.getString(R.string.doctor)
         supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_botton))
 
-        val adapter=DoctorTimingAdapter(baseContext)
-        adapter.getData()
+        val adapter= TimingAdapter(baseContext)
+        adapter.getDoctorData()
         binding.doctorRec.adapter=adapter
         binding.doctorRec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.VERTICAL,false)
 

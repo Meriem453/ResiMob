@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.residence_app.R
 import com.example.residence_app.data.TimingCardData
@@ -21,7 +19,7 @@ class GymTimingAdapter(var context : Context ) : RecyclerView.Adapter<GymTimingA
         val timing2 = itemView.findViewById<TextView>(R.id.restaurant_timing_card_2timing)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GymTimingAdapter.ViewHolder {
-        val itemView= LayoutInflater.from(context).inflate(R.layout.restaurant_timing_card,parent,false)
+        val itemView= LayoutInflater.from(context).inflate(R.layout.timing_card,parent,false)
         return ViewHolder(itemView)
     }
 

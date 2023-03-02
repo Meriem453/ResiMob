@@ -21,7 +21,7 @@ class TimingAdapter(var c:Context): RecyclerView.Adapter<TimingAdapter.TimingVH>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimingVH {
-        val itemView=LayoutInflater.from(c).inflate(R.layout.restaurant_timing_card,parent,false)
+        val itemView=LayoutInflater.from(c).inflate(R.layout.timing_card,parent,false)
         return TimingVH(itemView)
     }
 
@@ -65,5 +65,15 @@ class TimingAdapter(var c:Context): RecyclerView.Adapter<TimingAdapter.TimingVH>
         data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
         data.add(TimingCardData("monday","morning","evening","08:00---11:00","14:00--16:00"))
         notifyDataSetChanged()
+    }
+    fun getFootballNationaltimingData(){
+        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
+
+        notifyDataSetChanged()
+    }
+    fun getFootballInternationaltimingData(){
+        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
+
+notifyDataSetChanged()
     }
 }

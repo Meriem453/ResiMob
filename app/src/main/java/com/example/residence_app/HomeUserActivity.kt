@@ -58,6 +58,13 @@ binding.administration.setOnClickListener {
         binding.bathroom.setOnClickListener {
             startActivity(Intent(baseContext,BathroomDetails::class.java))
         }
+        binding.gym.setOnClickListener {
+            startActivity(Intent(baseContext,GymDetails::class.java))
+        }
+        binding.sport.setOnClickListener {
+            startActivity(Intent(baseContext,SportDetails::class.java))
+        }
+
         var documentReference : DocumentReference
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
