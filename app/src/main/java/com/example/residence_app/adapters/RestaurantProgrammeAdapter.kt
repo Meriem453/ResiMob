@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.residence_app.R
 import com.example.residence_app.data.RestaurantProgrammeCardData
-import com.example.residence_app.data.ResteurantTimingCardData
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 

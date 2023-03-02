@@ -54,7 +54,10 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="timing1"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+
+                app:layout_gravity="end"
+                />
 
             <TextView
                 android:id="@+id/restaurant_programme_card_2label"
@@ -76,7 +79,10 @@
                 android:fontFamily="@font/poppins_medium"
                 android:text="timing2"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+
+                app:layout_gravity="end"
+                />
         </androidx.gridlayout.widget.GridLayout>
 
     </LinearLayout>
