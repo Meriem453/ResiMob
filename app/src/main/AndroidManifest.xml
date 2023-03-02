@@ -13,15 +13,16 @@
         tools:replace="allowBackup, label"
         tools:targetApi="31">
         <activity
+            android:name=".GymDetails"
+            android:exported="false" />
+        <activity
             android:name=".BathroomDetails"
             android:exported="false"
-            android:parentActivityName=".HomeUserActivity"
-            />
+            android:parentActivityName=".HomeUserActivity" />
         <activity
             android:name=".AdministrationDetails"
             android:exported="false"
-            android:parentActivityName=".HomeUserActivity"
-            />
+            android:parentActivityName=".HomeUserActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
