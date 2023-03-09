@@ -45,31 +45,72 @@ class TimingAdapter(var c:Context): RecyclerView.Adapter<TimingAdapter.TimingVH>
     }
 
     fun getDoctorData(){
-        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
-
-
-        notifyDataSetChanged() }
+        db = FirebaseFirestore.getInstance()
+        var d1 : DocumentReference = db.collection("doctor").document("weekdays")
+        d1.get().addOnCompleteListener(){
+            var day = it.result!!.data?.getValue("title").toString().trim()
+            var label1 = it.result!!.data?.getValue("label1").toString().trim()
+            var label2 = it.result!!.data?.getValue("label2").toString().trim()
+            var time1 = it.result!!.data?.getValue("time1").toString().trim()
+            var time2 = it.result!!.data?.getValue("time2").toString().trim()
+            data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
+            notifyDataSetChanged()}
+    }
     fun getAdministrationData(){
-        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("monday","morning","evening","08:00---11:00","14:00--16:00"))
-
-        notifyDataSetChanged()
+        db = FirebaseFirestore.getInstance()
+        var d1 : DocumentReference = db.collection("Admin").document("weekdays")
+        d1.get().addOnCompleteListener(){
+            var day = it.result!!.data?.getValue("title").toString().trim()
+            var label1 = it.result!!.data?.getValue("label1").toString().trim()
+            var label2 = it.result!!.data?.getValue("label2").toString().trim()
+            var time1 = it.result!!.data?.getValue("time1").toString().trim()
+            var time2 = it.result!!.data?.getValue("time2").toString().trim()
+            data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
+            notifyDataSetChanged()}
     }
 
     fun getBathroomGirlsTimingData(){
-        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("monday","morning","evening","08:00---11:00","14:00--16:00"))
-        notifyDataSetChanged()
+        db = FirebaseFirestore.getInstance()
+        var d1 : DocumentReference = db.collection("bathroom girls").document("weekdays")
+        var d2 : DocumentReference = db.collection("bathroom girls").document("weekend")
+        d1.get().addOnCompleteListener(){
+            var day = it.result!!.data?.getValue("title").toString().trim()
+            var label1 = it.result!!.data?.getValue("label1").toString().trim()
+            var label2 = it.result!!.data?.getValue("label2").toString().trim()
+            var time1 = it.result!!.data?.getValue("time1").toString().trim()
+            var time2 = it.result!!.data?.getValue("time2").toString().trim()
+            data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
+            notifyDataSetChanged()
+            d2.get().addOnCompleteListener(){
+                var day = it.result!!.data?.getValue("title").toString().trim()
+                var label1 = it.result!!.data?.getValue("label1").toString().trim()
+                var label2 = it.result!!.data?.getValue("label2").toString().trim()
+                var time1 = it.result!!.data?.getValue("time1").toString().trim()
+                var time2 = it.result!!.data?.getValue("time2").toString().trim()
+                data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
+                notifyDataSetChanged()}}
     }
 
     fun getBathroomBoysTimingData(){
-        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("monday","morning","evening","08:00---11:00","14:00--16:00"))
-        notifyDataSetChanged()
+        db = FirebaseFirestore.getInstance()
+        var d1 : DocumentReference = db.collection("bathroom").document("weekdays")
+        var d2 : DocumentReference = db.collection("bathroom").document("weekend")
+        d1.get().addOnCompleteListener(){
+            var day = it.result!!.data?.getValue("title").toString().trim()
+            var label1 = it.result!!.data?.getValue("label1").toString().trim()
+            var label2 = it.result!!.data?.getValue("label2").toString().trim()
+            var time1 = it.result!!.data?.getValue("time1").toString().trim()
+            var time2 = it.result!!.data?.getValue("time2").toString().trim()
+            data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
+            notifyDataSetChanged()
+            d2.get().addOnCompleteListener(){
+                var day = it.result!!.data?.getValue("title").toString().trim()
+                var label1 = it.result!!.data?.getValue("label1").toString().trim()
+                var label2 = it.result!!.data?.getValue("label2").toString().trim()
+                var time1 = it.result!!.data?.getValue("time1").toString().trim()
+                var time2 = it.result!!.data?.getValue("time2").toString().trim()
+                data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
+                notifyDataSetChanged()}}
     }
     fun getFootballNationaltimingData(){
         db = FirebaseFirestore.getInstance()
