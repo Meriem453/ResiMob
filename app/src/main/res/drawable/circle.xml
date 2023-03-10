@@ -7,5 +7,5 @@
     </shape>
 </item>
 
-    <item android:drawable="@drawable/photo_camera_02" android:state_pressed="false"/>
+
 </selector>

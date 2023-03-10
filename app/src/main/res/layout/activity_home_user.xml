@@ -24,15 +24,21 @@
             android:layout_gravity="clip_horizontal"
             android:layout_weight="1"
             android:orientation="horizontal">
+<androidx.cardview.widget.CardView
+    app:cardCornerRadius="50dp"
+    android:layout_width="62dp"
+    android:layout_height="62dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView3"
-                android:layout_width="62dp"
-                android:layout_height="62dp"
-                android:layout_gravity="start|center_vertical"
-                android:layout_margin="10dp"
-                app:shapeAppearanceOverlay="@style/circular"
-                app:srcCompat="@drawable/img_add" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:layout_margin="10dp"
+            />
+
+</androidx.cardview.widget.CardView>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"

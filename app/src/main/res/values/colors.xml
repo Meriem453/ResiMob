@@ -8,10 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue_title">#1D447F</color>
-    <color name="blue_botton">#033FFF</color>
+    <color name="blue_botton">#1E7CFF</color>
     <color name="blue_layout">#4A9FF5</color>
-    <color name="gray">#747679</color>
+    <color name="gray">#596273</color>
     <color name="deactive">#D9D9D9</color>
     <color name="buttoncolor">#5FF4EE</color>
     <color name="background">#1E7CFF</color>
+    <color name="blue_background">#EEF3F9</color>
 </resources>
