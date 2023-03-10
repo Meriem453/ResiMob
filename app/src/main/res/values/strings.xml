@@ -33,5 +33,15 @@
     <string name="national">National</string>
     <string name="international">International</string>
     <string name="President">President</string>
+    <string-array name="arr">
+        <item >pr1</item>
+        <item >pr2</item>
+        <item >pr3</item>
+
+    </string-array>
+    <string name="select_president">Select President</string>
+    <string name="what_is_the_problem">What is the problem?</string>
+    <string name="details">Details</string>
+    <string name="send">Send</string>
 
 </resources>
