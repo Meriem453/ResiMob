@@ -2,24 +2,28 @@ package com.example.residence_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import androidx.core.widget.addTextChangedListener
+import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import com.example.residence_app.databinding.ActivityProblemBinding
 
 class Problem : AppCompatActivity() {
     lateinit var binding:ActivityProblemBinding
-    var presidents=ArrayList<String>()
-    var prblms=ArrayList<String>()
+    lateinit var presidents:Array<String>
+    var problems=ArrayList<String>()
     var details=ArrayList<String>()
+    var selected_president=""
+    var selected_prblm=""
+    var selected_detail=""
     lateinit var prblmsAdapter:ArrayAdapter<String>
     lateinit var detailsAdapter:ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
+
 
         super.onCreate(savedInstanceState)
         binding=ActivityProblemBinding.inflate(layoutInflater)
@@ -27,16 +31,18 @@ class Problem : AppCompatActivity() {
         setContentView(R.layout.activity_problem)
         supportActionBar?.hide()
 
-        presidents.add("pr1")
-        presidents.add("pr2")
-        presidents.add("pr3")
+        var pre_spinner=findViewById<AutoCompleteTextView>(R.id.pre_spinner)
+        val detail_spinner=findViewById<AutoCompleteTextView>(R.id.details_spinner)
+        val prblm_spinner=findViewById<AutoCompleteTextView>(R.id.prblm_spinner)
+
+        presidents=resources.getStringArray(R.array.presidents)
 
 
 
         prblmsAdapter=ArrayAdapter(
             baseContext,
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-            prblms
+            problems
         )
         detailsAdapter=ArrayAdapter(
             baseContext,
@@ -45,74 +51,87 @@ class Problem : AppCompatActivity() {
         )
 
 
-        binding.preSpinner.adapter= ArrayAdapter(
+        pre_spinner.setAdapter(ArrayAdapter(
             baseContext,
-            com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
-           presidents)
+            R.layout.dropdown_item,
+            presidents))
 
-        binding.prblmSpinner.adapter=prblmsAdapter
-        binding.detailsSpinner.adapter=detailsAdapter
-
-
+        prblm_spinner.setAdapter(prblmsAdapter)
+        detail_spinner.setAdapter(detailsAdapter)
 
 
-        binding.preSpinner.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+
+
+        pre_spinner.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
                 position: Int,
                 id: Long
             ) {
-                getPrblmData(presidents[position],prblmsAdapter)
+                selected_president= presidents[position]
+                getPrblmData(prblmsAdapter)
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
-
-        binding.prblmSpinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
+            prblm_spinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
                 position: Int,
                 id: Long
             ) {
-                getDetailsData(prblms[position],detailsAdapter)
+                selected_prblm=problems[position]
+                Toast.makeText(baseContext,problems[position].toString(),Toast.LENGTH_SHORT).show()
+                getDetailsData(detailsAdapter)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {} }
-        binding.detailsSpinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
+        detail_spinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
                 position: Int,
                 id: Long
             ) {
-                sendData(details[position])
+                selected_detail=(details[position])
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-
         }}
-    private fun getPrblmData(president:String,adapter: ArrayAdapter<String>){
+    private fun getPrblmData(adapter: ArrayAdapter<String>){
         //get all president prblms from database and fill the prblm array
-        //prblm.add(...)
+        //use selected_president
+        //prblms.add(...)
+        problems.clear()
+        if(selected_president=="pr1"){
+            problems.add("prblm1")
+        }else{
+            problems.add("prblm2")
 
-
-
+        }
         adapter.notifyDataSetChanged()
 
     }
-     private fun getDetailsData(prblm:String,adapter: ArrayAdapter<String>){
+     private fun getDetailsData(adapter: ArrayAdapter<String>){
     //get all prblm details and fill the details array
-    //details.add(...)
+         //use selected_prblm
 
+         //details.add(...)
+         details.clear()
+
+         if(selected_prblm=="prblm1"){
+             details.add("detail1")
+         }else{
+             details.add("detail2")
+
+         }
 
 
     adapter.notifyDataSetChanged()
 }
-private fun sendData(selectedDetail:String){
-    //send the problem
-}
+
 
     }
 

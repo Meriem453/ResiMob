@@ -34,16 +34,23 @@
 
 
     </androidx.appcompat.widget.Toolbar>
-
-    <Spinner
+<com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/l1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="30dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView3"
+    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+    >
+    <AutoCompleteTextView
         android:id="@+id/pre_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+        />
+</com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -55,16 +62,27 @@
         android:textColor="@color/gray"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <Spinner
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:hint="@string/President"
+      android:shadowColor="@color/gray"
+        />
+<com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/l2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView2"
+    android:layout_marginHorizontal="30dp"
+    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+    <AutoCompleteTextView
         android:id="@+id/prblm_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        />
+</com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/textView2"
@@ -77,16 +95,24 @@
         android:textColor="@color/gray"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pre_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/l1" />
+<com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/l3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView"
+    android:layout_marginHorizontal="30dp"
+    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+    ><AutoCompleteTextView
+    android:id="@+id/details_spinner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
 
-    <Spinner
-        android:id="@+id/details_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+    />
+</com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/textView"
@@ -99,7 +125,7 @@
         android:textColor="@color/gray"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prblm_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/l2" />
 
     <Button
         android:id="@+id/button"
@@ -111,7 +137,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/l3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

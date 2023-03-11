@@ -7,7 +7,8 @@
     android:fontFamily="@font/poppins_medium"
     android:ellipsize="end"
  android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-    android:text="i am here"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="10dp"
     >
 
 </TextView>

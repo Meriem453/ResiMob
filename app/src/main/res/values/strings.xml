@@ -33,7 +33,7 @@
     <string name="national">National</string>
     <string name="international">International</string>
     <string name="President">President</string>
-    <string-array name="arr">
+    <string-array name="presidents">
         <item >pr1</item>
         <item >pr2</item>
         <item >pr3</item>
