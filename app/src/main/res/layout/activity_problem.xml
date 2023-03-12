@@ -42,13 +42,19 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/textView3"
-    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+
+
     >
     <AutoCompleteTextView
         android:id="@+id/pre_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+android:inputType="none"
+       android:text="@string/President"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="15sp"
+        android:textColor="@color/gray"
         />
 </com.google.android.material.textfield.TextInputLayout>
     <TextView
@@ -74,11 +80,17 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/textView2"
     android:layout_marginHorizontal="30dp"
-    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
     <AutoCompleteTextView
         android:id="@+id/prblm_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="none"
+        android:text="@string/problem"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="15sp"
+        android:textColor="@color/gray"
+
 
         />
 </com.google.android.material.textfield.TextInputLayout>
@@ -104,11 +116,16 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/textView"
     android:layout_marginHorizontal="30dp"
-    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
     ><AutoCompleteTextView
     android:id="@+id/details_spinner"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+android:inputType="none"
+    android:text="@string/details"
+    android:fontFamily="@font/poppins_medium"
+    android:textSize="15dp"
+    android:textColor="@color/gray"
 
     />
 </com.google.android.material.textfield.TextInputLayout>

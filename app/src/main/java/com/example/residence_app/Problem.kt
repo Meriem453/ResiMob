@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Spinner
 import android.widget.Toast
 import com.example.residence_app.databinding.ActivityProblemBinding
 
@@ -41,12 +42,12 @@ class Problem : AppCompatActivity() {
 
         prblmsAdapter=ArrayAdapter(
             baseContext,
-            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+            R.layout.dropdown_item,
             problems
         )
         detailsAdapter=ArrayAdapter(
             baseContext,
-            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+            R.layout.dropdown_item,
             details
         )
 
@@ -59,47 +60,27 @@ class Problem : AppCompatActivity() {
         prblm_spinner.setAdapter(prblmsAdapter)
         detail_spinner.setAdapter(detailsAdapter)
 
-
-
-
-        pre_spinner.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                selected_president= presidents[position]
-                getPrblmData(prblmsAdapter)
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+pre_spinner.setOnItemClickListener(
+    AdapterView.OnItemClickListener { parent, view, position, id ->
+        if (parent != null) {
+            selected_president= parent.getItemAtPosition(position).toString()
         }
-            prblm_spinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                selected_prblm=problems[position]
-                Toast.makeText(baseContext,problems[position].toString(),Toast.LENGTH_SHORT).show()
-                getDetailsData(detailsAdapter)
-            }
+        getPrblmData(prblmsAdapter)
+    }
+)
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {} }
-        detail_spinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                selected_detail=(details[position])
 
-            }
+     prblm_spinner.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
+         selected_prblm=prblm_spinner.text.toString()
+         getDetailsData(detailsAdapter)
+     })
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }}
+
+           detail_spinner.setOnItemClickListener { parent, view, position, id ->
+               selected_detail=detail_spinner.text.toString()
+           }
+
+    }
     private fun getPrblmData(adapter: ArrayAdapter<String>){
         //get all president prblms from database and fill the prblm array
         //use selected_president
