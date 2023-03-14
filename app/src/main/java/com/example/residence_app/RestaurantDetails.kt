@@ -14,8 +14,7 @@ class RestaurantDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityRestaurantDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.title =baseContext.resources.getString(R.string.restaurant)
-        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_botton))
+        supportActionBar?.hide()
 
 
         val tabs=binding.tabLayoutRestaurant

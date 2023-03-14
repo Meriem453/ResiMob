@@ -7,13 +7,54 @@
     tools:context=".BathroomDetails"
     android:orientation="vertical"
     >
-<com.google.android.material.tabs.TabLayout
-    android:id="@+id/tabLayout_bathroom"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/blue_botton"
-    app:tabTextColor="@color/white"
-    />
+    <androidx.appcompat.widget.Toolbar
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/action_bar_background"
+        >
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/leftarrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/bathroom"
+            android:textColor="@color/white"
+            android:textSize="20sp" /></androidx.appcompat.widget.Toolbar>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@drawable/tabs_background"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="30dp"
+        >
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout_bathroom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:background="@drawable/corner_tab_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabGravity="fill"
+            app:tabIndicator="@drawable/corner_tab_background"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorColor="@color/blue_background"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorGravity="stretch"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/gray" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager_bathroom"
         android:layout_width="match_parent"

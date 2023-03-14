@@ -21,66 +21,72 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
-            android:gravity="center_horizontal"
+            android:gravity="start"
             android:text="Title"
             android:textColor="@color/blue_layout"
-            android:textSize="20sp"
+            android:textSize="30sp"
 
             />
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line"
+            />
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:columnCount="2"
             app:rowCount="2">
-
-            <TextView
-                android:id="@+id/restaurant_timing_card_1label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="label1"
-                android:textColor="@color/gray"
-                android:textSize="18sp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
-                android:drawableStart="@drawable/point"
-                />
-
             <TextView
                 android:id="@+id/restaurant_timing_card_1timing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="timing1"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_gravity="end"
+                android:textColor="@color/gray"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_columnWeight="1"
                 />
 
-            <TextView
-                android:id="@+id/restaurant_timing_card_2label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="label2"
-                android:textColor="@color/gray"
-                android:textSize="18sp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
-                android:drawableStart="@drawable/point"
-                />
 
             <TextView
                 android:id="@+id/restaurant_timing_card_2timing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="timing2"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_gravity="end"
+                android:textColor="@color/gray"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_columnWeight="1"
                 />
+
+            <TextView
+                android:id="@+id/restaurant_timing_card_1label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="label1"
+                android:textColor="@color/gray"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_columnWeight="1"
+
+                />
+            <TextView
+                android:id="@+id/restaurant_timing_card_2label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="label2"
+                android:textColor="@color/gray"
+                android:textSize="15sp"
+                android:gravity="center"
+                app:layout_columnWeight="1"
+                />
+
+
         </androidx.gridlayout.widget.GridLayout>
 
     </LinearLayout>
