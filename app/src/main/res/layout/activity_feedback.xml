@@ -7,24 +7,30 @@
     android:background="@color/feedback"
     tools:context=".FeedbackActivity">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:background="@color/blue_botton"
+        android:background="@drawable/action_bar_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <View
+            android:layout_width="15dp"
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/leftarrow" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="center"
-            android:text="Feedback"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/problem"
             android:textColor="@color/white"
             android:textSize="20sp" />
+
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
@@ -104,6 +110,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner_id" />
 
     <Button
+        android:id="@+id/sendFeedback"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="30dp"

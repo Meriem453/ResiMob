@@ -337,6 +337,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/button_feedback"
             android:layout_width="208dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -348,6 +349,7 @@
             android:textSize="18sp" />
 
         <Button
+            android:id="@+id/button_problem"
             android:layout_width="208dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"

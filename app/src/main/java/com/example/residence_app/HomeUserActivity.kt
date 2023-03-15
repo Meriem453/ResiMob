@@ -64,6 +64,12 @@ binding.administration.setOnClickListener {
         binding.sport.setOnClickListener {
             startActivity(Intent(baseContext,SportDetails::class.java))
         }
+        binding.buttonFeedback.setOnClickListener {
+            startActivity(Intent(baseContext,FeedbackActivity::class.java))
+        }
+        binding.buttonProblem.setOnClickListener {
+            startActivity(Intent(baseContext,Problem::class.java))
+        }
 
         var documentReference : DocumentReference
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
