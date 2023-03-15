@@ -15,7 +15,7 @@ class BathroomDetails : AppCompatActivity() {
         binding=ActivityBathroomDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_botton))
+        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_button))
         supportActionBar?.title=resources.getString(R.string.bathroom)
 
         val tabs=binding.tabLayoutBathroom

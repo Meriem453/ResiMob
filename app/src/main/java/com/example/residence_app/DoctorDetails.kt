@@ -15,7 +15,7 @@ class DoctorDetails : AppCompatActivity() {
         binding = ActivityDoctorDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title=resources.getString(R.string.doctor)
-        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_botton))
+        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_button))
 
         val adapter= TimingAdapter(baseContext)
         adapter.getDoctorData()

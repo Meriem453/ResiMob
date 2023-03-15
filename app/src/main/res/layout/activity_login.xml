@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
             android:layout_weight="1"
-            android:textColorHint="@color/blue_botton"
+            android:textColorHint="@color/blue_button"
             app:startIconDrawable="@drawable/__icon__user_">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -70,7 +70,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/mail_adress"
                 android:inputType="textEmailAddress"
-                android:textColorHint="@color/blue_botton" />
+                android:textColorHint="@color/blue_button" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
             android:layout_weight="1"
-            android:textColorHint="@color/blue_botton"
+            android:textColorHint="@color/blue_button"
             app:startIconDrawable="@drawable/__icon__locked_"
 
             >
@@ -90,7 +90,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:textColorHint="@color/blue_botton" />
+                android:textColorHint="@color/blue_button" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

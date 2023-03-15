@@ -1,14 +1,9 @@
 package com.example.residence_app
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.residence_app.adapters.*
-import com.example.residence_app.databinding.ActivityBathroomDetailsBinding
 import com.example.residence_app.databinding.ActivityGymDetailsBinding
 import com.google.android.material.tabs.TabLayout
 
@@ -23,7 +18,7 @@ class GymDetails : AppCompatActivity() {
         binding= ActivityGymDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_botton))
+        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_button))
         supportActionBar?.title=resources.getString(R.string.gym)
 
         val tabs=binding.tabLayoutGym

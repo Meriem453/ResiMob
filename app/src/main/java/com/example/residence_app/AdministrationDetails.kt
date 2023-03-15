@@ -16,7 +16,7 @@ class AdministrationDetails : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title=resources.getString(R.string.administration)
-        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_botton))
+        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_button))
 
         val adapter= TimingAdapter(baseContext)
         adapter.getAdministrationData()

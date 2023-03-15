@@ -42,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:progressMode="true"
-        app:selectedDotColor="@color/blue_botton" />
+        app:selectedDotColor="@color/blue_button" />
 
     <View
         android:layout_width="1dp"
