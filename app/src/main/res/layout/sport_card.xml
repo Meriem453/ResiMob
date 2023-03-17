@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    android:layout_marginVertical="20dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="20dp">
+
+        <ImageView
+            android:id="@+id/sport_details_icon"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/icon_foot"
+            android:elevation="5dp"
+            />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/sport"
+            android:textColor="@color/gray"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <TextView
+            android:id="@+id/sport_details_sport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="TextView"
+            android:textColor="@color/blue_layout"
+            android:textSize="26sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7"
+
+            />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sport_details_sport" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:columnCount="3"
+            android:rowCount="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <TextView
+                android:id="@+id/sport_details_kind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@color/gray"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/sport_details_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@color/gray"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/sport_details_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@color/gray"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginVertical="1dp"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="center"
+                android:text="@string/kind"
+                android:textColor="@color/gray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginVertical="1dp"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="center"
+                android:text="@string/gender"
+                android:textColor="@color/gray"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginVertical="1dp"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="center"
+                android:text="@string/time"
+                android:textColor="@color/gray"
+                android:textSize="12sp" />
+        </GridLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

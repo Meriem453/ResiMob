@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sport_rec"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FootballInternational">
+    tools:context=".sportDetailsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/football_international_rec"
+        android:id="@+id/sports_rec"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
