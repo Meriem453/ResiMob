@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.residence_app.R
-import com.example.residence_app.sportDetailsFragment
+import com.example.residence_app.fragments.sportDetailsFragment
 
 class SportDaysAdapter(var c:Context,val array: Array<String>,var fm:android.app.FragmentManager) : RecyclerView.Adapter<SportDaysAdapter.DaysVH>() {
 
@@ -19,15 +17,8 @@ class SportDaysAdapter(var c:Context,val array: Array<String>,var fm:android.app
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaysVH {
-        val itemView=LayoutInflater.from(c).inflate(R.layout.day_card,parent,false)
-        itemView.setOnClickListener {
-            val fragmentTransaction = fm.beginTransaction()
-            val fragment=sportDetailsFragment()
-            fragment.c=c
-            fragmentTransaction.add(R.id.sport_frame,fragment )
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-        }
+        val itemView = LayoutInflater.from(c).inflate(R.layout.day_card,parent,false)
+
         return DaysVH(itemView)
     }
 
@@ -37,6 +28,16 @@ class SportDaysAdapter(var c:Context,val array: Array<String>,var fm:android.app
 
     override fun onBindViewHolder(holder: DaysVH, position: Int) {
       holder.day.text=array[position]
+        holder.itemView.setOnClickListener {
+            val fragmentTransaction = fm.beginTransaction()
+            val fragment= sportDetailsFragment()
+            fragment.c=c
+            fragment.dayPosition=position
+            fragmentTransaction.add(R.id.sport_frame,fragment )
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+        }
     }
 
 }

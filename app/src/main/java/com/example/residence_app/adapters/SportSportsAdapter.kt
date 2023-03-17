@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.residence_app.R
 import com.example.residence_app.data.SportData
 
-class SportSportsAdapter (var c :Context): RecyclerView.Adapter<SportSportsAdapter.SportsVH>() {
+class SportSportsAdapter (var c :Context,var dayPosition:Int): RecyclerView.Adapter<SportSportsAdapter.SportsVH>() {
     var arr=ArrayList<SportData>()
     inner class SportsVH(itemView: View) : ViewHolder(itemView){
         val sport=itemView.findViewById<TextView>(R.id.sport_details_sport)
@@ -38,9 +38,42 @@ class SportSportsAdapter (var c :Context): RecyclerView.Adapter<SportSportsAdapt
 
       }
     }
-    public fun getSatData(){
-        arr.add(SportData("foot","national","girls","time"))
-        arr.add(SportData("foot","national","girls","time"))
+    public fun getData(){
+        arr.clear()
+        when(dayPosition){
+            0 -> {
+                //saturday
+                arr.add(SportData("Football","national","Girls","10:00--12:00"))
+                arr.add(SportData("Volleyball","national","Boys","17:00--18:30"))
+                arr.add(SportData("Football","national","Boys","19:00--10:00"))
+            }
+            1 -> {
+               //sunday
+                arr.add(SportData("Football","national","Boys","19:00--10:00"))
+                arr.add(SportData("Volleyball","national","Boys","17:00--18:30"))
+                arr.add(SportData("Football","national","Girls","10:00--12:00"))
+
+
+            }
+            2 -> {
+                //monday
+            }
+            3 -> {
+                //tusday
+            }
+            4 -> {
+                //wednesday
+
+            }
+            5 -> {
+              //thirsday
+            }
+            6 -> {
+                  //friday
+            }
+
+        }
+
         notifyDataSetChanged()
 
     }

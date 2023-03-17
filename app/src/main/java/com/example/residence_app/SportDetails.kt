@@ -27,6 +27,9 @@ class SportDetails : AppCompatActivity() {
         binding.sportRec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.HORIZONTAL,false)
 
 
+
+
+
     }
 
 
