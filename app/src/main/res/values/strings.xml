@@ -43,20 +43,22 @@
     <string name="what_is_the_problem">What is the problem?</string>
     <string name="details">Details</string>
     <string name="send">Send</string>
-    <string-array name="days">
-        <item name="sat">Sat</item>
-        <item name="sun">Sun</item>
-        <item name="mon">Mon</item>
-        <item name="tus">Tus</item>
-        <item name="thu">Thu</item>
-        <item name="wed">Wed</item>
-        <item name="fri">Fri</item>
-    </string-array>
+
+        <string name="sat">Sat</string>
+        <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+        <string name="tus">Tus</string>
+        <string name="thu">Thu</string>
+        <string name="wed">Wed</string>
+        <string name="fri">Fri</string>
+
 
 
     <string name="sport">Sport</string>
     <string name="kind">Kind</string>
     <string name="gender">Gender</string>
     <string name="time">Time</string>
+    <string name="volleyball">Volleyball</string>
+    <string name="basketball">Basketball</string>
 
 </resources>
