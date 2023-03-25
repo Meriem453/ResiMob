@@ -13,7 +13,6 @@ import com.example.residence_app.data.SportData
 
 class SportSportsAdapter (var c :Context): RecyclerView.Adapter<SportSportsAdapter.SportsVH>() {
     var arr=ArrayList<SportData>()
-
     inner class SportsVH(itemView: View) : ViewHolder(itemView){
         val sport=itemView.findViewById<TextView>(R.id.sport_details_sport)
         val kind=itemView.findViewById<TextView>(R.id.sport_details_kind)
@@ -55,40 +54,40 @@ class SportSportsAdapter (var c :Context): RecyclerView.Adapter<SportSportsAdapt
     }
     public fun getData(dayPosition:Int){
         arr.clear()
-        when((dayPosition+1) %7 ){
+        when(dayPosition){
             0 -> {
                 //sun
-                arr.add(SportData(c.resources.getString(R.string.football),"national","Girls","10:00--12:00"))
+                arr.add(SportData("sun","national","Girls","10:00--12:00"))
 
             }
             1 -> {
                //mon
-                arr.add(SportData(c.resources.getString(R.string.football),"national","Boys","19:00--10:00"))
-                arr.add(SportData("Basketball","national","Boys","17:00--18:30"))
+
+                arr.add(SportData("mon","national","Boys","17:00--18:30"))
 
 
 
             }
             2 -> {
                 //tusday
-                arr.add(SportData(c.resources.getString(R.string.basketball),"national","Boys","17:00--18:30"))
+                arr.add(SportData("tusday","national","Boys","17:00--18:30"))
 
             }
             3 -> {
                 //wednesday
-                arr.add(SportData("Basketball","national","Boys","17:00--18:30"))
+                arr.add(SportData("wednesday","national","Boys","17:00--18:30"))
             }
             4 -> {
                 //thursday
-                arr.add(SportData("Basketball","national","Boys","17:00--18:30"))
+                arr.add(SportData("thursday","national","Boys","17:00--18:30"))
             }
             5 -> {
               //friday
-                arr.add(SportData("Basketball","national","Boys","17:00--18:30"))
+                arr.add(SportData("friday","national","Boys","17:00--18:30"))
             }
             6 -> {
                   //saturday
-                arr.add(SportData("Basketball","national","Boys","17:00--18:30"))
+                arr.add(SportData("saturday","national","Boys","17:00--18:30"))
             }
 
         }

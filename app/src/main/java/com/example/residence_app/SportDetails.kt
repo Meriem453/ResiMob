@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.residence_app.adapters.SportRoomTabsAdapter
+import com.example.residence_app.adapters.SportSportsAdapter
 import com.example.residence_app.databinding.ActivitySportDetailsBinding
-import com.example.residence_app.fragments.SportDetailsFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.Tab
 
@@ -34,7 +34,6 @@ class SportDetails : AppCompatActivity() {
         binding.sportViewpager.adapter=SportRoomTabsAdapter(supportFragmentManager,baseContext)
         binding.sportTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: Tab?) {
-                SportDetailsFragment.dayPosition=tab!!.position
                 binding.sportViewpager.currentItem=tab!!.position
 
             }
