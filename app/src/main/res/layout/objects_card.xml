@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/sport_white_background"
+    >
+
+    <TextView
+        android:id="@+id/obj_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="TextView"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+
+        app:drawableEndCompat="@drawable/rightarrow_gray" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+    <ImageView
+        android:id="@+id/obj_img"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        app:srcCompat="@drawable/baseline_collections_24"
+        android:background="@color/gray"
+
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/founder"
+        android:textColor="@color/blue_button"
+        android:textSize="20sp"
+        /><TextView
+    android:id="@+id/obj_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="50dp"
+    android:layout_marginVertical="2dp"
+    android:fontFamily="@font/poppins_semibold"
+    android:text="TextView"
+    android:textColor="@color/gray"
+    android:textSize="15sp"
+    app:drawableStartCompat="@drawable/rightarrow_gray" />
+    <TextView
+        android:id="@+id/obj_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="2dp"
+
+        android:fontFamily="@font/poppins_semibold"
+        android:text="TextView"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        app:drawableStartCompat="@drawable/rightarrow_gray" />
+    <TextView
+        android:id="@+id/obj_room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="2dp"
+
+        android:fontFamily="@font/poppins_semibold"
+        android:text="TextView"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        app:drawableStartCompat="@drawable/rightarrow_gray" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginHorizontal="20dp"
+
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/place"
+        android:textColor="@color/blue_button"
+        android:textSize="20sp"
+        /><TextView
+    android:id="@+id/obj_place"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="50dp"
+    android:layout_marginVertical="2dp"
+    android:fontFamily="@font/poppins_semibold"
+    android:text="TextView"
+    android:textColor="@color/gray"
+    android:textSize="15sp"
+  />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginHorizontal="20dp"
+
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/details"
+        android:textColor="@color/blue_button"
+        android:textSize="20sp"
+        /><TextView
+    android:id="@+id/obj_details"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="50dp"
+    android:layout_marginVertical="2dp"
+    android:fontFamily="@font/poppins_semibold"
+    android:text="TextView"
+    android:textColor="@color/gray"
+    android:textSize="15sp"
+    />
+
+    </LinearLayout>
+</LinearLayout>

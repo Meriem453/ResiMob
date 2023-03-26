@@ -4,19 +4,21 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.residence_app.R
 import com.example.residence_app.data.SportData
 
-class SportSportsAdapter (var c :Context,var dayPosition:Int): RecyclerView.Adapter<SportSportsAdapter.SportsVH>() {
+class SportSportsAdapter (var c :Context): RecyclerView.Adapter<SportSportsAdapter.SportsVH>() {
     var arr=ArrayList<SportData>()
     inner class SportsVH(itemView: View) : ViewHolder(itemView){
         val sport=itemView.findViewById<TextView>(R.id.sport_details_sport)
         val kind=itemView.findViewById<TextView>(R.id.sport_details_kind)
         val gender=itemView.findViewById<TextView>(R.id.sport_details_gender)
         val time=itemView.findViewById<TextView>(R.id.sport_details_time)
+        val icon=itemView.findViewById<ImageView>(R.id.sport_details_icon)
 
     }
 
@@ -35,41 +37,57 @@ class SportSportsAdapter (var c :Context,var dayPosition:Int): RecyclerView.Adap
           kind.text=arr[position].kind
           gender.text=arr[position].gender
           time.text =arr[position].time
+          when (arr[position].sport){
+              c.resources.getString(R.string.football) -> {
+                  icon.setImageDrawable(c.resources.getDrawable(R.drawable.icon_foot))
+              }
+              c.resources.getString(R.string.volleyball) -> {
+                  icon.setImageDrawable(c.getDrawable(R.drawable.icon_volley))
+              }
+              c.resources.getString(R.string.basketball) -> {
+                  icon.setImageDrawable(c.getDrawable(R.drawable.icon_basket))
+
+              }
+          }
 
       }
     }
-    public fun getData(){
+    public fun getData(dayPosition:Int){
         arr.clear()
         when(dayPosition){
             0 -> {
-                //saturday
-                arr.add(SportData("Football","national","Girls","10:00--12:00"))
-                arr.add(SportData("Volleyball","national","Boys","17:00--18:30"))
-                arr.add(SportData("Football","national","Boys","19:00--10:00"))
+                //sun
+                arr.add(SportData("sun","national","Girls","10:00--12:00"))
+
             }
             1 -> {
-               //sunday
-                arr.add(SportData("Football","national","Boys","19:00--10:00"))
-                arr.add(SportData("Volleyball","national","Boys","17:00--18:30"))
-                arr.add(SportData("Football","national","Girls","10:00--12:00"))
+               //mon
+
+                arr.add(SportData("mon","national","Boys","17:00--18:30"))
+
 
 
             }
             2 -> {
-                //monday
-            }
-            3 -> {
                 //tusday
-            }
-            4 -> {
-                //wednesday
+                arr.add(SportData("tusday","national","Boys","17:00--18:30"))
 
             }
+            3 -> {
+                //wednesday
+                arr.add(SportData("wednesday","national","Boys","17:00--18:30"))
+            }
+            4 -> {
+                //thursday
+                arr.add(SportData("thursday","national","Boys","17:00--18:30"))
+            }
             5 -> {
-              //thirsday
+              //friday
+                arr.add(SportData("friday","national","Boys","17:00--18:30"))
             }
             6 -> {
-                  //friday
+                  //saturday
+                arr.add(SportData("saturday","national","Boys","17:00--18:30"))
             }
 
         }

@@ -2,12 +2,12 @@ package com.example.residence_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.residence_app.adapters.SportDaysAdapter
+import android.widget.Toast
+import com.example.residence_app.adapters.SportRoomTabsAdapter
+import com.example.residence_app.adapters.SportSportsAdapter
 import com.example.residence_app.databinding.ActivitySportDetailsBinding
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.Tab
 
 class SportDetails : AppCompatActivity() {
     lateinit var binding:ActivitySportDetailsBinding
@@ -22,11 +22,26 @@ class SportDetails : AppCompatActivity() {
         binding=ActivitySportDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val array=resources.getStringArray(R.array.days)
-        binding.sportRec.adapter=SportDaysAdapter(baseContext,array,fragmentManager)
-        binding.sportRec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.HORIZONTAL,false)
 
+        binding.sportTab.addTab(binding.sportTab.newTab().setText(resources.getString(R.string.sun)))
+        binding.sportTab.addTab(binding.sportTab.newTab().setText(resources.getString(R.string.mon)))
+        binding.sportTab.addTab(binding.sportTab.newTab().setText(resources.getString(R.string.tus)))
+        binding.sportTab.addTab(binding.sportTab.newTab().setText(resources.getString(R.string.wed)))
+        binding.sportTab.addTab(binding.sportTab.newTab().setText(resources.getString(R.string.thu)))
+        binding.sportTab.addTab(binding.sportTab.newTab().setText(resources.getString(R.string.fri)))
+        binding.sportTab.addTab(binding.sportTab.newTab().setText(resources.getString(R.string.sat)))
 
+        binding.sportViewpager.adapter=SportRoomTabsAdapter(supportFragmentManager,baseContext)
+        binding.sportTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: Tab?) {
+                binding.sportViewpager.currentItem=tab!!.position
+
+            }
+
+            override fun onTabUnselected(tab: Tab?) {}
+
+            override fun onTabReselected(tab: Tab?) {}
+        })
 
 
 
