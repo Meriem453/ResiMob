@@ -65,6 +65,7 @@
     <string name="lost_objects">Lost Objects</string>
     <string name="found_objects">Found Objects</string>
     <string name="founder">Founder</string>
+    <string name="loser">Losere</string>
 <string name="place">Place</string>
 
 </resources>

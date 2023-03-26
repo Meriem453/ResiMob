@@ -8,5 +8,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lostObj_rec"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/objects_card"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        />
 </FrameLayout>

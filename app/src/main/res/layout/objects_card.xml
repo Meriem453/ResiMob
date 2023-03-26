@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/sport_white_background"
+    android:layout_marginVertical="10dp"
     >
 
     <TextView
@@ -19,6 +20,7 @@
 
         app:drawableEndCompat="@drawable/rightarrow_gray" />
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -38,6 +40,7 @@
         />
 
     <TextView
+        android:id="@+id/obj_person"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -57,7 +60,7 @@
     android:text="TextView"
     android:textColor="@color/gray"
     android:textSize="15sp"
-    app:drawableStartCompat="@drawable/rightarrow_gray" />
+    app:drawableStartCompat="@drawable/icon_name" />
     <TextView
         android:id="@+id/obj_email"
         android:layout_width="match_parent"
@@ -69,7 +72,7 @@
         android:text="TextView"
         android:textColor="@color/gray"
         android:textSize="15sp"
-        app:drawableStartCompat="@drawable/rightarrow_gray" />
+        app:drawableStartCompat="@drawable/icon_email" />
     <TextView
         android:id="@+id/obj_room"
         android:layout_width="match_parent"
@@ -81,7 +84,7 @@
         android:text="TextView"
         android:textColor="@color/gray"
         android:textSize="15sp"
-        app:drawableStartCompat="@drawable/rightarrow_gray" />
+        app:drawableStartCompat="@drawable/icon_room" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,11 +123,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="50dp"
-    android:layout_marginVertical="2dp"
+    android:layout_marginTop="2dp"
+        android:layout_marginBottom="20dp"
     android:fontFamily="@font/poppins_semibold"
     android:text="TextView"
     android:textColor="@color/gray"
     android:textSize="15sp"
+
     />
 
     </LinearLayout>
