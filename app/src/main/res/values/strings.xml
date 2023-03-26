@@ -59,5 +59,10 @@
     <string name="time">Time</string>
     <string name="volleyball">Volleyball</string>
     <string name="basketball">Basketball</string>
+    <string name="objects">Objects</string>
+    <string name="lost_objects">Lost Objects</string>
+    <string name="found_objects">Found Objects</string>
+    <string name="founder">Founder</string>
+<string name="place">Place</string>
 
 </resources>
