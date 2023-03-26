@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+    <item android:id="@+id/home_screen"
+        android:icon="@drawable/home"
+        android:title="Home"/>
+    <item android:id="@+id/notification_screen"
+    android:icon="@drawable/baseline_notifications_24"
+    android:title="Notification"/>
+    <item android:id="@+id/lost_screen"
+        android:icon="@drawable/baseline_restore_from_trash_24"
+        android:title="Lost"/>
+    </group>
+    <item android:id="@+id/feedback_screen"
+        android:icon="@drawable/baseline_feedback_24"
+        android:title="Feedback"/>
+    <item android:id="@+id/problem_screen"
+        android:icon="@drawable/baseline_report_problem_24"
+        android:title="Problem"/>
+    <item android:id="@+id/Settings_screen"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Settings"/>
+    <item android:id="@+id/LogOut"
+        android:icon="@drawable/baseline_logout_24"
+        android:title="LogOut"/>
+
+</menu>

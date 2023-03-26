@@ -12,6 +12,8 @@
     <string name="restaurant">Restaurant</string>
     <string name="doctor">Doctor</string>
     <string name="gym">Gym</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
     <string name="administration">Administration</string>
     <string name="sport_room">Sport Room</string>
     <string name="bathroom">Bathroom</string>
