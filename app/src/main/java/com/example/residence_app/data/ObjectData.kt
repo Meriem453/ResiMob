@@ -5,8 +5,8 @@ import android.widget.TextView
 import com.google.firebase.firestore.auth.User
 
 data class ObjectData(val Title:String,
-                      /*val Img:Uri,
                       val Person:String,
+                      /*val Img:Uri,
                       val Place:String,
                       val Details:String,
                       val User:UserInfo*/

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -29,6 +30,7 @@ var arr=ArrayList<ObjectData>()
         val room=itemView.findViewById<TextView>(R.id.obj_room)
         val email=itemView.findViewById<TextView>(R.id.obj_email)
         val layout=itemView.findViewById<LinearLayout>(R.id.layout)
+        val icon=itemView.findViewById<View>(R.id.arrow_gray)
 
 
     }
@@ -46,32 +48,53 @@ var arr=ArrayList<ObjectData>()
     override fun onBindViewHolder(holder: ObjVH, position: Int) {
           with(holder){
               title.text=arr[position].Title
-              /*img.setImageURI(arr[position].Img)
               person.text=arr[position].Person
+              /*
+
               details.text=arr[position].Details
               place.text=arr[position].Place
               name.text=arr[position].User.FirstName + " " + arr[position].User.LastName
              // room.text=arr[position].User.Room
               email.text=arr[position].User.Email*/
+              if(arr[position].Person== c.resources.getString(R.string.loser)){
+                  img.visibility=View.GONE
+              }else{
+                 // img.setImageURI(arr[position].Img)
+              }
 
-              title.setOnClickListener {
+              holder.itemView.setOnClickListener {
                   if(layout.visibility== View.GONE){
                      TransitionManager.beginDelayedTransition(holder.itemView as ViewGroup, AutoTransition())
                       holder.layout.visibility = View.VISIBLE
+                      holder.icon.rotation=90f
+
                   }else{
+                      //TransitionManager.beginDelayedTransition(holder.itemView as ViewGroup, AutoTransition())
                       holder.layout.visibility = View.GONE
-                      TransitionManager.beginDelayedTransition(holder.itemView as ViewGroup, AutoTransition())
+                      holder.icon.rotation=0f
+
+
+
+
                   }
               }
 
           }
     }
 
-    fun getData(){
-        arr.add(ObjectData("Cable"))
-        arr.add(ObjectData("Stylo"))
+    fun getFonderData(){
+        val Person = c.resources.getString(R.string.founder)
+        arr.add(ObjectData("Cable",Person))
+        arr.add(ObjectData("Stylo",Person))
         notifyDataSetChanged()
 
 
+    }
+
+    fun getLoserData(){
+        val Person=c.resources.getString(R.string.loser)
+        arr.add(ObjectData("Cable",Person))
+        arr.add(ObjectData("Stylo",Person))
+        notifyDataSetChanged()
     }
 }
