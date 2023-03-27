@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     >
 
     <LinearLayout
@@ -15,8 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/sport_white_background"
-        >
+        android:background="@drawable/sport_white_background">
 
         <TextView
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
-            android:text="@string/you_found_an_objects"
+            android:text="@string/you_lost_an_object"
             android:textColor="@color/blue_button"
             android:textSize="20sp" />
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="start"
-            android:text="@string/what_did_you_found"
+            android:text="@string/what_did_you_lost"
             android:textColor="@color/gray"
             android:textSize="15sp" />
 
@@ -44,7 +44,7 @@
             android:layout_marginBottom="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addFoundObj_title"
+                android:id="@+id/addLostObj_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="start"
-            android:text="@string/where_did_you_found_it"
+            android:text="@string/where_did_you_lost_it"
             android:textColor="@color/gray"
             android:textSize="15sp" />
 
@@ -71,7 +71,7 @@
             android:layout_marginBottom="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addFoundObj_place"
+                android:id="@+id/addLostObj_place"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
@@ -93,11 +93,10 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addFoundObj_details"
+                android:id="@+id/addLostObj_details"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
@@ -107,35 +106,8 @@
                 android:maxLines="5"
                 android:maxLength="100"/>
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
-            android:gravity="start"
-            android:text="@string/add_picture"
-            android:textColor="@color/gray"
-            android:textSize="15sp" />
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addFoundObj_picture"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:drawableEnd="@drawable/baseline_collections_24"
-                android:editable="false"
-                android:maxLines="1"
-                android:scrollHorizontally="true"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
         <Button
-            android:id="@+id/addFoundObj_submit"
+            android:id="@+id/addLostObj_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/submit"

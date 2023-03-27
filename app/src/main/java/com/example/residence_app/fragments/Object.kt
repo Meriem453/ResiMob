@@ -27,6 +27,7 @@ val view = inflater.inflate(R.layout.fragment_object, container, false)
         tabs.addTab(tabs.newTab().setText(resources.getString(R.string.lost_objects)))
 
         vp.adapter= fragmentManager?.let { ObjectsTabsAdapter(it) }
+        vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 vp.currentItem=tab!!.position

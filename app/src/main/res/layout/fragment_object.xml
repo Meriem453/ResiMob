@@ -39,7 +39,8 @@
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorGravity="stretch"
             app:tabMode="fixed"
-            app:tabTextColor="@color/gray" />
+            app:tabTextColor="@color/gray"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager_objects"

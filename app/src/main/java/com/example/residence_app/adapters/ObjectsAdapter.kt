@@ -49,13 +49,11 @@ var arr=ArrayList<ObjectData>()
           with(holder){
               title.text=arr[position].Title
               person.text=arr[position].Person
-              /*
-
               details.text=arr[position].Details
               place.text=arr[position].Place
-              name.text=arr[position].User.FirstName + " " + arr[position].User.LastName
-             // room.text=arr[position].User.Room
-              email.text=arr[position].User.Email*/
+              name.text="  "+arr[position].User.FirstName + " " + arr[position].User.LastName
+              //room.text="  "+arr[position].User.Room
+              email.text="  "+arr[position].User.Email
               if(arr[position].Person== c.resources.getString(R.string.loser)){
                   img.visibility=View.GONE
               }else{
@@ -83,18 +81,17 @@ var arr=ArrayList<ObjectData>()
     }
 
     fun getFonderData(){
-        val Person = c.resources.getString(R.string.founder)
-        arr.add(ObjectData("Cable",Person))
-        arr.add(ObjectData("Stylo",Person))
+arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray",UserInfo("Zemane","Meriem","m_zemane@estin.dz","123456",null,false)))
+
         notifyDataSetChanged()
 
 
     }
 
     fun getLoserData(){
-        val Person=c.resources.getString(R.string.loser)
-        arr.add(ObjectData("Cable",Person))
-        arr.add(ObjectData("Stylo",Person))
+        arr.add(ObjectData("Cable","Loser",null,"Salle de lecture","Gray",UserInfo("Zemane","Meriem","m_zemane@estin.dz","123456",null,false)))
+
+
         notifyDataSetChanged()
     }
 }

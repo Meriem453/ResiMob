@@ -7,6 +7,6 @@ data class UserInfo(
     val LastName:String,
     val Email:String,
     val Password:String,
-    val Image:Uri,
+    val Image: Uri?,
     val isAdmin:Boolean
 )
