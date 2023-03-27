@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.residence_app.R
 import com.example.residence_app.data.SportData
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SportSportsAdapter (var c :Context): RecyclerView.Adapter<SportSportsAdapter.SportsVH>() {
     var arr=ArrayList<SportData>()
+    private lateinit var db : FirebaseFirestore
     inner class SportsVH(itemView: View) : ViewHolder(itemView){
         val sport=itemView.findViewById<TextView>(R.id.sport_details_sport)
         val kind=itemView.findViewById<TextView>(R.id.sport_details_kind)
@@ -54,40 +57,197 @@ class SportSportsAdapter (var c :Context): RecyclerView.Adapter<SportSportsAdapt
     }
     public fun getData(dayPosition:Int){
         arr.clear()
+        db = FirebaseFirestore.getInstance()
+        var d1 : DocumentReference = db.collection("sport room").document("saturday")
+        var d2 : DocumentReference = db.collection("sport room").document("sunday")
+        var d3 : DocumentReference = db.collection("sport room").document("monday")
+        var d4 : DocumentReference = db.collection("sport room").document("thuesday")
+        var d5: DocumentReference = db.collection("sport room").document("wednesday")
+        var d6 : DocumentReference = db.collection("sport room").document("thursday")
+        var d7 : DocumentReference = db.collection("sport room").document("friday")
         when(dayPosition){
+
+
+
+
             0 -> {
                 //sun
-                arr.add(SportData("sun","national","Girls","10:00--12:00"))
+                d2.get().addOnCompleteListener() {
+                    var sport = it.result!!.data?.getValue("sport").toString().trim()
+                    var gender = it.result!!.data?.getValue("gender").toString().trim()
+                    var kind = it.result!!.data?.getValue("kind").toString().trim()
+                    var time = it.result!!.data?.getValue("time").toString().trim()
+                    arr.add(SportData(sport,kind,gender,time))
+                    notifyDataSetChanged()
+                    }.addOnCompleteListener{
+                    var sport2 = it.result!!.data?.getValue("sport2").toString().trim()
+                    var gender2 = it.result!!.data?.getValue("gender2").toString().trim()
+                    var kind2 = it.result!!.data?.getValue("kind2").toString().trim()
+                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
+                    arr.add(SportData(sport2,kind2,gender2,time2))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport3 = it.result!!.data?.getValue("sport3").toString().trim()
+                    var gender3 = it.result!!.data?.getValue("gender3").toString().trim()
+                    var kind3 = it.result!!.data?.getValue("kind3").toString().trim()
+                    var time3 = it.result!!.data?.getValue("time3").toString().trim()
+                    arr.add(SportData(sport3,kind3,gender3,time3))
+                    notifyDataSetChanged()
+                }
+
 
             }
             1 -> {
                //mon
-
-                arr.add(SportData("mon","national","Boys","17:00--18:30"))
-
-
+                d3.get().addOnCompleteListener() {
+                    var sport = it.result!!.data?.getValue("sport").toString().trim()
+                    var gender = it.result!!.data?.getValue("gender").toString().trim()
+                    var kind = it.result!!.data?.getValue("kind").toString().trim()
+                    var time = it.result!!.data?.getValue("time").toString().trim()
+                    arr.add(SportData(sport,kind,gender,time))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport2 = it.result!!.data?.getValue("sport2").toString().trim()
+                    var gender2 = it.result!!.data?.getValue("gender2").toString().trim()
+                    var kind2 = it.result!!.data?.getValue("kind2").toString().trim()
+                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
+                    arr.add(SportData(sport2,kind2,gender2,time2))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport3 = it.result!!.data?.getValue("sport3").toString().trim()
+                    var gender3 = it.result!!.data?.getValue("gender3").toString().trim()
+                    var kind3 = it.result!!.data?.getValue("kind3").toString().trim()
+                    var time3 = it.result!!.data?.getValue("time3").toString().trim()
+                    arr.add(SportData(sport3,kind3,gender3,time3))
+                    notifyDataSetChanged()
+                }
 
             }
             2 -> {
-                //tusday
-                arr.add(SportData("tusday","national","Boys","17:00--18:30"))
+                //thues
+                d4.get().addOnCompleteListener() {
+                    var sport = it.result!!.data?.getValue("sport").toString().trim()
+                    var gender = it.result!!.data?.getValue("gender").toString().trim()
+                    var kind = it.result!!.data?.getValue("kind").toString().trim()
+                    var time = it.result!!.data?.getValue("time").toString().trim()
+                    arr.add(SportData(sport,kind,gender,time))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport2 = it.result!!.data?.getValue("sport2").toString().trim()
+                    var gender2 = it.result!!.data?.getValue("gender2").toString().trim()
+                    var kind2 = it.result!!.data?.getValue("kind2").toString().trim()
+                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
+                    arr.add(SportData(sport2,kind2,gender2,time2))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport3 = it.result!!.data?.getValue("sport3").toString().trim()
+                    var gender3 = it.result!!.data?.getValue("gender3").toString().trim()
+                    var kind3 = it.result!!.data?.getValue("kind3").toString().trim()
+                    var time3 = it.result!!.data?.getValue("time3").toString().trim()
+                    arr.add(SportData(sport3,kind3,gender3,time3))
+                    notifyDataSetChanged()
+                }
 
             }
             3 -> {
-                //wednesday
-                arr.add(SportData("wednesday","national","Boys","17:00--18:30"))
+                //wedn
+                d5.get().addOnCompleteListener() {
+                    var sport = it.result!!.data?.getValue("sport").toString().trim()
+                    var gender = it.result!!.data?.getValue("gender").toString().trim()
+                    var kind = it.result!!.data?.getValue("kind").toString().trim()
+                    var time = it.result!!.data?.getValue("time").toString().trim()
+                    arr.add(SportData(sport,kind,gender,time))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport2 = it.result!!.data?.getValue("sport2").toString().trim()
+                    var gender2 = it.result!!.data?.getValue("gender2").toString().trim()
+                    var kind2 = it.result!!.data?.getValue("kind2").toString().trim()
+                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
+                    arr.add(SportData(sport2,kind2,gender2,time2))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport3 = it.result!!.data?.getValue("sport3").toString().trim()
+                    var gender3 = it.result!!.data?.getValue("gender3").toString().trim()
+                    var kind3 = it.result!!.data?.getValue("kind3").toString().trim()
+                    var time3 = it.result!!.data?.getValue("time3").toString().trim()
+                    arr.add(SportData(sport3,kind3,gender3,time3))
+                    notifyDataSetChanged()
+                }
             }
             4 -> {
-                //thursday
-                arr.add(SportData("thursday","national","Boys","17:00--18:30"))
+                //thurs
+                d6.get().addOnCompleteListener() {
+                    var sport = it.result!!.data?.getValue("sport").toString().trim()
+                    var gender = it.result!!.data?.getValue("gender").toString().trim()
+                    var kind = it.result!!.data?.getValue("kind").toString().trim()
+                    var time = it.result!!.data?.getValue("time").toString().trim()
+                    arr.add(SportData(sport,kind,gender,time))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport2 = it.result!!.data?.getValue("sport2").toString().trim()
+                    var gender2 = it.result!!.data?.getValue("gender2").toString().trim()
+                    var kind2 = it.result!!.data?.getValue("kind2").toString().trim()
+                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
+                    arr.add(SportData(sport2,kind2,gender2,time2))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport3 = it.result!!.data?.getValue("sport3").toString().trim()
+                    var gender3 = it.result!!.data?.getValue("gender3").toString().trim()
+                    var kind3 = it.result!!.data?.getValue("kind3").toString().trim()
+                    var time3 = it.result!!.data?.getValue("time3").toString().trim()
+                    arr.add(SportData(sport3,kind3,gender3,time3))
+                    notifyDataSetChanged()
+                }
             }
             5 -> {
               //friday
-                arr.add(SportData("friday","national","Boys","17:00--18:30"))
+                d7.get().addOnCompleteListener() {
+                    var sport = it.result!!.data?.getValue("sport").toString().trim()
+                    var gender = it.result!!.data?.getValue("gender").toString().trim()
+                    var kind = it.result!!.data?.getValue("kind").toString().trim()
+                    var time = it.result!!.data?.getValue("time").toString().trim()
+                    arr.add(SportData(sport,kind,gender,time))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport2 = it.result!!.data?.getValue("sport2").toString().trim()
+                    var gender2 = it.result!!.data?.getValue("gender2").toString().trim()
+                    var kind2 = it.result!!.data?.getValue("kind2").toString().trim()
+                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
+                    arr.add(SportData(sport2,kind2,gender2,time2))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport3 = it.result!!.data?.getValue("sport3").toString().trim()
+                    var gender3 = it.result!!.data?.getValue("gender3").toString().trim()
+                    var kind3 = it.result!!.data?.getValue("kind3").toString().trim()
+                    var time3 = it.result!!.data?.getValue("time3").toString().trim()
+                    arr.add(SportData(sport3,kind3,gender3,time3))
+                    notifyDataSetChanged()
+                }
             }
             6 -> {
                   //saturday
-                arr.add(SportData("saturday","national","Boys","17:00--18:30"))
+                d1.get().addOnCompleteListener() {
+                    var sport = it.result!!.data?.getValue("sport").toString().trim()
+                    var gender = it.result!!.data?.getValue("gender").toString().trim()
+                    var kind = it.result!!.data?.getValue("kind").toString().trim()
+                    var time = it.result!!.data?.getValue("time").toString().trim()
+                    arr.add(SportData(sport,kind,gender,time))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport2 = it.result!!.data?.getValue("sport2").toString().trim()
+                    var gender2 = it.result!!.data?.getValue("gender2").toString().trim()
+                    var kind2 = it.result!!.data?.getValue("kind2").toString().trim()
+                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
+                    arr.add(SportData(sport2,kind2,gender2,time2))
+                    notifyDataSetChanged()
+                }.addOnCompleteListener{
+                    var sport3 = it.result!!.data?.getValue("sport3").toString().trim()
+                    var gender3 = it.result!!.data?.getValue("gender3").toString().trim()
+                    var kind3 = it.result!!.data?.getValue("kind3").toString().trim()
+                    var time3 = it.result!!.data?.getValue("time3").toString().trim()
+                    arr.add(SportData(sport3,kind3,gender3,time3))
+                    notifyDataSetChanged()
+                }
             }
 
         }
