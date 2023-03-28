@@ -15,13 +15,15 @@ import com.example.residence_app.databinding.ActivityMainBinding
 import com.example.residence_app.fragments.HomeFragment
 import com.example.residence_app.fragments.NotificationsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var bottomNavBar : BottomNavigationView
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
-    lateinit var binding : ActivityMainBinding
+    //lateinit var binding : ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var navView:NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +32,9 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawerLayout)
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
         bottomNavBar = findViewById(R.id.bottomNavigationBar)
+        navView=findViewById<NavigationView>(R.id.nav_view)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
         bottomNavBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home_screen -> {
@@ -50,10 +52,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
 
-                else -> {true}
+                else -> {false}
             }
         }
-        binding.apply {
+
             toggle = ActionBarDrawerToggle(
                 this@MainActivity,
                 drawerLayout,
@@ -86,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
 
-        }
+
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (actionBarDrawerToggle.onOptionsItemSelected(item)) {

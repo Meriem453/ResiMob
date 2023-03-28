@@ -33,7 +33,8 @@
             app:itemTextColor="@drawable/itembackground"
             app:itemRippleColor="@color/blue_button"
             android:layout_gravity="bottom"
-            app:menu="@menu/navbarmenu" />
+            app:menu="@menu/navbarmenu"
+           />
 
     </LinearLayout>
 

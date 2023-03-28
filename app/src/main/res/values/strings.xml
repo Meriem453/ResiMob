@@ -67,10 +67,10 @@
     <string name="founder">Founder</string>
     <string name="loser">Loser</string>
 <string name="place">Place</string>
-    <string name="you_found_an_objects">You found an objects?</string>
+    <string name="you_found_an_objects">You found an object?</string>
     <string name="what_did_you_found">What did you found?</string>
     <string name="where_did_you_found_it">Where did you found it?</string>
-    <string name="you_lost_an_object">You lost an objects?</string>
+    <string name="you_lost_an_object">You lost an object?</string>
     <string name="what_did_you_lost">What did you lost?</string>
     <string name="where_did_you_lost_it">Where did you lost it?</string>
     <string name="add_picture">Add Picture</string>
