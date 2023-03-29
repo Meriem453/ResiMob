@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.lost_screen -> {
 
-                    loadFragment(com.example.residence_app.fragments.Object())
+                     val fragment=com.example.residence_app.fragments.Object()
+                    loadFragment(fragment)
                     true
                 }
                 R.id.notification_screen -> {

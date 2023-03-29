@@ -36,10 +36,72 @@
     <string name="international">International</string>
     <string name="President">President</string>
     <string-array name="presidents">
-        <item>pr1</item>
-        <item>pr2</item>
-        <item>pr3</item>
+        <item>Head of the Cultural, Sports and Health Activities Department</item>
+        <item>Head of the Catering Department</item>
+        <item>Head of the Maintenance Department</item>
+        <item>Head of the Security Department</item>
+    </string-array>
+    <string-array name="pre1_problems">
+        <item>Sport</item>
+        <item>Culture</item>
+        <item>Health</item>
+    </string-array>
+    <string-array name="pre2_problems">
+        <item>Timing</item>
+        <item>Food</item>
+    </string-array>
+    <string-array name="pre3_problems">
+        <item>Electricity</item>
+        <item>Plumbing</item>
+        <item>DIY</item>
+    </string-array>
+    <string-array name="pre4_problems">
+        <item>Internal</item>
+        <item>External</item>
+    </string-array>
+    <string-array name="sport_details">
+        <item>Timing not appropriate</item>
+        <item>Tournament request</item>
+        <item>Lack of equipment</item>
+    </string-array>
+             <string-array name="culture_details">
+                 <item>Excursion request</item>
+                 <item>Awareness campaign request</item>
+             </string-array>
+    <string-array name="health_details">
+        <item>Timing not appropriate</item>
+        <item>Lack of medicines</item>
+        <item>Problem with the doctor</item>
+    </string-array>
+    <string-array name="timings_details">
+        <item>Timing not appropriate</item>
+        <item>Timing not sufficient</item>
+    </string-array>
+    <string-array name="food_details">
+        <item>Food quality</item>
+        <item>Food quantity</item>
+    </string-array>
+    <string-array name="elec_details">
+        <item>Blackout</item>
+        <item>lamp replacement</item>
+        <item>Socket dysfunction</item>
+        <item>Electrical ground</item>
+    </string-array>
+    <string-array name="plumbing_details">
+        <item>Water cut</item>
+        <item>Water leak</item>
+        <item>Sink clogging</item>
+        <item>Heating dysfunction</item>
+    </string-array>
+    <string-array name="diy_details">
 
+    </string-array>
+    <string-array name="internal_details">
+        <item>Harassment</item>
+    </string-array>
+    <string-array name="external_details">
+        <item>Animals danger</item>
+        <item>Strangers</item>
     </string-array>
     <string name="select_president">Select President</string>
     <string name="what_is_the_problem">What is the problem?</string>
@@ -79,5 +141,6 @@
     <string name="please_add_an_image">Please add an image</string>
     <string name="found_object_submitted">Found object submitted</string>
     <string name="lost_object_submitted">Lost object submitted</string>
+
 
 </resources>
