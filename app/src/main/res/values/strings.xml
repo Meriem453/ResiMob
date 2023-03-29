@@ -94,13 +94,17 @@
         <item>Heating dysfunction</item>
     </string-array>
     <string-array name="diy_details">
-
+        <item>Door lock request</item>
+        <item>Window glass repair</item>
+        <item>Hole in the wall request</item>
+        <item>Superimposed installation request</item>
+        <item></item>
     </string-array>
     <string-array name="internal_details">
         <item>Harassment</item>
     </string-array>
     <string-array name="external_details">
-        <item>Animals danger</item>
+        <item>Animal\'s danger</item>
         <item>Strangers</item>
     </string-array>
     <string name="select_president">Select President</string>
@@ -141,6 +145,9 @@
     <string name="please_add_an_image">Please add an image</string>
     <string name="found_object_submitted">Found object submitted</string>
     <string name="lost_object_submitted">Lost object submitted</string>
-
-
+<string name="you_have_to_select_a_problem">You have to select a problem</string>
+    <string name="you_have_to_select_a_president">You have to select a president</string>
+    <string name="please_select_a_president">Please select a president</string>
+    <string name="please_select_a_problem">Please select a problem</string>
+    <string name="please_select_a_detail">Please select a detail</string>
 </resources>

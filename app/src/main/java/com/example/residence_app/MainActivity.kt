@@ -1,6 +1,7 @@
 package com.example.residence_app
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
@@ -84,6 +85,12 @@ class MainActivity : AppCompatActivity() {
                         bottomNavBar.selectedItemId = R.id.notification_screen
                         drawerLayout.closeDrawer(GravityCompat.START)
                         true
+                    }
+                    R.id.problem_screen -> {
+                        startActivity(Intent(baseContext,Problem::class.java))
+                    }
+                    R.id.feedback_screen -> {
+                        startActivity(Intent(baseContext,FeedbackActivity::class.java))
                     }
                 }
                 true

@@ -12,9 +12,7 @@
         android:theme="@style/Theme.Residence_App"
         tools:replace="allowBackup, label"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".FeedbackActivity"-->
-<!--            android:exported="false" />-->
+
 
         <activity
             android:name=".FeedbackActivity"
@@ -65,9 +63,7 @@
         <activity
             android:name=".OnBoardingActivity"
             android:exported="true"/>
-<!--        <activity-->
-<!--            android:name=".FeedbackActivity"-->
-<!--            android:exported="true" />-->
+
 <activity android:name=".MainActivity"
     android:exported="true">
     <intent-filter>
@@ -76,6 +72,10 @@
     </intent-filter>
 
 </activity>
+        <activity
+            android:name=".Problem"
+            android:exported="true">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

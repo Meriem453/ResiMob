@@ -40,9 +40,9 @@ lateinit var imageUri:Uri
                 val details=details.text.toString()
                 val place=place.text.toString()
                 val person = resources.getString(R.string.founder)
-                //hadhi nta badalha
+                //hadhi nta badalha (3amarha bel info te3 el user)
                 val userInfo=UserInfo("Zemane","Meriem","m_zemane@estin.dz","123456",imageUri,false)
-                //
+                TODO("send the found object to firebase :)")
                 ObjectData(title,person,imageUri,place,details,userInfo)
                 //hna zid el code bach tajouti the found object fel firebase
                 //
