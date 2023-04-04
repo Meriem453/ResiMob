@@ -11,8 +11,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class FeedbackActivity : AppCompatActivity() {
-    lateinit var option : Spinner
-    lateinit var president : String
+    lateinit var option : AutoCompleteTextView
+    var president =""
 lateinit var progressBar: ProgressBar
 
 
@@ -35,25 +35,20 @@ lateinit var progressBar: ProgressBar
         etTitle = findViewById(R.id.title_ID)
         etDescription = findViewById(R.id.description_ID)
         progressBar=findViewById(R.id.feedback_progressBar)
-        val options = arrayOf("director", "co_director", "khofash", "agent")
+        val options = resources.getStringArray(R.array.presidents)
 
 
 
-        option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options)
-        option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
+
+        option.setAdapter(ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,options))
+        option.onItemClickListener = object : AdapterView.OnItemClickListener{
+            override fun onItemClick(
                 parent: AdapterView<*>?,
                 view: View?,
                 position: Int,
                 id: Long
             ) {
-               president = options[position]
-            }
-
-
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                president = options[position]
             }
 
         }
@@ -70,7 +65,7 @@ lateinit var progressBar: ProgressBar
                 if(description.isEmpty()){
                     etDescription.error = "Please enter the description"
                 }
-                if(president.isEmpty()){
+                if(president==""){
                     Toast.makeText(this, "Please select a president!", Toast.LENGTH_SHORT).show()
                 }
                 //progressBar.visibility = View.GONE

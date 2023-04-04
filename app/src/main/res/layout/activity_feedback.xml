@@ -16,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <View
             android:layout_width="15dp"
             android:layout_height="20dp"
@@ -37,102 +38,132 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/poppins_semibold"
         android:text="Title"
-
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        android:shadowColor="@color/gray"/>
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/title_ID"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/t1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/edittext"
-        android:padding="5dp"
-        android:textColor="@color/blue_button"
-        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
-    <Spinner
-        android:id="@+id/spinner_id"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/edittext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_ID" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/title_ID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:maxLength="30" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/description_ID"
-        android:layout_width="match_parent"
-        android:layout_height="304dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/edittext"
-        android:padding="5dp"
-        android:textColor="@color/blue_button"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+    <TextView
+        android:id="@+id/kj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:shadowColor="@color/gray"
+        android:text="@string/President"
+        android:textColor="@color/gray"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/t1" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/t2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kj">
+
+        <AutoCompleteTextView
+            android:id="@+id/spinner_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="none"
+            android:text="@string/President"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/t3"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/description_ID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_medium"
+            android:lines="3"
+            android:maxLines="3"
+            android:maxLength="100"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView5"
-
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="50dp"
         android:text="Description"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/poppins_semibold"
+        android:shadowColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_id" />
+        app:layout_constraintTop_toBottomOf="@+id/t2" />
 
     <Button
         android:id="@+id/sendFeedback"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@drawable/button"
         android:text="Send"
-        android:textStyle="bold"
-        android:layout_marginTop="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_ID" />
+        app:layout_constraintTop_toBottomOf="@+id/t3" />
 
     <ProgressBar
         android:id="@+id/feedback_progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
