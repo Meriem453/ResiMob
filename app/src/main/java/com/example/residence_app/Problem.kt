@@ -7,6 +7,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.Toast
 import com.example.residence_app.data.ProblemData
@@ -25,6 +26,7 @@ class Problem : AppCompatActivity() {
     var selected_detail=""
     lateinit var prblmsAdapter:ArrayAdapter<String>
     lateinit var detailsAdapter:ArrayAdapter<String>
+    lateinit var progress_bar:ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -33,7 +35,7 @@ class Problem : AppCompatActivity() {
         setContentView(binding.root)
         setContentView(R.layout.activity_problem)
         supportActionBar?.hide()
-
+         progress_bar=findViewById(R.id.prblm_progressBar)
          pre_spinner=findViewById<AutoCompleteTextView>(R.id.pre_spinner)
          detail_spinner=findViewById<AutoCompleteTextView>(R.id.details_spinner)
          prblm_spinner=findViewById<AutoCompleteTextView>(R.id.prblm_spinner)
@@ -95,9 +97,9 @@ class Problem : AppCompatActivity() {
            }
 send.setOnClickListener {
     if(Check()){
-        TODO("send problems to firebase :)")
+        //TODO("send problems to firebase :)")
         ProblemData(selected_president,selected_prblm,selected_detail)
-
+        progress_bar.visibility=View.VISIBLE
         Toast.makeText(baseContext,"Problem sent",Toast.LENGTH_SHORT).show()
     }
 }

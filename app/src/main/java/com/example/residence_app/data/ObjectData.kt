@@ -8,5 +8,7 @@ data class ObjectData(
     val Img: Uri?,
     val Place:String,
     val Details:String,
-    val User:UserInfo
+    val UserFirstName:String,
+    val UserLastName:String,
+    val UserEmail:String
                       )

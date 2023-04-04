@@ -13,7 +13,7 @@ import com.google.firebase.ktx.Firebase
 class FeedbackActivity : AppCompatActivity() {
     lateinit var option : Spinner
     lateinit var president : String
-
+lateinit var progressBar: ProgressBar
 
 
     @SuppressLint("MissingInflatedId")
@@ -34,6 +34,7 @@ class FeedbackActivity : AppCompatActivity() {
         send = findViewById(R.id.sendFeedback)
         etTitle = findViewById(R.id.title_ID)
         etDescription = findViewById(R.id.description_ID)
+        progressBar=findViewById(R.id.feedback_progressBar)
         val options = arrayOf("director", "co_director", "khofash", "agent")
 
 
@@ -74,6 +75,7 @@ class FeedbackActivity : AppCompatActivity() {
                 }
                 //progressBar.visibility = View.GONE
             }else{
+                progressBar.visibility=View.VISIBLE
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
                 db.collection("user").document(uid).get().addOnCompleteListener{
                     val feedbackmap = hashMapOf(
@@ -86,10 +88,12 @@ class FeedbackActivity : AppCompatActivity() {
                         Toast.makeText(this, "Successfully Added!", Toast.LENGTH_SHORT).show()
                         etTitle.text.clear()
                         etDescription.text.clear()
+                        progressBar.visibility = View.GONE
 
                     }.addOnFailureListener {
 
                         Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
+                        progressBar.visibility = View.GONE
                     }
 
                 }

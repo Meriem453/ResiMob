@@ -27,7 +27,6 @@ var arr=ArrayList<ObjectData>()
         val details=itemView.findViewById<TextView>(R.id.obj_details)
         val place=itemView.findViewById<TextView>(R.id.obj_place)
         val name=itemView.findViewById<TextView>(R.id.obj_name)
-        val room=itemView.findViewById<TextView>(R.id.obj_room)
         val email=itemView.findViewById<TextView>(R.id.obj_email)
         val layout=itemView.findViewById<LinearLayout>(R.id.layout)
         val icon=itemView.findViewById<View>(R.id.arrow_gray)
@@ -51,13 +50,12 @@ var arr=ArrayList<ObjectData>()
               person.text=arr[position].Person
               details.text=arr[position].Details
               place.text=arr[position].Place
-              name.text="  "+arr[position].User.FirstName + " " + arr[position].User.LastName
-              //room.text="  "+arr[position].User.Room
-              email.text="  "+arr[position].User.Email
+              name.text="  "+arr[position].UserFirstName + " " + arr[position].UserLastName
+              email.text="  "+arr[position].UserEmail
               if(arr[position].Person== c.resources.getString(R.string.loser)){
                   img.visibility=View.GONE
               }else{
-                 // img.setImageURI(arr[position].Img)
+                  img.setImageURI(arr[position].Img)
               }
 
               holder.itemView.setOnClickListener {
@@ -81,7 +79,7 @@ var arr=ArrayList<ObjectData>()
     }
 
     fun getFonderData(){
-arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray",UserInfo("Zemane","Meriem","m_zemane@estin.dz","123456",null,false)))
+arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Meriem","m_zemanr@estn.dz"))
 
         notifyDataSetChanged()
 
@@ -89,7 +87,7 @@ arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray",UserInfo("Ze
     }
 
     fun getLoserData(){
-        arr.add(ObjectData("Cable","Loser",null,"Salle de lecture","Gray",UserInfo("Zemane","Meriem","m_zemane@estin.dz","123456",null,false)))
+        arr.add(ObjectData("Cable","Loser",null,"Salle de lecture","Gray","Zemane" , "Meriem","m_zemane@estin.dz"))
 
 
         notifyDataSetChanged()

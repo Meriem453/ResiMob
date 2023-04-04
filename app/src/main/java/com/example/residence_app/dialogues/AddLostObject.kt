@@ -28,10 +28,8 @@ lateinit var title: TextInputEditText
                 val details=details.text.toString()
                 val place=place.text.toString()
                 val person = resources.getString(R.string.founder)
-                //hadhi nta badalha(3amarha bel info te3 el user)
-                val userInfo=UserInfo("Zemane","Meriem","m_zemane@estin.dz","123456",null,false)
-                TODO("send the lost object to firebase :)")
-                ObjectData(title,person,null,place,details,userInfo)
+                //TODO("send the lost object to firebase :)")
+                ObjectData(title,person,null,place,details,"Zemane","Meriem","m_zemane@estin.dz")
                 //hna zid el code bach tajouti the found object fel firebase
                 //
                 //
