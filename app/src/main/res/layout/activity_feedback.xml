@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/problem"
+            android:text="@string/Feedback"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

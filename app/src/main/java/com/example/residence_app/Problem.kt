@@ -12,6 +12,9 @@ import android.widget.Spinner
 import android.widget.Toast
 import com.example.residence_app.data.ProblemData
 import com.example.residence_app.databinding.ActivityProblemBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class Problem : AppCompatActivity() {
     lateinit var binding:ActivityProblemBinding
@@ -27,6 +30,7 @@ class Problem : AppCompatActivity() {
     lateinit var prblmsAdapter:ArrayAdapter<String>
     lateinit var detailsAdapter:ArrayAdapter<String>
     lateinit var progress_bar:ProgressBar
+    var db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -96,11 +100,31 @@ class Problem : AppCompatActivity() {
                selected_detail=detail_spinner.text.toString()
            }
 send.setOnClickListener {
+    progress_bar.visibility = View.VISIBLE
     if(Check()){
-        //TODO("send problems to firebase :)")
+        var uid = FirebaseAuth.getInstance().currentUser!!.uid
+        db.collection("user").document(uid).get().addOnCompleteListener{
+            val problemmap = hashMapOf(
+                "fullname" to it.result!!.data?.getValue("fname").toString().trim()+" "+it.result!!.data?.getValue("lname").toString().trim(),
+                "problem" to selected_prblm,
+                "president" to selected_president,
+                "details" to selected_detail,
+            )
+            db.collection("problem").document(uid).set(problemmap).addOnSuccessListener {
+
+
+                progress_bar.visibility = View.GONE
+                Toast.makeText(baseContext,"Problem sent",Toast.LENGTH_SHORT).show()
+
+            }.addOnFailureListener {
+
+                Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
+                progress_bar.visibility = View.GONE
+            }
+
+        }
         ProblemData(selected_president,selected_prblm,selected_detail)
-        progress_bar.visibility=View.VISIBLE
-        Toast.makeText(baseContext,"Problem sent",Toast.LENGTH_SHORT).show()
+
     }
 }
     }

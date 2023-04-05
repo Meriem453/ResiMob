@@ -12,11 +12,14 @@ import com.example.residence_app.R
 import com.example.residence_app.data.ObjectData
 import com.example.residence_app.data.UserInfo
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class AddFoundObject: AppCompatDialogFragment() {
 lateinit var title: TextInputEditText
 lateinit var picture : TextInputEditText
 lateinit var imageUri:Uri
+    var db = Firebase.firestore
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         val view= activity?.layoutInflater?.inflate(R.layout.add_found_object,null)

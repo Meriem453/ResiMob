@@ -53,7 +53,7 @@ lateinit var progressBar: ProgressBar
 
         }
         send.setOnClickListener{
-            //progressBar.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
             val title = etTitle.text.toString().trim()
             val description = etDescription.text.toString().trim()
 
@@ -68,9 +68,9 @@ lateinit var progressBar: ProgressBar
                 if(president==""){
                     Toast.makeText(this, "Please select a president!", Toast.LENGTH_SHORT).show()
                 }
-                //progressBar.visibility = View.GONE
+                progressBar.visibility = View.GONE
             }else{
-                progressBar.visibility=View.VISIBLE
+                
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
                 db.collection("user").document(uid).get().addOnCompleteListener{
                     val feedbackmap = hashMapOf(
@@ -93,7 +93,7 @@ lateinit var progressBar: ProgressBar
 
                 }
 
-                //progressBar.visibility = View.GONE
+                progressBar.visibility = View.GONE
             }
         }
     }
