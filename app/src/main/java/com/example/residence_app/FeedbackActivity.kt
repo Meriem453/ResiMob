@@ -70,7 +70,7 @@ lateinit var progressBar: ProgressBar
                 }
                 progressBar.visibility = View.GONE
             }else{
-                
+
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
                 db.collection("user").document(uid).get().addOnCompleteListener{
                     val feedbackmap = hashMapOf(
