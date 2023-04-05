@@ -5,15 +5,21 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.residence_app.R
 import com.example.residence_app.data.ObjectData
 import com.example.residence_app.data.UserInfo
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 
 class AddFoundObject: AppCompatDialogFragment() {
 lateinit var title: TextInputEditText
@@ -43,14 +49,34 @@ lateinit var imageUri:Uri
                 val details=details.text.toString()
                 val place=place.text.toString()
                 val person = resources.getString(R.string.founder)
+                var uid = FirebaseAuth.getInstance().currentUser!!.uid
 
-                //TODO("send the found object to firebase :)")
-                ObjectData(title,person,imageUri,place,details,"Zemane","Meriem","m_zemane@estin.dz")
-                //hna zid el code bach tajouti the found object fel firebase
-                //
-                //
-                //
+                db.collection("user").document(uid).get().addOnCompleteListener{
+                    var fObjectmap = hashMapOf(
+                        "UserFirstName" to it.result!!.data?.getValue("fname").toString().trim(),
+                        "UserLastName" to it.result!!.data?.getValue("lname").toString().trim(),
+                        "Title" to title,
+                        "Details" to details,
+                        "Person" to person,
+                        "UserEmail" to it.result!!.data?.getValue("email").toString().trim(),
+                        "Img" to imageUri,
+                        "Place" to place,
+                    )
+                    db.collection("found objects").document(uid).set(fObjectmap).addOnSuccessListener {
+                        //Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
+                        //progressBar.visibility = View.GONE
+                    }.addOnFailureListener {
+
+                        //Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
+                        //progressBar.visibility = View.GONE
+                    }
+                    uploadImageToFirebase(imageUri!!,uid+"f")}
+
                 Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
+
+                //ObjectData(title,person,imageUri,place,details,"Zemane","Meriem","m_zemane@estin.dz")
+
+
                 this.dismiss()
 
             }
@@ -80,4 +106,23 @@ lateinit var imageUri:Uri
             }
         }
     }
+    private fun uploadImageToFirebase(fileUri: Uri,userId: String) {
+        if (fileUri != null) {
+            val fileName = userId +".jpg"
+            val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
+
+            refStorage.putFile(fileUri)
+                .addOnSuccessListener(
+                    OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                        taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                            val imageUrl = it.toString()
+                        }
+                    })
+
+                ?.addOnFailureListener(OnFailureListener { e ->
+                    print(e.message)
+                })
+        }
+    }
+
 }
