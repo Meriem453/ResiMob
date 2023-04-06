@@ -99,7 +99,13 @@ class AddUserActivity : AppCompatActivity() {
                 if (!sEmail.matches(emailPattern.toRegex())) {
                     progressBar.visibility = View.GONE
                 etEmail.error = "Enter valid email"
-            }else{
+            }else{FirebaseAuth.getInstance().fetchSignInMethodsForEmail(sEmail).addOnCompleteListener{
+                check-> if(check.getResult().equals(true)){
+                    progressBar.visibility = View.GONE
+                    Toast.makeText(this, "Email already exist!", Toast.LENGTH_SHORT).show()
+                }else{
+
+
                 if (sCpassword == sPassword) {
                     val userMap = hashMapOf(
                         "fname" to sFname,
@@ -138,7 +144,8 @@ class AddUserActivity : AppCompatActivity() {
 
                 }
 
-            }}
+            }}}
+            }
 
          }
     }
