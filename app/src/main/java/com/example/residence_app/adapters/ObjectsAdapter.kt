@@ -1,7 +1,6 @@
 package com.example.residence_app.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,17 +16,10 @@ import androidx.transition.TransitionManager
 import com.example.residence_app.R
 import com.example.residence_app.data.ObjectData
 import com.example.residence_app.data.UserInfo
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.protobuf.Value
 import java.net.URI
 
 class ObjectsAdapter(var c:Context) : RecyclerView.Adapter<ObjectsAdapter.ObjVH>() {
 var arr=ArrayList<ObjectData>()
-    lateinit var db : FirebaseFirestore
     inner class ObjVH(itemView: View) : ViewHolder(itemView){
         val title=itemView.findViewById<TextView>(R.id.obj_title)
         val img=itemView.findViewById<ImageView>(R.id.obj_img)
@@ -87,7 +79,6 @@ var arr=ArrayList<ObjectData>()
     }
 
     fun getFonderData(){
-
 arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Meriem","m_zemanr@estn.dz"))
 
         notifyDataSetChanged()
@@ -96,27 +87,8 @@ arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Me
     }
 
     fun getLoserData(){
-//        db = FirebaseFirestore.getInstance()
-//        db.collection("lost objects")
-//            .addSnapshotListener(object : EventListener<QuerySnapshot>{
-//                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-//                    if(error != null){
-//
-//                        Log.e("Data base error!",error.message.toString())
-//                        return
-//                    }
-//
-//                    for (dc:DocumentChange in value?.documentChanges!!){
-//                        if(dc.getType() == DocumentChange.Type.ADDED){
-//                            arr.add(dc.getDocument().toObject(ObjectData::class.java))
-//
-//
-//                        }
-//                    }
-//                    notifyDataSetChanged()
-//                }
-//            })
-        arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Meriem","m_zemanr@estn.dz"))
+        arr.add(ObjectData("Cable","Loser",null,"Salle de lecture","Gray","Zemane" , "Meriem","m_zemane@estin.dz"))
+
 
         notifyDataSetChanged()
     }
