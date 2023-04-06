@@ -63,7 +63,7 @@ var arr=ArrayList<ObjectData>()
               if(arr[position].Person== c.resources.getString(R.string.loser)){
                   img.visibility=View.GONE
               }else{
-                 // img.setImageURI(arr[position].Img)
+                  img.setImageURI(arr[position].Img)
               }
 
               holder.itemView.setOnClickListener {
