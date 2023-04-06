@@ -63,7 +63,7 @@ var arr=ArrayList<ObjectData>()
               if(arr[position].Person== c.resources.getString(R.string.loser)){
                   img.visibility=View.GONE
               }else{
-                  img.setImageURI(arr[position].Img)
+                 // img.setImageURI(arr[position].Img)
               }
 
               holder.itemView.setOnClickListener {
@@ -96,28 +96,33 @@ arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Me
     }
 
     fun getLoserData(){
-//        db = FirebaseFirestore.getInstance()
-//        db.collection("lost objects")
-//            .addSnapshotListener(object : EventListener<QuerySnapshot>{
-//                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-//                    if(error != null){
-//
-//                        Log.e("Data base error!",error.message.toString())
-//                        return
-//                    }
-//
-//                    for (dc:DocumentChange in value?.documentChanges!!){
-//                        if(dc.getType() == DocumentChange.Type.ADDED){
-//                            arr.add(dc.getDocument().toObject(ObjectData::class.java))
-//
-//
-//                        }
-//                    }
-//                    notifyDataSetChanged()
-//                }
-//            })
-        arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Meriem","m_zemanr@estn.dz"))
+        db = FirebaseFirestore.getInstance()
+        db.collection("lost objects")
+            .addSnapshotListener(object : EventListener<QuerySnapshot>{
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if(error != null){
 
-        notifyDataSetChanged()
-    }
-}
+                        Log.e("Data base error!",error.message.toString())
+                        return
+                    }
+
+                    for (dc:DocumentChange in value?.documentChanges!!){
+                        if(dc.getType() == DocumentChange.Type.ADDED){
+                            arr.add(dc.getDocument().toObject(ObjectData::class.java))
+                            notifyDataSetChanged()
+                        }
+                    }
+
+                    }
+
+
+
+                        })
+                    }
+
+                }
+
+//        arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Meriem","m_zemanr@estn.dz"))
+//
+//        notifyDataSetChanged()
+
