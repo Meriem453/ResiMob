@@ -64,10 +64,10 @@
         <item>Tournament request</item>
         <item>Lack of equipment</item>
     </string-array>
-             <string-array name="culture_details">
-                 <item>Excursion request</item>
-                 <item>Awareness campaign request</item>
-             </string-array>
+    <string-array name="culture_details">
+        <item>Excursion request</item>
+        <item>Awareness campaign request</item>
+    </string-array>
     <string-array name="health_details">
         <item>Timing not appropriate</item>
         <item>Lack of medicines</item>
@@ -132,7 +132,7 @@
     <string name="found_objects">Found Objects</string>
     <string name="founder">Founder</string>
     <string name="loser">Loser</string>
-<string name="place">Place</string>
+    <string name="place">Place</string>
     <string name="you_found_an_objects">You found an object?</string>
     <string name="what_did_you_found">What did you found?</string>
     <string name="where_did_you_found_it">Where did you found it?</string>
@@ -145,9 +145,16 @@
     <string name="please_add_an_image">Please add an image</string>
     <string name="found_object_submitted">Found object submitted</string>
     <string name="lost_object_submitted">Lost object submitted</string>
-<string name="you_have_to_select_a_problem">You have to select a problem</string>
+    <string name="you_have_to_select_a_problem">You have to select a problem</string>
     <string name="you_have_to_select_a_president">You have to select a president</string>
     <string name="please_select_a_president">Please select a president</string>
     <string name="please_select_a_problem">Please select a problem</string>
     <string name="please_select_a_detail">Please select a detail</string>
+    <string name="home">Home</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="log_out">Log out</string>
+    <string name="users">Users</string>
+    <string name="notifications">Notifications</string>
 </resources>
