@@ -100,42 +100,60 @@ class AddUserActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                 etEmail.error = "Enter valid email"
             }else{FirebaseAuth.getInstance().fetchSignInMethodsForEmail(sEmail).addOnCompleteListener{
-                check-> if(check.getResult().equals(true)){
+                check-> if(check.getResult().signInMethods?.isEmpty() == false){
                     progressBar.visibility = View.GONE
                     Toast.makeText(this, "Email already exist!", Toast.LENGTH_SHORT).show()
                 }else{
 
 
                 if (sCpassword == sPassword) {
-                    val userMap = hashMapOf(
-                        "fname" to sFname,
-                        "lname" to sLname,
-                        "email" to sEmail,
-                        "password" to sPassword,
-                        "image" to imageUri,
-                        "isadmin" to false,
-                        "room" to sRoom,
 
-                        )
 
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(sEmail,sPassword).addOnCompleteListener{
                         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-                        uploadImageToFirebase(imageUri!!,userId)
-                    db.collection("user").document(userId).set(userMap).addOnSuccessListener {
-                        Toast.makeText(this, "Successfully Added!", Toast.LENGTH_SHORT).show()
-                            etFirstName.text.clear()
-                            etLastName.text.clear()
-                            etEmail.text.clear()
-                            etPassword.text.clear()
-                            etCpassword.text.clear()
-                            etRoom.text.clear()
-                            image.setImageResource(0)
-                            progressBar.visibility = View.GONE
 
-                    }.addOnFailureListener {
-                        progressBar.visibility = View.GONE
-                        Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
-                    }
+                        if (imageUri!! != null) {
+                            val fileName = userId +".jpg"
+                            val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
+
+                            refStorage.putFile(imageUri!!)
+                                .addOnSuccessListener(
+                                    OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                                        taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                                            val imageUrl = it.toString()
+                                            val userMap = hashMapOf(
+                                                "fname" to sFname,
+                                                "lname" to sLname,
+                                                "email" to sEmail,
+                                                "password" to sPassword,
+                                                "image" to imageUrl,
+                                                "isadmin" to false,
+                                                "room" to sRoom,
+
+                                                )
+                                            db.collection("user").document(userId).set(userMap).addOnSuccessListener {
+                                                Toast.makeText(this, "Successfully Added!", Toast.LENGTH_SHORT).show()
+                                                etFirstName.text.clear()
+                                                etLastName.text.clear()
+                                                etEmail.text.clear()
+                                                etPassword.text.clear()
+                                                etCpassword.text.clear()
+                                                etRoom.text.clear()
+                                                image.setImageResource(0)
+                                                progressBar.visibility = View.GONE
+
+                                            }.addOnFailureListener {
+                                                progressBar.visibility = View.GONE
+                                                Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
+                                            }
+                                        }
+                                    })
+
+                                ?.addOnFailureListener(OnFailureListener { e ->
+                                    print(e.message)
+                                })
+                        }
+
                     }
                     }else{
                     progressBar.visibility = View.GONE
@@ -160,22 +178,7 @@ class AddUserActivity : AppCompatActivity() {
         }
     }
     private fun uploadImageToFirebase(fileUri: Uri,userId: String) {
-        if (fileUri != null) {
-            val fileName = userId +".jpg"
-            val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
 
-            refStorage.putFile(fileUri)
-                .addOnSuccessListener(
-                    OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
-                        taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                            val imageUrl = it.toString()
-                        }
-                    })
-
-                ?.addOnFailureListener(OnFailureListener { e ->
-                    print(e.message)
-                })
-        }
     }
 }
 

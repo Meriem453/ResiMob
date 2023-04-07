@@ -1,5 +1,4 @@
 package com.example.residence_app.adapters
-
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,22 +7,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.example.residence_app.R
 import com.example.residence_app.data.ObjectData
-import com.example.residence_app.data.UserInfo
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.protobuf.Value
-import java.net.URI
+import com.google.firebase.firestore.*
 
 class ObjectsAdapter(var c:Context) : RecyclerView.Adapter<ObjectsAdapter.ObjVH>() {
 var arr=ArrayList<ObjectData>()
@@ -64,6 +54,7 @@ var arr=ArrayList<ObjectData>()
                   img.visibility=View.GONE
               }else{
                   img.setImageURI(arr[position].Img)
+
               }
 
               holder.itemView.setOnClickListener {

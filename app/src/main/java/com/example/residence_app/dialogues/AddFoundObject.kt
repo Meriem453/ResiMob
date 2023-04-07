@@ -123,5 +123,5 @@ lateinit var imageUri:Uri
             }
         }
     }
-    
+
 }
