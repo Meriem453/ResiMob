@@ -50,27 +50,44 @@ lateinit var imageUri:Uri
                 val place=place.text.toString()
                 val person = resources.getString(R.string.founder)
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
+//                uploadImageToFirebase(imageUri!!,uid+"f")
+                if (imageUri!! != null) {
+                    val fileName = uid +"f.jpg"
+                    val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
 
-                db.collection("user").document(uid).get().addOnCompleteListener{
-                    var fObjectmap = hashMapOf(
-                        "UserFirstName" to it.result!!.data?.getValue("fname").toString().trim(),
-                        "UserLastName" to it.result!!.data?.getValue("lname").toString().trim(),
-                        "Title" to title,
-                        "Details" to details,
-                        "Person" to person,
-                        "UserEmail" to it.result!!.data?.getValue("email").toString().trim(),
-                        "Img" to imageUri,
-                        "Place" to place,
-                    )
-                    db.collection("found objects").document(uid).set(fObjectmap).addOnSuccessListener {
-                        //Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
-                        //progressBar.visibility = View.GONE
-                    }.addOnFailureListener {
+                    refStorage.putFile(imageUri!!)
+                        .addOnSuccessListener(
+                            OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                                taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                                    val imageUrl = it.toString()
+                                    db.collection("user").document(uid).get().addOnCompleteListener{
+                                        var fObjectmap = hashMapOf(
+                                            "UserFirstName" to it.result!!.data?.getValue("fname").toString().trim(),
+                                            "UserLastName" to it.result!!.data?.getValue("lname").toString().trim(),
+                                            "Title" to title,
+                                            "Details" to details,
+                                            "Person" to person,
+                                            "UserEmail" to it.result!!.data?.getValue("email").toString().trim(),
+                                            "Img" to imageUrl,
+                                            "Place" to place,
+                                        )
+                                        db.collection("found objects").document(uid).set(fObjectmap).addOnSuccessListener {
+                                            //Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
+                                            //progressBar.visibility = View.GONE
+                                        }.addOnFailureListener {
 
-                        //Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
-                        //progressBar.visibility = View.GONE
-                    }
-                    uploadImageToFirebase(imageUri!!,uid+"f")}
+                                            //Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
+                                            //progressBar.visibility = View.GONE
+                                        }
+                                    }
+                                }
+                            })
+
+                        ?.addOnFailureListener(OnFailureListener { e ->
+                            print(e.message)
+                        })
+                }
+
 
                 Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
 
@@ -106,23 +123,5 @@ lateinit var imageUri:Uri
             }
         }
     }
-    private fun uploadImageToFirebase(fileUri: Uri,userId: String) {
-        if (fileUri != null) {
-            val fileName = userId +".jpg"
-            val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
-
-            refStorage.putFile(fileUri)
-                .addOnSuccessListener(
-                    OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
-                        taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                            val imageUrl = it.toString()
-                        }
-                    })
-
-                ?.addOnFailureListener(OnFailureListener { e ->
-                    print(e.message)
-                })
-        }
-    }
-
+    
 }
