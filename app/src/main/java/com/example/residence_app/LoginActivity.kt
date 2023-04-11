@@ -49,7 +49,7 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                 auth.signInWithEmailAndPassword(email,password).addOnCompleteListener{
                     if (it.isSuccessful){
                         progressBar.visibility = View.GONE
-                        val intent = Intent(this,HomeUserActivity::class.java)
+                        val intent = Intent(this,MainActivity::class.java)
                         startActivity(intent)
                     }else{
                         progressBar.visibility = View.GONE
