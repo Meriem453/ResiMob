@@ -36,7 +36,9 @@
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="15dp"
             android:layout_weight="1"
-            android:textColorHint="@color/blue_button">
+            android:textColorHint="@color/blue_button"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/first_name"
@@ -51,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
             android:layout_weight="1"
             android:textColorHint="@color/blue_button">
@@ -69,7 +72,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
             android:layout_weight="1"
-            android:textColorHint="@color/blue_button">
+            android:textColorHint="@color/blue_button"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_address"
@@ -86,7 +91,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
             android:layout_weight="1"
-            android:textColorHint="@color/blue_button">
+            android:textColorHint="@color/blue_button"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
@@ -104,6 +111,8 @@
             android:layout_marginHorizontal="50dp"
             android:layout_weight="1"
             android:textColorHint="@color/blue_button"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
 
             >
 
@@ -123,7 +132,9 @@
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="0dp"
             android:layout_weight="1"
-            android:textColorHint="@color/blue_button">
+            android:textColorHint="@color/blue_button"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/room"
@@ -144,7 +155,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="@string/add_user"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 

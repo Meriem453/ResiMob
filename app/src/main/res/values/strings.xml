@@ -157,4 +157,6 @@
     <string name="log_out">Log out</string>
     <string name="users">Users</string>
     <string name="notifications">Notifications</string>
+    <string name="edit">Edit</string>
+    <string name="delete">DELETE</string>
 </resources>

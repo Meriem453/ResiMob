@@ -1,12 +1,13 @@
 package com.example.residence_app.data
 
 import android.net.Uri
+import android.os.Parcelable
 
 data class UserInfo(
-    val FirstName:String,
-    val LastName:String,
-    val Email:String,
-    val Password:String,
-    val Image: Uri?,
-    val isAdmin:Boolean
-)
+    var FirstName:String,
+    var LastName:String,
+    var Email:String,
+    var Password:String,
+    var Image: Uri?,
+    var isAdmin:Boolean
+):java.io.Serializable

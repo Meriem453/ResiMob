@@ -1,8 +1,10 @@
 package com.example.residence_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.residence_app.databinding.ActivityHomeAdminBinding
 import com.google.android.material.navigation.NavigationView
@@ -36,8 +38,10 @@ class HomeAdminActivity : AppCompatActivity() {
         binding.adminObj.setOnClickListener {
 
         }
-        binding.adminUsers.setOnClickListener {
-
+        val users=findViewById<CardView>(R.id.admin_users)
+        users.setOnClickListener {
+            val intent=Intent(baseContext,Users::class.java)
+            startActivity(intent)
         }
         binding.adminFeedback.setOnClickListener {
 

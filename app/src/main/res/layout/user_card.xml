@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/u_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/__icon__doctor_"
+        android:layout_margin="7dp"
+        />
+
+    <TextView
+        android:id="@+id/u_fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User full name"
+        app:layout_constraintStart_toEndOf="@+id/u_img"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="7dp"
+        />
+
+    <TextView
+        android:id="@+id/u_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="7dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="user@email.com"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/u_img"
+        app:layout_constraintTop_toBottomOf="@+id/u_fullname" />
+</androidx.constraintlayout.widget.ConstraintLayout>
