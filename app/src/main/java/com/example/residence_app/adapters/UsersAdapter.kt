@@ -2,6 +2,7 @@ package com.example.residence_app.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.residence_app.EditUserActivity
 import com.example.residence_app.R
+import com.example.residence_app.Users
 import com.example.residence_app.data.UserInfo
 
 class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>() {
@@ -42,6 +44,7 @@ class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>() 
             itemView.setOnClickListener {
                val intent=Intent(c,EditUserActivity::class.java)
                 intent.putExtra("current_user",arr[position])
+                intent.flags = FLAG_ACTIVITY_NEW_TASK
                 c.startActivity(intent)
 
             }

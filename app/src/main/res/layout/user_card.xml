@@ -7,12 +7,12 @@
 
     <ImageView
         android:id="@+id/u_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/__icon__doctor_"
+        app:srcCompat="@drawable/user_circle_plus"
         android:layout_margin="7dp"
         />
 

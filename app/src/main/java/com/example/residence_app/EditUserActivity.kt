@@ -1,30 +1,24 @@
 package com.example.residence_app
 
-import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.example.residence_app.data.UserInfo
-import com.example.residence_app.dialogues.AddFoundObject
-import com.example.residence_app.dialogues.DeleteUserDialog
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.example.residence_app.dialogues.DeleteUserFragment
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 
-class EditUserActivity : AppCompatActivity() {
+class EditUserActivity : AppCompatActivity(),DeleteUserInterface {
 
 
     lateinit var fname:TextInputEditText
@@ -39,7 +33,7 @@ class EditUserActivity : AppCompatActivity() {
     lateinit var set:Button
     lateinit var vb:LinearLayout
     lateinit var user: UserInfo
-    lateinit var uri:Uri
+    var uri: Uri? =null
 
 
 
@@ -47,6 +41,8 @@ class EditUserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_user)
+       supportActionBar?.hide()
+
 
         fname=findViewById(R.id.edit_first_name)
         lname=findViewById(R.id.edit_last_name)
@@ -72,16 +68,13 @@ class EditUserActivity : AppCompatActivity() {
          setEnabled(true)
         }
         delete.setOnClickListener {
-            //DeleteUserDialog(baseContext).show(supportFragmentManager,"bla bla")
-            //MaterialAlertDialogBuilder(baseContext,R.layout.fragment_delete_user_dialog).show()
-            deletUser(user)
-
-
+            DeleteUserFragment(this).show(supportFragmentManager,"ggg")
         }
         cancel.setOnClickListener{
             setEnabled(false)
         }
         set.setOnClickListener {
+            if(Check()){
             val currentUser=user
             user.FirstName=fname.text.toString()
             user.LastName=lname.text.toString()
@@ -90,9 +83,7 @@ class EditUserActivity : AppCompatActivity() {
             user.Image=uri
             user.isAdmin=false
             sendNewUser(currentUser,user)
-            setEnabled(false)
-
-
+            setEnabled(false)}
         }
         img.setOnClickListener {
             val intent = Intent()
@@ -102,19 +93,7 @@ class EditUserActivity : AppCompatActivity() {
         }
     }
 
-    private fun deletUser(currentUser: UserInfo) {
-        //TODO("delete user")
 
-        Toast.makeText(baseContext,"User deleted",Toast.LENGTH_LONG).show()
-
-    }
-
-    private fun sendNewUser(currentUser: UserInfo, newUser: UserInfo) {
-        //TODO("edit user information")
-
-        Toast.makeText(baseContext,"User edited",Toast.LENGTH_LONG).show()
-
-    }
 
     private fun setEnabled(value: Boolean) {
         TransitionManager.beginDelayedTransition( vb, AutoTransition())
@@ -147,12 +126,61 @@ if(value){
 
 
     }
+fun Check():Boolean{
+    var valid = true
+    if(uri==null){
+        Toast.makeText(baseContext,"Please select profile image",Toast.LENGTH_LONG).show()
+        valid=false
 
+    }
+
+    if(fname.text.toString().trim()==""){
+        fname.error="Enter valid information"
+        valid=false
+    }
+    if(lname.text.toString().trim()==""){
+        lname.error="Enter valid information"
+        valid=false
+    }
+    if(email.text.toString().trim()==""){
+        email.error="Enter valid information"
+        valid=false
+    }
+    if(passwrd.text.toString().trim()==""){
+        passwrd.error="Enter valid information"
+        valid=false
+    }
+    if(room.text.toString().trim()==""){
+        room.error="Enter valid information"
+        valid=false
+    }
+    return valid
+
+}
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null) {
             img.setImageURI(data.data)
             uri= data.data!!
         }
+    }
+
+
+
+
+    private fun sendNewUser(currentUser: UserInfo, newUser: UserInfo) {
+        //TODO("edit user information")
+
+    Toast.makeText(baseContext,"User edited",Toast.LENGTH_LONG).show()
+
+
+
+    }
+
+    override fun deleteUser() {
+        //TODO("delete current user")
+        Toast.makeText(baseContext,"User deleted",Toast.LENGTH_LONG).show()
+
+        startActivity(Intent(baseContext,Users::class.java))
     }
 }

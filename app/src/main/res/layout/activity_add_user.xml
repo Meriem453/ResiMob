@@ -164,15 +164,14 @@
         android:id="@+id/imageView"
         android:layout_width="184dp"
         android:layout_height="184dp"
-
-
-        android:background="@drawable/circle"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toTopOf="@+id/progress_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/circular"
-        app:srcCompat="@drawable/img_add" />
+        app:srcCompat="@drawable/user_circle_plus"
+        android:background="@color/blue_background"
+        android:elevation="5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

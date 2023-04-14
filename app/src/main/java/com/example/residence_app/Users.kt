@@ -9,6 +9,7 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,9 +22,12 @@ class Users : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_users)
+
+        supportActionBar?.hide()
+
         val search=findViewById<AutoCompleteTextView>(R.id.user_search)
         val rec=findViewById<RecyclerView>(R.id.users_rec)
-
+         val add=findViewById<Button>(R.id.users_add)
         rec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.VERTICAL,false)
         val adapter=UsersAdapter(baseContext)
         adapter.getUsersData()
@@ -44,7 +48,9 @@ class Users : AppCompatActivity() {
                }
             }
         )
-
+add.setOnClickListener {
+    startActivity(Intent(baseContext,AddUserActivity::class.java))
+}
 
 
 

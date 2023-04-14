@@ -44,15 +44,14 @@
         app:layout_constraintStart_toStartOf="parent"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_marginTop="10dp"
-        app:endIconDrawable="@drawable/icon_logout"
+        app:endIconDrawable="@drawable/icon_search"
         android:hint="Search for users"
         >
+
         <AutoCompleteTextView
             android:id="@+id/user_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-
             />
 
     </com.google.android.material.textfield.TextInputLayout>
