@@ -38,7 +38,7 @@ class Users : AppCompatActivity() {
         search.setOnItemClickListener(
             AdapterView.OnItemClickListener { parent, view, position, id ->
                for (i in adapter.arr){
-                   if("${i.FirstName} ${i.LastName}"==adapter.search_arr[position]){
+                   if("${i.fname} ${i.lname}"==adapter.search_arr[position]){
                        val intent= Intent(baseContext,EditUserActivity::class.java)
                        intent.putExtra("current_user",i)
                        startActivity(intent)

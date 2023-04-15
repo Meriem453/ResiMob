@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +15,12 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.residence_app.EditUserActivity
 import com.example.residence_app.R
 import com.example.residence_app.Users
+import com.example.residence_app.data.ObjectData
 import com.example.residence_app.data.UserInfo
+import com.google.firebase.firestore.*
 
 class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>() {
+    lateinit var db : FirebaseFirestore
       var arr= ArrayList<UserInfo>()
       var search_arr= emptyList<String>()
     inner class usersVH(itemView: View) : ViewHolder(itemView){
@@ -39,8 +43,8 @@ class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>() 
 
         with(holder){
             //img.setImageURI(arr[position].Image)
-            name.text=arr[position].FirstName+ " " + arr[position].LastName
-            email.text=arr[position].Email
+            name.text=arr[position].fname+ " " + arr[position].lname
+            email.text=arr[position].email
             itemView.setOnClickListener {
                val intent=Intent(c,EditUserActivity::class.java)
                 intent.putExtra("current_user",arr[position])
@@ -53,14 +57,33 @@ class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>() 
     }
 
     fun getUsersData(){
-        arr.add(UserInfo("Zemane","meriem","m_zemane@estin.dz","123456",null,false))
+//        arr.add(UserInfo("Zemane","meriem","m_zemane@estin.dz","123456"))
+        db = FirebaseFirestore.getInstance()
+        db.collection("user")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if(error != null){
+
+                        Log.e("Data base error!",error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!){
+                        if(dc.getType() == DocumentChange.Type.ADDED){
+                            arr.add(dc.getDocument().toObject(UserInfo::class.java))
 
 
+                        }
+                    }
+                    notifyDataSetChanged()
+                }
+            })
 
-        notifyDataSetChanged()
+
+//        notifyDataSetChanged()
 
         for (i in arr){
-            search_arr=search_arr + "${i.FirstName} ${i.LastName}"
+            search_arr=search_arr + "${i.fname} ${i.lname}"
         }
     }
 }

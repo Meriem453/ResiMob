@@ -122,6 +122,7 @@ class AddUserActivity : AppCompatActivity() {
                                         taskSnapshot.storage.downloadUrl.addOnSuccessListener {
                                             val imageUrl = it.toString()
                                             val userMap = hashMapOf(
+                                                "uid" to userId,
                                                 "fname" to sFname,
                                                 "lname" to sLname,
                                                 "email" to sEmail,
@@ -177,8 +178,6 @@ class AddUserActivity : AppCompatActivity() {
             }
         }
     }
-    private fun uploadImageToFirebase(fileUri: Uri,userId: String) {
 
-    }
 }
 

@@ -15,8 +15,16 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.example.residence_app.data.UserInfo
 import com.example.residence_app.dialogues.DeleteUserFragment
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
+import java.net.URL
 
 class EditUserActivity : AppCompatActivity(),DeleteUserInterface {
 
@@ -34,6 +42,10 @@ class EditUserActivity : AppCompatActivity(),DeleteUserInterface {
     lateinit var vb:LinearLayout
     lateinit var user: UserInfo
     var uri: Uri? =null
+    lateinit var image: String
+     lateinit var db : FirebaseFirestore
+     lateinit var auth : FirebaseAuth
+     lateinit var ds : FirebaseStorage
 
 
 
@@ -76,12 +88,12 @@ class EditUserActivity : AppCompatActivity(),DeleteUserInterface {
         set.setOnClickListener {
             if(Check()){
             val currentUser=user
-            user.FirstName=fname.text.toString()
-            user.LastName=lname.text.toString()
-            user.Email=email.text.toString()
-            user.Password=passwrd.text.toString()
-            user.Image=uri
-            user.isAdmin=false
+            user.fname=fname.text.toString()
+            user.lname=lname.text.toString()
+            user.email=email.text.toString()
+            user.password=passwrd.text.toString()
+            user.image=""
+            user.isadmin=false
             sendNewUser(currentUser,user)
             setEnabled(false)}
         }
@@ -116,12 +128,12 @@ if(value){
     delete.visibility=View.VISIBLE
     cancel.visibility=View.GONE
     set.visibility=View.GONE
-    fname.setText(user.FirstName)
-    lname.setText(user.LastName)
-    passwrd.setText(user.Password)
-    email.setText(user.Email)
-    // room.setText(user.room)
-    img.setImageURI(user.Image)
+    fname.setText(user.fname)
+    lname.setText(user.lname)
+    passwrd.setText(user.password)
+    email.setText(user.email)
+     room.setText(user.room)
+    img.setImageURI(uri)
 }
 
 
@@ -169,18 +181,48 @@ fun Check():Boolean{
 
 
     private fun sendNewUser(currentUser: UserInfo, newUser: UserInfo) {
-        //TODO("edit user information")
+        var uid = currentUser.uid
 
-    Toast.makeText(baseContext,"User edited",Toast.LENGTH_LONG).show()
+        if (uri!! != null) {
+            val fileName = currentUser.uid +".jpg"
+            val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
+
+            refStorage.putFile(uri!!)
+                .addOnSuccessListener(
+                    OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                        taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                            val imageUrl = it.toString()
+                            db = FirebaseFirestore.getInstance()
+                            var newUserMap = mapOf(
+                                "uid" to newUser.uid,
+                                "fname" to newUser.fname,
+                                "lname" to newUser.lname,
+                                "email" to newUser.email,
+                                "password" to newUser.password,
+                                "image" to imageUrl,
+                                "isadmin" to false,
+                                "room" to newUser.room,
+                            )
+                            db.collection("user").document(uid.toString()).update(newUserMap).addOnSuccessListener { Toast.makeText(baseContext,"User edited!",Toast.LENGTH_LONG).show() }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
+                        }})
+        }
+
+
 
 
 
     }
 
     override fun deleteUser() {
-        //TODO("delete current user")
-        Toast.makeText(baseContext,"User deleted",Toast.LENGTH_LONG).show()
+        val uid = user.uid.toString()
+        db = FirebaseFirestore.getInstance()
+        ds = FirebaseStorage.getInstance()
+        db.collection("user").document(uid).delete().addOnSuccessListener { Toast.makeText(baseContext,"User deleted",Toast.LENGTH_LONG).show() }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
+
+
+
 
         startActivity(Intent(baseContext,Users::class.java))
     }
+
 }

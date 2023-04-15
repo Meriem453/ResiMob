@@ -10,10 +10,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
 import com.example.residence_app.DeleteUserInterface
 import com.example.residence_app.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 
 class DeleteUserFragment(val inter:DeleteUserInterface) : DialogFragment() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog)
@@ -24,7 +26,6 @@ class DeleteUserFragment(val inter:DeleteUserInterface) : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view= activity?.layoutInflater?.inflate(R.layout.fragment_delete_user_dialog, null)
        val delete=view?.findViewById<Button>(R.id.deleteuser)
         val cancel = view?.findViewById<ConstraintLayout>(R.id.canceldeleteuser)
@@ -32,7 +33,7 @@ class DeleteUserFragment(val inter:DeleteUserInterface) : DialogFragment() {
             this.dismiss()
         }
         delete?.setOnClickListener {
-            inter.deleteUser()
+
             this.dismiss()
         }
 
