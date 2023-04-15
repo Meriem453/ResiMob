@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import com.example.residence_app.databinding.ActivityHomeUserBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
@@ -27,6 +28,7 @@ class HomeUserActivity : AppCompatActivity() {
     private lateinit var tRoom: TextView
     private lateinit var tGoodday : TextView
     private lateinit var binding: ActivityHomeUserBinding
+    private lateinit var restaurant: CardView
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,8 @@ class HomeUserActivity : AppCompatActivity() {
         tRoom = findViewById(R.id.user_room)
         tGoodday = findViewById(R.id.good_day)
         userImage = findViewById(R.id.imageView3)
+
+
 
 binding.restaurant.setOnClickListener {
     val intent=Intent(baseContext,RestaurantDetails::class.java)

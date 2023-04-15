@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.example.residence_app.databinding.ActivityMainBinding
+
 import com.example.residence_app.fragments.HomeFragment
 import com.example.residence_app.fragments.NotificationsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
