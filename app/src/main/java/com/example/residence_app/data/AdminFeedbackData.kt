@@ -3,11 +3,13 @@ package com.example.residence_app.data
 import android.net.Uri
 
 data class AdminFeedbackData(
-    val title:String,
-    val first_name:String,
-    val last_name:String,
-    val img: Uri?,
-    val president:String,
-    val details:String
+    val title:String?= null,
+    val fname:String?= null,
+    val lname:String?= null,
+    val image: String?= null,
+    val president:String?= null,
+    val description:String?= null,
+    val fid:String?=null
+
 
 )

@@ -7,7 +7,7 @@ import java.net.URL
 data class ObjectData(
     val Title:String ?= null,
     val Person:String?=null,
-    val Img: Uri?=null,
+    val Img: String?=null,
     val Place:String?=null,
     val Details:String?=null,
     val UserFirstName:String?=null,

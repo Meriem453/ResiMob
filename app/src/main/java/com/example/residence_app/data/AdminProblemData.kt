@@ -3,11 +3,12 @@ package com.example.residence_app.data
 import android.net.Uri
 
 data class AdminProblemData(
-    val problem:String,
-    val first_name:String,
-    val last_name:String,
-    val img: Uri?,
-    val president:String,
-    val details:String
+    val problem:String?= null,
+    val fname:String?= null,
+    val lname:String?= null,
+    val image: String?= null,
+    val president:String?= null,
+    val details:String?= null,
+    val pid:String?=null
 
 )

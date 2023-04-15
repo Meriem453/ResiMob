@@ -1,6 +1,7 @@
 package com.example.residence_app.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +17,11 @@ import com.example.residence_app.R
 import com.example.residence_app.data.AdminFeedbackData
 import com.example.residence_app.data.AdminProblemData
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.firebase.firestore.*
 
 class AdminProblemAdpater(val c:Context): RecyclerView.Adapter<AdminProblemAdpater.adminprVH>() {
 var arr=ArrayList<AdminProblemData>()
+    lateinit var db : FirebaseFirestore
 inner class adminprVH(itemView: View): ViewHolder(itemView){
     val img=itemView.findViewById<ShapeableImageView>(R.id.adminproblem_img)
     val problem=itemView.findViewById<TextView>(R.id.adminproblem_title)
@@ -41,9 +44,9 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
 
     override fun onBindViewHolder(holder: adminprVH, position: Int) {
        with(holder){
-           img.setImageURI(arr[position].img)
+           //img.setImageURI(arr[position].img)
            problem.text=arr[position].problem
-           name.text="${arr[position].first_name} ${arr[position].last_name}"
+           name.text="${arr[position].fname} ${arr[position].lname}"
            president.text=arr[position].president
            details.text=arr[position].details
 
@@ -64,13 +67,34 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
     }
     fun getAdminProblemData(){
         arr.clear()
-        //TODO("get all the problems")
-        arr.add(AdminProblemData("Resto","Meriem","Zemane",null,"Khoufach","paint"))
+        db = FirebaseFirestore.getInstance()
+        db.collection("problem")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if(error != null){
 
-        notifyDataSetChanged()
+                        Log.e("Data base error!",error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!){
+                        if(dc.getType() == DocumentChange.Type.ADDED){
+                            arr.add(dc.getDocument().toObject(AdminProblemData::class.java))
+
+
+                        }
+                    }
+                    notifyDataSetChanged()
+                }
+            })
+//        arr.add(AdminProblemData("Resto","Meriem","Zemane",null,"Khoufach","paint"))
+//
+//        notifyDataSetChanged()
     }
     fun DeleteProblem(problem:AdminProblemData){
-        //TODO("delete this problem")
+        val fid =problem.pid.toString()
+        db.collection("feedback").document(fid).delete().addOnSuccessListener{Toast.makeText(c,"problem deleted",Toast.LENGTH_LONG).show()  }.addOnFailureListener { Toast.makeText(c,"Error!",Toast.LENGTH_LONG).show() }
+
         Toast.makeText(c,"problem deleted",Toast.LENGTH_LONG).show()
 
         //code here

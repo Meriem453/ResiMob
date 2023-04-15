@@ -105,10 +105,13 @@ send.setOnClickListener {
         var uid = FirebaseAuth.getInstance().currentUser!!.uid
         db.collection("user").document(uid).get().addOnCompleteListener{
             val problemmap = hashMapOf(
-                "fullname" to it.result!!.data?.getValue("fname").toString().trim()+" "+it.result!!.data?.getValue("lname").toString().trim(),
+                "fname" to it.result!!.data?.getValue("fname").toString().trim(),
+                "lname" to it.result!!.data?.getValue("lname").toString().trim(),
                 "problem" to selected_prblm,
                 "president" to selected_president,
                 "details" to selected_detail,
+                "image" to it.result!!.data?.getValue("image").toString().trim(),
+            "pid" to it.result!!.data?.getValue("uid").toString().trim()
             )
             db.collection("problem").document(uid).set(problemmap).addOnSuccessListener {
 

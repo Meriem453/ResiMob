@@ -1,4 +1,6 @@
 package com.example.residence_app.adapters
+import android.annotation.SuppressLint
+import android.app.DownloadManager.Request
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,8 +11,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.residence_app.R
 import com.example.residence_app.data.ObjectData
 import com.google.firebase.firestore.*
@@ -53,7 +58,7 @@ var arr=ArrayList<ObjectData>()
               if(arr[position].Person== c.resources.getString(R.string.loser)){
                   img.visibility=View.GONE
               }else{
-                  img.setImageURI(arr[position].Img)
+                  //img.setImageURI(arr[position].Img)
 
               }
 
@@ -78,10 +83,29 @@ var arr=ArrayList<ObjectData>()
     }
 
     fun getFonderData(){
+        db = FirebaseFirestore.getInstance()
+        db.collection("found objects")
+            .addSnapshotListener(object : EventListener<QuerySnapshot>{
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if(error != null){
 
-arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Meriem","m_zemanr@estn.dz"))
+                        Log.e("Data base error!",error.message.toString())
+                        return
+                    }
 
-        notifyDataSetChanged()
+                    for (dc:DocumentChange in value?.documentChanges!!){
+                        if(dc.getType() == DocumentChange.Type.ADDED){
+                            arr.add(dc.getDocument().toObject(ObjectData::class.java))
+
+
+                        }
+                    }
+                    notifyDataSetChanged()
+                }
+            })
+//arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Meriem","m_zemanr@estn.dz"))
+//
+//        notifyDataSetChanged()
 
 
     }
@@ -108,5 +132,10 @@ arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Me
                 }
             })
 
+    }
+    @SuppressLint("SuspiciousIndentation")
+    fun ImageView.loadImage(uri : String?, progressDrawable:CircularProgressDrawable){
+    val option = RequestOptions().placeholder(progressDrawable).error(R.mipmap.ic_launcher)
+        Glide.with(context).setDefaultRequestOptions(option).load(uri).into(this)
     }
 }

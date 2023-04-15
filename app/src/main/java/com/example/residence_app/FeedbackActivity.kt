@@ -74,10 +74,13 @@ lateinit var progressBar: ProgressBar
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
                 db.collection("user").document(uid).get().addOnCompleteListener{
                     val feedbackmap = hashMapOf(
-                        "fullname" to it.result!!.data?.getValue("fname").toString().trim()+" "+it.result!!.data?.getValue("lname").toString().trim(),
+                        "fname" to it.result!!.data?.getValue("fname").toString().trim(),
+                        "lname" to it.result!!.data?.getValue("lname").toString().trim(),
                         "title" to title,
                         "president" to president,
                         "description" to description,
+                        "image" to it.result!!.data?.getValue("image").toString().trim(),
+                        "fid" to it.result!!.data?.getValue("uid").toString().trim()
                         )
                     db.collection("feedback").document(uid).set(feedbackmap).addOnSuccessListener {
                         Toast.makeText(this, "Successfully Added!", Toast.LENGTH_SHORT).show()
