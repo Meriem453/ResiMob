@@ -1,0 +1,81 @@
+package com.example.residence_app.adapters
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.transition.AutoTransition
+import androidx.transition.TransitionManager
+import com.example.residence_app.R
+import com.example.residence_app.data.AdminFeedbackData
+import com.example.residence_app.data.AdminProblemData
+import com.google.android.material.imageview.ShapeableImageView
+
+class AdminProblemAdpater(val c:Context): RecyclerView.Adapter<AdminProblemAdpater.adminprVH>() {
+var arr=ArrayList<AdminProblemData>()
+inner class adminprVH(itemView: View): ViewHolder(itemView){
+    val img=itemView.findViewById<ShapeableImageView>(R.id.adminproblem_img)
+    val problem=itemView.findViewById<TextView>(R.id.adminproblem_title)
+    val name=itemView.findViewById<TextView>(R.id.adminproblem_fullname)
+    val president=itemView.findViewById<TextView>(R.id.adminproblem_president)
+    val details=itemView.findViewById<TextView>(R.id.adminproblem_president)
+    val delete=itemView.findViewById<ImageView>(R.id.adminproblem_delete)
+    val layout=itemView.findViewById<LinearLayout>(R.id.adminproblem_layout)
+}
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): adminprVH {
+        val view = LayoutInflater.from(c).inflate(R.layout.admin_problem_card,parent,false)
+         val holder=adminprVH(view)
+        return holder
+    }
+
+    override fun getItemCount(): Int {
+        return arr.size
+    }
+
+    override fun onBindViewHolder(holder: adminprVH, position: Int) {
+       with(holder){
+           img.setImageURI(arr[position].img)
+           problem.text=arr[position].problem
+           name.text="${arr[position].first_name} ${arr[position].last_name}"
+           president.text=arr[position].president
+           details.text=arr[position].details
+
+           delete.setOnClickListener {
+               DeleteProblem(arr[position])
+           }
+
+           itemView.setOnClickListener {
+               if(layout.visibility== View.GONE){
+                   TransitionManager.beginDelayedTransition(holder.itemView as ViewGroup, AutoTransition())
+                   holder.layout.visibility = View.VISIBLE
+               }else{
+                   //TransitionManager.beginDelayedTransition(holder.itemView as ViewGroup, AutoTransition())
+                   holder.layout.visibility = View.GONE
+               }
+           }
+       }
+    }
+    fun getAdminProblemData(){
+        arr.clear()
+        //TODO("get all the problems")
+        arr.add(AdminProblemData("Resto","Meriem","Zemane",null,"Khoufach","paint"))
+
+        notifyDataSetChanged()
+    }
+    fun DeleteProblem(problem:AdminProblemData){
+        //TODO("delete this problem")
+        Toast.makeText(c,"problem deleted",Toast.LENGTH_LONG).show()
+
+        //code here
+
+        getAdminProblemData()
+
+    }
+}

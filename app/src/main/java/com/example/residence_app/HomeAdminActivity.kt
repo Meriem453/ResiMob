@@ -25,6 +25,9 @@ class HomeAdminActivity : AppCompatActivity() {
         open=findViewById(R.id.admin_navdrawer)
         navview=findViewById(R.id.admin_navview)
 
+        val users=findViewById<CardView>(R.id.admin_users)
+        val feedback = findViewById<CardView>(R.id.admin_feedback)
+        val problem = findViewById<CardView>(R.id.admin_problem)
 
         open.setOnClickListener {
             drawer.open()
@@ -38,16 +41,16 @@ class HomeAdminActivity : AppCompatActivity() {
         binding.adminObj.setOnClickListener {
 
         }
-        val users=findViewById<CardView>(R.id.admin_users)
+
         users.setOnClickListener {
             val intent=Intent(baseContext,Users::class.java)
             startActivity(intent)
         }
-        binding.adminFeedback.setOnClickListener {
-
+        feedback.setOnClickListener {
+           startActivity(Intent(baseContext,FeedbackAdminActivity::class.java))
         }
-        binding.adminProblem.setOnClickListener {
-
+        problem.setOnClickListener {
+            startActivity(Intent(baseContext,ProblemAdminAcivity::class.java))
         }
 
         navview.setNavigationItemSelectedListener {

@@ -13,6 +13,12 @@
         tools:replace="allowBackup, label"
         tools:targetApi="31">
         <activity
+            android:name=".ProblemAdminAcivity"
+            android:exported="false" />
+        <activity
+            android:name=".FeedbackAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditUserActivity"
             android:exported="false" />
         <activity
@@ -29,10 +35,10 @@
         </activity>
         <activity
             android:name=".FeedbackActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".SportDetails"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".GymDetails"
             android:exported="false" />
@@ -46,7 +52,7 @@
             android:parentActivityName=".HomeUserActivity" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".DoctorDetails"
             android:exported="false"
@@ -54,22 +60,22 @@
         <activity
             android:name=".RestaurantDetails"
             android:exported="true"
-            android:parentActivityName=".HomeUserActivity"></activity>
+            android:parentActivityName=".HomeUserActivity" />
         <activity
             android:name=".HomeUserActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".AddUserActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".OnBoardingActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"> </activity>
+            android:exported="true" />
         <activity
             android:name=".Problem"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
