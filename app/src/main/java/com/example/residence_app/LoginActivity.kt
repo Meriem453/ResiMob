@@ -10,11 +10,13 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.residence_app.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class LoginActivity : AppCompatActivity() {
 private lateinit var binding:ActivityLoginBinding
 private lateinit var auth: FirebaseAuth
+private lateinit var db :FirebaseFirestore
 private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +51,19 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                 auth.signInWithEmailAndPassword(email,password).addOnCompleteListener{
                     if (it.isSuccessful){
                         progressBar.visibility = View.GONE
-                        val intent = Intent(this,MainActivity::class.java)
-                        startActivity(intent)
+                        db = FirebaseFirestore.getInstance()
+                          db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener() {
+                              val name = it.result!!.data?.getValue("lname").toString().trim()
+                              if(name == "Admin"){
+                                  val intent = Intent(this,HomeAdminActivity::class.java)
+                                  startActivity(intent)
+                              }else{
+                                  val intent = Intent(this,MainActivity::class.java)
+                                  startActivity(intent)
+                              }
+
+                          }
+
                     }else{
                         progressBar.visibility = View.GONE
                         Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
@@ -65,9 +78,16 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
     //ida l user dakhl men qbl wla nn
     override fun onStart() {
         super.onStart()
-        if(auth.currentUser != null){
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
-        }
-    }
-}
+        if(auth.currentUser != null) {
+            db = FirebaseFirestore.getInstance()
+            db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener() {
+                val name = it.result!!.data?.getValue("lname").toString().trim()
+                if (name == "Admin") {
+                    val intent = Intent(this, HomeAdminActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }}}

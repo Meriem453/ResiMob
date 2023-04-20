@@ -96,7 +96,7 @@ lateinit var progressBar: ProgressBar
 
                 }
 
-                progressBar.visibility = View.GONE
+
             }
         }
     }

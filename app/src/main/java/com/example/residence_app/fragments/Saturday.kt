@@ -21,7 +21,7 @@ class Saturday : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_saturday, container, false)
-        val rec= view.findViewById<RecyclerView>(R.id.sunday_rec)
+        val rec= view.findViewById<RecyclerView>(R.id.saturday_rec)
         val adapter= SportSportsAdapter(requireContext())
         adapter.getData(6)
         rec.adapter=adapter
