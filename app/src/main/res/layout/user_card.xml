@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     >
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/u_img"
         android:layout_width="58dp"
         android:layout_height="58dp"
@@ -14,6 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/user_circle_plus"
         android:layout_margin="7dp"
+        app:shapeAppearanceOverlay="@style/circular"
         />
 
     <TextView

@@ -58,7 +58,8 @@ var arr=ArrayList<ObjectData>()
               if(arr[position].Person== c.resources.getString(R.string.loser)){
                   img.visibility=View.GONE
               }else{
-                  //img.setImageURI(arr[position].Img)
+
+                  Glide.with(c).load(arr[position].Img).into(img)
 
               }
 
@@ -132,10 +133,5 @@ var arr=ArrayList<ObjectData>()
                 }
             })
 
-    }
-    @SuppressLint("SuspiciousIndentation")
-    fun ImageView.loadImage(uri : String?, progressDrawable:CircularProgressDrawable){
-    val option = RequestOptions().placeholder(progressDrawable).error(R.mipmap.ic_launcher)
-        Glide.with(context).setDefaultRequestOptions(option).load(uri).into(this)
     }
 }

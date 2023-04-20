@@ -3,28 +3,34 @@ package com.example.residence_app.adapters
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.example.residence_app.EditUserActivity
 import com.example.residence_app.R
+import com.example.residence_app.RefreshAdapter
 import com.example.residence_app.Users
 import com.example.residence_app.data.ObjectData
 import com.example.residence_app.data.UserInfo
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.firestore.*
 
-class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>() {
+class UsersAdapter(var c:Context,var refresh:RefreshAdapter): RecyclerView.Adapter<UsersAdapter.usersVH>() {
     lateinit var db : FirebaseFirestore
       var arr= ArrayList<UserInfo>()
       var search_arr= emptyList<String>()
     inner class usersVH(itemView: View) : ViewHolder(itemView){
-        val img=itemView.findViewById<ImageView>(R.id.u_img)
+        val img=itemView.findViewById<ShapeableImageView>(R.id.u_img)
         val name=itemView.findViewById<TextView>(R.id.u_fullname)
         val email=itemView.findViewById<TextView>(R.id.u_email)
 
@@ -42,13 +48,15 @@ class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>() 
     override fun onBindViewHolder(holder: usersVH, position: Int) {
 
         with(holder){
-            //img.setImageURI(arr[position].Image)
+
+            Glide.with(c).load(arr[position].image).into(img)
             name.text=arr[position].fname+ " " + arr[position].lname
             email.text=arr[position].email
             itemView.setOnClickListener {
                val intent=Intent(c,EditUserActivity::class.java)
                 intent.putExtra("current_user",arr[position])
                 intent.flags = FLAG_ACTIVITY_NEW_TASK
+
                 c.startActivity(intent)
 
             }
@@ -57,7 +65,7 @@ class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>() 
     }
 
     fun getUsersData(){
-//        arr.add(UserInfo("Zemane","meriem","m_zemane@estin.dz","123456"))
+//
         db = FirebaseFirestore.getInstance()
         db.collection("user")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -70,11 +78,15 @@ class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>() 
 
                     for (dc: DocumentChange in value?.documentChanges!!){
                         if(dc.getType() == DocumentChange.Type.ADDED){
-                            arr.add(dc.getDocument().toObject(UserInfo::class.java))
+                            val user = dc.getDocument().toObject(UserInfo::class.java)
+                            arr.add(user)
+                            search_arr=search_arr + "${user.fname} ${user.lname}"
 
 
                         }
+
                     }
+                    refresh.refresh()
                     notifyDataSetChanged()
                 }
             })
@@ -82,8 +94,8 @@ class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>() 
 
 //        notifyDataSetChanged()
 
-        for (i in arr){
-            search_arr=search_arr + "${i.fname} ${i.lname}"
-        }
+
     }
+
+
 }

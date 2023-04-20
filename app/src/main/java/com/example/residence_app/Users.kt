@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,23 +19,26 @@ import com.example.residence_app.adapters.UsersAdapter
 import com.example.residence_app.data.UserInfo
 import com.google.firebase.firestore.auth.User
 
-class Users : AppCompatActivity() {
+class Users : AppCompatActivity(),RefreshAdapter {
+    lateinit var sadapter:ArrayAdapter<String>
+    lateinit var search:AutoCompleteTextView
+    lateinit var adapter:UsersAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_users)
 
         supportActionBar?.hide()
 
-        val search=findViewById<AutoCompleteTextView>(R.id.user_search)
+        search=findViewById<AutoCompleteTextView>(R.id.user_search)
         val rec=findViewById<RecyclerView>(R.id.users_rec)
          val add=findViewById<Button>(R.id.users_add)
         rec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.VERTICAL,false)
-        val adapter=UsersAdapter(baseContext)
+         adapter=UsersAdapter(baseContext,this)
         adapter.getUsersData()
         rec.adapter=adapter
         rec.addItemDecoration(DividerItemDecoration(baseContext,LinearLayoutManager.VERTICAL))
-
-        search.setAdapter(ArrayAdapter<String>(baseContext,R.layout.dropdown_item, adapter.search_arr))
+      sadapter=ArrayAdapter<String>(baseContext,R.layout.dropdown_item, adapter.search_arr)
+        search.setAdapter(sadapter)
         search.setOnItemClickListener(
             AdapterView.OnItemClickListener { parent, view, position, id ->
                for (i in adapter.arr){
@@ -48,6 +52,7 @@ class Users : AppCompatActivity() {
                }
             }
         )
+
 add.setOnClickListener {
     startActivity(Intent(baseContext,AddUserActivity::class.java))
 }
@@ -55,5 +60,10 @@ add.setOnClickListener {
 
 
 
+    }
+
+    override fun refresh() {
+        sadapter=ArrayAdapter<String>(baseContext,R.layout.dropdown_item, adapter.search_arr)
+        search.setAdapter(sadapter)
     }
 }

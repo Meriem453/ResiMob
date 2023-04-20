@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
+import com.bumptech.glide.Glide
 import com.example.residence_app.data.UserInfo
 import com.example.residence_app.dialogues.DeleteUserFragment
 import com.google.android.gms.tasks.OnSuccessListener
@@ -92,7 +93,7 @@ class EditUserActivity : AppCompatActivity(),DeleteUserInterface {
             user.lname=lname.text.toString()
             user.email=email.text.toString()
             user.password=passwrd.text.toString()
-            user.image=""
+            user.image=uri.toString()
             user.isadmin=false
             sendNewUser(currentUser,user)
             setEnabled(false)}
@@ -133,7 +134,8 @@ if(value){
     passwrd.setText(user.password)
     email.setText(user.email)
      room.setText(user.room)
-    img.setImageURI(uri)
+    Glide.with(baseContext).load(user.image).into(img)
+
 }
 
 
