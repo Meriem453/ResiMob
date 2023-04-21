@@ -37,7 +37,7 @@ return view
 fun setupVp(){
     tabs.addTab(tabs.newTab().setText(resources.getString(R.string.found_objects)))
     tabs.addTab(tabs.newTab().setText(resources.getString(R.string.lost_objects)))
-    adapter=ObjectsTabsAdapter(requireContext(),fragmentManager)
+    adapter=ObjectsTabsAdapter(requireContext(),fragmentManager,0)
     vp.adapter=adapter
 
 

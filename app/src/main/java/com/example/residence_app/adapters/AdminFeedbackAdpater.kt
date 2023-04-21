@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
+import com.bumptech.glide.Glide
 import com.example.residence_app.FeedbackActivity
 import com.example.residence_app.R
 import com.example.residence_app.data.AdminFeedbackData
@@ -50,7 +51,7 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
            name.text="${arr[position].fname} ${arr[position].lname}"
            president.text=arr[position].president
            details.text=arr[position].description
-
+           Glide.with(c).load(arr[position].image).into(img)
            delete.setOnClickListener {
                DeleteFeedback(arr[position])
            }

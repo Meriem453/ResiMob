@@ -152,7 +152,7 @@
     <string name="please_select_a_detail">Please select a detail</string>
     <string name="home">Home</string>
     <string name="language">Language</string>
-    <string name="theme">Theme</string>
+    <string name="theme">Dark Theme</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="log_out">Log out</string>
     <string name="users">Users</string>
@@ -160,4 +160,6 @@
     <string name="edit">Edit</string>
     <string name="delete">DELETE</string>
     <string name="description">Description</string>
+    <string name="francais">Français</string>
+    <string name="english">English</string>
 </resources>

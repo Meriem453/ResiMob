@@ -3,22 +3,27 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group >
-        <item android:title="Tools"
+        <item android:title="Settings"
             android:checkableBehavior="single">
         <menu>
-        <item
-            android:id="@+id/admin_home"
-            android:title="@string/home"
-            android:icon="@drawable/icon_home"
-            />
+
         <item
             android:id="@+id/admin_language"
             android:title="@string/language"
-            android:icon="@drawable/icon_language"/>
+            android:icon="@drawable/icon_language"
+           android:orderInCategory="1"
+            app:showAsAction="ifRoom"
+            />
+
+
         <item
             android:id="@+id/admin_theme"
             android:title="@string/theme"
-            android:icon="@drawable/icon_theme"/>
+            android:icon="@drawable/icon_theme"
+            android:actionLayout="@layout/drawer_switch"
+            app:showAsAction="always"
+            android:visible="true"
+            />
         </menu></item>
     </group>
     <group >

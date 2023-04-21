@@ -14,7 +14,7 @@ import com.example.residence_app.dialogues.AddLostObject
 
 
 class LostObjects : Fragment() {
-
+var request=0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,7 +22,7 @@ class LostObjects : Fragment() {
         // Inflate the layout for this fragment
         val view =inflater.inflate(R.layout.fragment_lost_objects, container, false)
         val rec =view.findViewById<RecyclerView>(R.id.lostObj_rec)
-        val adapter = ObjectsAdapter(requireContext())
+        val adapter = ObjectsAdapter(requireContext(),request)
         adapter.getLoserData()
         rec.adapter = adapter
         rec.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)

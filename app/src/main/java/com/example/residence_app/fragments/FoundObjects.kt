@@ -13,7 +13,7 @@ import com.example.residence_app.adapters.ObjectsAdapter
 import com.example.residence_app.dialogues.AddFoundObject
 
 class FoundObjects : Fragment() {
-
+      var request=0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,7 +22,7 @@ class FoundObjects : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_found_objects, container, false)
         val rec=view.findViewById<RecyclerView>(R.id.foundObj_rec)
-        val adapter=ObjectsAdapter(requireContext())
+        val adapter=ObjectsAdapter(requireContext(),request)
         adapter.getFonderData()
         rec.adapter=adapter
         rec.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)

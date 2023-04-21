@@ -8,19 +8,34 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.residence_app.fragments.FoundObjects
 import com.example.residence_app.fragments.LostObjects
 
-class ObjectsTabsAdapter(var c:Context,fm:FragmentManager?): FragmentPagerAdapter(fm!!) {
+class ObjectsTabsAdapter(var c:Context,fm:FragmentManager?,val request:Int): FragmentPagerAdapter(fm!!) {
     override fun getCount(): Int {
         return 2
     }
 
     override fun getItem(position: Int): Fragment {
 
-return when(position){
-    0 -> FoundObjects()
+when(position){
 
-    1 -> LostObjects()
 
-    else -> getItem(position)
-}
+
+    0 ->{
+
+        val fragment = FoundObjects()
+        fragment.request=request
+        return fragment
+    }
+
+    1 -> {
+        val fragment = LostObjects()
+        fragment.request=request
+        return fragment
+    }
+    else -> {
+        return getItem(position)
+    }
+    }
+
+
     }
 }

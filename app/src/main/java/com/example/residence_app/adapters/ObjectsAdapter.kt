@@ -20,7 +20,7 @@ import com.example.residence_app.R
 import com.example.residence_app.data.ObjectData
 import com.google.firebase.firestore.*
 
-class ObjectsAdapter(var c:Context) : RecyclerView.Adapter<ObjectsAdapter.ObjVH>() {
+class ObjectsAdapter(var c:Context,val request:Int) : RecyclerView.Adapter<ObjectsAdapter.ObjVH>() {
 var arr=ArrayList<ObjectData>()
     lateinit var db : FirebaseFirestore
     inner class ObjVH(itemView: View) : ViewHolder(itemView){
@@ -33,6 +33,7 @@ var arr=ArrayList<ObjectData>()
         val email=itemView.findViewById<TextView>(R.id.obj_email)
         val layout=itemView.findViewById<LinearLayout>(R.id.layout)
         val icon=itemView.findViewById<View>(R.id.arrow_gray)
+        val delete=itemView.findViewById<ImageView>(R.id.adminobj_delete)
 
 
     }
@@ -62,7 +63,9 @@ var arr=ArrayList<ObjectData>()
                   Glide.with(c).load(arr[position].Img).into(img)
 
               }
-
+               if(request==1){
+                   delete.visibility=View.GONE
+               }
               holder.itemView.setOnClickListener {
                   if(layout.visibility== View.GONE){
                      TransitionManager.beginDelayedTransition(holder.itemView as ViewGroup, AutoTransition())
@@ -79,8 +82,15 @@ var arr=ArrayList<ObjectData>()
 
                   }
               }
+              delete.setOnClickListener {
+                  deleteObject(arr[position])
+              }
 
           }
+    }
+
+    private fun deleteObject(objectData: ObjectData) {
+    //TODO("delete this object")
     }
 
     fun getFonderData(){

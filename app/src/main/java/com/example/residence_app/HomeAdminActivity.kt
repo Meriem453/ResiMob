@@ -4,12 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.residence_app.databinding.ActivityHomeAdminBinding
+import com.example.residence_app.dialogues.AddLostObject
+import com.example.residence_app.dialogues.AddNotification
+import com.example.residence_app.dialogues.ChangeLanguage
 import com.google.android.material.navigation.NavigationView
 
-class HomeAdminActivity : AppCompatActivity() {
+class HomeAdminActivity : BaseActivity() {
     lateinit var drawer:DrawerLayout
     lateinit var open:ImageView
     lateinit var binding:ActivityHomeAdminBinding
@@ -28,6 +33,8 @@ class HomeAdminActivity : AppCompatActivity() {
         val users=findViewById<CardView>(R.id.admin_users)
         val feedback = findViewById<CardView>(R.id.admin_feedback)
         val problem = findViewById<CardView>(R.id.admin_problem)
+        val objects=findViewById<CardView>(R.id.admin_obj)
+        val notif = findViewById<CardView>(R.id.admin_notif)
 
         open.setOnClickListener {
             drawer.open()
@@ -35,11 +42,11 @@ class HomeAdminActivity : AppCompatActivity() {
         binding.adminTime.setOnClickListener {
 
         }
-        binding.adminNotif.setOnClickListener {
-
+        notif.setOnClickListener {
+           AddNotification().show(supportFragmentManager,"jvhqb")
         }
-        binding.adminObj.setOnClickListener {
-
+        objects.setOnClickListener {
+           startActivity(Intent(baseContext,ObjectAdminActivity::class.java))
         }
 
         users.setOnClickListener {
@@ -55,10 +62,10 @@ class HomeAdminActivity : AppCompatActivity() {
 
         navview.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.admin_home -> {
-                    true
-                }
+
                 R.id.admin_language -> {
+                 ChangeLanguage().show(supportFragmentManager,"ll")
+
                     true
                 }
                 R.id.admin_theme -> {
@@ -68,6 +75,8 @@ class HomeAdminActivity : AppCompatActivity() {
                     true
                 }
                 R.id.admin_logout -> {
+
+                     //TODO("log out admin")
                     true
                 }
                 else -> {false}

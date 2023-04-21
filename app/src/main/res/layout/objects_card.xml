@@ -137,4 +137,14 @@
     />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/adminobj_delete"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+
+        android:layout_margin="10dp"
+        android:src="@drawable/delete"
+        android:layout_gravity="end"/>
+
 </LinearLayout>

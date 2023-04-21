@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dialogues.ChangeLanguage">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_marginHorizontal="30dp"
+       >
+
+       <TextView
+           android:id="@+id/fr"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textSize="18sp"
+           android:textColor="@color/gray"
+           android:fontFamily="@font/poppins_semibold"
+           android:gravity="center"
+           android:text="@string/francais"
+           android:layout_margin="5dp"
+           />
+       <TextView
+           android:id="@+id/en"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textSize="18sp"
+           android:textColor="@color/gray"
+           android:fontFamily="@font/poppins_semibold"
+           android:gravity="center"
+           android:text="@string/english"
+           android:layout_margin="5dp"
+           />
+   </LinearLayout>
+
+
+</FrameLayout>
