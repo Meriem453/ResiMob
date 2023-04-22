@@ -9,7 +9,7 @@ import android.preference.PreferenceManager
 import kotlinx.coroutines.GlobalScope
 import java.util.Locale
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreen : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)

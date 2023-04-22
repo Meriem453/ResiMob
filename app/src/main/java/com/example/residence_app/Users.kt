@@ -19,7 +19,7 @@ import com.example.residence_app.adapters.UsersAdapter
 import com.example.residence_app.data.UserInfo
 import com.google.firebase.firestore.auth.User
 
-class Users : AppCompatActivity(),RefreshAdapter {
+class Users : BaseActivity(),RefreshAdapter {
     lateinit var sadapter:ArrayAdapter<String>
     lateinit var search:AutoCompleteTextView
     lateinit var adapter:UsersAdapter

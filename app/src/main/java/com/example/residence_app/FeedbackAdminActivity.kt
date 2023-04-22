@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.residence_app.adapters.AdminFeedbackAdpater
 
-class FeedbackAdminActivity : AppCompatActivity() {
+class FeedbackAdminActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feedback_admin)

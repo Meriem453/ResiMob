@@ -11,7 +11,7 @@ import com.example.residence_app.adapters.OnBoardingItemsAdapter
 import com.example.residence_app.data.OnBoardingItemsData
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
-class OnBoardingActivity : AppCompatActivity() {
+class OnBoardingActivity : BaseActivity() {
     private lateinit var onBoardingItemsAdapter: OnBoardingItemsAdapter
 
     @SuppressLint("MissingInflatedId")

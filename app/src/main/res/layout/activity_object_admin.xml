@@ -8,7 +8,22 @@
     android:orientation="vertical"
     android:background="@color/blue_background"
     >
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/action_bar_background"
+        android:id="@+id/tb1"
+        >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="25sp"
+            android:text="@string/objects"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,7 +47,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabGravity="fill"
             app:tabIndicator="@drawable/corner_tab_background"
             app:tabIndicatorAnimationMode="elastic"
             app:tabIndicatorColor="@color/blue_background"
@@ -40,6 +54,7 @@
             app:tabIndicatorGravity="stretch"
             app:tabMode="fixed"
             app:tabTextColor="@color/gray"
+
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.viewpager.widget.ViewPager

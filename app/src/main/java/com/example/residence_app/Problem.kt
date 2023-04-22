@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class Problem : AppCompatActivity() {
+class Problem : BaseActivity() {
     lateinit var binding:ActivityProblemBinding
     lateinit var presidents:Array<String>
     lateinit var pre_spinner:AutoCompleteTextView

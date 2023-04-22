@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:fontFamily="@font/poppins_semibold"
     android:textSize="20sp"
-    android:text="Good day!, Admin"
+    android:text="@string/good_day_admin"
     android:layout_marginHorizontal="15dp"
     android:layout_marginTop="15dp"
     >

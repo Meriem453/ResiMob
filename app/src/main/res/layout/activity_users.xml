@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_semibold"
-            android:text="ResiMob"
+            android:text="@string/users"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -45,7 +45,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_marginTop="10dp"
         app:endIconDrawable="@drawable/icon_search"
-        android:hint="Search for users"
+        android:hint="@string/search_for_users"
         >
 
         <AutoCompleteTextView

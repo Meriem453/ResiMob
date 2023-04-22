@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class FeedbackActivity : AppCompatActivity() {
+class FeedbackActivity : BaseActivity() {
     lateinit var option : AutoCompleteTextView
     var president =""
 lateinit var progressBar: ProgressBar
@@ -60,13 +60,13 @@ lateinit var progressBar: ProgressBar
 
             if(title.isEmpty() || president.isEmpty() || description.isEmpty()){
                 if(title.isEmpty()){
-                    etTitle.error = "Please enter a title"
+                    etTitle.error = resources.getString(R.string.please_enter_a_text)
                 }
                 if(description.isEmpty()){
-                    etDescription.error = "Please enter the description"
+                    etDescription.error = resources.getString(R.string.please_enter_a_text)
                 }
                 if(president==""){
-                    Toast.makeText(this, "Please select a president!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, resources.getString(R.string.please_select_a_president), Toast.LENGTH_SHORT).show()
                 }
                 progressBar.visibility = View.GONE
             }else{
@@ -83,14 +83,14 @@ lateinit var progressBar: ProgressBar
                         "fid" to it.result!!.data?.getValue("uid").toString().trim()
                         )
                     db.collection("feedback").document(uid).set(feedbackmap).addOnSuccessListener {
-                        Toast.makeText(this, "Successfully Added!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, resources.getString(R.string.added_succesfully), Toast.LENGTH_SHORT).show()
                         etTitle.text.clear()
                         etDescription.text.clear()
                         progressBar.visibility = View.GONE
 
                     }.addOnFailureListener {
 
-                        Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, resources.getString(R.string.failed), Toast.LENGTH_SHORT).show()
                         progressBar.visibility = View.GONE
                     }
 

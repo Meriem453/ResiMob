@@ -27,7 +27,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import java.net.URL
 
-class EditUserActivity : AppCompatActivity(),DeleteUserInterface {
+class EditUserActivity : BaseActivity(),DeleteUserInterface {
 
 
     lateinit var fname:TextInputEditText
@@ -143,29 +143,29 @@ if(value){
 fun Check():Boolean{
     var valid = true
     if(uri==null){
-        Toast.makeText(baseContext,"Please select profile image",Toast.LENGTH_LONG).show()
+        Toast.makeText(baseContext,resources.getString(R.string.please_add_an_image),Toast.LENGTH_LONG).show()
         valid=false
 
     }
 
     if(fname.text.toString().trim()==""){
-        fname.error="Enter valid information"
+        fname.error=resources.getString(R.string.please_enter_a_text)
         valid=false
     }
     if(lname.text.toString().trim()==""){
-        lname.error="Enter valid information"
+        lname.error=resources.getString(R.string.please_enter_a_text)
         valid=false
     }
     if(email.text.toString().trim()==""){
-        email.error="Enter valid information"
+        email.error=resources.getString(R.string.please_enter_a_text)
         valid=false
     }
     if(passwrd.text.toString().trim()==""){
-        passwrd.error="Enter valid information"
+        passwrd.error=resources.getString(R.string.please_enter_a_text)
         valid=false
     }
     if(room.text.toString().trim()==""){
-        room.error="Enter valid information"
+        room.error=resources.getString(R.string.please_enter_a_text)
         valid=false
     }
     return valid
@@ -219,7 +219,7 @@ fun Check():Boolean{
         val uid = user.uid.toString()
         db = FirebaseFirestore.getInstance()
         ds = FirebaseStorage.getInstance()
-        db.collection("user").document(uid).delete().addOnSuccessListener { Toast.makeText(baseContext,"User deleted",Toast.LENGTH_LONG).show() }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
+        db.collection("user").document(uid).delete().addOnSuccessListener { Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show() }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
 
 
 

@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/action_bar_background"
+        android:id="@+id/tb1"
         >
 <ImageView
     android:id="@+id/admin_navdrawer"
@@ -40,7 +41,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Hello Admin !"
+            android:text="@string/hello_admin"
             android:textColor="@color/blue_button"
             android:textSize="26sp" />
 
@@ -48,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
-            android:text="Welcome back"
+            android:text="@string/welcome_back"
             android:textColor="@color/gray"
             android:textSize="12sp"
             android:layout_marginHorizontal="30dp"
@@ -67,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="What do you want to do?"
+        android:text="@string/what_do_you_want_to_do"
         android:textColor="@color/blue_button"
         android:textSize="20sp"
         android:layout_marginHorizontal="30dp"

@@ -20,7 +20,7 @@ import com.google.firebase.storage.FirebaseStorage
 import org.w3c.dom.Text
 import java.io.File
 
-class HomeUserActivity : AppCompatActivity() {
+class HomeUserActivity : BaseActivity() {
     private var db = Firebase.firestore
     private lateinit var userImage: ImageView
     private lateinit var tUserEmail: TextView

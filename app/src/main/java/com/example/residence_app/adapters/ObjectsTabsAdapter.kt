@@ -5,10 +5,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.residence_app.fragments.FoundObjects
 import com.example.residence_app.fragments.LostObjects
 
-class ObjectsTabsAdapter(var c:Context,fm:FragmentManager?,val request:Int): FragmentPagerAdapter(fm!!) {
+class ObjectsTabsAdapter( fm:FragmentManager, behavior:Int , val request:Int): FragmentStatePagerAdapter(fm,behavior) {
     override fun getCount(): Int {
         return 2
     }

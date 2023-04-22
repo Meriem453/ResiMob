@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.example.residence_app.R
 import com.example.residence_app.adapters.ObjectsTabsAdapter
@@ -28,7 +29,7 @@ lateinit var tabs:TabLayout
         // Inflate the layout for this fragment
 val view = inflater.inflate(R.layout.fragment_object, container, false)
         tabs= view.findViewById<TabLayout>(R.id.tabLayout_objects)
-        vp=view.findViewById<ViewPager>(R.id.view_pager_objects)
+        vp=view.findViewById(R.id.view_pager_objects)
         setupVp()
 
 
@@ -37,9 +38,8 @@ return view
 fun setupVp(){
     tabs.addTab(tabs.newTab().setText(resources.getString(R.string.found_objects)))
     tabs.addTab(tabs.newTab().setText(resources.getString(R.string.lost_objects)))
-    adapter=ObjectsTabsAdapter(requireContext(),fragmentManager,0)
+    adapter=ObjectsTabsAdapter(childFragmentManager,FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,1)
     vp.adapter=adapter
-
 
     vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
     tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{

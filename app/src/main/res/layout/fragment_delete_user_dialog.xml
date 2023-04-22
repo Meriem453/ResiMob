@@ -21,7 +21,7 @@
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
-        android:text="Delete user"
+        android:text="@string/delete_user"
         android:textColor="@color/blue_button"
         android:textSize="20sp" />
 
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:gravity="start"
-        android:text="Are you sure you want to delete this user?"
+        android:text="@string/are_you_sure_you_want_to_delete_this_user"
         android:textColor="@color/gray"
         android:textSize="15sp" />
     <LinearLayout
@@ -59,7 +59,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CANCEL"
+                android:text="@string/cancel"
                 android:textColor="@color/blue_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="37dp"
             android:background="@drawable/button"
-            android:text="delete"
+            android:text="@string/delete"
             android:layout_weight="1"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="2dp"

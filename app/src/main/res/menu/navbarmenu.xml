@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/notification_screen"
         android:icon="@drawable/baseline_notifications_24"
-        android:title="Notification"/>
+        android:title="@string/notifications"/>
     <item android:id="@+id/home_screen"
     android:icon="@drawable/home"
-    android:title="Home"/>
+    android:title="@string/home"/>
     <item android:id="@+id/lost_screen"
         android:icon="@drawable/baseline_restore_from_trash_24"
-        android:title="Lost"/>
+        android:title="@string/objects"/>
 
 
 </menu>

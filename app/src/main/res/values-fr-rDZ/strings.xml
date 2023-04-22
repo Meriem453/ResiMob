@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Residence_App</string>
     <string name="mail_adress">Adresse Email</string>
     <string name="password">Mot de passe</string>
     <string name="login">Connexion</string>
@@ -62,8 +61,13 @@
     <string name="submit">Soumettre</string>
     <string name="please_enter_a_text">Entrez un text</string>
     <string name="please_add_an_image">Ajouter une photo</string>
+    <string name="found_object_submitted">Objet trouvé ajouté</string>
+    <string name="lost_object_submitted">Objet perdu ajouté</string>
     <string name="you_have_to_select_a_problem">Vous devez selectionné un probleme</string>
     <string name="you_have_to_select_a_president">Vous devez selectionné un président</string>
+    <string name="please_select_a_president">Svp selectionnez un président</string>
+    <string name="please_select_a_problem">Svp selectionnez un probleme</string>
+    <string name="please_select_a_detail">Svp selectionnez un detail</string>
     <string name="home">Acceuil</string>
     <string name="language">Langue</string>
     <string name="theme">Theme Sombre</string>
@@ -74,4 +78,26 @@
     <string name="edit">Modifier</string>
     <string name="delete">SUPPRIMER</string>
     <string name="description">Description</string>
+    <string name="hello_admin">Salut Admin !</string>
+    <string name="welcome_back">Bienvenue</string>
+    <string name="what_do_you_want_to_do">Qu\'est ce que vous voulez faire?</string>
+    <string name="cancel">ANNULER</string>
+    <string name="set">Mettre</string>
+    <string name="good_day_admin">Bonne journée! ,Admin</string>
+    <string name="add_notification">Ajouter une notification</string>
+    <string name="title">Titre</string>
+    <string name="delete_user">Supprimer un utilisateur</string>
+    <string name="are_you_sure_you_want_to_delete_this_user">Etes vous sure de vouloir supprimer cet utilisateur?</string>
+    <string name="settings">Paramètre</string>
+    <string name="other">Autre</string>
+    <string name="user_deleted">Utilisateur supprimé</string>
+    <string name="added_succesfully">Ajouté avec succés</string>
+    <string name="failed">Echec</string>
+    <string name="enter_valid_informations">Entrez des informations valids</string>
+    <string name="enter_valid_email">Entrez un email valid</string>
+    <string name="room_bloc_numbre">Chambre (bloc/nombre)</string>
+    <string name="search_for_users">Rechercher</string>
+    <string name="you_must_enter_more_than_5_letters">Vous devez entrer plus de 5 lettres</string>
+    <string name="email_already_exist">Email exist déjà</string>
+    <string name="invalid_password">Mot de passe invalide</string>
 </resources>

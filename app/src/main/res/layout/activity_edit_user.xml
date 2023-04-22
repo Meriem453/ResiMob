@@ -207,7 +207,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CANCEL"
+            android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -222,7 +222,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
         android:background="@drawable/button"
-        android:text="set"
+        android:text="@string/set"
         android:layout_weight="1"
 
         android:visibility="gone"

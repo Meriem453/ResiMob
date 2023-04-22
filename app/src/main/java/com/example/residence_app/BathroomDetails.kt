@@ -7,7 +7,7 @@ import com.example.residence_app.adapters.BathroomTabsAdapter
 import com.example.residence_app.databinding.ActivityBathroomDetailsBinding
 import com.google.android.material.tabs.TabLayout
 
-class BathroomDetails : AppCompatActivity() {
+class BathroomDetails : BaseActivity() {
     lateinit var binding: ActivityBathroomDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

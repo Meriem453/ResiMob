@@ -9,7 +9,7 @@ import com.example.residence_app.databinding.ActivitySportDetailsBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.Tab
 
-class SportDetails : AppCompatActivity() {
+class SportDetails : BaseActivity() {
     lateinit var binding:ActivitySportDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -7,7 +7,7 @@ import com.example.residence_app.adapters.RestaurantTabsAdapter
 import com.example.residence_app.databinding.ActivityRestaurantDetailsBinding
 import com.google.android.material.tabs.TabLayout
 
-class RestaurantDetails : AppCompatActivity() {
+class RestaurantDetails : BaseActivity() {
 
     lateinit var binding:ActivityRestaurantDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {

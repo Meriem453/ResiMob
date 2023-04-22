@@ -141,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
-                android:hint="Room (bloc/numbre)"
+                android:hint="@string/room_bloc_numbre"
                 android:textColorHint="@color/blue_button" />
         </com.google.android.material.textfield.TextInputLayout>
         <Button

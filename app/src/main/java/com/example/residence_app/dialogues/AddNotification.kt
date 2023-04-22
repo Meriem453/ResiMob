@@ -76,7 +76,7 @@ class AddNotification : AppCompatDialogFragment() {
             valid=false
         }
         if(details.text.toString().trim()==""){
-            details.error="Please enter a text"
+            details.error=resources.getString(R.string.please_enter_a_text)
             valid
         }
 

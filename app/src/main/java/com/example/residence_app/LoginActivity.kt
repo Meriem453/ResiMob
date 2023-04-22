@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 private lateinit var binding:ActivityLoginBinding
 private lateinit var auth: FirebaseAuth
 private lateinit var db :FirebaseFirestore
@@ -38,13 +38,13 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
             if(email.isEmpty() || password.isEmpty()|| !email.matches(emailPattern.toRegex())){
                 if (!email.matches(emailPattern.toRegex())) {
 
-                    binding.loginMail.error = "Enter valid email"
+                    binding.loginMail.error = resources.getString(R.string.enter_valid_email)
                 }
                 if (email.isEmpty()){
-                    binding.loginMail.error = "Enter the email"
+                    binding.loginMail.error = resources.getString(R.string.please_enter_a_text)
                 }
                 if ( password.isEmpty()){
-                    binding.loginPassword.error = "Enter the password"
+                    binding.loginPassword.error =  resources.getString(R.string.please_enter_a_text)
                 }
                 progressBar.visibility = View.GONE
             }else{
@@ -66,7 +66,7 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
                     }else{
                         progressBar.visibility = View.GONE
-                        Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, resources.getString(R.string.enter_valid_informations), Toast.LENGTH_SHORT).show()
                     }
                 }
             }

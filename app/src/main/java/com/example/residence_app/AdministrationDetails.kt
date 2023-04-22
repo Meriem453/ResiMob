@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.residence_app.adapters.TimingAdapter
 import com.example.residence_app.databinding.ActivityAdministrationDetailsBinding
 
-class AdministrationDetails : AppCompatActivity() {
+class AdministrationDetails : BaseActivity() {
     private lateinit var binding:ActivityAdministrationDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

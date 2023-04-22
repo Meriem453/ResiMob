@@ -26,7 +26,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
-            android:text="Add notification"
+            android:text="@string/add_notification"
             android:textColor="@color/blue_button"
             android:textSize="20sp" />
 
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="start"
-            android:text="Title"
+            android:text="@string/title"
             android:textColor="@color/gray"
             android:textSize="15sp" />
 

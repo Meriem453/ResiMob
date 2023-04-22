@@ -7,7 +7,7 @@ import com.example.residence_app.adapters.*
 import com.example.residence_app.databinding.ActivityGymDetailsBinding
 import com.google.android.material.tabs.TabLayout
 
-class GymDetails : AppCompatActivity() {
+class GymDetails : BaseActivity() {
 
     lateinit var binding: ActivityGymDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {

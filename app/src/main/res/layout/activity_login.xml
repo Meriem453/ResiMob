@@ -51,7 +51,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center_horizontal"
-            android:text="App name"
+            android:text="@string/app_name"
             android:textColor="@color/blue_title"
             android:textSize="30sp" />
 
@@ -61,7 +61,11 @@
             android:layout_marginHorizontal="50dp"
             android:layout_weight="1"
             android:textColorHint="@color/blue_button"
-            app:startIconDrawable="@drawable/__icon__user_">
+            app:startIconDrawable="@drawable/__icon__user_"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+            >
+
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_mail"
@@ -70,7 +74,9 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/mail_adress"
                 android:inputType="textEmailAddress"
-                android:textColorHint="@color/blue_button" />
+                android:textColorHint="@color/blue_button"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -80,6 +86,7 @@
             android:layout_weight="1"
             android:textColorHint="@color/blue_button"
             app:startIconDrawable="@drawable/__icon__locked_"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
             >
 
@@ -90,21 +97,26 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:textColorHint="@color/blue_button" />
+                android:textColorHint="@color/blue_button"
+
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="208dp"
+            android:layout_width="match_parent"
             android:layout_height="51dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="15dp"
             android:layout_weight="1"
             android:background="@drawable/button"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_semibold"
             android:text="@string/login"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:layout_marginHorizontal="50dp"
+            android:textSize="20sp"
+
+            />
 
         <TextView
             android:id="@+id/tv_contct"

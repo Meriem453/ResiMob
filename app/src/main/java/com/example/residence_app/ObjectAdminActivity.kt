@@ -2,11 +2,12 @@ package com.example.residence_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.example.residence_app.adapters.ObjectsTabsAdapter
 import com.google.android.material.tabs.TabLayout
 
-class ObjectAdminActivity : AppCompatActivity() {
+class ObjectAdminActivity : BaseActivity() {
 
     lateinit var tabs:TabLayout
     lateinit var vp:ViewPager
@@ -23,7 +24,7 @@ class ObjectAdminActivity : AppCompatActivity() {
     fun setupVp(){
         tabs.addTab(tabs.newTab().setText(resources.getString(R.string.found_objects)))
         tabs.addTab(tabs.newTab().setText(resources.getString(R.string.lost_objects)))
-        adapter= ObjectsTabsAdapter(baseContext,supportFragmentManager,1)
+        adapter= ObjectsTabsAdapter(supportFragmentManager,FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,0)
         vp.adapter=adapter
 
 

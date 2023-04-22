@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_semibold"
-            android:text="ResiMob"
+            android:text="@string/feedback"
             android:textColor="@color/white"
             android:textSize="25sp" />
     </androidx.appcompat.widget.Toolbar>

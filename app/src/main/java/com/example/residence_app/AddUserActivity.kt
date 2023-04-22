@@ -19,7 +19,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import java.util.*
 
-class AddUserActivity : AppCompatActivity() {
+class AddUserActivity :BaseActivity() {
     private var db = Firebase.firestore
     private lateinit var etFirstName: EditText
     private lateinit var etLastName: EditText
@@ -69,40 +69,40 @@ class AddUserActivity : AppCompatActivity() {
 
             if (sFname.isEmpty() || sLname.isEmpty() || sEmail.isEmpty() || sPassword.isEmpty() || sCpassword.isEmpty() || sPassword.length<6 || imageUri == null || sRoom.isEmpty()) {
                 if (sFname.isEmpty()){
-                    etFirstName.error = "Enter the first name"
+                    etFirstName.error = resources.getString(R.string.please_enter_a_text)
                 }
                 if (sLname.isEmpty()){
-                    etLastName.error = "Enter the last name"
+                    etLastName.error = resources.getString(R.string.please_enter_a_text)
                 }
                 if (sEmail.isEmpty()){
-                    etEmail.error = "Enter the email"
+                    etEmail.error = resources.getString(R.string.please_enter_a_text)
                 }
                 if (sFname.isEmpty() ){
-                    etPassword.error = "Enter the password"
+                    etPassword.error = resources.getString(R.string.please_enter_a_text)
                 }
                 if (sFname.isEmpty()){
-                    etCpassword.error = "Confirm the password"
+                    etCpassword.error = resources.getString(R.string.please_enter_a_text)
                 }
                 if (sPassword.length < 6){
-                    etPassword.error = "you must enter more than 5 letters"
+                    etPassword.error = resources.getString(R.string.you_must_enter_more_than_5_letters)
                 }
                 if (imageUri == null) {
-                    Toast.makeText(this, "Enter the image!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, resources.getString(R.string.add_picture), Toast.LENGTH_SHORT).show()
                 }
                 if (sRoom.isEmpty()){
-                    etRoom.error = "Enter the Room details"
+                    etRoom.error = resources.getString(R.string.please_enter_a_text)
                 }
-                    Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, resources.getString(R.string.enter_valid_informations), Toast.LENGTH_SHORT).show()
                 progressBar.visibility = View.GONE
 
             }else{
                 if (!sEmail.matches(emailPattern.toRegex())) {
                     progressBar.visibility = View.GONE
-                etEmail.error = "Enter valid email"
+                etEmail.error = resources.getString(R.string.enter_valid_email)
             }else{FirebaseAuth.getInstance().fetchSignInMethodsForEmail(sEmail).addOnCompleteListener{
                 check-> if(check.getResult().signInMethods?.isEmpty() == false){
                     progressBar.visibility = View.GONE
-                    Toast.makeText(this, "Email already exist!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, resources.getString(R.string.email_already_exist), Toast.LENGTH_SHORT).show()
                 }else{
 
 
@@ -133,7 +133,7 @@ class AddUserActivity : AppCompatActivity() {
 
                                                 )
                                             db.collection("user").document(userId).set(userMap).addOnSuccessListener {
-                                                Toast.makeText(this, "Successfully Added!", Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(this, resources.getString(R.string.added_succesfully), Toast.LENGTH_SHORT).show()
                                                 etFirstName.text.clear()
                                                 etLastName.text.clear()
                                                 etEmail.text.clear()
@@ -145,7 +145,7 @@ class AddUserActivity : AppCompatActivity() {
 
                                             }.addOnFailureListener {
                                                 progressBar.visibility = View.GONE
-                                                Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(this, resources.getString(R.string.failed), Toast.LENGTH_SHORT).show()
                                             }
                                         }
                                     })
@@ -158,8 +158,8 @@ class AddUserActivity : AppCompatActivity() {
                     }
                     }else{
                     progressBar.visibility = View.GONE
-                    etCpassword.error = "Password Invalid"
-                    Toast.makeText(this, "Enter valid details!", Toast.LENGTH_SHORT).show()
+                    etCpassword.error = resources.getString(R.string.invalid_password)
+                    Toast.makeText(this, resources.getString(R.string.enter_valid_informations), Toast.LENGTH_SHORT).show()
 
                 }
 

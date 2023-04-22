@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group >
-        <item android:title="Settings"
+        <item android:title="@string/settings"
             android:checkableBehavior="single">
         <menu>
 
@@ -29,7 +29,7 @@
     <group >
         <item
             android:id="@+id/admin_other"
-            android:title="Other"
+            android:title="@string/other"
             android:checkableBehavior="single">
             <menu>
         <item
