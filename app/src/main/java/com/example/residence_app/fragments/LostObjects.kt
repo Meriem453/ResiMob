@@ -22,7 +22,7 @@ var request=0
         // Inflate the layout for this fragment
         val view =inflater.inflate(R.layout.fragment_lost_objects, container, false)
         val rec =view.findViewById<RecyclerView>(R.id.lostObj_rec)
-        val adapter = ObjectsAdapter(requireContext(),request)
+        val adapter = ObjectsAdapter(requireContext(),request,requireActivity().supportFragmentManager)
         adapter.getLoserData()
         rec.adapter = adapter
         rec.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)

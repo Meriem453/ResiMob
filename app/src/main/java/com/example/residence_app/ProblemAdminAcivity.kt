@@ -1,6 +1,5 @@
 package com.example.residence_app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +13,7 @@ class ProblemAdminAcivity : BaseActivity() {
         supportActionBar?.hide()
 
         val rec=findViewById<RecyclerView>(R.id.admin_problem_rec)
-        val adapter= AdminProblemAdpater(baseContext)
+        val adapter= AdminProblemAdpater(baseContext,supportFragmentManager)
         adapter.getAdminProblemData()
         rec.adapter=adapter
         rec.layoutManager= LinearLayoutManager(baseContext, RecyclerView.VERTICAL,false)

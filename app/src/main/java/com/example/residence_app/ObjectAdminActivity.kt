@@ -15,7 +15,7 @@ class ObjectAdminActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_object_admin)
-
+supportActionBar?.hide()
         tabs = findViewById(R.id.tabLayout_admin_objects)
         vp = findViewById(R.id.view_pager_admin_objects)
         setupVp()

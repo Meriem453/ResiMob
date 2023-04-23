@@ -184,4 +184,13 @@
     <string name="you_must_enter_more_than_5_letters">You must enter more than 5 letters</string>
     <string name="email_already_exist">Email already exist</string>
     <string name="invalid_password">Invalid password</string>
+    <string name="delete_feedback">Delete Feedback</string>
+    <string name="are_you_sure_you_want_to_delete_this_feedback">Are you sure you want to delete this feedback?</string>
+    <string name="feedback_deleted">Feedback deleted</string>
+    <string name="delete_problem">Delete Problem</string>
+    <string name="are_you_sure_you_want_to_delete_this_problem">Are you sure you want to delete this problem?</string>
+    <string name="delete_object">Delete Object</string>
+    <string name="are_you_sure_you_want_to_delete_this_object">Are you sure you want to delete this object?</string>
+    <string name="delete_notification">Delete Notification</string>
+    <string name="are_you_sure_you_want_to_delet_this_notification">Are you sure you want to delet this notification?</string>
 </resources>

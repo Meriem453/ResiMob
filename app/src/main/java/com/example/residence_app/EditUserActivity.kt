@@ -3,7 +3,6 @@ package com.example.residence_app
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -16,20 +15,19 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.bumptech.glide.Glide
+import com.example.residence_app.Interfaces.DeleteUserInterface
+import com.example.residence_app.adapters.UsersAdapter
 import com.example.residence_app.data.UserInfo
 import com.example.residence_app.dialogues.DeleteUserFragment
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
-import java.net.URL
 
-class EditUserActivity : BaseActivity(),DeleteUserInterface {
+class EditUserActivity : BaseActivity(), DeleteUserInterface {
 
 
     lateinit var fname:TextInputEditText
@@ -49,6 +47,7 @@ class EditUserActivity : BaseActivity(),DeleteUserInterface {
      lateinit var db : FirebaseFirestore
      lateinit var auth : FirebaseAuth
      lateinit var ds : FirebaseStorage
+
 
 
 
@@ -77,6 +76,7 @@ class EditUserActivity : BaseActivity(),DeleteUserInterface {
 
        user =intent.getSerializableExtra("current_user") as UserInfo
        setEnabled(false)
+
 
 
         edit.setOnClickListener {
@@ -223,12 +223,8 @@ fun Check():Boolean{
         db = FirebaseFirestore.getInstance()
         ds = FirebaseStorage.getInstance()
         db.collection("user").document(uid).delete().addOnSuccessListener { Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show() }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, Users::class.java)
-            startActivity(intent)
-            finish()
-        }, 1)
+         UsersAdapter.Refresh(UsersAdapter(baseContext))
+        finish()
 
     }
 

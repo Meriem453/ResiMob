@@ -9,20 +9,24 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.bumptech.glide.Glide
+import com.example.residence_app.Interfaces.DeleteProblemInterface
 import com.example.residence_app.R
 import com.example.residence_app.data.AdminFeedbackData
 import com.example.residence_app.data.AdminProblemData
+import com.example.residence_app.dialogues.DeleteProblemFragment
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.firestore.*
 
-class AdminProblemAdpater(val c:Context): RecyclerView.Adapter<AdminProblemAdpater.adminprVH>() {
+class AdminProblemAdpater(val c:Context,val fm:FragmentManager): RecyclerView.Adapter<AdminProblemAdpater.adminprVH>(),DeleteProblemInterface {
 var arr=ArrayList<AdminProblemData>()
     lateinit var db : FirebaseFirestore
+    var position=0
 inner class adminprVH(itemView: View): ViewHolder(itemView){
     val img=itemView.findViewById<ShapeableImageView>(R.id.adminproblem_img)
     val problem=itemView.findViewById<TextView>(R.id.adminproblem_title)
@@ -52,7 +56,9 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
            details.text=arr[position].details
            Glide.with(c).load(arr[position].image).into(img)
            delete.setOnClickListener {
-               DeleteProblem(arr[position])
+               this@AdminProblemAdpater.position=position
+               DeleteProblemFragment(this@AdminProblemAdpater).show(fm,"ffff")
+
            }
 
            itemView.setOnClickListener {
@@ -102,5 +108,9 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
 
         getAdminProblemData()
 
+    }
+
+    override fun DeleteProblem() {
+        DeleteProblem(arr[position])
     }
 }

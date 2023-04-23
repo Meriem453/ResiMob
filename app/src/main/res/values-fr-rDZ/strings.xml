@@ -100,4 +100,13 @@
     <string name="you_must_enter_more_than_5_letters">Vous devez entrer plus de 5 lettres</string>
     <string name="email_already_exist">Email exist déjà</string>
     <string name="invalid_password">Mot de passe invalide</string>
+    <string name="delete_feedback">Supprimmer le feedback</string>
+    <string name="are_you_sure_you_want_to_delete_this_feedback">Etes vous sure de vouloir supprimer ce feedback?</string>
+    <string name="feedback_deleted">Feedback supprimé</string>
+    <string name="delete_problem">Supprimer le probleme</string>
+    <string name="are_you_sure_you_want_to_delete_this_problem">Etes vous sure de vouloir supprimer ce probleme?</string>
+    <string name="delete_object">Supprimer l\'objet</string>
+    <string name="are_you_sure_you_want_to_delete_this_object">Etes vous sure de vouloir supprimer cet objet?</string>
+    <string name="delete_notification">Supprimmer la notification</string>
+    <string name="are_you_sure_you_want_to_delet_this_notification">Etes vous sure de vouloir supprimer cette notification?</string>
 </resources>

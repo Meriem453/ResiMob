@@ -22,7 +22,7 @@ class FoundObjects : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_found_objects, container, false)
         val rec=view.findViewById<RecyclerView>(R.id.foundObj_rec)
-        val adapter=ObjectsAdapter(requireContext(),request)
+        val adapter=ObjectsAdapter(requireContext(),request,requireActivity().supportFragmentManager)
         adapter.getFonderData()
         rec.adapter=adapter
         rec.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)

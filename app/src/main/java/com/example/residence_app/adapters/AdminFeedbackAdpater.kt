@@ -9,21 +9,25 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.bumptech.glide.Glide
 import com.example.residence_app.FeedbackActivity
+import com.example.residence_app.Interfaces.DeleteFeedbackInterface
 import com.example.residence_app.R
 import com.example.residence_app.data.AdminFeedbackData
 import com.example.residence_app.data.ObjectData
+import com.example.residence_app.dialogues.DeleteFeedbackFragment
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.firestore.*
 
-class AdminFeedbackAdpater(val c:Context): RecyclerView.Adapter<AdminFeedbackAdpater.adminfdVH>() {
+class AdminFeedbackAdpater(val c:Context,val fm:FragmentManager): DeleteFeedbackInterface,RecyclerView.Adapter<AdminFeedbackAdpater.adminfdVH>() {
 var arr=ArrayList<AdminFeedbackData>()
     lateinit var db : FirebaseFirestore
+    var position=0
 inner class adminfdVH(itemView: View): ViewHolder(itemView){
     val img=itemView.findViewById<ShapeableImageView>(R.id.adminfeedback_img)
     val title=itemView.findViewById<TextView>(R.id.adminfeedback_title)
@@ -53,7 +57,8 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
            details.text=arr[position].description
            Glide.with(c).load(arr[position].image).into(img)
            delete.setOnClickListener {
-               DeleteFeedback(arr[position])
+               this@AdminFeedbackAdpater.position =position
+               DeleteFeedbackFragment(this@AdminFeedbackAdpater).show(fm,null)
            }
 
            itemView.setOnClickListener {
@@ -89,18 +94,19 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
                     notifyDataSetChanged()
                 }
             })
-//        arr.add(AdminFeedbackData("Resto","Meriem","Zemane",null,"Khoufach","paint"))
-//
-//        notifyDataSetChanged()
+
     }
-    fun DeleteFeedback(feedback:AdminFeedbackData){
-        val fid =feedback.fid.toString()
-        db.collection("feedback").document(fid).delete().addOnSuccessListener{Toast.makeText(c,"feedback deleted",Toast.LENGTH_LONG).show()  }.addOnFailureListener { Toast.makeText(c,"Error!",Toast.LENGTH_LONG).show() }
 
 
-        //code here
-
-        getAdminFeedbackData()
+    override fun DeleteFeedback() {
+        val fid =arr[position].fid.toString()
+        db.collection("feedback").document(fid).delete()
+            .addOnSuccessListener{
+            Toast.makeText(c,c.resources.getString(R.string.feedback_deleted),Toast.LENGTH_LONG).show()  }
+            .addOnFailureListener {
+            Toast.makeText(c,c.resources.getString(R.string.failed),Toast.LENGTH_LONG).show()
+                getAdminFeedbackData()
+            }
 
     }
 }

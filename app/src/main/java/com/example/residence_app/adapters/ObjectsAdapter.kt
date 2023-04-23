@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -16,13 +17,16 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.residence_app.Interfaces.DeleteObjInterface
 import com.example.residence_app.R
 import com.example.residence_app.data.ObjectData
+import com.example.residence_app.dialogues.DeleteObjectFragment
 import com.google.firebase.firestore.*
 
-class ObjectsAdapter(var c:Context,val request:Int) : RecyclerView.Adapter<ObjectsAdapter.ObjVH>() {
+class ObjectsAdapter(var c:Context,val request:Int,val fm:FragmentManager) : RecyclerView.Adapter<ObjectsAdapter.ObjVH>(),DeleteObjInterface {
 var arr=ArrayList<ObjectData>()
     lateinit var db : FirebaseFirestore
+    var position=0
     inner class ObjVH(itemView: View) : ViewHolder(itemView){
         val title=itemView.findViewById<TextView>(R.id.obj_title)
         val img=itemView.findViewById<ImageView>(R.id.obj_img)
@@ -83,7 +87,9 @@ var arr=ArrayList<ObjectData>()
                   }
               }
               delete.setOnClickListener {
-                  deleteObject(arr[position])
+                  this@ObjectsAdapter.position=position
+                  DeleteObjectFragment(this@ObjectsAdapter).show(fm,"ffff")
+
               }
 
           }
@@ -91,6 +97,11 @@ var arr=ArrayList<ObjectData>()
 
     private fun deleteObject(objectData: ObjectData) {
     //TODO("delete this object")
+
+
+
+        getFonderData()
+        getLoserData()
     }
 
     fun getFonderData(){
@@ -114,9 +125,6 @@ var arr=ArrayList<ObjectData>()
                     notifyDataSetChanged()
                 }
             })
-//arr.add(ObjectData("Cable","Founder",null,"Salle de lecture","Gray","Zemane","Meriem","m_zemanr@estn.dz"))
-//
-//        notifyDataSetChanged()
 
 
     }
@@ -143,5 +151,9 @@ var arr=ArrayList<ObjectData>()
                 }
             })
 
+    }
+
+    override fun DeleteObj() {
+        deleteObject(arr[position])
     }
 }
