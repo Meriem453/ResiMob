@@ -5,6 +5,8 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -134,6 +136,7 @@ if(value){
     passwrd.setText(user.password)
     email.setText(user.email)
      room.setText(user.room)
+    uri=Uri.parse(user.image)
     Glide.with(baseContext).load(user.image).into(img)
 
 }
@@ -221,10 +224,12 @@ fun Check():Boolean{
         ds = FirebaseStorage.getInstance()
         db.collection("user").document(uid).delete().addOnSuccessListener { Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show() }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
 
+        Handler(Looper.getMainLooper()).postDelayed({
+            val intent = Intent(this, Users::class.java)
+            startActivity(intent)
+            finish()
+        }, 1)
 
-
-
-        startActivity(Intent(baseContext,Users::class.java))
     }
 
 }

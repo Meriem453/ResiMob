@@ -3,6 +3,8 @@ package com.example.residence_app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -55,11 +57,19 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                           db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener() {
                               val name = it.result!!.data?.getValue("lname").toString().trim()
                               if(name == "Admin"){
-                                  val intent = Intent(this,HomeAdminActivity::class.java)
-                                  startActivity(intent)
+                                  Handler(Looper.getMainLooper()).postDelayed({
+                                      val intent = Intent(this, HomeAdminActivity::class.java)
+                                      startActivity(intent)
+                                      finish()
+                                  }, 1)
+
                               }else{
-                                  val intent = Intent(this,MainActivity::class.java)
-                                  startActivity(intent)
+                                  Handler(Looper.getMainLooper()).postDelayed({
+                                      val intent = Intent(this, MainActivity::class.java)
+                                      startActivity(intent)
+                                      finish()
+                                  }, 1)
+
                               }
 
                           }
@@ -83,11 +93,18 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
             db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener() {
                 val name = it.result!!.data?.getValue("lname").toString().trim()
                 if (name == "Admin") {
-                    val intent = Intent(this, HomeAdminActivity::class.java)
-                    startActivity(intent)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val intent = Intent(this, HomeAdminActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }, 1)
+
                 } else {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }, 1)
                 }
             }
         }}}
