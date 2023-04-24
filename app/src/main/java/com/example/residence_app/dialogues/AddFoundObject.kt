@@ -70,6 +70,7 @@ lateinit var imageUri:Uri
                                             "UserEmail" to it.result!!.data?.getValue("email").toString().trim(),
                                             "Img" to imageUrl,
                                             "Place" to place,
+                                            "oid" to uid
                                         )
                                         db.collection("found objects").document(uid).set(fObjectmap).addOnSuccessListener {
                                             //Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()

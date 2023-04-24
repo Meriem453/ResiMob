@@ -13,9 +13,15 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.residence_app.R
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
+import java.lang.Math
 
 
 class AddNotification : AppCompatDialogFragment() {
@@ -24,6 +30,7 @@ class AddNotification : AppCompatDialogFragment() {
     lateinit var picture : TextInputEditText
     lateinit var details:TextInputEditText
     lateinit var imageUri: Uri
+    lateinit var db : FirebaseFirestore
     var presidents=""
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -62,7 +69,42 @@ class AddNotification : AppCompatDialogFragment() {
                 val title=title.text.toString()
                 val details=details.text.toString()
                 val president=presidents
-               // TODO("send new notification")
+
+                fun whenRandomNumberWithJavaUtilMath_thenResultIsBetween0And1() {
+                    val nid = Math.random()
+
+                    if (imageUri!!.toString() != "") {
+                        val fileName  = nid.toString() +".jpg"
+                        val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
+
+                        refStorage.putFile(imageUri!!)
+                            .addOnSuccessListener(
+                                OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                                    taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                                        val imageUrl = it.toString()
+                                        db = FirebaseFirestore.getInstance()
+                                        var notificationMap = mapOf(
+                                            "title" to title,
+                                            "details" to details,
+                                            "president" to president,
+                                            "nid" to nid,
+                                            "image" to imageUrl
+                                        )
+                                        db.collection("notification").document(nid.toString()).set(notificationMap).addOnSuccessListener {Toast.makeText(context,"Notification Added!",Toast.LENGTH_LONG).show()  }.addOnFailureListener{Toast.makeText(context,"Failed!",Toast.LENGTH_LONG).show()}
+                                    }})
+                    }else{
+                        db = FirebaseFirestore.getInstance()
+                        var notificationMap = mapOf(
+                            "title" to title,
+                            "details" to details,
+                            "president" to president,
+                            "nid" to nid,
+                            "image" to null
+                        )
+                        db.collection("notification").document(nid.toString()).set(notificationMap).addOnSuccessListener {Toast.makeText(context,"Notification Added!",Toast.LENGTH_LONG).show()  }.addOnFailureListener{Toast.makeText(context,"Failed!",Toast.LENGTH_LONG).show()}
+                    }
+
+                }
                 this.dismiss()
 
     }}

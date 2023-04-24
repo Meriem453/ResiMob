@@ -199,7 +199,7 @@ fun Check():Boolean{
                             val imageUrl = it.toString()
                             db = FirebaseFirestore.getInstance()
                             var newUserMap = mapOf(
-                                "uid" to newUser.uid,
+                                "uid" to uid,
                                 "fname" to newUser.fname,
                                 "lname" to newUser.lname,
                                 "email" to newUser.email,
@@ -210,6 +210,8 @@ fun Check():Boolean{
                             )
                             db.collection("user").document(uid.toString()).update(newUserMap).addOnSuccessListener { Toast.makeText(baseContext,"User edited!",Toast.LENGTH_LONG).show() }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
                         }})
+        }else{
+            Toast.makeText(baseContext,"No image!",Toast.LENGTH_LONG).show()
         }
 
 
@@ -220,9 +222,24 @@ fun Check():Boolean{
 
     override fun deleteUser() {
         val uid = user.uid.toString()
+
         db = FirebaseFirestore.getInstance()
         ds = FirebaseStorage.getInstance()
-        db.collection("user").document(uid).delete().addOnSuccessListener { Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show() }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
+        db.collection("user").document(uid).delete().addOnCompleteListener {
+            ds.reference.child("images/$uid.jpg").delete().addOnCompleteListener { ds.reference.child("images/$uid"+"f.jpg").delete()
+                ds.reference.child("images/$uid"+"l.jpg").delete().addOnCompleteListener {
+                    db.collection("found objects").document(uid).delete().addOnCompleteListener { db.collection("lost objects").document(uid).delete()
+                        db.collection("feedback").document(uid).delete().addOnCompleteListener { db.collection("problem").document(uid).delete()
+                            .addOnCompleteListener { Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show() }
+                             }
+                         }
+
+                }
+                 }
+
+
+
+             }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
          UsersAdapter.Refresh(UsersAdapter(baseContext,null))
         finish()
 

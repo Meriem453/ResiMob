@@ -47,6 +47,7 @@ lateinit var etitle: TextInputEditText
                                             "UserEmail" to it.result!!.data?.getValue("email").toString().trim(),
                                             "Img" to null,
                                             "Place" to place,
+                                            "oid" to uid
                                         )
                                         db.collection("lost objects").document(uid).set(lObjectmap).addOnSuccessListener {
                                             Toast.makeText(requireContext(),resources.getString(R.string.lost_object_submitted),Toast.LENGTH_SHORT).show()

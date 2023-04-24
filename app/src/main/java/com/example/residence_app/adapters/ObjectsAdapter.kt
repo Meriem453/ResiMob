@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -22,10 +23,12 @@ import com.example.residence_app.R
 import com.example.residence_app.data.ObjectData
 import com.example.residence_app.dialogues.DeleteObjectFragment
 import com.google.firebase.firestore.*
+import com.google.firebase.storage.FirebaseStorage
 
 class ObjectsAdapter(var c:Context,val request:Int,val fm:FragmentManager) : RecyclerView.Adapter<ObjectsAdapter.ObjVH>(),DeleteObjInterface {
 var arr=ArrayList<ObjectData>()
     lateinit var db : FirebaseFirestore
+    lateinit var ds : FirebaseStorage
     var position=0
     inner class ObjVH(itemView: View) : ViewHolder(itemView){
         val title=itemView.findViewById<TextView>(R.id.obj_title)
@@ -96,12 +99,34 @@ var arr=ArrayList<ObjectData>()
     }
 
     private fun deleteObject(objectData: ObjectData) {
-    //TODO("delete this object")
+
+        val oid =objectData.oid.toString()
+        val person = objectData.Person
+        ds = FirebaseStorage.getInstance()
+        if (person == "Founder"){
+            db.collection("found objects").document(oid).delete().addOnSuccessListener{
+                ds.reference.child("images/$oid"+"f.jpg").delete().addOnCompleteListener { Toast.makeText(c,"object deleted",
+                    Toast.LENGTH_LONG).show()  }
+                  }.addOnFailureListener { Toast.makeText(c,"Error!",
+                Toast.LENGTH_LONG).show() }
+        }else{
+
+            db.collection("lost objects").document(oid).delete().addOnSuccessListener{
+
+                ds.reference.child("images/$oid"+"l.jpg").delete().addOnCompleteListener { Toast.makeText(c,"object deleted",
+                    Toast.LENGTH_LONG).show()  }
+                 }.addOnFailureListener { Toast.makeText(c,"Error!",
+                Toast.LENGTH_LONG).show() }
+        }
+
 
 
 
         getFonderData()
         getLoserData()
+
+
+
     }
 
     fun getFonderData(){
