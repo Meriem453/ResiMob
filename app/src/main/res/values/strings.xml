@@ -154,7 +154,6 @@
     <string name="language">Language</string>
     <string name="theme">Dark Theme</string>
     <string name="privacy_policy">Privacy Policy</string>
-    <string name="log_out">Log out</string>
     <string name="users">Users</string>
     <string name="notifications">Notifications</string>
     <string name="edit">Edit</string>
@@ -193,4 +192,6 @@
     <string name="are_you_sure_you_want_to_delete_this_object">Are you sure you want to delete this object?</string>
     <string name="delete_notification">Delete Notification</string>
     <string name="are_you_sure_you_want_to_delet_this_notification">Are you sure you want to delet this notification?</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
+    <string name="logout">Logout</string>
 </resources>

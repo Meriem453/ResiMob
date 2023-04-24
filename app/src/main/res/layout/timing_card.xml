@@ -29,14 +29,17 @@
             />
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:background="@drawable/line"
+            android:layout_marginVertical="10dp"
             />
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:columnCount="2"
-            app:rowCount="2">
+            app:rowCount="2"
+            android:layout_marginVertical="20dp"
+            >
             <TextView
                 android:id="@+id/restaurant_timing_card_1timing"
                 android:layout_width="wrap_content"

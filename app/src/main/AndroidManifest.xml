@@ -13,6 +13,9 @@
         tools:replace="allowBackup, label"
         tools:targetApi="31">
         <activity
+            android:name=".NotificationAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -25,88 +28,85 @@
         <activity
             android:name=".ObjectAdminActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProblemAdminAcivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FeedbackAdminActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EditUserActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Users"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HomeAdminActivity"
             android:exported="true"
             android:screenOrientation="portrait">
 
-
         </activity>
         <activity
             android:name=".FeedbackActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SportDetails"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".GymDetails"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".BathroomDetails"
             android:exported="false"
             android:parentActivityName=".HomeUserActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AdministrationDetails"
             android:exported="false"
             android:parentActivityName=".HomeUserActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DoctorDetails"
             android:exported="false"
             android:parentActivityName=".HomeUserActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RestaurantDetails"
             android:exported="true"
             android:parentActivityName=".HomeUserActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HomeUserActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddUserActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".OnBoardingActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Problem"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

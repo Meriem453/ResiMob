@@ -23,7 +23,6 @@ class Sunday : Fragment() {
         val rec= view.findViewById<RecyclerView>(R.id.sunday_rec)
         val adapter= SportSportsAdapter(requireContext())
         adapter.getData(0)
-        Toast.makeText(requireContext(),"here",Toast.LENGTH_SHORT).show()
         rec.adapter=adapter
         rec.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
    return view }

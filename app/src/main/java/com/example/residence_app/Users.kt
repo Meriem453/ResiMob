@@ -27,7 +27,7 @@ class Users : BaseActivity(), RefreshAdapter {
         val rec=findViewById<RecyclerView>(R.id.users_rec)
          val add=findViewById<Button>(R.id.users_add)
         rec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.VERTICAL,false)
-         adapter=UsersAdapter(baseContext)
+         adapter=UsersAdapter(baseContext,this)
         adapter.getUsersData()
         rec.adapter=adapter
         rec.addItemDecoration(DividerItemDecoration(baseContext,LinearLayoutManager.VERTICAL))

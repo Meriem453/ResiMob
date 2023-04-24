@@ -223,7 +223,7 @@ fun Check():Boolean{
         db = FirebaseFirestore.getInstance()
         ds = FirebaseStorage.getInstance()
         db.collection("user").document(uid).delete().addOnSuccessListener { Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show() }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
-         UsersAdapter.Refresh(UsersAdapter(baseContext))
+         UsersAdapter.Refresh(UsersAdapter(baseContext,null))
         finish()
 
     }

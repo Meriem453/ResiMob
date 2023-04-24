@@ -20,7 +20,7 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.auth.User
 import java.io.Serializable
 
-class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>(),Serializable {
+class UsersAdapter(var c:Context,val refresh:RefreshAdapter?): RecyclerView.Adapter<UsersAdapter.usersVH>(),Serializable {
     lateinit var db : FirebaseFirestore
       var arr= ArrayList<UserInfo>()
       var search_arr= emptyList<String>()
@@ -82,7 +82,7 @@ class UsersAdapter(var c:Context): RecyclerView.Adapter<UsersAdapter.usersVH>(),
                         }
 
                     }
-                  //  refresh.refresh()
+                    refresh?.refresh()
                     notifyDataSetChanged()
                 }
             })

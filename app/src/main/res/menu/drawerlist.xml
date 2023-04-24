@@ -21,8 +21,9 @@
     <item android:id="@+id/Settings_screen"
         android:icon="@drawable/baseline_settings_24"
         android:title="@string/settings"/>
-    <item android:id="@+id/LogOut"
+    <item
+        android:id="@+id/LogOut"
         android:icon="@drawable/baseline_logout_24"
-        android:title="@string/log_out"/>
+        android:title="@string/logout" />
 
 </menu>

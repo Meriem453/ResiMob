@@ -37,11 +37,10 @@
             android:title="@string/privacy_policy"
             android:icon="@drawable/icon_privacy_tip"
             />
-        <item
-            android:id="@+id/admin_logout"
-            android:title="@string/log_out"
-            android:icon="@drawable/icon_logout"
-            />
+                <item
+                    android:id="@+id/admin_logout"
+                    android:icon="@drawable/icon_logout"
+                    android:title="@string/logout" />
             </menu>
         </item>
     </group>

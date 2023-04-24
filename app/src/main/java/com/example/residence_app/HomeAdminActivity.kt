@@ -9,13 +9,15 @@ import android.widget.Toast
 import android.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.residence_app.Interfaces.LogoutInterface
 import com.example.residence_app.databinding.ActivityHomeAdminBinding
 import com.example.residence_app.dialogues.AddLostObject
 import com.example.residence_app.dialogues.AddNotification
 import com.example.residence_app.dialogues.ChangeLanguage
+import com.example.residence_app.dialogues.LogoutFragment
 import com.google.android.material.navigation.NavigationView
 
-class HomeAdminActivity : BaseActivity() {
+class HomeAdminActivity : BaseActivity(),LogoutInterface {
     lateinit var drawer:DrawerLayout
     lateinit var open:ImageView
     lateinit var binding:ActivityHomeAdminBinding
@@ -44,7 +46,7 @@ class HomeAdminActivity : BaseActivity() {
 
         }
         notif.setOnClickListener {
-           AddNotification().show(supportFragmentManager,"jvhqb")
+           startActivity(Intent(baseContext,NotificationAdminActivity::class.java))
         }
         objects.setOnClickListener {
            startActivity(Intent(baseContext,ObjectAdminActivity::class.java))
@@ -76,8 +78,8 @@ class HomeAdminActivity : BaseActivity() {
                     true
                 }
                 R.id.admin_logout -> {
+                   LogoutFragment(this).show(supportFragmentManager,"logout")
 
-                     //TODO("log out admin")
                     true
                 }
                 else -> {false}
@@ -85,5 +87,9 @@ class HomeAdminActivity : BaseActivity() {
 
         }
 
+    }
+
+    override fun logout() {
+        //TODO("logout admin")
     }
 }

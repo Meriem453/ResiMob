@@ -19,7 +19,7 @@
     <string name="bathroom">Douches</string>
     <string name="feedback">Suggestion</string>
     <string name="problem">Probleme</string>
-    <string name="timings">Horarires</string>
+    <string name="timings">Horaires</string>
     <string name="programme">Programme</string>
     <string name="girls">Filles</string>
     <string name="boys">Garçons</string>
@@ -31,7 +31,7 @@
     <string name="select_president">Selectionner un président</string>
     <string name="what_is_the_problem">C\' est quoi le probleme?</string>
     <string name="details">Detals</string>
-    <string name="send">Ou vous avez là trouvé ?</string>
+    <string name="send">Envoyer</string>
     <string name="sat">Sam</string>
     <string name="sun">Dim</string>
     <string name="mon">Lun</string>
@@ -72,7 +72,6 @@
     <string name="language">Langue</string>
     <string name="theme">Theme Sombre</string>
     <string name="privacy_policy">" Politique de confidentialité"</string>
-    <string name="log_out">Deconnecter</string>
     <string name="users">Utilisateurs</string>
     <string name="notifications">Notifications</string>
     <string name="edit">Modifier</string>
@@ -109,4 +108,6 @@
     <string name="are_you_sure_you_want_to_delete_this_object">Etes vous sure de vouloir supprimer cet objet?</string>
     <string name="delete_notification">Supprimmer la notification</string>
     <string name="are_you_sure_you_want_to_delet_this_notification">Etes vous sure de vouloir supprimer cette notification?</string>
+    <string name="are_you_sure_you_want_to_logout">Etes vous sure de vouloir deconnecter?</string>
+    <string name="logout">Deconnecter</string>
 </resources>
