@@ -16,12 +16,14 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.residence_app.R
+import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import java.lang.Math
+import java.util.Random
 
 
 class AddNotification : AppCompatDialogFragment() {
@@ -29,7 +31,7 @@ class AddNotification : AppCompatDialogFragment() {
     lateinit var title: TextInputEditText
     lateinit var picture : TextInputEditText
     lateinit var details:TextInputEditText
-    lateinit var imageUri: Uri
+     var imageUri : Uri? = null
     lateinit var db : FirebaseFirestore
     var presidents=""
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -66,48 +68,79 @@ class AddNotification : AppCompatDialogFragment() {
 
         submit?.setOnClickListener {
             if (Check()){
+                db = FirebaseFirestore.getInstance()
                 val title=title.text.toString()
                 val details=details.text.toString()
                 val president=presidents
 
-                fun whenRandomNumberWithJavaUtilMath_thenResultIsBetween0And1() {
-                    val nid = Math.random()
 
-                    if (imageUri!!.toString() != "") {
-                        val fileName  = nid.toString() +".jpg"
-                        val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
+                    val nid = (0..1000000).random().toString()
 
-                        refStorage.putFile(imageUri!!)
-                            .addOnSuccessListener(
-                                OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
-                                    taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                                        val imageUrl = it.toString()
-                                        db = FirebaseFirestore.getInstance()
-                                        var notificationMap = mapOf(
+                if (imageUri != null) {
+                    val fileName = nid +".jpg"
+                    val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
+
+                    refStorage.putFile(imageUri!!)
+                        .addOnSuccessListener(
+                            OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                                taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                                    val imageUrl = it.toString()
+
+                                        var notificationMap = hashMapOf(
                                             "title" to title,
                                             "details" to details,
-                                            "president" to president,
+                                            "image" to imageUrl,
                                             "nid" to nid,
-                                            "image" to imageUrl
-                                        )
-                                        db.collection("notification").document(nid.toString()).set(notificationMap).addOnSuccessListener {Toast.makeText(context,"Notification Added!",Toast.LENGTH_LONG).show()  }.addOnFailureListener{Toast.makeText(context,"Failed!",Toast.LENGTH_LONG).show()}
-                                    }})
-                    }else{
-                        db = FirebaseFirestore.getInstance()
-                        var notificationMap = mapOf(
-                            "title" to title,
-                            "details" to details,
-                            "president" to president,
-                            "nid" to nid,
-                            "image" to null
-                        )
-                        db.collection("notification").document(nid.toString()).set(notificationMap).addOnSuccessListener {Toast.makeText(context,"Notification Added!",Toast.LENGTH_LONG).show()  }.addOnFailureListener{Toast.makeText(context,"Failed!",Toast.LENGTH_LONG).show()}
-                    }
+                                            "president" to president
 
+                                        )
+                                        db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
+                                            Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
+                                            //progressBar.visibility = View.GONE
+                                            this.dismiss()
+                                        }.addOnFailureListener {
+
+                                            Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
+                                            //progressBar.visibility = View.GONE
+                                        }
+                                    }
+
+                            })
+
+                        ?.addOnFailureListener(OnFailureListener { e ->
+                            print(e.message)
+                        })
+                }else{
+                    var notificationMap = hashMapOf(
+                        "title" to title,
+                        "details" to details,
+                        "image" to null,
+                        "nid" to nid,
+                        "president" to president
+
+                    )
+                    db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
+                        Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
+                        //progressBar.visibility = View.GONE
+                        this.dismiss()
+                    }.addOnFailureListener {
+
+                        Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
+                        //progressBar.visibility = View.GONE
+                    }
                 }
+
+
+
+            ?.addOnFailureListener(OnFailureListener { e ->
+            print(e.message)
+        })
+                }
+
+
                 this.dismiss()
 
-    }}
+    }
         return builder.create()
     }
 

@@ -48,9 +48,9 @@ lateinit var imageUri:Uri
                 val title=title.text.toString()
                 val details=details.text.toString()
                 val place=place.text.toString()
-                val person = resources.getString(R.string.founder)
+                val person = "Founder"
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
-//                uploadImageToFirebase(imageUri!!,uid+"f")
+//
                 if (imageUri!! != null) {
                     val fileName = uid +"f.jpg"
                     val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")

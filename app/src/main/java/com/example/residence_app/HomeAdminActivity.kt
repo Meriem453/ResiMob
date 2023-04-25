@@ -3,6 +3,8 @@ package com.example.residence_app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Toast
@@ -16,6 +18,7 @@ import com.example.residence_app.dialogues.AddNotification
 import com.example.residence_app.dialogues.ChangeLanguage
 import com.example.residence_app.dialogues.LogoutFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeAdminActivity : BaseActivity(),LogoutInterface {
     lateinit var drawer:DrawerLayout
@@ -90,6 +93,11 @@ class HomeAdminActivity : BaseActivity(),LogoutInterface {
     }
 
     override fun logout() {
-        //TODO("logout admin")
+        FirebaseAuth.getInstance().signOut()
+        Handler(Looper.getMainLooper()).postDelayed({
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }, 1)
     }
 }

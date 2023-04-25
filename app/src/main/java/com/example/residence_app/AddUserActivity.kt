@@ -138,6 +138,7 @@ class AddUserActivity :BaseActivity() {
                                                 )
                                             db.collection("user").document(userId).set(userMap).addOnSuccessListener {
                                                 Toast.makeText(this, resources.getString(R.string.added_succesfully), Toast.LENGTH_SHORT).show()
+                                                FirebaseAuth.getInstance().signInWithEmailAndPassword(adminmail,adminpass)
                                                 etFirstName.text.clear()
                                                 etLastName.text.clear()
                                                 etEmail.text.clear()
@@ -160,7 +161,7 @@ class AddUserActivity :BaseActivity() {
                         }
 
                     }
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(adminmail,adminpass)}
+                    }
                     }else{
                     progressBar.visibility = View.GONE
                     etCpassword.error = resources.getString(R.string.invalid_password)

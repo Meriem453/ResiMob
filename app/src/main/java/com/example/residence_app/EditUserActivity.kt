@@ -1,11 +1,13 @@
 package com.example.residence_app
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -23,7 +25,9 @@ import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 
@@ -221,25 +225,33 @@ fun Check():Boolean{
     }
 
     override fun deleteUser() {
+
         val uid = user.uid.toString()
 
-        db = FirebaseFirestore.getInstance()
-        ds = FirebaseStorage.getInstance()
-        db.collection("user").document(uid).delete().addOnCompleteListener {
-            ds.reference.child("images/$uid.jpg").delete().addOnCompleteListener { ds.reference.child("images/$uid"+"f.jpg").delete()
-                ds.reference.child("images/$uid"+"l.jpg").delete().addOnCompleteListener {
-                    db.collection("found objects").document(uid).delete().addOnCompleteListener { db.collection("lost objects").document(uid).delete()
-                        db.collection("feedback").document(uid).delete().addOnCompleteListener { db.collection("problem").document(uid).delete()
-                            .addOnCompleteListener { Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show() }
-                             }
-                         }
-
-                }
-                 }
 
 
 
-             }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
+
+                db = FirebaseFirestore.getInstance()
+                ds = FirebaseStorage.getInstance()
+                db.collection("user").document(uid).delete().addOnCompleteListener {
+                    ds.reference.child("images/$uid.jpg").delete().addOnCompleteListener { ds.reference.child("images/$uid"+"f.jpg").delete()
+                        ds.reference.child("images/$uid"+"l.jpg").delete().addOnCompleteListener {
+                            db.collection("found objects").document(uid).delete().addOnCompleteListener { db.collection("lost objects").document(uid).delete()
+                                db.collection("feedback").document(uid).delete().addOnCompleteListener { db.collection("problem").document(uid).delete()
+                                    .addOnCompleteListener { Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show() }
+                                }
+                            }
+
+                        }
+                    }
+
+
+
+                }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
+
+
+
          UsersAdapter.Refresh(UsersAdapter(baseContext,null))
         finish()
 

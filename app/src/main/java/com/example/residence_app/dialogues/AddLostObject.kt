@@ -33,7 +33,7 @@ lateinit var etitle: TextInputEditText
                 val title=etitle.text.toString()
                 val details=edetails.text.toString()
                 val place=eplace.text.toString()
-                val person = resources.getString(R.string.loser)
+                val person = "Loster"
 
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
 

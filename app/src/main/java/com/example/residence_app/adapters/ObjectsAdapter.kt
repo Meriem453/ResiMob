@@ -101,7 +101,7 @@ var arr=ArrayList<ObjectData>()
     private fun deleteObject(objectData: ObjectData) {
 
         val oid =objectData.oid.toString()
-        val person = objectData.Person
+        val person = objectData.Person.toString()
         ds = FirebaseStorage.getInstance()
         if (person == "Founder"){
             db.collection("found objects").document(oid).delete().addOnSuccessListener{
