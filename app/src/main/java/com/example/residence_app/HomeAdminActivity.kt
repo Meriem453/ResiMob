@@ -1,20 +1,14 @@
 package com.example.residence_app
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.ImageView
-import android.widget.PopupMenu
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.residence_app.Interfaces.LogoutInterface
 import com.example.residence_app.databinding.ActivityHomeAdminBinding
-import com.example.residence_app.dialogues.AddLostObject
-import com.example.residence_app.dialogues.AddNotification
 import com.example.residence_app.dialogues.ChangeLanguage
 import com.example.residence_app.dialogues.LogoutFragment
 import com.google.android.material.navigation.NavigationView

@@ -79,7 +79,7 @@ binding.administration.setOnClickListener {
         var documentReference : DocumentReference
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
-        val storageReference = FirebaseStorage.getInstance().reference.child("images/$uid.jpg")
+
         //user name...
         documentReference = db.collection("user").document(uid)
         documentReference.get().addOnCompleteListener {

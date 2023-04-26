@@ -44,7 +44,7 @@ fun setupVp(){
     vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
     tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
         override fun onTabSelected(tab: TabLayout.Tab?) {
-           // vp.adapter=ObjectsTabsAdapter(requireContext(),fragmentManager)
+            //vp.adapter=ObjectsTabsAdapter(requireContext(),fragmentManager)
             vp.currentItem=tab!!.position
 
 

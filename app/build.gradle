@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
     implementation 'com.google.firebase:firebase-storage:20.0.1'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'androidx.core:core-ktx:+'
     testImplementation 'junit:junit:4.13.2'
     implementation("com.tbuonomo:dotsindicator:4.3")
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

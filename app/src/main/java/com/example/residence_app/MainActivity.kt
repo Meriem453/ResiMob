@@ -3,20 +3,20 @@ package com.example.residence_app
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
+import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.residence_app.dialogues.LogoutFragment
 
 import com.example.residence_app.fragments.HomeFragment
 import com.example.residence_app.fragments.NotificationsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : BaseActivity() {
     lateinit var bottomNavBar : BottomNavigationView
@@ -92,12 +92,23 @@ class MainActivity : BaseActivity() {
                     R.id.feedback_screen -> {
                         startActivity(Intent(baseContext,FeedbackActivity::class.java))
                     }
+                    R.id.LogOut -> {
+
+                            FirebaseAuth.getInstance().signOut()
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                val intent = Intent(this, LoginActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }, 1)
+
+                    }
                 }
                 true
             }
 
 
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             true
@@ -108,4 +119,5 @@ class MainActivity : BaseActivity() {
         transaction.replace(R.id.fragments_adapter,fragment)
         transaction.commit()
     }
+
 }
