@@ -22,8 +22,8 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
-import java.lang.Math
-import java.util.Random
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 
 class AddNotification : AppCompatDialogFragment() {
@@ -31,6 +31,8 @@ class AddNotification : AppCompatDialogFragment() {
     lateinit var title: TextInputEditText
     lateinit var picture : TextInputEditText
     lateinit var details:TextInputEditText
+    private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
+
      var imageUri : Uri? = null
     lateinit var db : FirebaseFirestore
     var presidents=""
@@ -91,8 +93,8 @@ class AddNotification : AppCompatDialogFragment() {
                                             "details" to details,
                                             "image" to imageUrl,
                                             "nid" to nid,
-                                            "president" to president
-
+                                            "president" to president,
+                                            "time" to sdf.format(Calendar.getInstance().time).toString()
                                         )
                                         db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                                             Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
@@ -116,8 +118,8 @@ class AddNotification : AppCompatDialogFragment() {
                         "details" to details,
                         "image" to null,
                         "nid" to nid,
-                        "president" to president
-
+                        "president" to president,
+                        "time" to sdf.format(Calendar.getInstance().time).toString()
                     )
                     db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                         Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()

@@ -20,11 +20,15 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import java.text.SimpleDateFormat
+import java.util.Calendar
+
 
 class AddFoundObject: AppCompatDialogFragment() {
 lateinit var title: TextInputEditText
 lateinit var picture : TextInputEditText
 lateinit var imageUri:Uri
+    private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
     var db = Firebase.firestore
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
@@ -70,7 +74,8 @@ lateinit var imageUri:Uri
                                             "UserEmail" to it.result!!.data?.getValue("email").toString().trim(),
                                             "Img" to imageUrl,
                                             "Place" to place,
-                                            "oid" to uid
+                                            "oid" to uid,
+                                            "time" to sdf.format(Calendar.getInstance().time).toString()
                                         )
                                         db.collection("found objects").document(uid).set(fObjectmap).addOnSuccessListener {
                                             //Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()

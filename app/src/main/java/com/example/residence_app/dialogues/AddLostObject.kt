@@ -15,9 +15,13 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import java.text.SimpleDateFormat
+import java.util.Calendar
+
 
 class AddLostObject: AppCompatDialogFragment() {
 lateinit var etitle: TextInputEditText
+    private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
     var db = Firebase.firestore
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
@@ -47,7 +51,8 @@ lateinit var etitle: TextInputEditText
                                             "UserEmail" to it.result!!.data?.getValue("email").toString().trim(),
                                             "Img" to null,
                                             "Place" to place,
-                                            "oid" to uid
+                                            "oid" to uid,
+                                            "time" to sdf.format(Calendar.getInstance().time).toString()
                                         )
                                         db.collection("lost objects").document(uid).set(lObjectmap).addOnSuccessListener {
                                             Toast.makeText(requireContext(),resources.getString(R.string.lost_object_submitted),Toast.LENGTH_SHORT).show()
