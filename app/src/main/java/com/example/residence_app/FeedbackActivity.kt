@@ -9,11 +9,14 @@ import androidx.core.view.get
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class FeedbackActivity : BaseActivity() {
     lateinit var option : AutoCompleteTextView
     var president =""
 lateinit var progressBar: ProgressBar
+    private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
 
 
     @SuppressLint("MissingInflatedId")
@@ -80,7 +83,8 @@ lateinit var progressBar: ProgressBar
                         "president" to president,
                         "description" to description,
                         "image" to it.result!!.data?.getValue("image").toString().trim(),
-                        "fid" to it.result!!.data?.getValue("uid").toString().trim()
+                        "fid" to it.result!!.data?.getValue("uid").toString().trim(),
+                        "time" to sdf.format(Calendar.getInstance().time).toString()
                         )
                     db.collection("feedback").document(uid).set(feedbackmap).addOnSuccessListener {
                         Toast.makeText(this, resources.getString(R.string.added_succesfully), Toast.LENGTH_SHORT).show()

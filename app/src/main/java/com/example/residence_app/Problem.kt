@@ -15,6 +15,8 @@ import com.example.residence_app.databinding.ActivityProblemBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class Problem : BaseActivity() {
     lateinit var binding:ActivityProblemBinding
@@ -31,6 +33,7 @@ class Problem : BaseActivity() {
     lateinit var detailsAdapter:ArrayAdapter<String>
     lateinit var progress_bar:ProgressBar
     var db = Firebase.firestore
+    private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -111,7 +114,8 @@ send.setOnClickListener {
                 "president" to selected_president,
                 "details" to selected_detail,
                 "image" to it.result!!.data?.getValue("image").toString().trim(),
-            "pid" to it.result!!.data?.getValue("uid").toString().trim()
+                "pid" to it.result!!.data?.getValue("uid").toString().trim(),
+                "time" to sdf.format(Calendar.getInstance().time).toString()
             )
             db.collection("problem").document(uid).set(problemmap).addOnSuccessListener {
 
