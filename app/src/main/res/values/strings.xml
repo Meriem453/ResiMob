@@ -199,4 +199,7 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="select_time">Select a time</string>
+    <string name="name">Name</string>
+    <string name="meal">Meal</string>
+    <string name="day">Day</string>
 </resources>

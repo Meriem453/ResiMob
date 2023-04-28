@@ -113,7 +113,8 @@ class TimingEditActivity : BaseActivity() {
                         ,label2 .text.toString()
                         ,timing1_from.text.toString() + "--" + timing1_to.text.toString()
                         ,timing2_from.text.toString() + "--" + timing2_to.text.toString()))
-
+                setResult(RESULT_OK)
+                finish()
             }
         }
 
@@ -123,8 +124,7 @@ class TimingEditActivity : BaseActivity() {
     private fun sendNewTime(place:String,timingCardData: TimingCardData) {
          //  TODO("send new time")
 
-        setResult(RESULT_OK)
-        finish()
+
     }
 
     private fun Check(): Boolean {

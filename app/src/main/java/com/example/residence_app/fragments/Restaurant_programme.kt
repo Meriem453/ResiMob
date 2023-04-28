@@ -12,7 +12,7 @@ import com.example.residence_app.adapters.RestaurantProgrammeAdapter
 
 
 class Restaurant_programme : Fragment() {
-
+    var isAdmin=false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +31,7 @@ class Restaurant_programme : Fragment() {
         var layoutManager :LinearLayoutManager= recycler.layoutManager as LinearLayoutManager
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
-        val adapter=RestaurantProgrammeAdapter(requireContext())
+        val adapter=RestaurantProgrammeAdapter(requireContext(),isAdmin,requireActivity())
         adapter.getData()
         recycler.adapter=adapter
     }

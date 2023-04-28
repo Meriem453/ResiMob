@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResraurantProgrammeEditActivity"
+    android:background="@color/blue_background"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/action_bar_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/admin_edit_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/programme"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:shadowColor="@color/gray"
+        android:text="@string/day"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/t1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/admin_edit_program_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/t1"
+        android:layout_marginTop="50dp"
+        >
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginHorizontal="25dp"
+            android:layout_weight="1"
+            android:hint="@string/name"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/admin_edit_program_label1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none"
+                android:text="name"
+                android:textColor="@color/gray"
+                android:textSize="15sp"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/te"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:hint="@string/meal"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/admin_edit_program_meal1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none"
+                android:text="@string/meal"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginHorizontal="25dp"
+            android:layout_weight="1"
+            android:hint="@string/name"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/admin_edit_program_label2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:inputType="none"
+                android:text="name"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:hint="@string/meal"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/admin_edit_program_meal2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="meal2"
+                android:textColor="@color/gray"
+                android:textSize="15sp"
+                android:inputType="none"
+               />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/admin_edit_program_set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@drawable/button"
+        android:text="@string/set"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
