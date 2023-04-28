@@ -1,118 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".TimeChangeActivity"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.HomeFragment">
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
+    android:background="@color/blue_background"
+    >
+    >
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="clip_horizontal"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="50dp"
-                android:layout_width="62dp"
-                android:layout_height="62dp">
-
-                <ImageView
-                    android:id="@+id/imageView3fr"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start|center_vertical"
-                    android:layout_margin="10dp"
-                    />
-
-            </androidx.cardview.widget.CardView>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/user_namefr"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="user name"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/user_emlfr"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="user@emaiil.com"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/user_roomfr"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="room"
-                    android:textColor="@color/gray" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical|end"
-                android:layout_margin="10dp"
-                app:srcCompat="@drawable/icon_notification" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/line" />
+        android:background="@drawable/action_bar_background"
+        android:id="@+id/tb1"
+        >
 
         <TextView
-            android:id="@+id/good_dayfr"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
             android:fontFamily="@font/poppins_semibold"
-            android:gravity="center"
-            android:textColor="@color/blue_layout"
-            android:textSize="23sp" />
-
-    </LinearLayout>
-
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/gridLayout"
+            android:textSize="25sp"
+            android:text="@string/time"/>
+    </androidx.appcompat.widget.Toolbar>
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/what_do_you_want_to_change"
+        android:textColor="@color/blue_button"
+        android:textSize="20sp"
+        android:layout_margin="25dp"
+
+        />  <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="25dp"
         android:layout_weight="14"
         android:foregroundGravity="top"
         app:columnCount="2"
         app:rowCount="4">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/restaurantfr"
+            android:id="@+id/restaurant_admin"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
@@ -147,7 +80,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/doctorfr"
+            android:id="@+id/doctor_admin"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
@@ -182,7 +115,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/gymfr"
+            android:id="@+id/gym_admin"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
@@ -217,7 +150,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/administrationfr"
+            android:id="@+id/administration_admin"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
@@ -246,13 +179,13 @@
                     android:gravity="center"
                     android:text="@string/administration"
                     android:textColor="@color/gray"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/sportfr"
+            android:id="@+id/sport_admin"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
@@ -281,13 +214,13 @@
                     android:gravity="center"
                     android:text="@string/sport_room"
                     android:textColor="@color/gray"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/bathroomfr"
+            android:id="@+id/bathroom_admin"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
@@ -325,7 +258,4 @@
 
 
     </androidx.gridlayout.widget.GridLayout>
-
-
-
 </LinearLayout>

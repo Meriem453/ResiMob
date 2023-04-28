@@ -12,7 +12,7 @@ import com.example.residence_app.adapters.RestaurantTimingAdapter
 
 
 class Restaurant_timings : Fragment() {
-
+var isAdmin=false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +33,7 @@ private fun initRecyclerView(recycler: RecyclerView){
     var layoutManager :LinearLayoutManager= recycler.layoutManager as LinearLayoutManager
     layoutManager.setReverseLayout(true);
     layoutManager.setStackFromEnd(true);
-    val adapter=RestaurantTimingAdapter(requireContext())
+    val adapter=RestaurantTimingAdapter(requireContext(),isAdmin,requireActivity())
     adapter.getData()
     recycler.adapter=adapter
 }

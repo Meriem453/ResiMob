@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.residence_app.fragments.Restaurant_timings
 import com.example.residence_app.fragments.Restaurant_programme
 
-internal class RestaurantTabsAdapter(var c:Context, fm:FragmentManager, var totalTabs:Int):FragmentPagerAdapter(fm,
+internal class RestaurantTabsAdapter(var c:Context, fm:FragmentManager, var totalTabs:Int,var isAdmin:Boolean):FragmentPagerAdapter(fm,
     BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT ) {
 
 
@@ -16,13 +16,16 @@ internal class RestaurantTabsAdapter(var c:Context, fm:FragmentManager, var tota
     }
 
     override fun getItem(position: Int): Fragment {
-        return when(position){
+         when(position){
             0 -> {
-                Restaurant_timings()
+                val fragment=Restaurant_timings()
+                fragment.isAdmin=isAdmin
+                return fragment
             }
             1 -> {
-                Restaurant_programme()
-            }else -> getItem(position)
+               val fragment = Restaurant_programme()
+                return fragment
+            }else -> return getItem(position)
         }
     }
 

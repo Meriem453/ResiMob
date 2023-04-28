@@ -9,6 +9,8 @@ import com.google.android.material.tabs.TabLayout
 
 class RestaurantDetails : BaseActivity() {
 
+
+
     lateinit var binding:ActivityRestaurantDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,7 @@ class RestaurantDetails : BaseActivity() {
         tabs.addTab(tabs.newTab().setText(baseContext.resources.getString(R.string.timings)))
         tabs.addTab(tabs.newTab().setText(baseContext.resources.getString(R.string.programme)))
         tabs.tabGravity=TabLayout.GRAVITY_FILL
-        val adapter=RestaurantTabsAdapter(baseContext,supportFragmentManager,tabs.tabCount)
+        val adapter=RestaurantTabsAdapter(baseContext,supportFragmentManager,tabs.tabCount,intent.getBooleanExtra("isAdmin",false))
         viewpager.adapter=adapter
         viewpager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{

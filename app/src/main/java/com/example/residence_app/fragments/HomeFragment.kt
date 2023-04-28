@@ -66,6 +66,8 @@ class HomeFragment : Fragment() {
 
         restaurant.setOnClickListener {
             val intent= Intent(this.context, RestaurantDetails::class.java)
+            intent.putExtra("isAdmin",false)
+
             startActivity(intent)
 
         }
