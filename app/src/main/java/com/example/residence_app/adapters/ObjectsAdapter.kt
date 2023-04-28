@@ -1,6 +1,4 @@
 package com.example.residence_app.adapters
-import android.annotation.SuppressLint
-import android.app.DownloadManager.Request
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,11 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.residence_app.Interfaces.DeleteObjInterface
 import com.example.residence_app.R
 import com.example.residence_app.data.ObjectData
@@ -182,4 +178,5 @@ var arr=ArrayList<ObjectData>()
     override fun DeleteObj() {
         deleteObject(arr[position])
     }
+
 }

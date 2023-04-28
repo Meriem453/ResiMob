@@ -30,6 +30,9 @@ class Restaurant_timings : Fragment() {
 
 private fun initRecyclerView(recycler: RecyclerView){
     recycler.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+    var layoutManager :LinearLayoutManager= recycler.layoutManager as LinearLayoutManager
+    layoutManager.setReverseLayout(true);
+    layoutManager.setStackFromEnd(true);
     val adapter=RestaurantTimingAdapter(requireContext())
     adapter.getData()
     recycler.adapter=adapter

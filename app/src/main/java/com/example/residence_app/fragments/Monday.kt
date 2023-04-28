@@ -26,6 +26,9 @@ class Monday : Fragment() {
         adapter.getData(1)
         rec.adapter=adapter
         rec.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+        var layoutManager :LinearLayoutManager= rec.layoutManager as LinearLayoutManager
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
         return view
     }
 

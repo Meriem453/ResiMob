@@ -1,16 +1,24 @@
 package com.example.residence_app.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.residence_app.R
+import com.example.residence_app.data.AdminFeedbackData
 import com.example.residence_app.data.TimingCardData
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
 
 class GymTimingAdapter(var context : Context ) : RecyclerView.Adapter<GymTimingAdapter.ViewHolder>() {
     private var data=ArrayList<TimingCardData>()
+    lateinit var db : FirebaseFirestore
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.restaurant_timing_card_title)
         val label1=itemView.findViewById<TextView>(R.id.restaurant_timing_card_1label)
@@ -37,15 +45,47 @@ class GymTimingAdapter(var context : Context ) : RecyclerView.Adapter<GymTimingA
         return data.size
     }
     fun getGymBoysdata(){
-        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("monday","morning","evening","08:00---11:00","14:00--16:00"))
-        notifyDataSetChanged()
+        db = FirebaseFirestore.getInstance()
+        db.collection("gym boys")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if(error != null){
+
+                        Log.e("Data base error!",error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!){
+                        if(dc.getType() == DocumentChange.Type.ADDED){
+                            data.add(dc.getDocument().toObject(TimingCardData::class.java))
+
+
+                        }
+                    }
+                    notifyDataSetChanged()
+                }
+            })
     }
     fun getGymGirlsdata(){
-        data.add(TimingCardData("saturday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("sunday","morning","evening","08:00---11:00","14:00--16:00"))
-        data.add(TimingCardData("monday","morning","evening","08:00---11:00","14:00--16:00"))
-        notifyDataSetChanged()
+        db = FirebaseFirestore.getInstance()
+        db.collection("gym girls")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if(error != null){
+
+                        Log.e("Data base error!",error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!){
+                        if(dc.getType() == DocumentChange.Type.ADDED){
+                            data.add(dc.getDocument().toObject(TimingCardData::class.java))
+
+
+                        }
+                    }
+                    notifyDataSetChanged()
+                }
+            })
     }
 }

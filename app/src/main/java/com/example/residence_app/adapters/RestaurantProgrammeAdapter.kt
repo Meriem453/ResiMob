@@ -1,15 +1,21 @@
 package com.example.residence_app.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.residence_app.R
+import com.example.residence_app.data.AdminFeedbackData
 import com.example.residence_app.data.RestaurantProgrammeCardData
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
 
 class RestaurantProgrammeAdapter(var c:Context): RecyclerView.Adapter<RestaurantProgrammeAdapter.programmeVH>() {
     private var data=ArrayList<RestaurantProgrammeCardData>()
@@ -45,81 +51,25 @@ class RestaurantProgrammeAdapter(var c:Context): RecyclerView.Adapter<Restaurant
 
     fun getData(){
         db = FirebaseFirestore.getInstance()
-        var d1 : DocumentReference = db.collection("programme restau").document("saturday")
-        var d2 : DocumentReference = db.collection("programme restau").document("sunday")
-        var d3 : DocumentReference = db.collection("programme restau").document("monday")
-        var d4 : DocumentReference = db.collection("programme restau").document("thuesday")
-        var d5: DocumentReference = db.collection("programme restau").document("wednesday")
-        var d6 : DocumentReference = db.collection("programme restau").document("thursday")
-        var d7 : DocumentReference = db.collection("programme restau").document("friday")
+        db.collection("programme restau")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if(error != null){
+
+                        Log.e("Data base error!",error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!){
+                        if(dc.getType() == DocumentChange.Type.ADDED){
+                            data.add(dc.getDocument().toObject(RestaurantProgrammeCardData::class.java))
 
 
-        d1.get().addOnCompleteListener() {
-            var day = it.result!!.data?.getValue("day").toString().trim()
-            var label1 = it.result!!.data?.getValue("label1").toString().trim()
-            var label2 = it.result!!.data?.getValue("label2").toString().trim()
-            var meal1 = it.result!!.data?.getValue("meal1").toString().trim()
-            var meal2 = it.result!!.data?.getValue("meal2").toString().trim()
-            data.add(RestaurantProgrammeCardData(day,label1,label2,meal1,meal2))
-            notifyDataSetChanged()
-
-            d2.get().addOnCompleteListener() {
-                var day = it.result!!.data?.getValue("day").toString().trim()
-                var label1 = it.result!!.data?.getValue("label1").toString().trim()
-                var label2 = it.result!!.data?.getValue("label2").toString().trim()
-                var meal1 = it.result!!.data?.getValue("meal1").toString().trim()
-                var meal2 = it.result!!.data?.getValue("meal2").toString().trim()
-                data.add(RestaurantProgrammeCardData(day, label1, label2, meal1, meal2))
-                notifyDataSetChanged()
-                d3.get().addOnCompleteListener() {
-                    var day = it.result!!.data?.getValue("day").toString().trim()
-                    var label1 = it.result!!.data?.getValue("label1").toString().trim()
-                    var label2 = it.result!!.data?.getValue("label2").toString().trim()
-                    var meal1 = it.result!!.data?.getValue("meal1").toString().trim()
-                    var meal2 = it.result!!.data?.getValue("meal2").toString().trim()
-                    data.add(RestaurantProgrammeCardData(day, label1, label2, meal1, meal2))
-                    notifyDataSetChanged()
-                    d4.get().addOnCompleteListener() {
-                        var day = it.result!!.data?.getValue("day").toString().trim()
-                        var label1 = it.result!!.data?.getValue("label1").toString().trim()
-                        var label2 = it.result!!.data?.getValue("label2").toString().trim()
-                        var meal1 = it.result!!.data?.getValue("meal1").toString().trim()
-                        var meal2 = it.result!!.data?.getValue("meal2").toString().trim()
-                        data.add(RestaurantProgrammeCardData(day, label1, label2, meal1, meal2))
-                        notifyDataSetChanged()
-                        d5.get().addOnCompleteListener() {
-                            var day = it.result!!.data?.getValue("day").toString().trim()
-                            var label1 = it.result!!.data?.getValue("label1").toString().trim()
-                            var label2 = it.result!!.data?.getValue("label2").toString().trim()
-                            var meal1 = it.result!!.data?.getValue("meal1").toString().trim()
-                            var meal2 = it.result!!.data?.getValue("meal2").toString().trim()
-                            data.add(RestaurantProgrammeCardData(day, label1, label2, meal1, meal2))
-                            notifyDataSetChanged()
-                            d6.get().addOnCompleteListener() {
-                                var day = it.result!!.data?.getValue("day").toString().trim()
-                                var label1 = it.result!!.data?.getValue("label1").toString().trim()
-                                var label2 = it.result!!.data?.getValue("label2").toString().trim()
-                                var meal1 = it.result!!.data?.getValue("meal1").toString().trim()
-                                var meal2 = it.result!!.data?.getValue("meal2").toString().trim()
-                                data.add(RestaurantProgrammeCardData(day, label1, label2, meal1, meal2))
-                                notifyDataSetChanged()
-                                d7.get().addOnCompleteListener() {
-                                    var day = it.result!!.data?.getValue("day").toString().trim()
-                                    var label1 = it.result!!.data?.getValue("label1").toString().trim()
-                                    var label2 = it.result!!.data?.getValue("label2").toString().trim()
-                                    var meal1 = it.result!!.data?.getValue("meal1").toString().trim()
-                                    var meal2 = it.result!!.data?.getValue("meal2").toString().trim()
-                                    data.add(RestaurantProgrammeCardData(day, label1, label2, meal1, meal2))
-                                    notifyDataSetChanged()
-                                }
-                            }
                         }
                     }
-                            }
-            }
-
-
-            }
+                    notifyDataSetChanged()
+                }
+            })
 
 
     }

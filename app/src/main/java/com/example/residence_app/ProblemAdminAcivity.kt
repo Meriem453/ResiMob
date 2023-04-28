@@ -17,5 +17,9 @@ class ProblemAdminAcivity : BaseActivity() {
         adapter.getAdminProblemData()
         rec.adapter=adapter
         rec.layoutManager= LinearLayoutManager(baseContext, RecyclerView.VERTICAL,false)
+        //add in top
+        var layoutManager :LinearLayoutManager= rec.layoutManager as LinearLayoutManager
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
     }
 }

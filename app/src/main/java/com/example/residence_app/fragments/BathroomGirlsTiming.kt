@@ -29,6 +29,9 @@ class BathroomGirlsTiming : Fragment() {
         adapter.getBathroomGirlsTimingData()
         recycler.adapter=adapter
         recycler.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+        var layoutManager :LinearLayoutManager= recycler.layoutManager as LinearLayoutManager
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
     }
 
 }

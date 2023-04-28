@@ -26,6 +26,9 @@ class FoundObjects : Fragment() {
         adapter.getFonderData()
         rec.adapter=adapter
         rec.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+        var layoutManager :LinearLayoutManager= rec.layoutManager as LinearLayoutManager
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
 
         val add = view.findViewById<Button>(R.id.foundObj_add)
         add.setOnClickListener {

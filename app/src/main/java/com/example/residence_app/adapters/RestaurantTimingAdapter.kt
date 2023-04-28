@@ -1,6 +1,7 @@
 package com.example.residence_app.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.residence_app.R
+import com.example.residence_app.data.RestaurantProgrammeCardData
 import com.example.residence_app.data.TimingCardData
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
 
 class RestaurantTimingAdapter(var c:Context): RecyclerView.Adapter<RestaurantTimingAdapter.TimingVH>() {
     private var data=ArrayList<TimingCardData>()
@@ -46,39 +52,25 @@ return data.size
 
     fun getData(){
         db = FirebaseFirestore.getInstance()
-        var dr1 :DocumentReference = db.collection("restau timing").document("1breakfast")
-        var dr2 :DocumentReference = db.collection("restau timing").document("2lunch")
-        var dr3 :DocumentReference = db.collection("restau timing").document("3dinner")
+        db.collection("restau timing")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if(error != null){
 
-        dr1.get().addOnCompleteListener() {
-            var title = it.result!!.data?.getValue("title").toString().trim()
-            var label1 = it.result!!.data?.getValue("label1").toString().trim()
-            var label2 = it.result!!.data?.getValue("label2").toString().trim()
-            var timing1 = it.result!!.data?.getValue("timing1").toString().trim()
-            var timing2 = it.result!!.data?.getValue("timing2").toString().trim()
-            data.add(TimingCardData(title,label1,label2,timing1,timing2))
-            notifyDataSetChanged()
+                        Log.e("Data base error!",error.message.toString())
+                        return
+                    }
 
-            dr2.get().addOnCompleteListener() {
-                var title = it.result!!.data?.getValue("title").toString().trim()
-                var label1 = it.result!!.data?.getValue("label1").toString().trim()
-                var label2 = it.result!!.data?.getValue("label2").toString().trim()
-                var timing1 = it.result!!.data?.getValue("timing1").toString().trim()
-                var timing2 = it.result!!.data?.getValue("timing2").toString().trim()
-                data.add(TimingCardData(title,label1,label2,timing1,timing2))
-                notifyDataSetChanged()
+                    for (dc: DocumentChange in value?.documentChanges!!){
+                        if(dc.getType() == DocumentChange.Type.ADDED){
+                            data.add(dc.getDocument().toObject(TimingCardData::class.java))
 
-                dr3.get().addOnCompleteListener() {
-                    var title = it.result!!.data?.getValue("title").toString().trim()
-                    var label1 = it.result!!.data?.getValue("label1").toString().trim()
-                    var label2 = it.result!!.data?.getValue("label2").toString().trim()
-                    var timing1 = it.result!!.data?.getValue("timing1").toString().trim()
-                    var timing2 = it.result!!.data?.getValue("timing2").toString().trim()
-                    data.add(TimingCardData(title,label1,label2,timing1,timing2))
+
+                        }
+                    }
                     notifyDataSetChanged()
                 }
-            }
-        }
+            })
 
 
 
