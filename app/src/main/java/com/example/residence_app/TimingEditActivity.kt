@@ -11,7 +11,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 
 
-class TimingEditActivity : AppCompatActivity() {
+class TimingEditActivity : BaseActivity() {
     lateinit var place:TextView
     lateinit var label1:TextView
     lateinit var label2:TextView
@@ -19,7 +19,7 @@ class TimingEditActivity : AppCompatActivity() {
     lateinit var timing1_to:TextInputEditText
     lateinit var timing2_from:TextInputEditText
     lateinit var timing2_to:TextInputEditText
-    lateinit var title:TextView
+    lateinit var title:TextInputEditText
     lateinit var send:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +36,13 @@ class TimingEditActivity : AppCompatActivity() {
         title=findViewById(R.id.admin_edit_title)
         send=findViewById(R.id.admin_edit_send)
 
-          intent=intent
-        title.text = intent.getStringExtra("title")
+
+        title.setText(intent.getStringExtra("title"))
         place.text=intent.getStringExtra("place")
         label1.text=intent.getStringExtra("label1")
         label2.text=intent.getStringExtra("label2")
 
-        //val picker=setupTimePicker()
+
 
         timing1_from.setOnClickListener {
             val picker =
@@ -50,7 +50,7 @@ class TimingEditActivity : AppCompatActivity() {
                     .setTimeFormat(TimeFormat.CLOCK_12H)
                     .setHour(12)
                     .setMinute(0)
-                    .setTitleText("Select start time")
+                    .setTitleText(resources.getString(R.string.select_time))
                     .build()
 
             MaterialTimePicker.Builder().setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
@@ -65,7 +65,7 @@ class TimingEditActivity : AppCompatActivity() {
                     .setTimeFormat(TimeFormat.CLOCK_12H)
                     .setHour(12)
                     .setMinute(0)
-                    .setTitleText("Select start time")
+                    .setTitleText(resources.getString(R.string.select_time))
                     .build()
 
             MaterialTimePicker.Builder().setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
@@ -80,7 +80,7 @@ class TimingEditActivity : AppCompatActivity() {
                     .setTimeFormat(TimeFormat.CLOCK_12H)
                     .setHour(12)
                     .setMinute(0)
-                    .setTitleText("Select start time")
+                    .setTitleText(resources.getString(R.string.select_time))
                     .build()
 
             MaterialTimePicker.Builder().setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
@@ -95,7 +95,7 @@ class TimingEditActivity : AppCompatActivity() {
                     .setTimeFormat(TimeFormat.CLOCK_12H)
                     .setHour(12)
                     .setMinute(0)
-                    .setTitleText("Select start time")
+                    .setTitleText(resources.getString(R.string.select_time))
                     .build()
 
             MaterialTimePicker.Builder().setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
@@ -108,35 +108,17 @@ class TimingEditActivity : AppCompatActivity() {
         send.setOnClickListener {
             if(Check()){
                 sendNewTime(place.text.toString()
-                    ,TimingCardData(title.text.toString()
-                        ,label1.text.toString(),
-                        label2 .text.toString()
-                    ,timing1_from.text.toString() + "--" + timing1_to.text.toString()
+                        ,TimingCardData(title.text.toString()
+                        ,label1.text.toString()
+                        ,label2 .text.toString()
+                        ,timing1_from.text.toString() + "--" + timing1_to.text.toString()
                         ,timing2_from.text.toString() + "--" + timing2_to.text.toString()))
 
             }
         }
 
-
-
-
-
-
     }
 
-    private fun setupTimePicker(): MaterialTimePicker {
-        val picker =
-            MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(12)
-                .setMinute(0)
-                .setTitleText("Select start time")
-                .build()
-
-        MaterialTimePicker.Builder().setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
-
-        return picker
-    }
 
     private fun sendNewTime(place:String,timingCardData: TimingCardData) {
          //  TODO("send new time")
@@ -161,6 +143,10 @@ class TimingEditActivity : AppCompatActivity() {
         }
         if(timing2_to.text.toString().trim()==resources.getString(R.string.to)){
             timing2_to.error = resources.getString(R.string.enter_time)
+            valid=false
+        }
+        if(title.text.toString().trim()==""){
+            title.error=resources.getString(R.string.please_enter_a_text)
             valid=false
         }
 

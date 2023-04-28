@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.residence_app.fragments.BathroomBoysTiming
 import com.example.residence_app.fragments.BathroomGirlsTiming
 
-class BathroomTabsAdapter(var c: Context, fm: FragmentManager, var totalTabs:Int):
+class BathroomTabsAdapter(var c: Context, fm: FragmentManager, var totalTabs:Int,val isAdmin:Boolean):
     FragmentPagerAdapter(fm,
     BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT ) {
     override fun getCount(): Int {
@@ -15,13 +15,17 @@ class BathroomTabsAdapter(var c: Context, fm: FragmentManager, var totalTabs:Int
     }
 
     override fun getItem(position: Int): Fragment {
-        return when(position){
+         when(position){
             0 -> {
-                BathroomGirlsTiming()
+                val fragment = BathroomGirlsTiming()
+                fragment.isAdmin=isAdmin
+                return fragment
             }
             1 -> {
-                BathroomBoysTiming()
-            }else -> getItem(position)
+                val fragment = BathroomBoysTiming()
+                fragment.isAdmin=isAdmin
+                return fragment
+            }else -> return getItem(position)
         }
     }
 }

@@ -35,12 +35,13 @@ class HomeAdminActivity : BaseActivity(),LogoutInterface {
         val problem = findViewById<CardView>(R.id.admin_problem)
         val objects=findViewById<CardView>(R.id.admin_obj)
         val notif = findViewById<CardView>(R.id.admin_notif)
+        val time=findViewById<CardView>(R.id.admin_time)
 
         open.setOnClickListener {
             drawer.open()
         }
-        binding.adminTime.setOnClickListener {
-
+        time.setOnClickListener {
+              startActivity(Intent(baseContext,TimeChangeActivity::class.java))
         }
         notif.setOnClickListener {
            startActivity(Intent(baseContext,NotificationAdminActivity::class.java))
@@ -79,7 +80,7 @@ class HomeAdminActivity : BaseActivity(),LogoutInterface {
 
                     true
                 }
-                else -> {false}
+                else -> false
             }
 
         }

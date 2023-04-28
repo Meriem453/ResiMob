@@ -12,7 +12,7 @@ import com.example.residence_app.adapters.TimingAdapter
 
 
 class BathroomGirlsTiming : Fragment() {
-
+    var isAdmin=false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,7 +25,7 @@ class BathroomGirlsTiming : Fragment() {
     }
 
     private fun initRecyclerView(recycler: RecyclerView) {
-       val adapter=TimingAdapter(requireContext())
+   val adapter=TimingAdapter(requireContext(),requireActivity(), isAdmin )
         adapter.getBathroomGirlsTimingData()
         recycler.adapter=adapter
         recycler.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)

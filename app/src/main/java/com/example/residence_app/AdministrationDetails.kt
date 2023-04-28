@@ -18,7 +18,7 @@ class AdministrationDetails : BaseActivity() {
         supportActionBar?.title=resources.getString(R.string.administration)
         supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_button))
 
-        val adapter= TimingAdapter(baseContext)
+        val adapter= TimingAdapter(baseContext, this,intent.getBooleanExtra("isAdmin",false))
         adapter.getAdministrationData()
         binding.adminRec.adapter=adapter
         binding.adminRec.layoutManager=

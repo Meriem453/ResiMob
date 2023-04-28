@@ -28,23 +28,47 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/admin_edit_title"
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:shadowColor="@color/gray"
+        android:text="Title"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/t1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Title"
-        android:textColor="@color/blue_button"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/tb1"
-        tools:layout_editor_absoluteX="25dp" />
+        android:layout_marginHorizontal="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/admin_edit_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/admin_edit_title"
+        app:layout_constraintTop_toBottomOf="@+id/t1"
         android:layout_marginTop="50dp"
         >
 
@@ -67,39 +91,39 @@
             android:layout_height="wrap_content"
             android:gravity="end"
 
+
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/admin_edit_timing1_from"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:editable="false"
+                android:inputType="none"
                 android:text="@string/from"
                 android:textColor="@color/gray"
                 android:textSize="15sp"
-                android:inputType="none"
-               android:editable="false"
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/te"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
-            android:gravity="end"
-            >
+            android:gravity="end">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/admin_edit_timing1_to"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:editable="false"
+                android:inputType="none"
                 android:text="@string/to"
                 android:textColor="@color/gray"
-                android:textSize="15sp"
-                android:inputType="none"
-                android:editable="false"
-                />
+                android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -134,11 +158,11 @@
                 android:id="@+id/admin_edit_timing2_from"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:editable="false"
+                android:inputType="none"
                 android:text="@string/from"
                 android:textColor="@color/gray"
-                android:textSize="15sp"
-                android:inputType="none"
-                android:editable="false"/>
+                android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

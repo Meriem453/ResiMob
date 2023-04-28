@@ -13,7 +13,7 @@ private lateinit var gym: CardView
 private lateinit var sport: CardView
 
 
-class TimeChangeActivity : AppCompatActivity() {
+class TimeChangeActivity : BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_time_change)
@@ -38,20 +38,29 @@ class TimeChangeActivity : AppCompatActivity() {
         }
         doctor.setOnClickListener {
             val intent= Intent(baseContext, DoctorDetails::class.java)
+            intent.putExtra("isAdmin",true)
+
             startActivity(intent)
         }
         administration.setOnClickListener {
             val intent= Intent(baseContext, AdministrationDetails::class.java)
+            intent.putExtra("isAdmin",true)
             startActivity(intent)
         }
         bathroom.setOnClickListener {
-            startActivity(Intent(baseContext, BathroomDetails::class.java))
+            val intent= Intent(baseContext, BathroomDetails::class.java)
+            intent.putExtra("isAdmin",true)
+            startActivity(intent)
         }
         gym.setOnClickListener {
-            startActivity(Intent(baseContext, GymDetails::class.java))
+            val intent= Intent(baseContext, GymDetails::class.java)
+            intent.putExtra("isAdmin",true)
+            startActivity(intent)
         }
         sport.setOnClickListener {
-            startActivity(Intent(baseContext, SportDetails::class.java))
+            val intent= Intent(baseContext, SportDetails::class.java)
+            intent.putExtra("isAdmin",true)
+            startActivity(intent)
         }
     }
 

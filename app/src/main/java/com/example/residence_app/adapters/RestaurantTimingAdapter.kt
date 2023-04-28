@@ -52,7 +52,7 @@ return data.size
                   label2.text=data.get(position).label2
                   timing1.text=data.get(position).timing1
                   timing2.text=data.get(position).timing2
-                  if(!isAdmin) itemView.isClickable=false
+                 itemView.isEnabled=isAdmin
                   itemView.setOnClickListener {
 
                       val intent=Intent(c,TimingEditActivity::class.java)

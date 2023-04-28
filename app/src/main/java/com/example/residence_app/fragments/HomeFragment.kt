@@ -73,20 +73,27 @@ class HomeFragment : Fragment() {
         }
         doctor.setOnClickListener {
             val intent= Intent(this.context, DoctorDetails::class.java)
+            intent.putExtra("isAdmin",false)
             startActivity(intent)
         }
         administration.setOnClickListener {
             val intent= Intent(this.context, AdministrationDetails::class.java)
+            intent.putExtra("isAdmin",false)
             startActivity(intent)
         }
         bathroom.setOnClickListener {
-            startActivity(Intent(this.context, BathroomDetails::class.java))
+            val intent = Intent(this.context,BathroomDetails::class.java)
+            intent.putExtra("isAdmin",false)
+            startActivity(intent)
         }
         gym.setOnClickListener {
-            startActivity(Intent(this.context, GymDetails::class.java))
-        }
+            val intent = Intent(this.context,GymDetails::class.java)
+            intent.putExtra("isAdmin",false)
+            startActivity(intent)        }
         sport.setOnClickListener {
-            startActivity(Intent(this.context, SportDetails::class.java))
+            val intent = Intent(this.context,SportDetails::class.java)
+            intent.putExtra("isAdmin",false)
+            startActivity(intent)
         }
         var documentReference : DocumentReference
         val uid = FirebaseAuth.getInstance().currentUser!!.uid

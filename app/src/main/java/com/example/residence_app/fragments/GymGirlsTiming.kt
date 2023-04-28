@@ -13,6 +13,7 @@ import com.example.residence_app.adapters.GymTimingAdapter
 
 
 class GymGirlsTiming : Fragment() {
+    var isAdmin=false
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +28,12 @@ class GymGirlsTiming : Fragment() {
     }
 
     private fun initRecyclerView(recycler: RecyclerView) {
-        val adapter= GymTimingAdapter(requireContext())
+        val adapter= GymTimingAdapter(requireContext(),requireActivity(),isAdmin)
         adapter.getGymGirlsdata()
         recycler.adapter=adapter
         recycler.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
         var layoutManager :LinearLayoutManager= recycler.layoutManager as LinearLayoutManager
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
+        layoutManager.setReverseLayout(true)
+        layoutManager.setStackFromEnd(true)
     }
 }
