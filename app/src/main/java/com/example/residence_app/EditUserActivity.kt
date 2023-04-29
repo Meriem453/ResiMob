@@ -229,10 +229,6 @@ fun Check():Boolean{
 
         val uid = user.uid.toString()
 
-
-
-
-
                 db = FirebaseFirestore.getInstance()
                 ds = FirebaseStorage.getInstance()
                 db.collection("user").document(uid).delete().addOnCompleteListener {
@@ -240,7 +236,10 @@ fun Check():Boolean{
                         ds.reference.child("images/$uid"+"l.jpg").delete().addOnCompleteListener {
                             db.collection("found objects").document(uid).delete().addOnCompleteListener { db.collection("lost objects").document(uid).delete()
                                 db.collection("feedback").document(uid).delete().addOnCompleteListener { db.collection("problem").document(uid).delete()
-                                    .addOnCompleteListener { Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show() }
+                                    .addOnCompleteListener {
+                                        Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show()
+                                        setResult(RESULT_OK)
+                                        finish() }
                                 }
                             }
 
@@ -251,10 +250,8 @@ fun Check():Boolean{
 
                 }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
 
+         //UsersAdapter.Refresh(UsersAdapter(baseContext,null))
 
-
-         UsersAdapter.Refresh(UsersAdapter(baseContext,null))
-        finish()
 
     }
 

@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="20dp"
-    android:background="@drawable/corner_tab_background"
+
     >
     <TextView
         android:layout_width="match_parent"

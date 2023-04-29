@@ -1,5 +1,6 @@
 package com.example.residence_app.adapters
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
@@ -20,7 +21,7 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.auth.User
 import java.io.Serializable
 
-class UsersAdapter(var c:Context,val refresh:RefreshAdapter?): RecyclerView.Adapter<UsersAdapter.usersVH>(),Serializable {
+class UsersAdapter(var c:Context,val refresh:RefreshAdapter?,val activity: Activity): RecyclerView.Adapter<UsersAdapter.usersVH>(),Serializable {
     lateinit var db : FirebaseFirestore
       var arr= ArrayList<UserInfo>()
       var search_arr= emptyList<String>()
@@ -52,7 +53,7 @@ class UsersAdapter(var c:Context,val refresh:RefreshAdapter?): RecyclerView.Adap
                 intent.putExtra("current_user",arr[position])
 
                 intent.flags = FLAG_ACTIVITY_NEW_TASK
-                c.startActivity(intent)
+                activity.startActivityForResult(intent,42)
 
 
             }

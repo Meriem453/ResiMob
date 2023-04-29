@@ -202,4 +202,8 @@
     <string name="name">Name</string>
     <string name="meal">Meal</string>
     <string name="day">Day</string>
+    <string name="type">Type</string>
+    <string name="time_chnage">Time change</string>
+    <string name="annoucement">Annoucement</string>
+    <string name="select_type">Select type</string>
 </resources>
