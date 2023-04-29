@@ -7,32 +7,46 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.residence_app.fragments.*
 
-class SportRoomTabsAdapter(fm:FragmentManager,var c:Context): FragmentPagerAdapter(fm) {
+class SportRoomTabsAdapter(fm:FragmentManager,var c:Context,val isAdmin:Boolean): FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
         return 7
     }
 
     override fun getItem(position: Int): Fragment {
-        return when (position){
+         when (position){
             0 -> {
-                Sunday()
+                val fragment=Sunday()
+                fragment.isAdmin=isAdmin
+                return fragment
             }
             1 -> {
-                Monday()
-            } 2 -> {
-                Tusday()
+                val fragment=Monday()
+                fragment.isAdmin=isAdmin
+                return fragment            }
+             2 -> {
+                 val fragment=Tusday()
+                 fragment.isAdmin=isAdmin
+                 return fragment
             } 3 -> {
-                Wednasday()
+             val fragment=Wednasday()
+             fragment.isAdmin=isAdmin
+             return fragment
             } 4 -> {
-                Thusday()
+             val fragment=Thusday()
+             fragment.isAdmin=isAdmin
+             return fragment
             } 5 -> {
-                Friday()
+             val fragment=Friday()
+             fragment.isAdmin=isAdmin
+             return fragment
             } 6 -> {
-                Saturday()
+             val fragment=Saturday()
+             fragment.isAdmin=isAdmin
+             return fragment
             }
 
-            else -> {getItem(position)}
+            else -> { return getItem(position)}
         }
 
 

@@ -31,7 +31,7 @@ class SportDetails : BaseActivity() {
         binding.sportTab.addTab(binding.sportTab.newTab().setText(resources.getString(R.string.fri)))
         binding.sportTab.addTab(binding.sportTab.newTab().setText(resources.getString(R.string.sat)))
 
-        binding.sportViewpager.adapter = SportRoomTabsAdapter(supportFragmentManager,baseContext)
+        binding.sportViewpager.adapter = SportRoomTabsAdapter(supportFragmentManager,baseContext,intent.getBooleanExtra("isAdmin",false))
         binding.sportViewpager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.sportTab))
         binding.sportTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: Tab?) {

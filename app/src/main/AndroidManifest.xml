@@ -13,6 +13,9 @@
         tools:replace="allowBackup, label"
         tools:targetApi="31">
         <activity
+            android:name=".SportEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".ResraurantProgrammeEditActivity"
             android:exported="false" />
         <activity
@@ -20,9 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".TimeChangeActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".NotificationAdminActivity"
             android:exported="false" />
@@ -111,7 +112,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Problem"
             android:exported="true"

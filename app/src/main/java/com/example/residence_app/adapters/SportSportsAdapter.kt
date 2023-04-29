@@ -1,19 +1,23 @@
 package com.example.residence_app.adapters
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.residence_app.R
+import com.example.residence_app.SportEditActivity
 import com.example.residence_app.data.SportData
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-class SportSportsAdapter (var c :Context): RecyclerView.Adapter<SportSportsAdapter.SportsVH>() {
+class SportSportsAdapter (var c :Context,val isAdmin:Boolean,val activity:Activity): RecyclerView.Adapter<SportSportsAdapter.SportsVH>() {
     var arr=ArrayList<SportData>()
     private lateinit var db : FirebaseFirestore
     inner class SportsVH(itemView: View) : ViewHolder(itemView){
@@ -51,6 +55,18 @@ class SportSportsAdapter (var c :Context): RecyclerView.Adapter<SportSportsAdapt
                   icon.setImageDrawable(c.getDrawable(R.drawable.icon_basket))
 
               }
+          }
+          itemView.isEnabled=isAdmin
+
+          itemView.setOnClickListener {
+              val intent=Intent(c,SportEditActivity::class.java)
+              intent.putExtra("sport",arr[position].sport)
+              intent.putExtra("kind",arr[position].kind)
+              intent.putExtra("gender",arr[position].gender)
+              intent.flags=Intent.FLAG_ACTIVITY_NEW_TASK
+              activity.startActivityForResult(intent,14)
+
+
           }
 
       }
