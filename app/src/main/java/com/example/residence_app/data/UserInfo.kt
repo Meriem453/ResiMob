@@ -11,5 +11,4 @@ data class UserInfo(
     var image: String?= null,
     var uid:String?= null,
     var room:String?= null,
-    var isadmin:Boolean?= null
 ):java.io.Serializable

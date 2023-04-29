@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.example.residence_app.data.TimingCardData
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class TimingEditActivity : BaseActivity() {
@@ -21,6 +23,7 @@ class TimingEditActivity : BaseActivity() {
     lateinit var timing2_to:TextInputEditText
     lateinit var title:TextInputEditText
     lateinit var send:Button
+    lateinit var db : FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,25 +110,31 @@ class TimingEditActivity : BaseActivity() {
 
         send.setOnClickListener {
             if(Check()){
-                sendNewTime(place.text.toString()
-                        ,TimingCardData(title.text.toString()
-                        ,label1.text.toString()
-                        ,label2 .text.toString()
-                        ,timing1_from.text.toString() + "--" + timing1_to.text.toString()
-                        ,timing2_from.text.toString() + "--" + timing2_to.text.toString()))
-                setResult(RESULT_OK)
+                db = FirebaseFirestore.getInstance()
+                
+                var newTime = mapOf(
+
+                    "title" to title.text.toString(),
+                    "label1" to label1.text.toString(),
+                    "label2" to label2 .text.toString(),
+                    "timing1" to timing1_from.text.toString() + "---" + timing1_to.text.toString(),
+                    "timing2" to timing2_from.text.toString() + "---" + timing2_to.text.toString(),
+
+                )
+//                db.collection("restau timing").document(tid.toString()).set(newTime).addOnSuccessListener {
+//                   setResult(RESULT_OK)
+//                }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
+
+
                 finish()
+
             }
         }
 
     }
 
 
-    private fun sendNewTime(place:String,timingCardData: TimingCardData) {
-         //  TODO("send new time")
 
-
-    }
 
     private fun Check(): Boolean {
            var valid = true

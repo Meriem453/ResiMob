@@ -100,7 +100,7 @@ class EditUserActivity : BaseActivity(), DeleteUserInterface {
             user.email=email.text.toString()
             user.password=passwrd.text.toString()
             user.image=uri.toString()
-            user.isadmin=false
+
 
             sendNewUser(currentUser,user)
             setEnabled(false)}

@@ -107,7 +107,8 @@ class AddNotification : AppCompatDialogFragment() {
                                             "image" to imageUrl,
                                             "nid" to nid,
                                             "president" to president,
-                                            "time" to sdf.format(Calendar.getInstance().time).toString()
+                                            "time" to sdf.format(Calendar.getInstance().time).toString(),
+                                            "is time change" to false,
                                         )
                                         db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                                             Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()

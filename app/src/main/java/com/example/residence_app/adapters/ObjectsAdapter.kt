@@ -1,4 +1,5 @@
 package com.example.residence_app.adapters
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -52,6 +53,7 @@ var arr=ArrayList<ObjectData>()
        return arr.size
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: ObjVH, position: Int) {
         personnn= arr[position].Person.toString()
           with(holder){
