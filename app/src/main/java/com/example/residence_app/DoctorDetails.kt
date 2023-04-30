@@ -11,6 +11,7 @@ class DoctorDetails : BaseActivity(){
     private lateinit var binding:ActivityDoctorDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.activity_doctor_details)
         binding = ActivityDoctorDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)

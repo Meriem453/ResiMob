@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_height="match_parent">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/shnottitle"
+    android:textSize="25sp"
+    android:textColor="@color/blue_layout"
+    android:text="title"
+    android:fontFamily="@font/poppins_semibold"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/shnotdetails"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/gray"
+        android:text="the content of the notification"
+        android:fontFamily="@font/poppins_semibold"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shnotimage"
+        android:layout_gravity="center"
+        android:src="@drawable/icon_admin"
+        />
+</LinearLayout>

@@ -166,7 +166,7 @@ var arr=ArrayList<ObjectData>()
                         if(dc.getType() == DocumentChange.Type.ADDED){
                             arr.add(dc.getDocument().toObject(ObjectData::class.java))
 
-
+                            
                         }
                     }
                     notifyDataSetChanged()

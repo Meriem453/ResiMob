@@ -14,6 +14,7 @@ class AdministrationDetails : BaseActivity() {
         setContentView(R.layout.activity_administration_details)
         binding=ActivityAdministrationDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         supportActionBar?.title=resources.getString(R.string.administration)
         supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_button))

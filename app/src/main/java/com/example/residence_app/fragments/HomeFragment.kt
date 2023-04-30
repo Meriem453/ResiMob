@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import com.bumptech.glide.Glide
 import com.example.residence_app.*
 import com.example.residence_app.databinding.ActivityHomeUserBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -98,14 +97,17 @@ class HomeFragment : Fragment() {
             var name :String = it.result!!.data?.getValue("lname").toString().trim()
             var email : String = it.result!!.data?.getValue("email").toString().trim()
             var room : String = it.result!!.data?.getValue("room").toString().trim()
-            var imgurl : String = it.result!!.data?.getValue("image").toString().trim()
             tUserName.setText(name)
             tUserEmail.setText(email)
             tRoom.setText(room)
             tGoodday.text  = String.format(resources.getString(R.string.hi),name)
-            //image
-            Glide.with(this).load(imgurl).into(userImage)
 
+        }
+        //image
+        val localfile = File.createTempFile("tempimage","jpg")
+        storageReference.getFile(localfile).addOnCompleteListener {
+            val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+            userImage.setImageBitmap(bitmap)
         }
         return view
     }

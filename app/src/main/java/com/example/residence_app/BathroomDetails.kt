@@ -14,7 +14,7 @@ class BathroomDetails : BaseActivity() {
         setContentView(R.layout.activity_bathroom_details)
         binding=ActivityBathroomDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar?.hide()
         supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_button))
         supportActionBar?.title=resources.getString(R.string.bathroom)
 
