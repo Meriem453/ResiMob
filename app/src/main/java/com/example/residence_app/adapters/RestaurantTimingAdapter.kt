@@ -62,6 +62,7 @@ return data.size
                       intent.putExtra("timing2",data.get(position).timing2)
                       intent.putExtra("label1",data.get(position).label1)
                       intent.putExtra("label2",data.get(position).label2)
+                      intent.putExtra("tid",data.get(position).tid)
                       intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
 
                       activity.startActivityForResult(intent,12)

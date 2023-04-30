@@ -23,6 +23,7 @@ class TimingEditActivity : BaseActivity() {
     lateinit var timing2_to:TextInputEditText
     lateinit var title:TextInputEditText
     lateinit var send:Button
+    lateinit var tid:String
     lateinit var db : FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +45,7 @@ class TimingEditActivity : BaseActivity() {
         place.text=intent.getStringExtra("place")
         label1.text=intent.getStringExtra("label1")
         label2.text=intent.getStringExtra("label2")
+        tid=intent.getStringExtra("tid").toString()
 
 
 
@@ -115,7 +117,8 @@ class TimingEditActivity : BaseActivity() {
                      label1.text.toString(),
                     label2.text.toString(),
                     "^${timing1_from.text.toString()}--${timing1_to.text.toString()}",
-                    "^${timing2_from.text.toString()}--${timing2_to.text.toString()}"
+                    "^${timing2_from.text.toString()}--${timing2_to.text.toString()}",
+                    tid
                     ),place.text.toString()
                 )
 
@@ -126,7 +129,7 @@ class TimingEditActivity : BaseActivity() {
 
     }
 
-    private fun sendNewTiming(timingCardData: TimingCardData, toString: String) {
+    private fun sendNewTiming(timingCardData: TimingCardData, place: String) {
 
         //TODO("send new timing")
         db = FirebaseFirestore.getInstance()
