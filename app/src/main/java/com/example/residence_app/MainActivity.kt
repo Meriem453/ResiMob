@@ -50,7 +50,7 @@ class MainActivity : BaseActivity() {
         navView=findViewById<NavigationView>(R.id.nav_view)
         open = findViewById(R.id.user_image)
         val imageNav = findViewById<ImageView>(R.id.imageNav_ID)
-        val roomDraw = findViewById<TextView>(R.id.roomNav_ID)
+
         val userName = findViewById<TextView>(R.id.nameNav_ID)
         bottomNavBar.setOnItemSelectedListener {
             when (it.itemId) {

@@ -44,16 +44,8 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:text="Yacine Bouedebouz"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:id="@+id/roomNav_ID"
-                android:paddingLeft="10dp"
-                android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:text="ResiMob App"/>
 
-                android:textColor="@color/white"
-                android:text="G307"/>
         </LinearLayout>
 
     </LinearLayout>

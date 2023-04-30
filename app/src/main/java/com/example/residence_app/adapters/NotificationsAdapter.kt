@@ -1,5 +1,6 @@
 package com.example.residence_app.adapters
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.view.LayoutInflater
@@ -44,6 +45,7 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
         return VH(itemView)
     }
 
+
     override fun onBindViewHolder(holder: VH, position: Int) {
 
         val item = data[position]
@@ -72,11 +74,10 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
             val t = data.get(position).title
             val d = data.get(position).details
             val ti = data.get(position).time
-
+            val sub = d!!.take(500) + if(d.length > 500) "..." else ""
             title.text = t
-            info.text = d
+            info.text = sub
             time.text= ti
-            card.setOnClickListener {  }
             if (data.get(position).type == "Time change"){
                 icon.setImageResource(R.drawable.icon_admin_time)
             }else{
@@ -96,8 +97,10 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
         return data.size
     }
     fun getNotifications() {
+
         db = FirebaseFirestore.getInstance()
         db.collection("notifications")
+
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                     if(error != null){
@@ -108,9 +111,7 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
 
                     for (dc:DocumentChange in value?.documentChanges!!){
                         if(dc.getType() == DocumentChange.Type.ADDED){
-                            data.add(dc.getDocument().toObject(NotificationData::class.java))
-
-
+                            data.add(dc.document.toObject(NotificationData::class.java))
                         }
                     }
                     notifyDataSetChanged()

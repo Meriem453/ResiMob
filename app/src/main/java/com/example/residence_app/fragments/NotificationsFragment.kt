@@ -16,6 +16,7 @@ import com.example.residence_app.adapters.NotificationsAdapter
 import com.example.residence_app.adapters.ObjectsAdapter
 import com.example.residence_app.data.NotificationData
 import com.example.residence_app.dialogues.ShowNotification
+import kotlin.math.log
 
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,19 +46,31 @@ class NotificationsFragment : Fragment() {
         val adapter= NotificationsAdapter(requireContext())
         recycler.adapter=adapter
         adapter.getNotifications()
+        adapter.setOnItemClickListener(object : NotificationsAdapter.OnItemClickListener{
+            override fun onItemClick(item: NotificationData) {
+                var t = item.title
+                var d = item.details
+                var ti = item.time
+                var img = check(item.image.toString())
+
+                ShowNotification(title = t!!, details = d!!, image = img!! ).show(requireActivity().supportFragmentManager,"hhh")
+            }
+
+        })
 
         recycler.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
         var layoutManager :LinearLayoutManager= recycler.layoutManager as LinearLayoutManager
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
     }
-    private fun showDialog(item: String) {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Item clicked")
-            .setMessage(item)
-            .setPositiveButton("OK", null)
-            .show()
+    private fun check(text:String): String {
+        if(text == null){
+            return ""
+        }else{
+            return text
+        }
     }
+
 
 
 }

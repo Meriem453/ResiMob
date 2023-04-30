@@ -7,22 +7,24 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialogFragment
+import com.bumptech.glide.Glide
 import com.example.residence_app.R
 import com.google.android.material.textfield.TextInputEditText
 
-class ShowNotification(var title : String, var details: String, var time : String,var image:String) : AppCompatDialogFragment() {
+class ShowNotification(val title:String, val details:String, val image:String) : AppCompatDialogFragment() {
+
     lateinit var textTitle:TextView
     lateinit var textDetails:TextView
     lateinit var imageImage:ImageView
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         val view= activity?.layoutInflater?.inflate(R.layout.shownotification,null)
         builder.setView(view)
-        textDetails = view?.findViewById(R.id.shnotdetails)!!
-        textTitle = view?.findViewById(R.id.shnottitle)!!
-        imageImage = view.findViewById(R.id.shnotimage)
-
+        textDetails = view?.findViewById<TextView>(R.id.shnotdetails)!!
+        textTitle = view?.findViewById<TextView>(R.id.shnottitle)!!
+        imageImage = view.findViewById<ImageView>(R.id.shnotimage)
+        Glide.with(requireActivity()).load(image).into(imageImage)
         textTitle.text = title
         textDetails.text = details
 
