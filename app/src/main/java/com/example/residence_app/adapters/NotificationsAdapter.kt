@@ -74,7 +74,7 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
             val t = data.get(position).title
             val d = data.get(position).details
             val ti = data.get(position).time
-            val sub = d!!.take(500) + if(d.length > 500) "..." else ""
+            val sub = d!!.take(100) + if(d.length > 100) "..." else ""
             title.text = t
             info.text = sub
             time.text= ti
