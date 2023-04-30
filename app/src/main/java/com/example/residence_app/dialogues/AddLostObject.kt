@@ -36,7 +36,9 @@ lateinit var etitle: TextInputEditText
                 val title=etitle.text.toString()
                 val details=edetails.text.toString()
                 val place=eplace.text.toString()
-                val person = "Loster"
+                val person = "Loser"
+                //TODO("add date")
+                val date=getCurrentDateAndTime()
 
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
 
@@ -81,6 +83,19 @@ lateinit var etitle: TextInputEditText
         }
 
         return builder.create()
+
+    }
+    private fun getCurrentDateAndTime(): String {
+        val c = Calendar.getInstance()
+
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val hour = c.get(Calendar.HOUR_OF_DAY)
+        val minute = c.get(Calendar.MINUTE)
+        return "${hour}:${minute}-${day}/${month}/${year}"
+
+
 
     }
 

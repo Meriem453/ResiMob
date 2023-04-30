@@ -9,7 +9,8 @@ data class AdminFeedbackData(
     val image: String?= null,
     val president:String?= null,
     val description:String?= null,
-    val fid:String?=null
+    val fid:String?=null,
+    val Date:String?=null
 
 
 )

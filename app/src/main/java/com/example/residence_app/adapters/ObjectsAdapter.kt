@@ -21,6 +21,7 @@ import com.example.residence_app.data.ObjectData
 import com.example.residence_app.dialogues.DeleteObjectFragment
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
+import org.w3c.dom.Text
 
 class ObjectsAdapter(var c:Context,val request:Int,val fm:FragmentManager) : RecyclerView.Adapter<ObjectsAdapter.ObjVH>(),DeleteObjInterface {
 var arr=ArrayList<ObjectData>()
@@ -39,6 +40,7 @@ var arr=ArrayList<ObjectData>()
         val layout=itemView.findViewById<LinearLayout>(R.id.layout)
         val icon=itemView.findViewById<View>(R.id.arrow_gray)
         val delete=itemView.findViewById<ImageView>(R.id.adminobj_delete)
+        val date=itemView.findViewById<TextView>(R.id.adminobj_date)
 
 
     }
@@ -63,6 +65,7 @@ var arr=ArrayList<ObjectData>()
               place.text=arr[position].Place
               name.text="  "+arr[position].UserFirstName + " " + arr[position].UserLastName
               email.text="  "+arr[position].UserEmail
+              date.text=arr[position].Date
 
               if(arr[position].Person== "Loser"){
                   img.visibility=View.GONE
@@ -84,10 +87,6 @@ var arr=ArrayList<ObjectData>()
                       //TransitionManager.beginDelayedTransition(holder.itemView as ViewGroup, AutoTransition())
                       holder.layout.visibility = View.GONE
                       holder.icon.rotation=0f
-
-
-
-
                   }
               }
               delete.setOnClickListener {

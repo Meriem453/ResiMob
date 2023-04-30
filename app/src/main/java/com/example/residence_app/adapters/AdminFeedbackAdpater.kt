@@ -37,6 +37,7 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
     val details=itemView.findViewById<TextView>(R.id.adminfeedback_president)
     val delete=itemView.findViewById<ImageView>(R.id.adminfeedback_delete)
     val layout=itemView.findViewById<LinearLayout>(R.id.adminfeedback_layout)
+    val date=itemView.findViewById<TextView>(R.id.adminfeedback_date)
 }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): adminfdVH {
@@ -56,6 +57,7 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
            name.text="${arr[position].fname} ${arr[position].lname}"
            president.text=arr[position].president
            details.text=arr[position].description
+           date.text=arr[position].Date
            Glide.with(c).load(arr[position].image).into(img)
            delete.setOnClickListener {
                this@AdminFeedbackAdpater.position =position

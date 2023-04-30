@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/corner_tab_background"
     android:layout_marginVertical="10dp"
-    android:elevation="2dp"
-    >
+    android:background="@drawable/corner_tab_background"
+    android:elevation="2dp">
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/adminproblem_img"
         android:layout_width="58dp"
         android:layout_height="58dp"
-        android:layout_margin="7dp"
+        android:layout_margin="20dp"
         android:background="@color/blue_background"
         android:src="@drawable/user_circle_plus"
 
@@ -45,29 +46,30 @@
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/adminproblem_img"
         app:layout_constraintTop_toBottomOf="@+id/adminproblem_title" />
-
-    <ImageView
-        android:id="@+id/adminproblem_delete"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-
-        android:layout_margin="10dp"
-        android:src="@drawable/delete"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/adminproblem_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="1dp"
+        android:layout_marginEnd="20dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/poppins_light"
+        android:text="00:00-DD/MM/YYYY"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adminproblem_layout" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
         android:id="@+id/adminproblem_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adminproblem_img"
-        android:visibility="gone"
-
-        >
+        app:layout_constraintTop_toBottomOf="@+id/adminproblem_fullname">
 
         <TextView
             android:layout_width="match_parent"
@@ -118,4 +120,17 @@
 
             />
     </LinearLayout>
+
+        <ImageView
+            android:id="@+id/adminproblem_delete"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/delete"
+            android:layout_gravity="end"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@+id/adminproblem_layout"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

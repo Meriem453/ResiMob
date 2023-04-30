@@ -73,7 +73,8 @@ lateinit var progressBar: ProgressBar
                 }
                 progressBar.visibility = View.GONE
             }else{
-
+                  val date=getCurrentDateAndTime()
+                //TODO("add date")
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
                 db.collection("user").document(uid).get().addOnCompleteListener{
                     val feedbackmap = hashMapOf(
@@ -103,6 +104,19 @@ lateinit var progressBar: ProgressBar
 
             }
         }
+    }
+
+    private fun getCurrentDateAndTime(): String {
+        val c = Calendar.getInstance()
+
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val hour = c.get(Calendar.HOUR_OF_DAY)
+        val minute = c.get(Calendar.MINUTE)
+        return "${hour}:${minute}-${day}/${month}/${year}"
+
+
     }
     }
 

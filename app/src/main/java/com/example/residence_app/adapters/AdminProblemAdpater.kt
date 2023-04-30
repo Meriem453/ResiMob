@@ -22,6 +22,7 @@ import com.example.residence_app.data.AdminProblemData
 import com.example.residence_app.dialogues.DeleteProblemFragment
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.firestore.*
+import org.w3c.dom.Text
 
 class AdminProblemAdpater(val c:Context,val fm:FragmentManager): RecyclerView.Adapter<AdminProblemAdpater.adminprVH>(),DeleteProblemInterface {
 var arr=ArrayList<AdminProblemData>()
@@ -35,6 +36,7 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
     val details=itemView.findViewById<TextView>(R.id.adminproblem_president)
     val delete=itemView.findViewById<ImageView>(R.id.adminproblem_delete)
     val layout=itemView.findViewById<LinearLayout>(R.id.adminproblem_layout)
+    val date=itemView.findViewById<TextView>(R.id.adminproblem_date)
 }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): adminprVH {
@@ -54,6 +56,7 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
            name.text="${arr[position].fname} ${arr[position].lname}"
            president.text=arr[position].president
            details.text=arr[position].details
+           date.text=arr[position].Date
            Glide.with(c).load(arr[position].image).into(img)
            delete.setOnClickListener {
                this@AdminProblemAdpater.position=position

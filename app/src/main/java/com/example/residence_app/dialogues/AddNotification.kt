@@ -87,6 +87,8 @@ class AddNotification : AppCompatDialogFragment() {
                 val title=title.text.toString()
                 val details=details.text.toString()
                 val president=presidents
+                val date=getCurrentDateAndTime()
+                //TODO("add date")
 
 
                     val nid = (0..1000000).random().toString()
@@ -159,7 +161,18 @@ class AddNotification : AppCompatDialogFragment() {
     }
         return builder.create()
     }
+    private fun getCurrentDateAndTime(): String {
+        val c = Calendar.getInstance()
 
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val hour = c.get(Calendar.HOUR_OF_DAY)
+        val minute = c.get(Calendar.MINUTE)
+        return "${hour}:${minute}-${day}/${month}/${year}"
+
+
+    }
     private fun Check(): Boolean {
         var valid = true
         if(title.text.toString()==""){

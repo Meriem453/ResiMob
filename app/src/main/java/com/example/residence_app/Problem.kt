@@ -103,6 +103,9 @@ class Problem : BaseActivity() {
                selected_detail=detail_spinner.text.toString()
            }
 send.setOnClickListener {
+    val date=getCurrentDateAndTime()
+    //TODO("add date")
+
     progress_bar.visibility = View.VISIBLE
     if(Check()){
         var uid = FirebaseAuth.getInstance().currentUser!!.uid
@@ -130,10 +133,23 @@ send.setOnClickListener {
             }
 
         }
-        ProblemData(selected_president,selected_prblm,selected_detail)
+        //ProblemData(selected_president,selected_prblm,selected_detail)
 
     }
 }
+    }
+
+    private fun getCurrentDateAndTime(): String {
+        val c = Calendar.getInstance()
+
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val hour = c.get(Calendar.HOUR_OF_DAY)
+        val minute = c.get(Calendar.MINUTE)
+        return "${hour}:${minute}-${day}/${month}/${year}"
+
+
     }
 
     private fun getPrblmData(adapter: ArrayAdapter<String>){

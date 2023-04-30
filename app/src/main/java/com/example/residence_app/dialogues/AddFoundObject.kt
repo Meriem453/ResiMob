@@ -54,7 +54,10 @@ lateinit var imageUri:Uri
                 val place=place.text.toString()
                 val person = "Founder"
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
-//
+                //TODO("add date")
+                val date:String=getCurrentDateAndTime()
+
+
                 if (imageUri!! != null) {
                     val fileName = uid +"f.jpg"
                     val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
@@ -109,6 +112,19 @@ lateinit var imageUri:Uri
         }
 
         return builder.create()
+
+    }
+
+    private fun getCurrentDateAndTime(): String {
+        val c = Calendar.getInstance()
+
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val hour = c.get(Calendar.HOUR_OF_DAY)
+        val minute = c.get(Calendar.MINUTE)
+        return "${hour}:${minute}-${day}/${month}/${year}"
+
 
     }
 

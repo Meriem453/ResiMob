@@ -5,5 +5,6 @@ import com.example.residence_app.SportDetails
 data class ProblemData(
     val president:String,
     val problem:String,
-    val details: String
+    val details: String,
+    val Date:String
 )

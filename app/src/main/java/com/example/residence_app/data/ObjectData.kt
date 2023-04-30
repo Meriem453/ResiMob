@@ -13,5 +13,6 @@ data class ObjectData(
     val UserFirstName:String?=null,
     val UserLastName:String?=null,
     val UserEmail:String?=null,
-    val oid:String?=null
+    val oid:String?=null,
+    val Date:String?=null
                       )
