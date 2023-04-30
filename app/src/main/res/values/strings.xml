@@ -198,4 +198,14 @@
     <string name="enter_time">Enter a timing</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="day">Day</string>
+    <string name="name">Day</string>
+    <string name="meal">Meal</string>
+    <string name="what_do_you_want_to_edit">What do you want to edit?</string>
+    <string name="type">Type</string>
+    <string name="screens">Screens</string>
+    <string name="select_time">Select time</string>
+    <string name="time_chnage">Time change</string>
+    <string name="annoucement">Annoucement</string>
+    <string name="select_type">Select type</string>
 </resources>

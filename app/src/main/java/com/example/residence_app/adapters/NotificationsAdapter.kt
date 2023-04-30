@@ -78,7 +78,7 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
             time.text= ti
             card.setOnClickListener {  }
             if (data.get(position).isTimeChange){
-                icon.setImageResource(R.drawable.group_130)
+                icon.setImageResource(R.drawable.icon_admin_time)
             }else{
                 icon.setImageResource(R.drawable.group_130__1_)
             }
