@@ -26,6 +26,7 @@ class DeleteObjectFragment(val inter:DeleteObjInterface) : DialogFragment() {
 
         delete.setOnClickListener {
             inter.DeleteObj()
+
             this.dismiss()
         }
         cancel.setOnClickListener {

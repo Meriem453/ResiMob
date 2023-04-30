@@ -14,6 +14,7 @@ import com.example.residence_app.adapters.TimingAdapter
 
 
 class GymBoysTiming : Fragment() {
+    var isAdmin=false
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +28,7 @@ class GymBoysTiming : Fragment() {
     }
 
     private fun initRecyclerView(recycler: RecyclerView) {
-        val adapter= GymTimingAdapter(requireContext())
+        val adapter= GymTimingAdapter(requireContext(),requireActivity(),isAdmin)
         adapter.getGymBoysdata()
         recycler.adapter=adapter
         recycler.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)

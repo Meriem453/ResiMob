@@ -132,7 +132,6 @@ class AddUserActivity :BaseActivity() {
                                                 "email" to sEmail,
                                                 "password" to sPassword,
                                                 "image" to imageUrl,
-                                                "isadmin" to false,
                                                 "room" to sRoom,
 
                                                 )

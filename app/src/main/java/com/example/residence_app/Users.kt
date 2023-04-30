@@ -6,6 +6,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +29,7 @@ class Users : BaseActivity(), RefreshAdapter {
          val add=findViewById<Button>(R.id.users_add)
         rec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.VERTICAL,false)
 
-         adapter=UsersAdapter(baseContext,this)
+         adapter=UsersAdapter(baseContext,this,this)
         adapter.getUsersData()
         rec.adapter=adapter
         rec.addItemDecoration(DividerItemDecoration(baseContext,LinearLayoutManager.VERTICAL))
@@ -57,6 +58,12 @@ add.setOnClickListener {
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Toast.makeText(baseContext,"result",Toast.LENGTH_LONG).show()
+       adapter.getUsersData()
+
+    }
     override fun refresh() {
         sadapter=ArrayAdapter<String>(baseContext,R.layout.dropdown_item, adapter.search_arr)
         search.setAdapter(sadapter)

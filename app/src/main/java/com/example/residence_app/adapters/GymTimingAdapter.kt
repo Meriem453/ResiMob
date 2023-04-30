@@ -1,6 +1,8 @@
 package com.example.residence_app.adapters
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.residence_app.R
+import com.example.residence_app.TimingEditActivity
 import com.example.residence_app.data.AdminFeedbackData
 import com.example.residence_app.data.TimingCardData
 import com.google.firebase.firestore.DocumentChange
@@ -16,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 
-class GymTimingAdapter(var context : Context ) : RecyclerView.Adapter<GymTimingAdapter.ViewHolder>() {
+class GymTimingAdapter(var context : Context ,val activity: Activity,val isAdmin:Boolean) : RecyclerView.Adapter<GymTimingAdapter.ViewHolder>() {
     private var data=ArrayList<TimingCardData>()
     lateinit var db : FirebaseFirestore
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -38,6 +41,20 @@ class GymTimingAdapter(var context : Context ) : RecyclerView.Adapter<GymTimingA
             label2.text=data.get(position).label2
             timing1.text=data.get(position).timing1
             timing2.text=data.get(position).timing2
+            itemView.isEnabled=isAdmin
+            itemView.setOnClickListener {
+
+                val intent= Intent(context, TimingEditActivity::class.java)
+                intent.putExtra("place",context.resources.getString(R.string.restaurant))
+                intent.putExtra("title",data.get(position).title)
+                intent.putExtra("timing1",data.get(position).timing1)
+                intent.putExtra("timing2",data.get(position).timing2)
+                intent.putExtra("label1",data.get(position).label1)
+                intent.putExtra("label2",data.get(position).label2)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+
+                activity.startActivityForResult(intent,12)
+            }
         }
     }
 

@@ -24,6 +24,7 @@ internal class RestaurantTabsAdapter(var c:Context, fm:FragmentManager, var tota
             }
             1 -> {
                val fragment = Restaurant_programme()
+                fragment.isAdmin=isAdmin
                 return fragment
             }else -> return getItem(position)
         }

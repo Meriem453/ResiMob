@@ -13,7 +13,7 @@ import com.example.residence_app.adapters.SportSportsAdapter
 
 
 class Tusday : Fragment() {
-
+var isAdmin=false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,7 +22,7 @@ class Tusday : Fragment() {
 
         val view= inflater.inflate(R.layout.fragment_tusday, container, false)
         val rec= view.findViewById<RecyclerView>(R.id.tusday_rec)
-        val adapter= SportSportsAdapter(requireContext())
+        val adapter= SportSportsAdapter(requireContext(),isAdmin,requireActivity())
         adapter.getData(2)
         rec.adapter=adapter
         rec.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)

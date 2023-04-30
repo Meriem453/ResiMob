@@ -31,6 +31,9 @@ class AddNotification : AppCompatDialogFragment() {
     lateinit var title: TextInputEditText
     lateinit var picture : TextInputEditText
     lateinit var details:TextInputEditText
+    var selected_type=""
+    lateinit var type:AutoCompleteTextView
+
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
 
      var imageUri : Uri? = null
@@ -45,6 +48,7 @@ class AddNotification : AppCompatDialogFragment() {
         title = view?.findViewById<TextInputEditText>(R.id.addNotif_title)!!
         details = view.findViewById<TextInputEditText>(R.id.addNotif_details)
         val president = view.findViewById<AutoCompleteTextView>(R.id.addNotif_president)
+         type=view.findViewById<AutoCompleteTextView>(R.id.addNotif_type)
         picture = view.findViewById<TextInputEditText>(R.id.addNotif_picture)!!
         val submit= view.findViewById<Button>(R.id.addNotif_submit)
         //setup president spinner
@@ -61,6 +65,15 @@ class AddNotification : AppCompatDialogFragment() {
             }
 
         }
+
+        //setup type spinner
+        val types= arrayOf(resources.getString(R.string.time_chnage),resources.getString(R.string.annoucement))
+        type.setAdapter(ArrayAdapter<String>(requireContext(),R.layout.dropdown_item,types))
+        type.setOnItemClickListener { parent, view, position, id ->
+            selected_type=types[position]
+        }
+
+
         picture.setOnClickListener {
             val intent = Intent()
             intent.action = Intent.ACTION_GET_CONTENT
@@ -94,7 +107,8 @@ class AddNotification : AppCompatDialogFragment() {
                                             "image" to imageUrl,
                                             "nid" to nid,
                                             "president" to president,
-                                            "time" to sdf.format(Calendar.getInstance().time).toString()
+                                            "time" to sdf.format(Calendar.getInstance().time).toString(),
+                                            "is time change" to false,
                                         )
                                         db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                                             Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
@@ -154,9 +168,12 @@ class AddNotification : AppCompatDialogFragment() {
         }
         if(details.text.toString().trim()==""){
             details.error=resources.getString(R.string.please_enter_a_text)
-            valid
+            valid=false
         }
-
+        if(type.text.toString().trim()==""){
+            details.error=resources.getString(R.string.select_type)
+            valid=false
+        }
         return valid
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

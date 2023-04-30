@@ -77,14 +77,17 @@ lateinit var imageUri:Uri
                                             "oid" to uid,
                                             "time" to sdf.format(Calendar.getInstance().time).toString()
                                         )
-                                        db.collection("found objects").document(uid).set(fObjectmap).addOnSuccessListener {
-                                            //Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
-                                            //progressBar.visibility = View.GONE
-                                        }.addOnFailureListener {
+                                        db.collection("found objects").document(uid).delete().addOnSuccessListener {
+                                            db.collection("found objects").document(uid).set(fObjectmap).addOnSuccessListener {
+                                                Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
+                                                //progressBar.visibility = View.GONE
+                                            }.addOnFailureListener {
 
-                                            //Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
-                                            //progressBar.visibility = View.GONE
+                                                Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
+                                                //progressBar.visibility = View.GONE
+                                            }
                                         }
+
                                     }
                                 }
                             })

@@ -1,4 +1,5 @@
 package com.example.residence_app.adapters
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -26,10 +27,11 @@ var arr=ArrayList<ObjectData>()
     lateinit var db : FirebaseFirestore
     lateinit var ds : FirebaseStorage
     var position=0
+    lateinit var personnn:String
     inner class ObjVH(itemView: View) : ViewHolder(itemView){
         val title=itemView.findViewById<TextView>(R.id.obj_title)
         val img=itemView.findViewById<ImageView>(R.id.obj_img)
-        val person=itemView.findViewById<TextView>(R.id.obj_person)
+        var person=itemView.findViewById<TextView>(R.id.obj_person)
         val details=itemView.findViewById<TextView>(R.id.obj_details)
         val place=itemView.findViewById<TextView>(R.id.obj_place)
         val name=itemView.findViewById<TextView>(R.id.obj_name)
@@ -51,7 +53,9 @@ var arr=ArrayList<ObjectData>()
        return arr.size
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: ObjVH, position: Int) {
+        personnn= arr[position].Person.toString()
           with(holder){
               title.text=arr[position].Title
               person.text=arr[position].Person
@@ -59,7 +63,8 @@ var arr=ArrayList<ObjectData>()
               place.text=arr[position].Place
               name.text="  "+arr[position].UserFirstName + " " + arr[position].UserLastName
               email.text="  "+arr[position].UserEmail
-              if(arr[position].Person== c.resources.getString(R.string.loser)){
+
+              if(arr[position].Person== "Loser"){
                   img.visibility=View.GONE
               }else{
 
@@ -115,17 +120,18 @@ var arr=ArrayList<ObjectData>()
                 Toast.LENGTH_LONG).show() }
         }
 
+if(personnn=="Loser"){getLoserData()}else{getFonderData()}
 
 
 
-        getFonderData()
-        getLoserData()
+
 
 
 
     }
 
     fun getFonderData(){
+        arr.clear()
         db = FirebaseFirestore.getInstance()
         db.collection("found objects")
             .addSnapshotListener(object : EventListener<QuerySnapshot>{
@@ -152,6 +158,7 @@ var arr=ArrayList<ObjectData>()
     }
 
     fun getLoserData(){
+        arr.clear()
         db = FirebaseFirestore.getInstance()
         db.collection("lost objects")
             .addSnapshotListener(object : EventListener<QuerySnapshot>{

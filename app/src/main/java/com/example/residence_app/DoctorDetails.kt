@@ -18,7 +18,7 @@ class DoctorDetails : BaseActivity(){
         supportActionBar?.title=resources.getString(R.string.doctor)
         supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.blue_button))
 
-        val adapter= TimingAdapter(baseContext)
+        val adapter= TimingAdapter(baseContext,this,intent.getBooleanExtra("isAdmin",false))
         adapter.getDoctorData()
         binding.doctorRec.adapter=adapter
         binding.doctorRec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.VERTICAL,false)

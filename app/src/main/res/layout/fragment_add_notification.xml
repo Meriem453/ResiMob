@@ -6,18 +6,18 @@
     tools:context=".dialogues.AddNotification"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
         android:orientation="vertical"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/sport_white_background"
         >
 
         <TextView
@@ -87,7 +87,32 @@
                 android:textColor="@color/gray"
                 android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="start"
+            android:text="@string/type"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/addNotif_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="none"
+                android:text="@string/type"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
+        </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -153,5 +178,5 @@
             android:fontFamily="@font/poppins_semibold"
             />
     </LinearLayout>
-
+</ScrollView>
 </FrameLayout>

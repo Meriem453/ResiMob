@@ -1,13 +1,17 @@
 package com.example.residence_app.adapters
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.residence_app.R
+import com.example.residence_app.ResraurantProgrammeEditActivity
 import com.example.residence_app.data.AdminFeedbackData
 import com.example.residence_app.data.RestaurantProgrammeCardData
 import com.google.firebase.firestore.DocumentChange
@@ -17,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 
-class RestaurantProgrammeAdapter(var c:Context): RecyclerView.Adapter<RestaurantProgrammeAdapter.programmeVH>() {
+class RestaurantProgrammeAdapter(var c:Context,val isAdmin:Boolean,val activity: Activity): RecyclerView.Adapter<RestaurantProgrammeAdapter.programmeVH>() {
     private var data=ArrayList<RestaurantProgrammeCardData>()
     private lateinit var db : FirebaseFirestore
 
@@ -46,6 +50,20 @@ class RestaurantProgrammeAdapter(var c:Context): RecyclerView.Adapter<Restaurant
             label2.text=data.get(position).label2
             meal1.text=data.get(position).meal1
             meal2.text=data.get(position).meal2
+
+
+            itemView.isEnabled=isAdmin
+            itemView.setOnClickListener {
+                val intent = Intent(c,ResraurantProgrammeEditActivity::class.java)
+                intent.putExtra("title",data.get(position).day)
+                intent.putExtra("label1",data.get(position).label1)
+                intent.putExtra("label2",data.get(position).label2)
+                intent.putExtra("meal1",data.get(position).meal1)
+                intent.putExtra("meal2",data.get(position).meal2)
+                intent.flags=Intent.FLAG_ACTIVITY_NEW_TASK
+                activity.startActivityForResult(intent,13)
+
+            }
         }
     }
 

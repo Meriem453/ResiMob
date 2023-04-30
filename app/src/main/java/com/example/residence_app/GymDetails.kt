@@ -29,7 +29,7 @@ class GymDetails : BaseActivity() {
         tabs.addTab(tabs.newTab().setText(baseContext.resources.getString(R.string.girls)))
         tabs.addTab(tabs.newTab().setText(baseContext.resources.getString(R.string.boys)))
         tabs.tabGravity= TabLayout.GRAVITY_FILL
-        val adapter= GymTabsAdapter(baseContext,supportFragmentManager,tabs.tabCount)
+        val adapter= GymTabsAdapter(baseContext,supportFragmentManager,tabs.tabCount,intent.getBooleanExtra("isAdmin",false))
         viewpager.adapter=adapter
         viewpager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{

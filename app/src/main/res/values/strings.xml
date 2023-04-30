@@ -194,9 +194,8 @@
     <string name="are_you_sure_you_want_to_delet_this_notification">Are you sure you want to delet this notification?</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="logout">Logout</string>
-    <string name="screens">Screens</string>
-    <string name="from">from</string>
-    <string name="to">to\n</string>
-    <string name="what_do_you_want_to_change">what do you want to change</string>
-    <string name="enter_time">enter time</string>
+    <string name="what_do_you_want_to_change">What do you want to change?</string>
+    <string name="enter_time">Enter a timing</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
 </resources>

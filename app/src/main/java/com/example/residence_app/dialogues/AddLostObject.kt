@@ -2,21 +2,20 @@ package com.example.residence_app.dialogues
 
 import android.app.AlertDialog
 import android.app.Dialog
+
+
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.residence_app.R
-import com.example.residence_app.data.ObjectData
-import com.example.residence_app.data.UserInfo
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
 import java.text.SimpleDateFormat
 import java.util.Calendar
+
 
 
 class AddLostObject: AppCompatDialogFragment() {
@@ -54,20 +53,27 @@ lateinit var etitle: TextInputEditText
                                             "oid" to uid,
                                             "time" to sdf.format(Calendar.getInstance().time).toString()
                                         )
-                                        db.collection("lost objects").document(uid).set(lObjectmap).addOnSuccessListener {
+                                        db.collection("lost objects").document(uid).delete().addOnCompleteListener {
+                                            Thread.sleep(1_000)
+
+                                            db.collection("lost objects").document(uid).set(lObjectmap).addOnSuccessListener {
                                             Toast.makeText(requireContext(),resources.getString(R.string.lost_object_submitted),Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
                                             etitle.text?.clear()
                                             edetails.text?.clear()
                                             eplace.text?.clear()
+
                                         }.addOnFailureListener {
                                             etitle.text?.clear()
                                             edetails.text?.clear()
                                             eplace.text?.clear()
                                             Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
-                                        }
+                                        } }
+
+
                                     }
+
                                 }
 
 
@@ -86,5 +92,6 @@ lateinit var etitle: TextInputEditText
                    return true
                }
     }
+
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.residence_app.Interfaces.LogoutInterface
@@ -35,12 +36,13 @@ class HomeAdminActivity : BaseActivity(),LogoutInterface {
         val problem = findViewById<CardView>(R.id.admin_problem)
         val objects=findViewById<CardView>(R.id.admin_obj)
         val notif = findViewById<CardView>(R.id.admin_notif)
+        val time=findViewById<CardView>(R.id.admin_time)
 
         open.setOnClickListener {
             drawer.open()
         }
-        binding.adminTime.setOnClickListener {
-
+        time.setOnClickListener {
+              startActivity(Intent(baseContext,TimeChangeActivity::class.java))
         }
         notif.setOnClickListener {
            startActivity(Intent(baseContext,NotificationAdminActivity::class.java))
@@ -69,6 +71,8 @@ class HomeAdminActivity : BaseActivity(),LogoutInterface {
                     true
                 }
                 R.id.admin_theme -> {
+                    if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO){AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)}
+                    else{AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)}
                     true
                 }
                 R.id.admin_privacy -> {
@@ -79,7 +83,7 @@ class HomeAdminActivity : BaseActivity(),LogoutInterface {
 
                     true
                 }
-                else -> {false}
+                else -> false
             }
 
         }

@@ -9,7 +9,7 @@ import com.example.residence_app.fragments.BathroomGirlsTiming
 import com.example.residence_app.fragments.GymBoysTiming
 import com.example.residence_app.fragments.GymGirlsTiming
 
-class GymTabsAdapter (var c: Context, fm: FragmentManager, var totalTabs:Int):
+class GymTabsAdapter (var c: Context, fm: FragmentManager, var totalTabs:Int,val isAdmin:Boolean):
     FragmentPagerAdapter(fm,
         BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT ) {
     override fun getCount(): Int {
@@ -17,13 +17,18 @@ class GymTabsAdapter (var c: Context, fm: FragmentManager, var totalTabs:Int):
     }
 
     override fun getItem(position: Int): Fragment {
-        return when(position){
+         when(position){
             0 -> {
-                GymGirlsTiming()
+                val fragment = GymGirlsTiming()
+                fragment.isAdmin=isAdmin
+                return fragment
+
             }
             1 -> {
-                GymBoysTiming()
-            }else -> getItem(position)
+                val fragment = GymBoysTiming()
+                fragment.isAdmin=isAdmin
+                return fragment
+            }else -> return getItem(position)
         }
     }
 }
