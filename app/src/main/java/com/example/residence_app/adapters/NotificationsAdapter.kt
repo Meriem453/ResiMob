@@ -77,7 +77,7 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
             info.text = d
             time.text= ti
             card.setOnClickListener {  }
-            if (data.get(position).isTimeChange){
+            if (data.get(position).type == "Time change"){
                 icon.setImageResource(R.drawable.icon_admin_time)
             }else{
                 icon.setImageResource(R.drawable.group_130__1_)
@@ -106,17 +106,15 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
                         return
                     }
 
-                    for (dc: DocumentChange in value?.documentChanges!!){
+                    for (dc:DocumentChange in value?.documentChanges!!){
                         if(dc.getType() == DocumentChange.Type.ADDED){
-                            val title = dc.getDocument().get("title").toString()
-                            val details = dc.getDocument().get("details").toString()
-                            val time = dc.getDocument().get("time").toString()
-                            val image = dc.getDocument().get("image").toString()
-                            val timeChange = true
-                            data.add(NotificationData(title = title, details = details, time = time, isTimeChange = timeChange, image = image))
+                            data.add(dc.getDocument().toObject(NotificationData::class.java))
+
+
                         }
                     }
                     notifyDataSetChanged()
+
                 }
             })
 

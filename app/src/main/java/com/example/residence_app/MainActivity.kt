@@ -107,6 +107,10 @@ class MainActivity : BaseActivity() {
                     R.id.feedback_screen -> {
                         startActivity(Intent(baseContext,FeedbackActivity::class.java))
                     }
+                    R.id.LogOut-> {
+                        FirebaseAuth.getInstance().signOut()
+                        startActivity(Intent(baseContext,LoginActivity::class.java))
+                    }
                 }
                 true
             }

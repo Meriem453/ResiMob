@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -87,8 +88,7 @@ class AddNotification : AppCompatDialogFragment() {
                 val title=title.text.toString()
                 val details=details.text.toString()
                 val president=presidents
-                val date=getCurrentDateAndTime()
-                //TODO("add date")
+                val type : String  = type.text.toString()
 
 
                     val nid = (0..1000000).random().toString()
@@ -110,7 +110,7 @@ class AddNotification : AppCompatDialogFragment() {
                                             "nid" to nid,
                                             "president" to president,
                                             "time" to sdf.format(Calendar.getInstance().time).toString(),
-                                            "is time change" to false,
+                                            "type" to type,
                                         )
                                         db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                                             Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
@@ -135,7 +135,8 @@ class AddNotification : AppCompatDialogFragment() {
                         "image" to null,
                         "nid" to nid,
                         "president" to president,
-                        "time" to sdf.format(Calendar.getInstance().time).toString()
+                        "time" to sdf.format(Calendar.getInstance().time).toString(),
+                        "type" to type
                     )
                     db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                         Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()

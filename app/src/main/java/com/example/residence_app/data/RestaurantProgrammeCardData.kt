@@ -5,5 +5,6 @@ data class RestaurantProgrammeCardData (
     val label1:String?= null,
     val label2:String?= null,
     val meal1:String?= null,
-    val meal2:String?= null
+    val meal2:String?= null,
+    val tid:String?= null
         )
