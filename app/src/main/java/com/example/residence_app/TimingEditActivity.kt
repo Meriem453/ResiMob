@@ -110,21 +110,14 @@ class TimingEditActivity : BaseActivity() {
 
         send.setOnClickListener {
             if(Check()){
-                db = FirebaseFirestore.getInstance()
-                
-                var newTime = mapOf(
-
-                    "title" to title.text.toString(),
-                    "label1" to label1.text.toString(),
-                    "label2" to label2 .text.toString(),
-                    "timing1" to timing1_from.text.toString() + "---" + timing1_to.text.toString(),
-                    "timing2" to timing2_from.text.toString() + "---" + timing2_to.text.toString(),
-
+                sendNewTiming(TimingCardData(
+                    title.text.toString(),
+                     label1.text.toString(),
+                    label2.text.toString(),
+                    "^${timing1_from.text.toString()}--${timing1_to.text.toString()}",
+                    "^${timing2_from.text.toString()}--${timing2_to.text.toString()}"
+                    ),place.text.toString()
                 )
-//                db.collection("restau timing").document(tid.toString()).set(newTime).addOnSuccessListener {
-//                   setResult(RESULT_OK)
-//                }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
-
 
                 finish()
 
@@ -133,7 +126,26 @@ class TimingEditActivity : BaseActivity() {
 
     }
 
+    private fun sendNewTiming(timingCardData: TimingCardData, toString: String) {
 
+        //TODO("send new timing")
+        db = FirebaseFirestore.getInstance()
+
+        var newTime = mapOf(
+
+            "title" to title.text.toString(),
+            "label1" to label1.text.toString(),
+            "label2" to label2 .text.toString(),
+            "timing1" to timing1_from.text.toString() + "---" + timing1_to.text.toString(),
+            "timing2" to timing2_from.text.toString() + "---" + timing2_to.text.toString(),
+
+            )
+//                db.collection("restau timing").document(tid.toString()).set(newTime).addOnSuccessListener {
+//                   setResult(RESULT_OK)
+//                }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
+
+
+    }
 
 
     private fun Check(): Boolean {

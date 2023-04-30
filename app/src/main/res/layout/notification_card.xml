@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/notification_Info"
             android:textColor="@color/gray"
-            android:text="jadhjadjsadjhdsjhdsfjdfshkkgjdsfghdshjfdsajgfdjdsfhgdjdshdskdsfadsfdsfdsaddsdsfshjsdhdshdskdsffdsfdffjfdsjd"
+            android:text="jadhdjdfdsfdffjfdsjd"
             android:textSize="12sp"/>
         <TextView
             android:layout_width="match_parent"
