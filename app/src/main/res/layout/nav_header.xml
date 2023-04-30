@@ -23,7 +23,7 @@
             android:layout_height="62dp">
 
         <ImageView
-            android:id="@+id/image_ID"
+            android:id="@+id/imageNav_ID"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start|center_vertical"
@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:paddingLeft="10dp"
-                android:id="@+id/nme_ID"
+                android:id="@+id/nameNav_ID"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -47,7 +47,7 @@
                 android:text="Yacine Bouedebouz"/>
             <TextView
                 android:layout_width="wrap_content"
-                android:id="@+id/room_ID"
+                android:id="@+id/roomNav_ID"
                 android:paddingLeft="10dp"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"

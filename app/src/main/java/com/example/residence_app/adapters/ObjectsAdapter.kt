@@ -172,7 +172,7 @@ if(personnn=="Loser"){getLoserData()}else{getFonderData()}
                         if(dc.getType() == DocumentChange.Type.ADDED){
                             arr.add(dc.getDocument().toObject(ObjectData::class.java))
 
-
+                            
                         }
                     }
                     notifyDataSetChanged()
