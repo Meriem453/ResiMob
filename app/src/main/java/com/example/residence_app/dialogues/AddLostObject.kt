@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.residence_app.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
@@ -22,6 +24,7 @@ class AddLostObject: AppCompatDialogFragment() {
 lateinit var etitle: TextInputEditText
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
     var db = Firebase.firestore
+    private lateinit var database: DatabaseReference
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         val view= activity?.layoutInflater?.inflate(R.layout.add_lost_object,null)
@@ -37,8 +40,7 @@ lateinit var etitle: TextInputEditText
                 val details=edetails.text.toString()
                 val place=eplace.text.toString()
                 val person = "Loser"
-                //TODO("add date")
-                val date=getCurrentDateAndTime()
+                database = Firebase.database.reference
 
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
 
@@ -55,10 +57,9 @@ lateinit var etitle: TextInputEditText
                                             "oid" to uid,
                                             "time" to sdf.format(Calendar.getInstance().time).toString()
                                         )
-                                        db.collection("lost objects").document(uid).delete().addOnCompleteListener {
-                                            Thread.sleep(1_000)
 
-                                            db.collection("lost objects").document(uid).set(lObjectmap).addOnSuccessListener {
+
+                                            database.child("lost objects").child(uid).setValue(lObjectmap).addOnSuccessListener {
                                             Toast.makeText(requireContext(),resources.getString(R.string.lost_object_submitted),Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
                                             etitle.text?.clear()
@@ -74,7 +75,7 @@ lateinit var etitle: TextInputEditText
                                         } }
 
 
-                                    }
+
 
                                 }
 

@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.*
 import androidx.core.view.get
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
@@ -17,7 +19,7 @@ class FeedbackActivity : BaseActivity() {
     var president =""
 lateinit var progressBar: ProgressBar
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
-
+    private lateinit var database: DatabaseReference
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,8 +75,7 @@ lateinit var progressBar: ProgressBar
                 }
                 progressBar.visibility = View.GONE
             }else{
-                  val date=getCurrentDateAndTime()
-                //TODO("add date")
+                database = Firebase.database.reference
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
                 db.collection("user").document(uid).get().addOnCompleteListener{
                     val feedbackmap = hashMapOf(
@@ -84,10 +85,10 @@ lateinit var progressBar: ProgressBar
                         "president" to president,
                         "description" to description,
                         "image" to it.result!!.data?.getValue("image").toString().trim(),
-                        "fid" to it.result!!.data?.getValue("uid").toString().trim(),
+                        "fid" to uid,
                         "time" to sdf.format(Calendar.getInstance().time).toString()
                         )
-                    db.collection("feedback").document(uid).set(feedbackmap).addOnSuccessListener {
+                    database.child("feedbacks").child(uid).setValue(feedbackmap).addOnSuccessListener {
                         Toast.makeText(this, resources.getString(R.string.added_succesfully), Toast.LENGTH_SHORT).show()
                         etTitle.text.clear()
                         etDescription.text.clear()

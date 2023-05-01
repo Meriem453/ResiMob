@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -29,7 +31,9 @@ lateinit var title: TextInputEditText
 lateinit var picture : TextInputEditText
 lateinit var imageUri:Uri
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
+
     var db = Firebase.firestore
+    private lateinit var database: DatabaseReference
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         val view= activity?.layoutInflater?.inflate(R.layout.add_found_object,null)
@@ -54,8 +58,7 @@ lateinit var imageUri:Uri
                 val place=place.text.toString()
                 val person = "Founder"
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
-                //TODO("add date")
-                val date:String=getCurrentDateAndTime()
+                database = Firebase.database.reference
 
 
                 if (imageUri!! != null) {
@@ -80,9 +83,9 @@ lateinit var imageUri:Uri
                                             "oid" to uid,
                                             "time" to sdf.format(Calendar.getInstance().time).toString()
                                         )
-                                        db.collection("found objects").document(uid).delete().addOnSuccessListener {
-                                            db.collection("found objects").document(uid).set(fObjectmap).addOnSuccessListener {
-                                                Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
+
+                                        database.child("found objects").child(uid).setValue(fObjectmap).addOnSuccessListener {
+                                                //Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
                                                 //progressBar.visibility = View.GONE
                                             }.addOnFailureListener {
 
@@ -91,7 +94,7 @@ lateinit var imageUri:Uri
                                             }
                                         }
 
-                                    }
+
                                 }
                             })
 

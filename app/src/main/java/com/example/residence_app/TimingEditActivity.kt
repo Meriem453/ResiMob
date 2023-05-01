@@ -1,5 +1,6 @@
 package com.example.residence_app
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -133,6 +134,7 @@ class TimingEditActivity : BaseActivity() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun sendNewTiming(timingCardData: TimingCardData, place: String) {
 
 

@@ -17,8 +17,14 @@ import androidx.transition.TransitionManager
 import com.bumptech.glide.Glide
 import com.example.residence_app.Interfaces.DeleteObjInterface
 import com.example.residence_app.R
+import com.example.residence_app.data.NotificationData
 import com.example.residence_app.data.ObjectData
 import com.example.residence_app.dialogues.DeleteObjectFragment
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
 import org.w3c.dom.Text
@@ -27,6 +33,7 @@ class ObjectsAdapter(var c:Context,val request:Int,val fm:FragmentManager) : Rec
 var arr=ArrayList<ObjectData>()
     lateinit var db : FirebaseFirestore
     lateinit var ds : FirebaseStorage
+    private lateinit var database: DatabaseReference
     var position=0
     lateinit var personnn:String
     inner class ObjVH(itemView: View) : ViewHolder(itemView){
@@ -131,53 +138,49 @@ if(personnn=="Loser"){getLoserData()}else{getFonderData()}
 
     fun getFonderData(){
         arr.clear()
-        db = FirebaseFirestore.getInstance()
-        db.collection("found objects")
-            .addSnapshotListener(object : EventListener<QuerySnapshot>{
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if(error != null){
-
-                        Log.e("Data base error!",error.message.toString())
-                        return
-                    }
-
-                    for (dc:DocumentChange in value?.documentChanges!!){
-                        if(dc.getType() == DocumentChange.Type.ADDED){
-                            arr.add(dc.getDocument().toObject(ObjectData::class.java))
-
-
-                        }
+        database = FirebaseDatabase.getInstance().getReference("found objects")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (objectSnapshot in snapshot.children) {
+                        val fObject = objectSnapshot.getValue(ObjectData::class.java)
+                        arr.add(fObject!!)
                     }
                     notifyDataSetChanged()
 
                 }
-            })
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("Data base error!", error.message.toString())
+                return
+            }
+        })
 
 
     }
 
     fun getLoserData(){
         arr.clear()
-        db = FirebaseFirestore.getInstance()
-        db.collection("lost objects")
-            .addSnapshotListener(object : EventListener<QuerySnapshot>{
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if(error != null){
+        database = FirebaseDatabase.getInstance().getReference("lost objects")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (objectSnapshot in snapshot.children) {
+                        val lObject = objectSnapshot.getValue(ObjectData::class.java)
 
-                        Log.e("Data base error!",error.message.toString())
-                        return
-                    }
-
-                    for (dc:DocumentChange in value?.documentChanges!!){
-                        if(dc.getType() == DocumentChange.Type.ADDED){
-                            arr.add(dc.getDocument().toObject(ObjectData::class.java))
-
-                            
-                        }
+                        arr.add(lObject!!)
                     }
                     notifyDataSetChanged()
+
                 }
-            })
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("Data base error!", error.message.toString())
+                return
+            }
+        })
 
     }
 

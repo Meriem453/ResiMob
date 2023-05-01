@@ -20,7 +20,10 @@ import com.example.residence_app.R
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import java.text.SimpleDateFormat
@@ -36,9 +39,10 @@ class AddNotification : AppCompatDialogFragment() {
     lateinit var type:AutoCompleteTextView
 
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyymmddhhmmss")
 
      var imageUri : Uri? = null
-    lateinit var db : FirebaseFirestore
+    private lateinit var database: DatabaseReference
     var presidents=""
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -84,14 +88,16 @@ class AddNotification : AppCompatDialogFragment() {
 
         submit?.setOnClickListener {
             if (Check()){
-                db = FirebaseFirestore.getInstance()
+
+                database = Firebase.database.reference
                 val title=title.text.toString()
                 val details=details.text.toString()
                 val president=presidents
                 val type : String  = type.text.toString()
+                val nid = sdfid.format(Calendar.getInstance().time).toString()
+                database = Firebase.database.reference
 
 
-                    val nid = (0..1000000).random().toString()
 
                 if (imageUri != null) {
                     val fileName = nid +".jpg"
@@ -112,7 +118,7 @@ class AddNotification : AppCompatDialogFragment() {
                                             "time" to sdf.format(Calendar.getInstance().time).toString(),
                                             "type" to type,
                                         )
-                                        db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
+                                    database.child("notifications").child(nid).setValue(notificationMap).addOnSuccessListener {
                                             Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
                                             this.dismiss()
@@ -138,8 +144,8 @@ class AddNotification : AppCompatDialogFragment() {
                         "time" to sdf.format(Calendar.getInstance().time).toString(),
                         "type" to type
                     )
-                    db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
-                        Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
+                    database.child("notifications").child(nid).setValue(notificationMap).addOnSuccessListener {
+                        //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
                         //progressBar.visibility = View.GONE
                         this.dismiss()
                     }.addOnFailureListener {
