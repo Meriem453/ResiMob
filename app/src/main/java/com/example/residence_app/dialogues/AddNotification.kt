@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,10 +19,7 @@ import com.example.residence_app.R
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import java.text.SimpleDateFormat
@@ -42,7 +38,7 @@ class AddNotification : AppCompatDialogFragment() {
     private val sdfid = SimpleDateFormat("yyyymmddhhmmss")
 
      var imageUri : Uri? = null
-    private lateinit var database: DatabaseReference
+    lateinit var db : FirebaseFirestore
     var presidents=""
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -88,16 +84,14 @@ class AddNotification : AppCompatDialogFragment() {
 
         submit?.setOnClickListener {
             if (Check()){
-
-                database = Firebase.database.reference
+                db = FirebaseFirestore.getInstance()
                 val title=title.text.toString()
                 val details=details.text.toString()
                 val president=presidents
-                val type : String  = type.text.toString()
-                val nid = sdfid.format(Calendar.getInstance().time).toString()
-                database = Firebase.database.reference
 
 
+
+                    val nid = sdfid.format(Calendar.getInstance().time).toString()
 
                 if (imageUri != null) {
                     val fileName = nid +".jpg"
@@ -116,15 +110,15 @@ class AddNotification : AppCompatDialogFragment() {
                                             "nid" to nid,
                                             "president" to president,
                                             "time" to sdf.format(Calendar.getInstance().time).toString(),
-                                            "type" to type,
+                                            "is time change" to false,
                                         )
-                                    database.child("notifications").child(nid).setValue(notificationMap).addOnSuccessListener {
-                                            Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
+                                        db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
+                                            //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
                                             this.dismiss()
                                         }.addOnFailureListener {
 
-                                            Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
+                                            //Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
                                         }
                                     }
@@ -141,11 +135,10 @@ class AddNotification : AppCompatDialogFragment() {
                         "image" to null,
                         "nid" to nid,
                         "president" to president,
-                        "time" to sdf.format(Calendar.getInstance().time).toString(),
-                        "type" to type
+                        "time" to sdf.format(Calendar.getInstance().time).toString()
                     )
-                    database.child("notifications").child(nid).setValue(notificationMap).addOnSuccessListener {
-                        //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
+                    db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
+                        Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
                         //progressBar.visibility = View.GONE
                         this.dismiss()
                     }.addOnFailureListener {

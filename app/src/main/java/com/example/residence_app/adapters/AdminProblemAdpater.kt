@@ -19,22 +19,14 @@ import com.example.residence_app.Interfaces.DeleteProblemInterface
 import com.example.residence_app.R
 import com.example.residence_app.data.AdminFeedbackData
 import com.example.residence_app.data.AdminProblemData
-import com.example.residence_app.data.NotificationData
-import com.example.residence_app.data.ProblemData
 import com.example.residence_app.dialogues.DeleteProblemFragment
 import com.google.android.material.imageview.ShapeableImageView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.*
 import org.w3c.dom.Text
 
 class AdminProblemAdpater(val c:Context,val fm:FragmentManager): RecyclerView.Adapter<AdminProblemAdpater.adminprVH>(),DeleteProblemInterface {
 var arr=ArrayList<AdminProblemData>()
-
-    private lateinit var database: DatabaseReference
+    lateinit var db : FirebaseFirestore
     var position=0
 inner class adminprVH(itemView: View): ViewHolder(itemView){
     val img=itemView.findViewById<ShapeableImageView>(R.id.adminproblem_img)
@@ -85,31 +77,33 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
     }
     fun getAdminProblemData(){
         arr.clear()
-        database = FirebaseDatabase.getInstance().getReference("problems")
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for (problemSnapshot in snapshot.children){
-                        val problem = problemSnapshot.getValue(AdminProblemData::class.java)
-                        arr.add(problem!!)
+        db = FirebaseFirestore.getInstance()
+        db.collection("problem")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if(error != null){
+
+                        Log.e("Data base error!",error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!){
+                        if(dc.getType() == DocumentChange.Type.ADDED){
+                            arr.add(dc.getDocument().toObject(AdminProblemData::class.java))
+
+
+                        }
                     }
                     notifyDataSetChanged()
-
                 }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("Data base error!",error.message.toString())
-                return
-            }
-        })
+            })
 //        arr.add(AdminProblemData("Resto","Meriem","Zemane",null,"Khoufach","paint"))
 //
 //        notifyDataSetChanged()
     }
     fun DeleteProblem(problem:AdminProblemData){
-        val pid =problem.pid.toString()
-        database.child("problems").child(pid).removeValue().addOnSuccessListener{Toast.makeText(c,"problem deleted",Toast.LENGTH_LONG).show()  }.addOnFailureListener { Toast.makeText(c,"Error!",Toast.LENGTH_LONG).show() }
+        val fid =problem.pid.toString()
+        db.collection("problem").document(fid).delete().addOnSuccessListener{Toast.makeText(c,"problem deleted",Toast.LENGTH_LONG).show()  }.addOnFailureListener { Toast.makeText(c,"Error!",Toast.LENGTH_LONG).show() }
 
 
 

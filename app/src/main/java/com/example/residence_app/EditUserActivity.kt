@@ -26,8 +26,6 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -53,7 +51,6 @@ class EditUserActivity : BaseActivity(), DeleteUserInterface {
      lateinit var db : FirebaseFirestore
      lateinit var auth : FirebaseAuth
      lateinit var ds : FirebaseStorage
-    private lateinit var database: DatabaseReference
 
 
 
@@ -231,15 +228,14 @@ fun Check():Boolean{
     override fun deleteUser() {
 
         val uid = user.uid.toString()
-        database = Firebase.database.reference
 
                 db = FirebaseFirestore.getInstance()
                 ds = FirebaseStorage.getInstance()
                 db.collection("user").document(uid).delete().addOnCompleteListener {
                     ds.reference.child("images/$uid.jpg").delete().addOnCompleteListener { ds.reference.child("images/$uid"+"f.jpg").delete()
                         ds.reference.child("images/$uid"+"l.jpg").delete().addOnCompleteListener {
-                            database.child("problems").child(uid).removeValue().addOnCompleteListener { database.child("found objects").child(uid).removeValue()
-                                database.child("feedbacks").child(uid).removeValue().addOnCompleteListener { database.child("lost objects").child(uid).removeValue()
+                            db.collection("found objects").document(uid).delete().addOnCompleteListener { db.collection("lost objects").document(uid).delete()
+                                db.collection("feedback").document(uid).delete().addOnCompleteListener { db.collection("problem").document(uid).delete()
                                     .addOnCompleteListener {
                                         Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show()
                                         setResult(RESULT_OK)

@@ -13,8 +13,6 @@ import android.widget.Toast
 import com.example.residence_app.data.ProblemData
 import com.example.residence_app.databinding.ActivityProblemBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
@@ -35,7 +33,6 @@ class Problem : BaseActivity() {
     lateinit var detailsAdapter:ArrayAdapter<String>
     lateinit var progress_bar:ProgressBar
     var db = Firebase.firestore
-    private lateinit var database: DatabaseReference
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,11 +103,11 @@ class Problem : BaseActivity() {
                selected_detail=detail_spinner.text.toString()
            }
 send.setOnClickListener {
+    val date=getCurrentDateAndTime()
+    //TODO("add date")
 
-    database = Firebase.database.reference
     progress_bar.visibility = View.VISIBLE
     if(Check()){
-
         var uid = FirebaseAuth.getInstance().currentUser!!.uid
         db.collection("user").document(uid).get().addOnCompleteListener{
             val problemmap = hashMapOf(
@@ -120,10 +117,10 @@ send.setOnClickListener {
                 "president" to selected_president,
                 "details" to selected_detail,
                 "image" to it.result!!.data?.getValue("image").toString().trim(),
-                "pid" to uid,
+                "pid" to it.result!!.data?.getValue("uid").toString().trim(),
                 "time" to sdf.format(Calendar.getInstance().time).toString()
             )
-            database.child("problems").child(uid).setValue(problemmap).addOnSuccessListener {
+            db.collection("problem").document(uid).set(problemmap).addOnSuccessListener {
 
 
                 progress_bar.visibility = View.GONE
