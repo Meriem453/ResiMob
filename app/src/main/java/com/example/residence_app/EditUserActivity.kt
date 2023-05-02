@@ -51,6 +51,7 @@ class EditUserActivity : BaseActivity(), DeleteUserInterface {
      lateinit var db : FirebaseFirestore
      lateinit var auth : FirebaseAuth
      lateinit var ds : FirebaseStorage
+     var position:Int=0
 
 
 
@@ -74,7 +75,7 @@ class EditUserActivity : BaseActivity(), DeleteUserInterface {
         set=findViewById(R.id.editUser_set)
         vb=findViewById(R.id.vb)
 
-
+          position=intent.getIntExtra("position",0)
 
 
 
@@ -150,11 +151,6 @@ if(value){
     }
 fun Check():Boolean{
     var valid = true
-    if(uri==null){
-        Toast.makeText(baseContext,resources.getString(R.string.please_add_an_image),Toast.LENGTH_LONG).show()
-        valid=false
-
-    }
 
     if(fname.text.toString().trim()==""){
         fname.error=resources.getString(R.string.please_enter_a_text)
@@ -238,7 +234,6 @@ fun Check():Boolean{
                                 db.collection("feedback").document(uid).delete().addOnCompleteListener { db.collection("problem").document(uid).delete()
                                     .addOnCompleteListener {
                                         Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show()
-                                        setResult(RESULT_OK)
                                         finish() }
                                 }
                             }
@@ -251,6 +246,7 @@ fun Check():Boolean{
                 }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
 
          //UsersAdapter.Refresh(UsersAdapter(baseContext,null))
+                  UsersAdapter.arr.remove(user)
 
 
     }

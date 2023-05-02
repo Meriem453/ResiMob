@@ -154,6 +154,8 @@ if(personnn=="Loser"){getLoserData()}else{getFonderData()}
             })
 
 
+//arr.sortedWith(compareBy({it.Sort}))
+        //notifyDataSetChanged()
     }
 
     fun getLoserData(){

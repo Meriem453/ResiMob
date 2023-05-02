@@ -1,6 +1,6 @@
 package com.example.residence_app.adapters
 
-import android.app.Activity
+
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
@@ -18,13 +18,15 @@ import com.example.residence_app.Interfaces.RefreshAdapter
 import com.example.residence_app.data.UserInfo
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.firestore.*
-import com.google.firebase.firestore.auth.User
 import java.io.Serializable
 
-class UsersAdapter(var c:Context,val refresh:RefreshAdapter?,val activity: Activity): RecyclerView.Adapter<UsersAdapter.usersVH>(),Serializable {
+class UsersAdapter(var c:Context,val refresh:RefreshAdapter?): RecyclerView.Adapter<UsersAdapter.usersVH>(),Serializable {
     lateinit var db : FirebaseFirestore
-      var arr= ArrayList<UserInfo>()
+
       var search_arr= emptyList<String>()
+    companion object {
+        var arr=ArrayList<UserInfo>()
+    }
     inner class usersVH(itemView: View) : ViewHolder(itemView){
         val img=itemView.findViewById<ShapeableImageView>(R.id.u_img)
         val name=itemView.findViewById<TextView>(R.id.u_fullname)
@@ -51,50 +53,43 @@ class UsersAdapter(var c:Context,val refresh:RefreshAdapter?,val activity: Activ
             itemView.setOnClickListener {
                val intent=Intent(c,EditUserActivity::class.java)
                 intent.putExtra("current_user",arr[position])
-
+                intent.putExtra("user_position",position)
                 intent.flags = FLAG_ACTIVITY_NEW_TASK
-                activity.startActivityForResult(intent,42)
+                c.startActivity(intent)
 
 
             }
         }
 
     }
+init {
+    arr.clear()
+    db = FirebaseFirestore.getInstance()
+    db.collection("user")
+        .addSnapshotListener(object : EventListener<QuerySnapshot> {
+            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                if(error != null){
 
-    fun getUsersData(){
-         arr.clear()
-        db = FirebaseFirestore.getInstance()
-        db.collection("user")
-            .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if(error != null){
-
-                        Log.e("Data base error!",error.message.toString())
-                        return
-                    }
-
-                    for (dc: DocumentChange in value?.documentChanges!!){
-                        if(dc.getType() == DocumentChange.Type.ADDED){
-                            val user = dc.getDocument().toObject(UserInfo::class.java)
-                            arr.add(user)
-                            search_arr=search_arr + "${user.fname} ${user.lname}"
-
-
-                        }
-
-                    }
-                    refresh?.refresh()
-                    notifyDataSetChanged()
+                    Log.e("Data base error!",error.message.toString())
+                    return
                 }
-            })
 
+                for (dc: DocumentChange in value?.documentChanges!!){
+                    if(dc.getType() == DocumentChange.Type.ADDED){
+                        val user = dc.getDocument().toObject(UserInfo::class.java)
+                        arr.add(user)
+                        search_arr=search_arr + "${user.fname} ${user.lname}"
 
-
-
-
-    }
-companion object{
-    fun Refresh(adapter:UsersAdapter)=adapter.getUsersData()
+                    }
+                }
+                refresh?.refresh()
+                notifyDataSetChanged()
+            }
+        })
 }
 
+
+
 }
+
+

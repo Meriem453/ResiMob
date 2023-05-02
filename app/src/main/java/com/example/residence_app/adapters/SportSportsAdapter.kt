@@ -63,6 +63,7 @@ class SportSportsAdapter (var c :Context,val isAdmin:Boolean,val activity:Activi
               intent.putExtra("sport",arr[position].sport)
               intent.putExtra("kind",arr[position].kind)
               intent.putExtra("gender",arr[position].gender)
+              intent.putExtra("tid",arr[position].tid)
               intent.flags=Intent.FLAG_ACTIVITY_NEW_TASK
               activity.startActivityForResult(intent,14)
 

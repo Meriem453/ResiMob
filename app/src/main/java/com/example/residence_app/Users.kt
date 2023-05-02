@@ -29,15 +29,15 @@ class Users : BaseActivity(), RefreshAdapter {
          val add=findViewById<Button>(R.id.users_add)
         rec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.VERTICAL,false)
 
-         adapter=UsersAdapter(baseContext,this,this)
-        adapter.getUsersData()
+         adapter=UsersAdapter(baseContext,this)
+        //adapter.getUsersData()
         rec.adapter=adapter
         rec.addItemDecoration(DividerItemDecoration(baseContext,LinearLayoutManager.VERTICAL))
        sadapter = ArrayAdapter<String>(baseContext,R.layout.dropdown_item, adapter.search_arr)
         search.setAdapter(sadapter)
         search.setOnItemClickListener(
             AdapterView.OnItemClickListener { parent, view, position, id ->
-               for (i in adapter.arr){
+               for (i in UsersAdapter.arr){
                    if("${i.fname} ${i.lname}"==adapter.search_arr[position]){
                        val intent= Intent(baseContext,EditUserActivity::class.java)
                        intent.putExtra("current_user",i)
@@ -61,7 +61,7 @@ add.setOnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Toast.makeText(baseContext,"result",Toast.LENGTH_LONG).show()
-       adapter.getUsersData()
+       //adapter.getUsersData()
 
     }
     override fun refresh() {

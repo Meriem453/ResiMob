@@ -14,6 +14,7 @@ class ResraurantProgrammeEditActivity : BaseActivity() {
     lateinit var meal1:TextInputEditText
     lateinit var meal2:TextInputEditText
     lateinit var set:Button
+    var tid=""
 
 
 
@@ -35,6 +36,7 @@ class ResraurantProgrammeEditActivity : BaseActivity() {
         label2.setText(intent.getStringExtra("label2"))
         meal1.setText(intent.getStringExtra("meal1"))
         meal2.setText(intent.getStringExtra("meal2"))
+        tid=intent.getStringExtra("tid").toString()
 
         set.setOnClickListener {
             if(Check()){

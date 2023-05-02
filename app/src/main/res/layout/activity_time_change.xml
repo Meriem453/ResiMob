@@ -60,9 +60,12 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxHeight="58dp"
+                    android:maxWidth="58dp"
                     android:layout_weight="2"
+                    android:layout_gravity="center"
                     app:srcCompat="@drawable/__icon__food_store_bold_" />
 
                 <TextView
@@ -95,9 +98,12 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:maxHeight="58dp"
+                    android:maxWidth="58dp"
+                    android:layout_gravity="center"
                     app:srcCompat="@drawable/__icon__doctor_" />
 
                 <TextView
@@ -130,9 +136,12 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:maxHeight="58dp"
+                    android:maxWidth="58dp"
+                    android:layout_gravity="center"
                     app:srcCompat="@drawable/icon_gym" />
 
                 <TextView
@@ -165,9 +174,12 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:maxHeight="58dp"
+                    android:maxWidth="58dp"
+                    android:layout_gravity="center"
                     app:srcCompat="@drawable/icon_admin" />
 
                 <TextView
@@ -200,9 +212,12 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:maxHeight="58dp"
+                    android:maxWidth="58dp"
+                    android:layout_gravity="center"
                     app:srcCompat="@drawable/icon_sport" />
 
                 <TextView
@@ -235,9 +250,12 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:maxHeight="58dp"
+                    android:maxWidth="58dp"
+                    android:layout_gravity="center"
                     app:srcCompat="@drawable/icon_bathroom" />
 
                 <TextView

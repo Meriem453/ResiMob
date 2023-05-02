@@ -14,7 +14,7 @@ class ProblemAdminAcivity : BaseActivity() {
 
         val rec=findViewById<RecyclerView>(R.id.admin_problem_rec)
         val adapter= AdminProblemAdpater(baseContext,supportFragmentManager)
-        adapter.getAdminProblemData()
+
         rec.adapter=adapter
         rec.layoutManager= LinearLayoutManager(baseContext, RecyclerView.VERTICAL,false)
         //add in top

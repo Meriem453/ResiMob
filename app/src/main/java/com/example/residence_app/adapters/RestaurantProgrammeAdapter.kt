@@ -60,6 +60,7 @@ class RestaurantProgrammeAdapter(var c:Context,val isAdmin:Boolean,val activity:
                 intent.putExtra("label2",data.get(position).label2)
                 intent.putExtra("meal1",data.get(position).meal1)
                 intent.putExtra("meal2",data.get(position).meal2)
+                intent.putExtra("tid",data.get(position).tid)
                 intent.flags=Intent.FLAG_ACTIVITY_NEW_TASK
                 activity.startActivityForResult(intent,13)
 

@@ -104,9 +104,6 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
     fun DeleteProblem(problem:AdminProblemData){
         val fid =problem.pid.toString()
         db.collection("problem").document(fid).delete().addOnSuccessListener{Toast.makeText(c,"problem deleted",Toast.LENGTH_LONG).show()  }.addOnFailureListener { Toast.makeText(c,"Error!",Toast.LENGTH_LONG).show() }
-
-
-
         //code here
 
         getAdminProblemData()

@@ -24,6 +24,7 @@ class SportEditActivity : AppCompatActivity() {
     var selected_sport=""
     var selected_kind=""
     var selected_gender=""
+    lateinit var tid:String
 
 
 
@@ -41,6 +42,7 @@ class SportEditActivity : AppCompatActivity() {
         time_to=findViewById(R.id.to_spinner)
         set=findViewById(R.id.set_spinner)
 
+        tid= intent.getStringExtra("tid").toString()
 
         val sports= arrayOf(resources.getString(R.string.football),resources.getString(R.string.volleyball),resources.getString(R.string.basketball))
         val genders= arrayOf(resources.getString(R.string.girls),resources.getString(R.string.boys))
@@ -126,7 +128,7 @@ class SportEditActivity : AppCompatActivity() {
         }
 
     private fun sendNewSport(sportData: SportData) {
-
+//TODO("send new sport")
     }
 
     private fun Check(): Boolean {
