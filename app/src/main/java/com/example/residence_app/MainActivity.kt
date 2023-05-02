@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 
 import com.example.residence_app.fragments.HomeFragment
 import com.example.residence_app.fragments.NotificationsFragment
+import com.example.residence_app.fragments.Object
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -59,7 +60,7 @@ class MainActivity : BaseActivity() {
                     true
                 }
                 R.id.lost_screen -> {
-
+                    Object.c=baseContext
                      val fragment=com.example.residence_app.fragments.Object()
                     loadFragment(fragment)
                     true

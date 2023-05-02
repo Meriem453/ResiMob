@@ -2,6 +2,7 @@ package com.example.residence_app.dialogues
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialogFragment
+import com.example.residence_app.Interfaces.AddObjectInterface
 import com.example.residence_app.R
 import com.example.residence_app.data.ObjectData
 import com.example.residence_app.data.UserInfo
@@ -24,10 +26,12 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 
 
-class AddFoundObject: AppCompatDialogFragment() {
+class AddFoundObject(val c:Context,val refresh:AddObjectInterface): AppCompatDialogFragment() {
 lateinit var title: TextInputEditText
 lateinit var picture : TextInputEditText
 lateinit var imageUri:Uri
+
+
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
     var db = Firebase.firestore
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -82,11 +86,11 @@ lateinit var imageUri:Uri
                                         )
                                         db.collection("found objects").document(uid).delete().addOnSuccessListener {
                                             db.collection("found objects").document(uid).set(fObjectmap).addOnSuccessListener {
-                                                Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(c,resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
                                                 //progressBar.visibility = View.GONE
                                             }.addOnFailureListener {
 
-                                                Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(c,"Failed!",Toast.LENGTH_SHORT).show()
                                                 //progressBar.visibility = View.GONE
                                             }
                                         }
@@ -101,7 +105,7 @@ lateinit var imageUri:Uri
                 }
 
 
-                Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(),resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
 
                 //ObjectData(title,person,imageUri,place,details,"Zemane","Meriem","m_zemane@estin.dz")
 
@@ -109,6 +113,7 @@ lateinit var imageUri:Uri
                 this.dismiss()
 
             }
+            refresh.addObject()
         }
 
         return builder.create()

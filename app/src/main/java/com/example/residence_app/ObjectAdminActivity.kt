@@ -24,7 +24,7 @@ supportActionBar?.hide()
     fun setupVp(){
         tabs.addTab(tabs.newTab().setText(resources.getString(R.string.found_objects)))
         tabs.addTab(tabs.newTab().setText(resources.getString(R.string.lost_objects)))
-        adapter= ObjectsTabsAdapter(supportFragmentManager,FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,0)
+        adapter= ObjectsTabsAdapter(supportFragmentManager,FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,0,baseContext)
         vp.adapter=adapter
 
 

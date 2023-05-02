@@ -2,12 +2,14 @@ package com.example.residence_app.dialogues
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 
 
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialogFragment
+import com.example.residence_app.Interfaces.AddObjectInterface
 import com.example.residence_app.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -18,8 +20,9 @@ import java.util.Calendar
 
 
 
-class AddLostObject: AppCompatDialogFragment() {
+class AddLostObject(val c:Context,val refresh:AddObjectInterface): AppCompatDialogFragment() {
 lateinit var etitle: TextInputEditText
+
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
     var db = Firebase.firestore
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -59,7 +62,7 @@ lateinit var etitle: TextInputEditText
                                             Thread.sleep(1_000)
 
                                             db.collection("lost objects").document(uid).set(lObjectmap).addOnSuccessListener {
-                                            Toast.makeText(requireContext(),resources.getString(R.string.lost_object_submitted),Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(c,resources.getString(R.string.lost_object_submitted),Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
                                             etitle.text?.clear()
                                             edetails.text?.clear()
@@ -69,16 +72,13 @@ lateinit var etitle: TextInputEditText
                                             etitle.text?.clear()
                                             edetails.text?.clear()
                                             eplace.text?.clear()
-                                            Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(c,"Failed!",Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
                                         } }
-
-
                                     }
-
                                 }
 
-
+refresh.addObject()
 
         }
 

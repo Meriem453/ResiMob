@@ -20,6 +20,9 @@ class Object : Fragment() {
 lateinit var vp: ViewPager
 lateinit var adapter: ObjectsTabsAdapter
 lateinit var tabs:TabLayout
+companion object {
+    lateinit var c:Context
+}
 
 
     override fun onCreateView(
@@ -38,7 +41,7 @@ return view
 fun setupVp(){
     tabs.addTab(tabs.newTab().setText(resources.getString(R.string.found_objects)))
     tabs.addTab(tabs.newTab().setText(resources.getString(R.string.lost_objects)))
-    adapter=ObjectsTabsAdapter(childFragmentManager,FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,1)
+    adapter=ObjectsTabsAdapter(childFragmentManager,FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,1,c)
     vp.adapter=adapter
 
     vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
