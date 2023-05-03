@@ -1,6 +1,5 @@
 package com.example.residence_app
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,8 +11,6 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.firestore.FirebaseFirestore
-import java.text.SimpleDateFormat
-import java.util.Calendar
 
 
 class TimingEditActivity : BaseActivity() {
@@ -26,9 +23,7 @@ class TimingEditActivity : BaseActivity() {
     lateinit var timing2_to:TextInputEditText
     lateinit var title:TextInputEditText
     lateinit var send:Button
-     lateinit var tid:String
     lateinit var db : FirebaseFirestore
-    private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +44,6 @@ class TimingEditActivity : BaseActivity() {
         place.text=intent.getStringExtra("place")
         label1.text=intent.getStringExtra("label1")
         label2.text=intent.getStringExtra("label2")
-        tid= intent.getStringExtra("tid").toString()
-
 
 
 
@@ -117,15 +110,21 @@ class TimingEditActivity : BaseActivity() {
 
         send.setOnClickListener {
             if(Check()){
-                sendNewTiming(TimingCardData(
-                    title.text.toString(),
-                     label1.text.toString(),
-                    label2.text.toString(),
-                    "^${timing1_from.text.toString()}--${timing1_to.text.toString()}",
-                    "^${timing2_from.text.toString()}--${timing2_to.text.toString()}",
-                    tid
-                    ),place.text.toString()
+                db = FirebaseFirestore.getInstance()
+
+                var newTime = mapOf(
+
+                    "title" to title.text.toString(),
+                    "label1" to label1.text.toString(),
+                    "label2" to label2 .text.toString(),
+                    "timing1" to timing1_from.text.toString() + "---" + timing1_to.text.toString(),
+                    "timing2" to timing2_from.text.toString() + "---" + timing2_to.text.toString(),
+
                 )
+//                db.collection("restau timing").document(tid.toString()).set(newTime).addOnSuccessListener {
+//                   setResult(RESULT_OK)
+//                }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
+
 
                 finish()
 
@@ -134,29 +133,7 @@ class TimingEditActivity : BaseActivity() {
 
     }
 
-    @SuppressLint("SuspiciousIndentation")
-    private fun sendNewTiming(timingCardData: TimingCardData, place: String) {
 
-
-        db = FirebaseFirestore.getInstance()
-
-        var newTime = mapOf(
-
-            "title" to timingCardData.title,
-            "label1" to timingCardData.label1,
-            "label2" to timingCardData.label2,
-            "timing1" to timingCardData.timing1,
-            "timing2" to timingCardData.timing2,
-            "tid" to timingCardData.tid.toString(),
-            "time" to sdf.format(Calendar.getInstance().time).toString()
-
-            )
-                db.collection("restau timing").document(timingCardData.tid.toString()).set(newTime).addOnSuccessListener {
-                    Toast.makeText(baseContext,"Updated!", Toast.LENGTH_LONG).show()
-                }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
-
-
-    }
 
 
     private fun Check(): Boolean {

@@ -59,7 +59,7 @@ lateinit var etitle: TextInputEditText
                                             "time" to sdf.format(Calendar.getInstance().time).toString()
                                         )
                                         db.collection("lost objects").document(uid).delete().addOnCompleteListener {
-                                            Thread.sleep(1_000)
+//                                            Thread.sleep(1_000)
 
                                             db.collection("lost objects").document(uid).set(lObjectmap).addOnSuccessListener {
                                             Toast.makeText(c,resources.getString(R.string.lost_object_submitted),Toast.LENGTH_SHORT).show()
