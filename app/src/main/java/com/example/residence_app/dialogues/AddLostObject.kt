@@ -24,6 +24,7 @@ class AddLostObject(val c:Context,val refresh:AddObjectInterface): AppCompatDial
 lateinit var etitle: TextInputEditText
 
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyymmddhhmmss")
     var db = Firebase.firestore
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
@@ -56,7 +57,8 @@ lateinit var etitle: TextInputEditText
                                             "Img" to null,
                                             "Place" to place,
                                             "oid" to uid,
-                                            "time" to sdf.format(Calendar.getInstance().time).toString()
+                                            "time" to sdf.format(Calendar.getInstance().time).toString(),
+                                            "sort" to sdfid.format(Calendar.getInstance().time).toString()
                                         )
                                         db.collection("lost objects").document(uid).delete().addOnCompleteListener {
 //                                            Thread.sleep(1_000)
