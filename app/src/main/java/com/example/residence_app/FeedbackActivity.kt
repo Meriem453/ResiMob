@@ -17,6 +17,7 @@ class FeedbackActivity : BaseActivity() {
     var president =""
 lateinit var progressBar: ProgressBar
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyymmddhhmmss")
 
 
     @SuppressLint("MissingInflatedId")
@@ -73,8 +74,7 @@ lateinit var progressBar: ProgressBar
                 }
                 progressBar.visibility = View.GONE
             }else{
-                  val date=getCurrentDateAndTime()
-                //TODO("add date")
+
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
                 db.collection("user").document(uid).get().addOnCompleteListener{
                     val feedbackmap = hashMapOf(
@@ -85,7 +85,8 @@ lateinit var progressBar: ProgressBar
                         "description" to description,
                         "image" to it.result!!.data?.getValue("image").toString().trim(),
                         "fid" to it.result!!.data?.getValue("uid").toString().trim(),
-                        "time" to sdf.format(Calendar.getInstance().time).toString()
+                        "time" to sdf.format(Calendar.getInstance().time).toString(),
+                        "sort" to sdfid.format(Calendar.getInstance().time).toString()
                         )
                     db.collection("feedback").document(uid).set(feedbackmap).addOnSuccessListener {
                         Toast.makeText(this, resources.getString(R.string.added_succesfully), Toast.LENGTH_SHORT).show()

@@ -34,6 +34,7 @@ class Problem : BaseActivity() {
     lateinit var progress_bar:ProgressBar
     var db = Firebase.firestore
     private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyymmddhhmmss")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -118,7 +119,8 @@ send.setOnClickListener {
                 "details" to selected_detail,
                 "image" to it.result!!.data?.getValue("image").toString().trim(),
                 "pid" to it.result!!.data?.getValue("uid").toString().trim(),
-                "time" to sdf.format(Calendar.getInstance().time).toString()
+                "time" to sdf.format(Calendar.getInstance().time).toString(),
+                "sort" to sdfid.format(Calendar.getInstance().time).toString()
             )
             db.collection("problem").document(uid).set(problemmap).addOnSuccessListener {
 

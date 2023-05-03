@@ -113,11 +113,9 @@ var arr=ArrayList<ObjectData>()
 
             db.collection("lost objects").document(oid).delete().addOnSuccessListener{
 
-                ds.reference.child("images/$oid"+"l.jpg").delete().addOnCompleteListener { Toast.makeText(c,"object deleted",
-                    Toast.LENGTH_LONG).show()  }
-                 }.addOnFailureListener { Toast.makeText(c,"Error!",
-                Toast.LENGTH_LONG).show() }
-        }
+                Toast.makeText(c,"object deleted",
+                    Toast.LENGTH_LONG).show()
+        }}
 
 if(personnn=="Loser"){getLoserData()}else{getFonderData()}
 

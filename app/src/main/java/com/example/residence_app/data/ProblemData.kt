@@ -6,5 +6,5 @@ data class ProblemData(
     val president:String,
     val problem:String,
     val details: String,
-    val Date:String
+    val Date:String,
 )

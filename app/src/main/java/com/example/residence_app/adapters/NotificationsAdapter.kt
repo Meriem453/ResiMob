@@ -27,6 +27,7 @@ import com.example.residence_app.dialogues.DeleteNotificationFragment
 import com.example.residence_app.dialogues.ShowNotification
 
 
+
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentReference
@@ -34,12 +35,14 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 
 class NotificationsAdapter(var c:Context,val isAdmin:Boolean,val fm:FragmentManager) : RecyclerView.Adapter<NotificationsAdapter.VH>(),DeleteNotificationInterface {
     private var data = ArrayList<NotificationData>()
     var position=0
 
     lateinit var db : FirebaseFirestore
+    private lateinit var ds : FirebaseStorage
 
    inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
        val title = itemView.findViewById<TextView>(R.id.notifications_title)
@@ -85,6 +88,7 @@ class NotificationsAdapter(var c:Context,val isAdmin:Boolean,val fm:FragmentMana
             delete.setOnClickListener {
                 this@NotificationsAdapter.position=position
                     DeleteNotificationFragment(this@NotificationsAdapter).show(fm,"bye bye notif")
+                DeleteNotification()
             }
             val t = data.get(position).title
             val d = data.get(position).details
@@ -142,9 +146,16 @@ data.clear()
 
 
     override fun DeleteNotification() {
-        //TODO("delete notification")
+
         val notif=data[position]
         notifyDataSetChanged()
+        val nid =notif.nid.toString()
+        ds = FirebaseStorage.getInstance()
+            db.collection("notifications").document(nid).delete().addOnSuccessListener{
+                ds.reference.child("images/$nid"+".jpg").delete().addOnCompleteListener { Toast.makeText(c,"notification deleted",
+                    Toast.LENGTH_LONG).show()  }
+            }.addOnFailureListener { Toast.makeText(c,"Error!",
+                Toast.LENGTH_LONG).show() }
     }
 
 }
