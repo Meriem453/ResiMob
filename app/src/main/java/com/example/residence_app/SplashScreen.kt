@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.preference.PreferenceManager
+import com.example.residence_app.dialogues.ChangeLanguage
 import kotlinx.coroutines.GlobalScope
 import java.util.Locale
 
@@ -19,6 +20,7 @@ class SplashScreen : BaseActivity() {
         val language = sharedPreferences.getString("language","en")
         if(language!=null){
             BaseActivity.dLocale = Locale(language)
+
         }
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, LoginActivity::class.java)

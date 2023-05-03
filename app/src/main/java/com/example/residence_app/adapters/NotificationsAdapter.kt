@@ -18,8 +18,12 @@ import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
+import com.example.residence_app.Interfaces.DeleteNotificationInterface
 import com.example.residence_app.data.ObjectData
 import com.example.residence_app.dialogues.AddFoundObject
+import com.example.residence_app.dialogues.DeleteNotificationFragment
 import com.example.residence_app.dialogues.ShowNotification
 
 
@@ -31,8 +35,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.ktx.Firebase
 
-class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAdapter.VH>() {
+class NotificationsAdapter(var c:Context,val isAdmin:Boolean,val fm:FragmentManager) : RecyclerView.Adapter<NotificationsAdapter.VH>(),DeleteNotificationInterface {
     private var data = ArrayList<NotificationData>()
+    var position=0
 
     lateinit var db : FirebaseFirestore
 
@@ -42,6 +47,7 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
        val time = itemView.findViewById<TextView>(R.id.notification_Time)
        val icon = itemView.findViewById<ImageView>(R.id.notification_Icon)
        val card = itemView.findViewById<LinearLayout>(R.id.notificationcard)
+       val delete = itemView.findViewById<ImageView>(R.id.admin_delete_notif)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -75,6 +81,11 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
             holder.itemView.setOnClickListener {
                 listener?.onItemClick(item)
             }
+            delete.isVisible=isAdmin
+            delete.setOnClickListener {
+                this@NotificationsAdapter.position=position
+                    DeleteNotificationFragment(this@NotificationsAdapter).show(fm,"bye bye notif")
+            }
             val t = data.get(position).title
             val d = data.get(position).details
             val ti = data.get(position).time
@@ -100,8 +111,10 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
     override fun getItemCount(): Int {
         return data.size
     }
-    fun getNotifications() {
 
+
+    fun getNotifications() {
+data.clear()
         db = FirebaseFirestore.getInstance()
         db.collection("notifications")
 
@@ -125,6 +138,13 @@ class NotificationsAdapter(var c:Context) : RecyclerView.Adapter<NotificationsAd
 
 
 
+    }
+
+
+    override fun DeleteNotification() {
+        //TODO("delete notification")
+        val notif=data[position]
+        notifyDataSetChanged()
     }
 
 }

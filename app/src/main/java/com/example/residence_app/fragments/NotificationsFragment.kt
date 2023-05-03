@@ -43,7 +43,7 @@ class NotificationsFragment : Fragment() {
         return view
     }
     private fun initRecyclerView(recycler: RecyclerView) {
-        val adapter= NotificationsAdapter(requireContext())
+        val adapter= NotificationsAdapter(requireContext(),false,requireActivity().supportFragmentManager)
         recycler.adapter=adapter
         adapter.getNotifications()
         adapter.setOnItemClickListener(object : NotificationsAdapter.OnItemClickListener{

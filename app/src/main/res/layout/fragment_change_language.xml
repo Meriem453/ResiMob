@@ -11,29 +11,38 @@
        android:orientation="vertical"
        android:layout_marginHorizontal="30dp"
        >
-
        <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:fontFamily="@font/poppins_semibold"
+           android:gravity="center"
+           android:text="@string/what_is_your_prefered_langage"
+           android:textColor="@color/blue_button"
+           android:textSize="20sp"
+           android:layout_marginTop="5dp"/>
+       <RadioGroup
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+       <RadioButton
            android:id="@+id/fr"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:textSize="18sp"
            android:textColor="@color/gray"
            android:fontFamily="@font/poppins_semibold"
-           android:gravity="center"
            android:text="@string/francais"
-           android:layout_margin="5dp"
+
            />
-       <TextView
+       <RadioButton
            android:id="@+id/en"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:textSize="18sp"
            android:textColor="@color/gray"
            android:fontFamily="@font/poppins_semibold"
-           android:gravity="center"
-           android:text="@string/english"
-           android:layout_margin="5dp"
-           />
+           android:text="@string/english"/>
+
+           </RadioGroup>
    </LinearLayout>
 
 

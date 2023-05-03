@@ -15,6 +15,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialogFragment
+import com.example.residence_app.Interfaces.RefreshAdapter
 import com.example.residence_app.R
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -26,7 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 
 
-class AddNotification : AppCompatDialogFragment() {
+class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragment() {
 
     lateinit var title: TextInputEditText
     lateinit var picture : TextInputEditText
@@ -115,6 +116,7 @@ class AddNotification : AppCompatDialogFragment() {
                                         db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                                             //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
+                                            refreshAdapter.refresh()
                                             this.dismiss()
                                         }.addOnFailureListener {
 

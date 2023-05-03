@@ -1,4 +1,4 @@
-package com.example.residence_app.fragments
+package com.example.residence_app.dialogues
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
