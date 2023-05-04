@@ -104,8 +104,7 @@ class Problem : BaseActivity() {
                selected_detail=detail_spinner.text.toString()
            }
 send.setOnClickListener {
-    val date=getCurrentDateAndTime()
-    //TODO("add date")
+
 
     progress_bar.visibility = View.VISIBLE
     if(Check()){

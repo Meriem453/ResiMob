@@ -1,10 +1,13 @@
 package com.example.residence_app
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import com.example.residence_app.data.RestaurantProgrammeCardData
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ResraurantProgrammeEditActivity : BaseActivity() {
 
@@ -15,6 +18,7 @@ class ResraurantProgrammeEditActivity : BaseActivity() {
     lateinit var meal2:TextInputEditText
     lateinit var set:Button
     var tid=""
+    private lateinit var db :FirebaseFirestore
 
 
 
@@ -46,6 +50,7 @@ class ResraurantProgrammeEditActivity : BaseActivity() {
                     ,label2.text.toString()
                     ,meal1.text.toString()
                     ,meal2.text.toString()
+                ,tid
                 ))
                 setResult(RESULT_OK)
                 finish()
@@ -57,8 +62,26 @@ class ResraurantProgrammeEditActivity : BaseActivity() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun sendNewProgram(newProgram: RestaurantProgrammeCardData) {
-     //  TODO("send new program")
+        db = FirebaseFirestore.getInstance()
+
+        var newProgramMap = mapOf(
+
+            "day" to newProgram.day,
+            "label1" to newProgram.label1,
+            "label2" to newProgram.label2,
+            "meal1" to newProgram.meal1,
+            "meal2" to newProgram.meal2
+
+            )
+
+
+            db.collection("programme restau").document(newProgram.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                setResult(RESULT_OK)
+            }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
+
+
 
 
     }

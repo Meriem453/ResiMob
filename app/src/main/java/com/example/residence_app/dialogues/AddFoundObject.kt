@@ -59,8 +59,7 @@ lateinit var imageUri:Uri
                 val place=place.text.toString()
                 val person = "Founder"
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
-                //TODO("add date")
-                val date:String=getCurrentDateAndTime()
+
 
 
                 if (imageUri!! != null) {

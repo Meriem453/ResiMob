@@ -94,6 +94,16 @@
             android:parentActivityName=".HomeUserActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ResraurantProgrammeEditActivity"
+            android:exported="false"
+            android:parentActivityName=".TimeChangeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SportEditActivity"
+            android:exported="false"
+            android:parentActivityName=".TimeChangeActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".RestaurantDetails"
             android:exported="true"
             android:parentActivityName=".HomeUserActivity"

@@ -41,8 +41,7 @@ lateinit var etitle: TextInputEditText
                 val details=edetails.text.toString()
                 val place=eplace.text.toString()
                 val person = "Loser"
-                //TODO("add date")
-                val date=getCurrentDateAndTime()
+
 
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
 

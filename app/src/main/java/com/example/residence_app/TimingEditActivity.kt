@@ -1,7 +1,6 @@
 package com.example.residence_app
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -24,6 +23,7 @@ class TimingEditActivity : BaseActivity() {
     lateinit var title:TextInputEditText
     lateinit var send:Button
     lateinit var db : FirebaseFirestore
+    lateinit var tid:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +44,7 @@ class TimingEditActivity : BaseActivity() {
         place.text=intent.getStringExtra("place")
         label1.text=intent.getStringExtra("label1")
         label2.text=intent.getStringExtra("label2")
+        tid=intent.getStringExtra("tid").toString()
 
 
 
@@ -109,23 +110,17 @@ class TimingEditActivity : BaseActivity() {
         }
 
         send.setOnClickListener {
+
             if(Check()){
-                db = FirebaseFirestore.getInstance()
-
-                var newTime = mapOf(
-
-                    "title" to title.text.toString(),
-                    "label1" to label1.text.toString(),
-                    "label2" to label2 .text.toString(),
-                    "timing1" to timing1_from.text.toString() + "---" + timing1_to.text.toString(),
-                    "timing2" to timing2_from.text.toString() + "---" + timing2_to.text.toString(),
-
-                )
-//                db.collection("restau timing").document(tid.toString()).set(newTime).addOnSuccessListener {
-//                   setResult(RESULT_OK)
-//                }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
-
-
+                sendNewTiming(TimingCardData(
+                    title.text.toString()
+                    ,label1.text.toString()
+                    ,label2.text.toString()
+                    ,timing1_from.text.toString() + "---" + timing1_to.text.toString()
+                    ,timing2_from.text.toString() + "---" + timing2_to.text.toString()
+                    ,tid
+                ))
+                setResult(RESULT_OK)
                 finish()
 
             }
@@ -134,7 +129,27 @@ class TimingEditActivity : BaseActivity() {
     }
 
 
+    @SuppressLint("SuspiciousIndentation")
+    private fun sendNewTiming(newTime: TimingCardData) {
+        db = FirebaseFirestore.getInstance()
 
+        var newProgramMap = mapOf(
+
+            "title" to newTime.title,
+            "label1" to newTime.label1,
+            "label2" to newTime.label2,
+            "meal1" to newTime.timing1,
+            "meal2" to newTime.timing2
+
+        )
+
+            db.collection("restau time").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                setResult(RESULT_OK)
+            }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
+
+
+
+    }
 
     private fun Check(): Boolean {
            var valid = true
