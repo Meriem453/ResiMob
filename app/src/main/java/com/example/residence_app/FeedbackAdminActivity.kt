@@ -15,7 +15,7 @@ class FeedbackAdminActivity : BaseActivity() {
 
         val rec=findViewById<RecyclerView>(R.id.admin_feedback_rec)
         val adapter= AdminFeedbackAdpater(baseContext,supportFragmentManager)
-        adapter.getAdminFeedbackData()
+        //adapter.getAdminFeedbackData()
         rec.adapter=adapter
         rec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.VERTICAL,false)
         //add in top

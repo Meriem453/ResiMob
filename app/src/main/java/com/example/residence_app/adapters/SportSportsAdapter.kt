@@ -17,7 +17,7 @@ import com.example.residence_app.data.SportData
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-class SportSportsAdapter (var c :Context,val isAdmin:Boolean,val activity:Activity): RecyclerView.Adapter<SportSportsAdapter.SportsVH>() {
+class SportSportsAdapter (var c :Context,val isAdmin:Boolean,val activity:Activity,val day:Int): RecyclerView.Adapter<SportSportsAdapter.SportsVH>() {
     var arr=ArrayList<SportData>()
     private lateinit var db : FirebaseFirestore
     inner class SportsVH(itemView: View) : ViewHolder(itemView){
@@ -64,6 +64,8 @@ class SportSportsAdapter (var c :Context,val isAdmin:Boolean,val activity:Activi
               intent.putExtra("kind",arr[position].kind)
               intent.putExtra("gender",arr[position].gender)
               intent.putExtra("tid",arr[position].tid)
+              intent.putExtra("day",day)
+              intent.putExtra("position",position)
               intent.flags=Intent.FLAG_ACTIVITY_NEW_TASK
               activity.startActivityForResult(intent,14)
 

@@ -42,6 +42,9 @@ class SportEditActivity : AppCompatActivity() {
         time_to=findViewById(R.id.to_spinner)
         set=findViewById(R.id.set_spinner)
 
+        sport.setText(intent.getStringExtra("sport"))
+        kind.setText(intent.getStringExtra("kind"))
+        gender.setText(intent.getStringExtra("gender"))
         tid= intent.getStringExtra("tid").toString()
 
         val sports= arrayOf(resources.getString(R.string.football),resources.getString(R.string.volleyball),resources.getString(R.string.basketball))
@@ -120,15 +123,20 @@ class SportEditActivity : AppCompatActivity() {
 
         set.setOnClickListener {
         if(Check())    {
-            sendNewSport(SportData(selected_sport,selected_kind,selected_gender,time_from.text.toString()+"--"+time_to.text.toString()))
+            sendNewSport(SportData(selected_sport,selected_kind,selected_gender,time_from.text.toString()+"--"+time_to.text.toString())
+            ,intent.getIntExtra("day",0),
+               intent.getIntExtra("position",0)
+            )
             setResult(RESULT_OK)
             finish()
         }}
 
         }
 
-    private fun sendNewSport(sportData: SportData) {
+    private fun sendNewSport(sportData: SportData,day:Int,position:Int) {
 //TODO("send new sport")
+
+
     }
 
     private fun Check(): Boolean {

@@ -141,6 +141,7 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                     )
                     db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                         Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
+                        refreshAdapter.refresh()
                         //progressBar.visibility = View.GONE
                         this.dismiss()
                     }.addOnFailureListener {
@@ -162,18 +163,6 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
 
     }
         return builder.create()
-    }
-    private fun getCurrentDateAndTime(): String {
-        val c = Calendar.getInstance()
-
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val hour = c.get(Calendar.HOUR_OF_DAY)
-        val minute = c.get(Calendar.MINUTE)
-        return "${hour}:${minute}-${day}/${month}/${year}"
-
-
     }
     private fun Check(): Boolean {
         var valid = true

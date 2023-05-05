@@ -22,7 +22,7 @@ var isAdmin = false
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_saturday, container, false)
         val rec= view.findViewById<RecyclerView>(R.id.saturday_rec)
-        val adapter= SportSportsAdapter(requireContext(),isAdmin,requireActivity())
+        val adapter= SportSportsAdapter(requireContext(),isAdmin,requireActivity(),6)
         adapter.getData(6)
         rec.adapter=adapter
         rec.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)

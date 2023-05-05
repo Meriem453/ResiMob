@@ -22,7 +22,7 @@ var isAdmin=false
 
         val view= inflater.inflate(R.layout.fragment_tusday, container, false)
         val rec= view.findViewById<RecyclerView>(R.id.tusday_rec)
-        val adapter= SportSportsAdapter(requireContext(),isAdmin,requireActivity())
+        val adapter= SportSportsAdapter(requireContext(),isAdmin,requireActivity(),2)
         adapter.getData(2)
         rec.adapter=adapter
         rec.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)

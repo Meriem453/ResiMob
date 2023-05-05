@@ -63,7 +63,7 @@ lateinit var etitle: TextInputEditText
 //                                            Thread.sleep(1_000)
 
                                             db.collection("lost objects").document(uid).set(lObjectmap).addOnSuccessListener {
-                                            Toast.makeText(c,resources.getString(R.string.lost_object_submitted),Toast.LENGTH_SHORT).show()
+                                           // Toast.makeText(c,resources.getString(R.string.lost_object_submitted),Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
                                             etitle.text?.clear()
                                             edetails.text?.clear()
@@ -73,7 +73,7 @@ lateinit var etitle: TextInputEditText
                                             etitle.text?.clear()
                                             edetails.text?.clear()
                                             eplace.text?.clear()
-                                            Toast.makeText(c,"Failed!",Toast.LENGTH_SHORT).show()
+                                           // Toast.makeText(c,"Failed!",Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
                                         } }
                                     }

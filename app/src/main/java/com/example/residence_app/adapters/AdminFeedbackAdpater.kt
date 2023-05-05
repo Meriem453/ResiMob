@@ -75,7 +75,7 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
            }
        }
     }
-    fun getAdminFeedbackData(){
+    init {
         arr.clear()
         db = FirebaseFirestore.getInstance()
         db.collection("feedback")
@@ -100,15 +100,16 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
 
     }
 
-
     override fun DeleteFeedback() {
         val fid =arr[position].fid.toString()
         db.collection("feedback").document(fid).delete()
             .addOnSuccessListener{
-            Toast.makeText(c,c.resources.getString(R.string.feedback_deleted),Toast.LENGTH_LONG).show()  }
+            Toast.makeText(c,c.resources.getString(R.string.feedback_deleted),Toast.LENGTH_LONG).show()
+            arr.removeAt(position)
+                notifyDataSetChanged()
+            }
             .addOnFailureListener {
             Toast.makeText(c,c.resources.getString(R.string.failed),Toast.LENGTH_LONG).show()
-                getAdminFeedbackData()
             }
 
     }

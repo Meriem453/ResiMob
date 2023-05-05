@@ -52,8 +52,7 @@ class EditUserActivity : BaseActivity(), DeleteUserInterface {
      lateinit var auth : FirebaseAuth
      lateinit var ds : FirebaseStorage
      var position:Int=0
-
-
+    var changePhoto:Boolean = false
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -94,19 +93,20 @@ class EditUserActivity : BaseActivity(), DeleteUserInterface {
             setEnabled(false)
         }
         set.setOnClickListener {
-            if(Check()){
-            val currentUser=user
-            user.fname=fname.text.toString()
-            user.lname=lname.text.toString()
-            user.email=email.text.toString()
-            user.password=passwrd.text.toString()
-            user.image=uri.toString()
-
-
-            sendNewUser(currentUser,user)
+            if(Check()) {
+                user.fname = fname.text.toString()
+                user.lname = lname.text.toString()
+                user.email = email.text.toString()
+                user.password = passwrd.text.toString()
+                user.room=room.text.toString()
+                if (changePhoto) {
+                    user.image = uri.toString()
+                }
+                sendNewUser(user)
             setEnabled(false)}
         }
         img.setOnClickListener {
+
             val intent = Intent()
             intent.action = Intent.ACTION_GET_CONTENT
             intent.type ="image/*"
@@ -142,7 +142,8 @@ if(value){
     passwrd.setText(user.password)
     email.setText(user.email)
      room.setText(user.room)
-    uri=Uri.parse(user.image)
+    image= user.image.toString()
+    //uri=Uri.parse(user.image)
     Glide.with(baseContext).load(user.image).into(img)
 
 }
@@ -180,19 +181,19 @@ fun Check():Boolean{
         if (data != null) {
             img.setImageURI(data.data)
             uri= data.data!!
+            changePhoto=true
         }
     }
 
 
 
 
-    private fun sendNewUser(currentUser: UserInfo, newUser: UserInfo) {
+    private fun sendNewUser(currentUser: UserInfo) {
         var uid = currentUser.uid
 
-        if (uri!! != null) {
+        if (changePhoto) {
             val fileName = currentUser.uid +".jpg"
             val refStorage = FirebaseStorage.getInstance().reference.child("images/$fileName")
-
             refStorage.putFile(uri!!)
                 .addOnSuccessListener(
                     OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
@@ -201,25 +202,44 @@ fun Check():Boolean{
                             db = FirebaseFirestore.getInstance()
                             var newUserMap = mapOf(
                                 "uid" to uid,
-                                "fname" to newUser.fname,
-                                "lname" to newUser.lname,
-                                "email" to newUser.email,
-                                "password" to newUser.password,
+                                "fname" to currentUser.fname,
+                                "lname" to currentUser.lname,
+                                "email" to currentUser.email,
+                                "password" to currentUser.password,
                                 "image" to imageUrl,
                                 "isadmin" to false,
-                                "room" to newUser.room,
+                                "room" to currentUser.room,
                             )
-                            db.collection("user").document(uid.toString()).update(newUserMap).addOnSuccessListener { Toast.makeText(baseContext,"User edited!",Toast.LENGTH_LONG).show() }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
+                            db.collection("user").document(uid.toString()).update(newUserMap).addOnSuccessListener {
+                                Toast.makeText(baseContext,"User edited!",Toast.LENGTH_LONG).show()
+                                finish()
+                            }.addOnFailureListener {
+                                Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
                         }})
         }else{
-            Toast.makeText(baseContext,"No image!",Toast.LENGTH_LONG).show()
-        }
+        db = FirebaseFirestore.getInstance()
+        var newUserMap = mapOf(
+            "uid" to uid,
+            "fname" to currentUser.fname,
+            "lname" to currentUser.lname,
+            "email" to currentUser.email,
+            "password" to currentUser.password,
+            "image" to currentUser.image,
+            "isadmin" to false,
+            "room" to currentUser.room,
+        )
+        db.collection("user").document(uid.toString()).update(newUserMap).addOnSuccessListener {
+            Toast.makeText(baseContext,"User edited!",Toast.LENGTH_LONG).show()
+            finish()
+        }.addOnFailureListener {
+            Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
 
 
 
 
 
-    }
+
+    }}
 
     override fun deleteUser() {
 

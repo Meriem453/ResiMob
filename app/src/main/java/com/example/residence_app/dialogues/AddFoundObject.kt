@@ -87,11 +87,11 @@ lateinit var imageUri:Uri
                                         )
                                         db.collection("found objects").document(uid).delete().addOnSuccessListener {
                                             db.collection("found objects").document(uid).set(fObjectmap).addOnSuccessListener {
-                                                Toast.makeText(c,resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
+                                               // Toast.makeText(c,resources.getString(R.string.found_object_submitted),Toast.LENGTH_SHORT).show()
                                                 //progressBar.visibility = View.GONE
                                             }.addOnFailureListener {
 
-                                                Toast.makeText(c,"Failed!",Toast.LENGTH_SHORT).show()
+                                                //Toast.makeText(c,"Failed!",Toast.LENGTH_SHORT).show()
                                                 //progressBar.visibility = View.GONE
                                             }
                                         }

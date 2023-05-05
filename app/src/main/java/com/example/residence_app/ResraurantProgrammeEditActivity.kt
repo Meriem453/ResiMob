@@ -35,12 +35,13 @@ class ResraurantProgrammeEditActivity : BaseActivity() {
         meal2=findViewById(R.id.admin_edit_program_meal2)
         set=findViewById(R.id.admin_edit_program_set)
 
-        title.setText(intent.getStringExtra("title"))
-        label1.setText(intent.getStringExtra("label1"))
-        label2.setText(intent.getStringExtra("label2"))
-        meal1.setText(intent.getStringExtra("meal1"))
-        meal2.setText(intent.getStringExtra("meal2"))
-        tid=intent.getStringExtra("tid").toString()
+        title.setText(intent?.getStringExtra("title"))
+        label1.setText(intent?.getStringExtra("label1"))
+        label2.setText(intent?.getStringExtra("label2"))
+        meal1.setText(intent?.getStringExtra("meal1"))
+        meal2.setText(intent?.getStringExtra("meal2"))
+        tid=intent?.getStringExtra("tid").toString()
+
 
         set.setOnClickListener {
             if(Check()){

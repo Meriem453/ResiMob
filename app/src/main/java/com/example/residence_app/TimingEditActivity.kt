@@ -120,8 +120,7 @@ class TimingEditActivity : BaseActivity() {
                     ,timing2_from.text.toString() + "---" + timing2_to.text.toString()
                     ,tid
                 ))
-                setResult(RESULT_OK)
-                finish()
+
 
             }
         }
@@ -144,7 +143,7 @@ class TimingEditActivity : BaseActivity() {
         )
 
             db.collection("restau time").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
-                setResult(RESULT_OK)
+                finish()
             }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
 
 

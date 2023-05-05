@@ -146,6 +146,7 @@ class AddUserActivity :BaseActivity() {
                                                 etRoom.text.clear()
                                                 image.setImageResource(0)
                                                 progressBar.visibility = View.GONE
+                                                finish()
 
                                             }.addOnFailureListener {
                                                 progressBar.visibility = View.GONE

@@ -84,11 +84,12 @@ class NotificationsAdapter(var c:Context,val isAdmin:Boolean,val fm:FragmentMana
             holder.itemView.setOnClickListener {
                 listener?.onItemClick(item)
             }
-            delete.isVisible=isAdmin
+            //delete.isVisible=isAdmin
+
             delete.setOnClickListener {
                 this@NotificationsAdapter.position=position
                     DeleteNotificationFragment(this@NotificationsAdapter).show(fm,"bye bye notif")
-                DeleteNotification()
+
             }
             val t = data.get(position).title
             val d = data.get(position).details
