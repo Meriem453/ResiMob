@@ -49,6 +49,12 @@ class SportEditActivity : AppCompatActivity() {
         sport.setText(intent.getStringExtra("sport"))
         kind.setText(intent.getStringExtra("kind"))
         gender.setText(intent.getStringExtra("gender"))
+
+        selected_kind=intent.getStringExtra("kind").toString()
+        selected_sport=intent.getStringExtra("sport").toString()
+        selected_gender=intent.getStringExtra("gender").toString()
+
+
         tid= intent.getStringExtra("tid").toString()
 
         val sports= arrayOf(resources.getString(R.string.football),resources.getString(R.string.volleyball),resources.getString(R.string.basketball))
@@ -79,7 +85,6 @@ class SportEditActivity : AppCompatActivity() {
             ) {
                 selected_kind = kinds[position]
             }
-
         }
         gender.onItemClickListener = object : AdapterView.OnItemClickListener{
             override fun onItemClick(
@@ -90,7 +95,6 @@ class SportEditActivity : AppCompatActivity() {
             ) {
                 selected_gender = genders[position]
             }
-
         }
 
 
@@ -105,7 +109,7 @@ class SportEditActivity : AppCompatActivity() {
                     .build()
 
             MaterialTimePicker.Builder().setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
-            picker.show(supportFragmentManager, "tag");
+            picker.show(supportFragmentManager, "tag")
             picker.addOnPositiveButtonClickListener {
                 time_from.setText(picker.hour.toString() + ":" + picker.minute.toString())
             }}
@@ -203,11 +207,11 @@ var valid=true
             gender.error=resources.getString(R.string.please_enter_a_text)
             valid=false
         }
-        if (time_from.text.toString().trim()==""){
+        if (time_from.text.toString().trim()=="From"){
             time_from.error=resources.getString(R.string.enter_time)
             valid=false
         }
-        if (time_to.text.toString().trim()==""){
+        if (time_to.text.toString().trim()=="To"){
             time_to.error=resources.getString(R.string.enter_time)
             valid=false
         }

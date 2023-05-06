@@ -42,7 +42,7 @@ var request=0
     }
 
     override fun addObject() {
-       // adapter.getLoserData()
+        adapter.getLoserData()
     }
 
 

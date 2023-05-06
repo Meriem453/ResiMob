@@ -97,6 +97,8 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
                     notifyDataSetChanged()
                 }
             })
+        arr.sortedWith(compareBy({it.sort}))
+        arr.reverse()
 
     }
 

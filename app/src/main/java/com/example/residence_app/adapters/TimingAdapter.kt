@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot
 
 class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): RecyclerView.Adapter<TimingAdapter.TimingVH>() {
     private var data=ArrayList<TimingCardData>()
+    var place=""
      lateinit var db : FirebaseFirestore
     inner class TimingVH(itemView: View): ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.restaurant_timing_card_title)
@@ -54,7 +55,7 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
             itemView.setOnClickListener {
 
                 val intent= Intent(c, TimingEditActivity::class.java)
-                intent.putExtra("place",c.resources.getString(R.string.restaurant))
+                intent.putExtra("place",place)
                 intent.putExtra("title",data.get(position).title)
                 intent.putExtra("timing1",data.get(position).timing1)
                 intent.putExtra("timing2",data.get(position).timing2)
@@ -62,13 +63,13 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
                 intent.putExtra("label2",data.get(position).label2)
                 intent.putExtra("tid",data.get(position).tid)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-
                 activity.startActivityForResult(intent,12)
             }
         }
     }
 
     fun getDoctorData(){
+        place=c.resources.getString(R.string.doctor)
         db = FirebaseFirestore.getInstance()
         var d1 : DocumentReference = db.collection("doctor").document("weekdays")
         d1.get().addOnCompleteListener(){
@@ -81,6 +82,7 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
             notifyDataSetChanged()}
     }
     fun getAdministrationData(){
+        place=c.resources.getString(R.string.administration)
         db = FirebaseFirestore.getInstance()
         var d1 : DocumentReference = db.collection("Admin").document("weekdays")
         d1.get().addOnCompleteListener(){
@@ -94,6 +96,7 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
     }
 
     fun getBathroomGirlsTimingData(){
+        place=c.resources.getString(R.string.bathroom)
         db = FirebaseFirestore.getInstance()
         db.collection("bathroom girls")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -117,6 +120,7 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
     }
 
     fun getBathroomBoysTimingData(){
+        place=c.resources.getString(R.string.bathroom)
         db = FirebaseFirestore.getInstance()
         db.collection("bathroom")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {

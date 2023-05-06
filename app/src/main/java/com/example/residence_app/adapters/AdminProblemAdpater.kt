@@ -33,7 +33,7 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
     val problem=itemView.findViewById<TextView>(R.id.adminproblem_title)
     val name=itemView.findViewById<TextView>(R.id.adminproblem_fullname)
     val president=itemView.findViewById<TextView>(R.id.adminproblem_president)
-    val details=itemView.findViewById<TextView>(R.id.adminproblem_president)
+    val details=itemView.findViewById<TextView>(R.id.adminproblem_details)
     val delete=itemView.findViewById<ImageView>(R.id.adminproblem_delete)
     val layout=itemView.findViewById<LinearLayout>(R.id.adminproblem_layout)
     val date=itemView.findViewById<TextView>(R.id.adminproblem_date)
@@ -100,6 +100,8 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
 //        arr.add(AdminProblemData("Resto","Meriem","Zemane",null,"Khoufach","paint"))
 //
 //        notifyDataSetChanged()
+        arr.sortedWith(compareBy({it.sort}))
+        arr.reverse()
     }
 
     fun DeleteProblem(problem:AdminProblemData){

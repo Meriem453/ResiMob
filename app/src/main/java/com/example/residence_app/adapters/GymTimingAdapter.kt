@@ -45,7 +45,7 @@ class GymTimingAdapter(var context : Context ,val activity: Activity,val isAdmin
             itemView.setOnClickListener {
 
                 val intent= Intent(context, TimingEditActivity::class.java)
-                intent.putExtra("place",context.resources.getString(R.string.restaurant))
+                intent.putExtra("place",context.resources.getString(R.string.gym))
                 intent.putExtra("title",data.get(position).title)
                 intent.putExtra("timing1",data.get(position).timing1)
                 intent.putExtra("timing2",data.get(position).timing2)

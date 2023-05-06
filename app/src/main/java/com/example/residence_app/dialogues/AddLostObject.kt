@@ -70,6 +70,8 @@ lateinit var etitle: TextInputEditText
                                             etitle.text?.clear()
                                             edetails.text?.clear()
                                             eplace.text?.clear()
+                                                refresh.addObject()
+                                                this.dismiss()
 
                                         }.addOnFailureListener {
                                             etitle.text?.clear()
@@ -81,7 +83,7 @@ lateinit var etitle: TextInputEditText
                                     }
                                 }
 
-refresh.addObject()
+
 
         }
 
