@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/white"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="25sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="20sp"
             android:text="ResiMob"/>
     </androidx.appcompat.widget.Toolbar>
 
