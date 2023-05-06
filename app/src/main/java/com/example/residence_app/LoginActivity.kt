@@ -56,7 +56,7 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                     if (it.isSuccessful){
                         progressBar.visibility = View.GONE
                         db = FirebaseFirestore.getInstance()
-                          db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener() {
+                          db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener {
                               val admin = it.result!!.data?.getValue("lname")
                               if(admin == "Admin"){
                                   Handler(Looper.getMainLooper()).postDelayed({
