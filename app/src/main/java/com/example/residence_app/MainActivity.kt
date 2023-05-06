@@ -150,6 +150,7 @@ class MainActivity : BaseActivity() {
     fun logout() {
         FirebaseAuth.getInstance().signOut()
         Handler(Looper.getMainLooper()).postDelayed({
+
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()

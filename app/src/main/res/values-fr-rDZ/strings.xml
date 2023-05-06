@@ -117,4 +117,13 @@
     <string name="OnBoardingSecondText2">La mise en route est facile ! Connectez-vous avec votre adresse e-mail universitaire, explorez les fonctionnalités avec nos tutoriels et contactez l\'assistance si vous avez des questions.</string>
     <string name="OnBoardingMainText3">Avantages de l\'utilisation de ResiMob</string>
     <string name="OnBoardingSecondText3">Tenez-vous au courant des événements, soumettez des demandes de maintenance et accédez aux ressources du campus depuis votre téléphone.</string>
+    <string name="pharmacy">Pharmacie</string>
+    <string name="dolyce">- Dolyce</string>
+    <string name="maxilase">- Maxilase</string>
+    <string name="rabwalyse">- Rabwalyse</string>
+    <string name="ideos">- Ideos</string>
+    <string name="gripex">- Gripex</string>
+    <string name="augmentin">- Augmentin</string>
+    <string name="emergency">Urgence</string>
+    <string name="emergency_text">En cas d\'urgence, il est important d\'appeler à l\'aide immédiatement, veuillez appeler ces numéros :</string>
 </resources>
