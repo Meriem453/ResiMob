@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SportDetails"
     android:orientation="vertical"
+    android:background="@color/blue_background"
     >
 
     <androidx.appcompat.widget.Toolbar

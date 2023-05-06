@@ -96,7 +96,7 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
     }
 
     fun getBathroomGirlsTimingData(){
-        place=c.resources.getString(R.string.bathroom)
+        place="Bathroom Girls"
         db = FirebaseFirestore.getInstance()
         db.collection("bathroom girls")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -120,7 +120,7 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
     }
 
     fun getBathroomBoysTimingData(){
-        place=c.resources.getString(R.string.bathroom)
+        place="Bathroom Boys"
         db = FirebaseFirestore.getInstance()
         db.collection("bathroom")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
