@@ -110,4 +110,11 @@
     <string name="are_you_sure_you_want_to_delet_this_notification">Etes vous sure de vouloir supprimer cette notification?</string>
     <string name="are_you_sure_you_want_to_logout">Etes vous sure de vouloir deconnecter?</string>
     <string name="logout">Deconnecter</string>
+    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
+    <string name="OnBoardingMainText1">Bienvenue sur ResiMob</string>
+    <string name="OnBoardingSecondText1">Restez connecté et informé sur le campus avec l\'application University Resident ! Téléchargez maintenant pour le suivi des colis, les demandes de maintenance, et plus encore.</string>
+    <string name="OnBoardingMainText2">Comment utiliser ResiMob</string>
+    <string name="OnBoardingSecondText2">La mise en route est facile ! Connectez-vous avec votre adresse e-mail universitaire, explorez les fonctionnalités avec nos tutoriels et contactez l\'assistance si vous avez des questions.</string>
+    <string name="OnBoardingMainText3">Avantages de l\'utilisation de ResiMob</string>
+    <string name="OnBoardingSecondText3">Tenez-vous au courant des événements, soumettez des demandes de maintenance et accédez aux ressources du campus depuis votre téléphone.</string>
 </resources>

@@ -1,8 +1,11 @@
 package com.example.residence_app
 
 
+import LogoutUser
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Gravity
 import android.view.MenuItem
 import android.widget.ImageView
@@ -14,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.residence_app.dialogues.ChangeLanguage
+import com.example.residence_app.dialogues.LogoutFragment
 
 import com.example.residence_app.fragments.HomeFragment
 import com.example.residence_app.fragments.NotificationsFragment
@@ -44,7 +49,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-        loadFragment(NotificationsFragment())
+        loadFragment(HomeFragment())
         drawerLayout = findViewById(R.id.userdrawerLayout)
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
         bottomNavBar = findViewById(R.id.bottomNavigationBar)
@@ -53,6 +58,7 @@ class MainActivity : BaseActivity() {
         val imageNav = findViewById<ImageView>(R.id.imageNav_ID)
 
         val userName = findViewById<TextView>(R.id.nameNav_ID)
+        bottomNavBar.selectedItemId = R.id.home_screen
         bottomNavBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home_screen -> {
@@ -69,6 +75,7 @@ class MainActivity : BaseActivity() {
                     loadFragment(NotificationsFragment())
                     true
                 }
+
                 else -> {loadFragment(NotificationsFragment())
                     false}
             }
@@ -109,8 +116,9 @@ class MainActivity : BaseActivity() {
                         startActivity(Intent(baseContext,FeedbackActivity::class.java))
                     }
                     R.id.LogOut-> {
-                        FirebaseAuth.getInstance().signOut()
-                        startActivity(Intent(baseContext,LoginActivity::class.java))
+                        LogoutUser(this).show(supportFragmentManager,"logout")
+
+                        true
                     }
                 }
                 true
@@ -138,5 +146,13 @@ class MainActivity : BaseActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragments_adapter,fragment)
         transaction.commit()
+    }
+    fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        Handler(Looper.getMainLooper()).postDelayed({
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }, 1)
     }
 }

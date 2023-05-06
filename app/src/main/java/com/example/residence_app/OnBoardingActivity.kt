@@ -1,6 +1,7 @@
 package com.example.residence_app
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,8 +23,6 @@ class OnBoardingActivity : BaseActivity() {
         setOnboardingItems()
 
     }
-
-
         private fun setOnboardingItems(){
          onBoardingItemsAdapter = OnBoardingItemsAdapter(
              listOf(
@@ -42,6 +41,7 @@ class OnBoardingActivity : BaseActivity() {
                 startActivity(Intent(applicationContext,LoginActivity::class.java))
                 finish()
             }
+
             val ViewPager = findViewById<ViewPager2>(R.id.viewPagerID)
             ViewPager.adapter = onBoardingItemsAdapter
             val dotsIndicator = findViewById<DotsIndicator>(R.id.dots_indicator)
@@ -50,6 +50,10 @@ class OnBoardingActivity : BaseActivity() {
                 if (ViewPager.currentItem + 1 < onBoardingItemsAdapter.itemCount){
                     ViewPager.currentItem += 1
                 }else{
+                    val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+                    val editor = sharedPreference.edit()
+                    editor.putString("isChecked","true")
+                    editor.apply()
                     navigateActivity()
                 }
             }

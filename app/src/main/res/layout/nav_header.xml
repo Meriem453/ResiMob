@@ -17,26 +17,27 @@
         android:paddingBottom="20dp"
         android:orientation="horizontal"
         >
-        <androidx.cardview.widget.CardView
-            app:cardCornerRadius="50dp"
-            android:layout_width="62dp"
-            android:layout_height="62dp">
+
 
         <ImageView
+            android:src="@drawable/done1"
             android:id="@+id/imageNav_ID"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="start|center_vertical"
             android:layout_margin="10dp"
             />
 
-        </androidx.cardview.widget.CardView>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:orientation="vertical">
             <TextView
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:paddingLeft="10dp"
                 android:id="@+id/nameNav_ID"
@@ -45,7 +46,6 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:text="ResiMob App"/>
-
         </LinearLayout>
 
     </LinearLayout>

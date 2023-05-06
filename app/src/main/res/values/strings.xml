@@ -24,12 +24,12 @@
     <string name="girls">Girls</string>
     <string name="boys">Boys</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="OnBoardingMainText1">fdsjsdfjkdksfkjdsf</string>
-    <string name="OnBoardingSecondText1">hdsfkjdsflhkdasfdfkdsjksadfkdsfldsakhsdfkhfdshdsffdshkhkdsfkd</string>
-    <string name="OnBoardingMainText2">fdsjsdfjkdksfkjdsf</string>
-    <string name="OnBoardingSecondText2">hdsfkjdsflhkdasfdfkdsjksadfkdsfldsakhsdfkhfdshdsffdshkhkdsfkd</string>
-    <string name="OnBoardingMainText3">fdsjsdfjkdksfkjdsf</string>
-    <string name="OnBoardingSecondText3">hdsfkjdsflhkdasfdfkdsjksadfkdsfldsakhsdfkhfdshdsffdshkhkdsfkd</string>
+    <string name="OnBoardingMainText1">Welcome to ResiMob</string>
+    <string name="OnBoardingSecondText1">Stay connected and informed on campus with the University Resident app! Download now for package tracking, maintenance requests, and more.</string>
+    <string name="OnBoardingMainText2">How to Use ResiMob</string>
+    <string name="OnBoardingSecondText2">Getting started is easy! Log in with your university email, explore features with our tutorials, and reach out to support with questions.</string>
+    <string name="OnBoardingMainText3">Benefits of Using ResiMob</string>
+    <string name="OnBoardingSecondText3">Stay up-to-date on events, submit maintenance requests, and access campus resources from your phone.</string>
     <string name="gym_timings">Gym Timings</string>
     <string name="football">Football</string>
     <string name="national">National</string>
@@ -194,7 +194,7 @@
     <string name="are_you_sure_you_want_to_delet_this_notification">Are you sure you want to delet this notification?</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="logout">Logout</string>
-    <string zname="what_do_you_want_to_change">What do you want to change?</string>
+    <string name="what_do_you_want_to_change">What do you want to change?</string>
     <string name="enter_time">Enter a timing</string>
     <string name="from">From</string>
     <string name="to">To</string>

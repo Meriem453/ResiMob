@@ -1,5 +1,6 @@
 package com.example.residence_app
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,9 +24,18 @@ class SplashScreen : BaseActivity() {
 
         }
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            val x = this.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE).getString("isChecked","xxx")
+            if(x != "true"){
+                val intent = Intent(this, OnBoardingActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            if (x == "true"){
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
         }, 3000)
     }
 }
