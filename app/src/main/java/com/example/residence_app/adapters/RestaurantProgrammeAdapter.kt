@@ -67,8 +67,7 @@ class RestaurantProgrammeAdapter(var c:Context,val isAdmin:Boolean,val activity:
             }
         }
     }
-
-    fun getData(){
+init {
         db = FirebaseFirestore.getInstance()
         db.collection("programme restau")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -82,8 +81,6 @@ class RestaurantProgrammeAdapter(var c:Context,val isAdmin:Boolean,val activity:
                     for (dc: DocumentChange in value?.documentChanges!!){
                         if(dc.getType() == DocumentChange.Type.ADDED){
                             data.add(dc.getDocument().toObject(RestaurantProgrammeCardData::class.java))
-
-
                         }
                     }
                     notifyDataSetChanged()
@@ -91,5 +88,5 @@ class RestaurantProgrammeAdapter(var c:Context,val isAdmin:Boolean,val activity:
             })
 
 
-    }
-}
+
+}}

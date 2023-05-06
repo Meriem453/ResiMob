@@ -32,7 +32,6 @@ class Restaurant_programme : Fragment() {
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         val adapter=RestaurantProgrammeAdapter(requireContext(),isAdmin,requireActivity())
-        adapter.getData()
         recycler.adapter=adapter
     }
 

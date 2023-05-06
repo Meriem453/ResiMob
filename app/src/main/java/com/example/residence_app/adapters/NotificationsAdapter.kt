@@ -18,6 +18,7 @@ import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import com.example.residence_app.Interfaces.DeleteNotificationInterface
@@ -49,7 +50,7 @@ class NotificationsAdapter(var c:Context,val isAdmin:Boolean,val fm:FragmentMana
        val info = itemView.findViewById<TextView>(R.id.notification_Info)
        val time = itemView.findViewById<TextView>(R.id.notification_Time)
        val icon = itemView.findViewById<ImageView>(R.id.notification_Icon)
-       val card = itemView.findViewById<LinearLayout>(R.id.notificationcard)
+       val card = itemView.findViewById<ConstraintLayout>(R.id.notificationcard)
        val delete = itemView.findViewById<ImageView>(R.id.admin_delete_notif)
     }
 
@@ -84,7 +85,7 @@ class NotificationsAdapter(var c:Context,val isAdmin:Boolean,val fm:FragmentMana
             holder.itemView.setOnClickListener {
                 listener?.onItemClick(item)
             }
-            //delete.isVisible=isAdmin
+            delete.isVisible=isAdmin
 
             delete.setOnClickListener {
                 this@NotificationsAdapter.position=position
@@ -149,12 +150,14 @@ data.clear()
     override fun DeleteNotification() {
 
         val notif=data[position]
-        notifyDataSetChanged()
         val nid =notif.nid.toString()
         ds = FirebaseStorage.getInstance()
             db.collection("notifications").document(nid).delete().addOnSuccessListener{
+                getNotifications()
                 ds.reference.child("images/$nid"+".jpg").delete().addOnCompleteListener { Toast.makeText(c,"notification deleted",
-                    Toast.LENGTH_LONG).show()  }
+                    Toast.LENGTH_LONG).show()
+
+                }
             }.addOnFailureListener { Toast.makeText(c,"Error!",
                 Toast.LENGTH_LONG).show() }
     }
