@@ -22,6 +22,7 @@ import com.google.firebase.firestore.QuerySnapshot
 class GymTimingAdapter(var context : Context ,val activity: Activity,val isAdmin:Boolean) : RecyclerView.Adapter<GymTimingAdapter.ViewHolder>() {
     private var data=ArrayList<TimingCardData>()
     lateinit var db : FirebaseFirestore
+    var place=""
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.restaurant_timing_card_title)
         val label1=itemView.findViewById<TextView>(R.id.restaurant_timing_card_1label)
@@ -45,7 +46,7 @@ class GymTimingAdapter(var context : Context ,val activity: Activity,val isAdmin
             itemView.setOnClickListener {
 
                 val intent= Intent(context, TimingEditActivity::class.java)
-                intent.putExtra("place",context.resources.getString(R.string.gym))
+                intent.putExtra("place",place)
                 intent.putExtra("title",data.get(position).title)
                 intent.putExtra("timing1",data.get(position).timing1)
                 intent.putExtra("timing2",data.get(position).timing2)
@@ -63,6 +64,7 @@ class GymTimingAdapter(var context : Context ,val activity: Activity,val isAdmin
         return data.size
     }
     fun getGymBoysdata(){
+        place="Gym Boys"
         db = FirebaseFirestore.getInstance()
         db.collection("gym boys")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -85,6 +87,7 @@ class GymTimingAdapter(var context : Context ,val activity: Activity,val isAdmin
             })
     }
     fun getGymGirlsdata(){
+        place="Gym Girls"
         db = FirebaseFirestore.getInstance()
         db.collection("gym girls")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
