@@ -141,11 +141,34 @@ class TimingEditActivity : BaseActivity() {
             "meal2" to newTime.timing2
 
         )
+            if(place.text=="Resturant"){
+                db.collection("restau time").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                    Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
+                    finish()
+                }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
+            }else{
+                if(place.text=="Doctor"){
+                    db.collection("doctor").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                        Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
+                        finish()
+                    }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
+                }else{
+                    if(place.text=="Admin"){
+                        db.collection("Admin").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                            Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
+                            finish()
+                        }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
+                    }else{
+                        if(place.text=="Resturant"){
+                            db.collection("restau time").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                                Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
+                                finish()
+                            }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
+                        }
+                    }
+                }
+            }
 
-            db.collection("restau time").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
-                Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
-                finish()
-            }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
 
 
 
