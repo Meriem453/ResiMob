@@ -7,7 +7,7 @@
     tools:context=".HomeAdminActivity"
     android:orientation="vertical"
     android:id="@+id/admin_drawerlayout"
-    android:background="@color/blue_background"
+
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/white"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="25sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="20sp"
             android:text="ResiMob"/>
     </androidx.appcompat.widget.Toolbar>
 
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/welcome_back"
-            android:textColor="@color/gray"
+
             android:textSize="12sp"
             android:layout_marginHorizontal="30dp"
 
@@ -117,8 +117,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
-                    android:text="@string/time"
-                    android:textColor="@color/gray"
+                    android:text="@string/info"
+
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -154,7 +154,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
                     android:text="@string/notifications"
-                    android:textColor="@color/gray"
+
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -190,7 +190,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
                     android:text="@string/objects"
-                    android:textColor="@color/gray"
+
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -226,7 +226,6 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
                     android:text="@string/users"
-                    android:textColor="@color/gray"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -262,7 +261,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
                     android:text="@string/feedback"
-                    android:textColor="@color/gray"
+
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -297,8 +296,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
-                    android:text="@string/problem"
-                    android:textColor="@color/gray"
+                    android:text="@string/problems"
+
                     android:textSize="20sp" />
 
             </LinearLayout>

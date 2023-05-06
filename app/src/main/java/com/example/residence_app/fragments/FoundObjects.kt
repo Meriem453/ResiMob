@@ -44,7 +44,7 @@ class FoundObjects(val c:Context) : Fragment(),AddObjectInterface {
     }
 
     override fun addObject() {
-       // adapter.getFonderData()
+        adapter.getFonderData()
     }
 
 

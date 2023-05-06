@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FeedbackAdminActivity"
-    android:background="@color/blue_background"
-    >
+    tools:context=".PrivacyPolicy">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar4"
+        android:id="@+id/tb1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/action_bar_background"
@@ -22,23 +20,30 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/feedback"
+            android:text="@string/privacy_policy"
             android:textColor="@color/white"
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/admin_feedback_rec"
+    <ScrollView
+android:background="@color/blue_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar4"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="30dp"
-        tools:listitem="@layout/admin_feedback_card"
+        app:layout_constraintTop_toBottomOf="@+id/tb1">
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/privacytext"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="25dp"
+            android:textSize="15sp"
+            android:fontFamily="@font/poppins_medium"
+            />
 
-        />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="TextView"
         android:textColor="@color/gray"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:layout_weight="1"
          />
     <View

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SportDetails"
     android:orientation="vertical"
+    android:background="@color/blue_background"
     >
 
     <androidx.appcompat.widget.Toolbar
@@ -16,17 +17,14 @@
         android:background="@drawable/action_bar_background"
         >
 
-        <View
-            android:layout_width="15dp"
-            android:layout_height="20dp"
-            android:layout_margin="20dp"
-            android:background="@drawable/leftarrow" />
+
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/sport_room"
             android:textColor="@color/white"
             android:textSize="20sp" />

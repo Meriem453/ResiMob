@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot
 
 class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): RecyclerView.Adapter<TimingAdapter.TimingVH>() {
     private var data=ArrayList<TimingCardData>()
+    var place=""
      lateinit var db : FirebaseFirestore
     inner class TimingVH(itemView: View): ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.restaurant_timing_card_title)
@@ -54,7 +55,7 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
             itemView.setOnClickListener {
 
                 val intent= Intent(c, TimingEditActivity::class.java)
-                intent.putExtra("place",c.resources.getString(R.string.restaurant))
+                intent.putExtra("place",place)
                 intent.putExtra("title",data.get(position).title)
                 intent.putExtra("timing1",data.get(position).timing1)
                 intent.putExtra("timing2",data.get(position).timing2)
@@ -62,38 +63,40 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
                 intent.putExtra("label2",data.get(position).label2)
                 intent.putExtra("tid",data.get(position).tid)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-
                 activity.startActivityForResult(intent,12)
             }
         }
     }
 
     fun getDoctorData(){
+        place=c.resources.getString(R.string.doctor)
         db = FirebaseFirestore.getInstance()
         var d1 : DocumentReference = db.collection("doctor").document("weekdays")
         d1.get().addOnCompleteListener(){
             var day = it.result!!.data?.getValue("title").toString().trim()
             var label1 = it.result!!.data?.getValue("label1").toString().trim()
             var label2 = it.result!!.data?.getValue("label2").toString().trim()
-            var time1 = it.result!!.data?.getValue("time1").toString().trim()
-            var time2 = it.result!!.data?.getValue("time2").toString().trim()
+            var time1 = it.result!!.data?.getValue("timing1").toString().trim()
+            var time2 = it.result!!.data?.getValue("timing2").toString().trim()
             data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
             notifyDataSetChanged()}
     }
     fun getAdministrationData(){
+        place=c.resources.getString(R.string.administration)
         db = FirebaseFirestore.getInstance()
         var d1 : DocumentReference = db.collection("Admin").document("weekdays")
         d1.get().addOnCompleteListener(){
             var day = it.result!!.data?.getValue("title").toString().trim()
             var label1 = it.result!!.data?.getValue("label1").toString().trim()
             var label2 = it.result!!.data?.getValue("label2").toString().trim()
-            var time1 = it.result!!.data?.getValue("time1").toString().trim()
-            var time2 = it.result!!.data?.getValue("time2").toString().trim()
+            var time1 = it.result!!.data?.getValue("timing1").toString().trim()
+            var time2 = it.result!!.data?.getValue("timing2").toString().trim()
             data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
             notifyDataSetChanged()}
     }
 
     fun getBathroomGirlsTimingData(){
+        place="Bathroom Girls"
         db = FirebaseFirestore.getInstance()
         db.collection("bathroom girls")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -117,6 +120,7 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
     }
 
     fun getBathroomBoysTimingData(){
+        place="Bathroom Boys"
         db = FirebaseFirestore.getInstance()
         db.collection("bathroom")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -138,142 +142,6 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
                 }
             })}
     
-//    fun getFootballNationaltimingData(){
-//        db = FirebaseFirestore.getInstance()
-//        var d1 : DocumentReference = db.collection("football").document("saturday")
-//        var d2 : DocumentReference = db.collection("football").document("sunday")
-//        var d3 : DocumentReference = db.collection("football").document("monday")
-//        var d4 : DocumentReference = db.collection("football").document("thuesday")
-//        var d5 : DocumentReference = db.collection("football").document("wednesday")
-//        var d6 : DocumentReference = db.collection("football").document("thursday")
-//        var d7 : DocumentReference = db.collection("football").document("friday")
-//
-//
-//        d1.get().addOnCompleteListener(){
-//            var day = it.result!!.data?.getValue("title").toString().trim()
-//            var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//            var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//            var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//            var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//            data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//            notifyDataSetChanged()
-//            d2.get().addOnCompleteListener(){
-//                var day = it.result!!.data?.getValue("title").toString().trim()
-//                var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                notifyDataSetChanged()
-//                d3.get().addOnCompleteListener(){
-//                    var day = it.result!!.data?.getValue("title").toString().trim()
-//                    var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                    var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                    var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                    data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                    notifyDataSetChanged()
-//                    d4.get().addOnCompleteListener(){
-//                        var day = it.result!!.data?.getValue("title").toString().trim()
-//                        var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                        var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                        var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                        var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                        data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                        notifyDataSetChanged()
-//                        d5.get().addOnCompleteListener(){
-//                            var day = it.result!!.data?.getValue("title").toString().trim()
-//                            var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                            var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                            var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                            var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                            data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                            notifyDataSetChanged()
-//                            d6.get().addOnCompleteListener(){
-//                                var day = it.result!!.data?.getValue("title").toString().trim()
-//                                var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                                var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                                var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                                var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                                data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                                notifyDataSetChanged()
-//                                d7.get().addOnCompleteListener(){
-//                                    var day = it.result!!.data?.getValue("title").toString().trim()
-//                                    var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                                    var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                                    var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                                    data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                                    notifyDataSetChanged()}}}}}}}
-//    }
-//    fun getFootballInternationaltimingData(){
-//        db = FirebaseFirestore.getInstance()
-//        var d1 : DocumentReference = db.collection("football inter").document("saturday")
-//        var d2 : DocumentReference = db.collection("football inter").document("sunday")
-//        var d3 : DocumentReference = db.collection("football inter").document("monday")
-//        var d4 : DocumentReference = db.collection("football inter").document("thuesday")
-//        var d5 : DocumentReference = db.collection("football inter").document("wednesday")
-//        var d6 : DocumentReference = db.collection("football inter").document("thursday")
-//        var d7 : DocumentReference = db.collection("football inter").document("friday")
-//
-//
-//        d1.get().addOnCompleteListener(){
-//            var day = it.result!!.data?.getValue("title").toString().trim()
-//            var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//            var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//            var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//            var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//            data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//            notifyDataSetChanged()
-//            d2.get().addOnCompleteListener(){
-//                var day = it.result!!.data?.getValue("title").toString().trim()
-//                var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                notifyDataSetChanged()
-//                d3.get().addOnCompleteListener(){
-//                    var day = it.result!!.data?.getValue("title").toString().trim()
-//                    var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                    var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                    var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                    data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                    notifyDataSetChanged()
-//                    d4.get().addOnCompleteListener(){
-//                        var day = it.result!!.data?.getValue("title").toString().trim()
-//                        var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                        var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                        var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                        var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                        data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                        notifyDataSetChanged()
-//                        d5.get().addOnCompleteListener(){
-//                            var day = it.result!!.data?.getValue("title").toString().trim()
-//                            var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                            var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                            var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                            var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                            data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                            notifyDataSetChanged()
-//                            d6.get().addOnCompleteListener(){
-//                                var day = it.result!!.data?.getValue("title").toString().trim()
-//                                var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                                var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                                var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                                var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                                data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                                notifyDataSetChanged()
-//                                d7.get().addOnCompleteListener(){
-//                                    var day = it.result!!.data?.getValue("title").toString().trim()
-//                                    var label1 = it.result!!.data?.getValue("label1").toString().trim()
-//                                    var label2 = it.result!!.data?.getValue("label2").toString().trim()
-//                                    var time1 = it.result!!.data?.getValue("time1").toString().trim()
-//                                    var time2 = it.result!!.data?.getValue("time2").toString().trim()
-//                                    data.add(TimingCardData(title = day, label1 = label1,label2=label2, timing1 = time1, timing2 = time2))
-//                                    notifyDataSetChanged()}}}}}}}
-//    }
 }
 
 

@@ -76,6 +76,7 @@ class HomeAdminActivity : BaseActivity(),LogoutInterface {
                     true
                 }
                 R.id.admin_privacy -> {
+                    startActivity(Intent(baseContext,PrivacyPolicy::class.java))
                     true
                 }
                 R.id.admin_logout -> {

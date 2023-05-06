@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/background</item>
         <item name="colorPrimaryDark">@color/purple_700</item>
         <item name="colorAccent">@color/background</item>
-        <!-- Customize your theme here. -->
+        <item name="background">@color/blue_bg_dark</item>
+        <item name="android:textColor">@color/white</item><!-- Customize your theme here. -->
     </style>
 </resources>
