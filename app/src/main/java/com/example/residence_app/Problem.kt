@@ -33,8 +33,8 @@ class Problem : BaseActivity() {
     lateinit var detailsAdapter:ArrayAdapter<String>
     lateinit var progress_bar:ProgressBar
     var db = Firebase.firestore
-    private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
-    private val sdfid = SimpleDateFormat("yyyymmddhhmmss")
+    private val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyyMMddhhmmss")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

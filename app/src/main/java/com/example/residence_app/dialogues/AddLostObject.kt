@@ -1,5 +1,6 @@
 package com.example.residence_app.dialogues
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
@@ -23,9 +24,10 @@ import java.util.Calendar
 class AddLostObject(val c:Context,val refresh:AddObjectInterface): AppCompatDialogFragment() {
 lateinit var etitle: TextInputEditText
 
-    private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
-    private val sdfid = SimpleDateFormat("yyyymmddhhmmss")
+    private val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyyMMddhhmmss")
     var db = Firebase.firestore
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         val view= activity?.layoutInflater?.inflate(R.layout.add_lost_object,null)

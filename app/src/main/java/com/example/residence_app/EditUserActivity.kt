@@ -1,5 +1,6 @@
 package com.example.residence_app
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
@@ -30,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import kotlin.concurrent.thread
 
 class EditUserActivity : BaseActivity(), DeleteUserInterface {
 
@@ -231,6 +233,7 @@ fun Check():Boolean{
         db.collection("user").document(uid.toString()).update(newUserMap).addOnSuccessListener {
             Toast.makeText(baseContext,"User edited!",Toast.LENGTH_LONG).show()
             finish()
+
         }.addOnFailureListener {
             Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
 
@@ -241,34 +244,54 @@ fun Check():Boolean{
 
     }}
 
+    @SuppressLint("SuspiciousIndentation")
     override fun deleteUser() {
 
         val uid = user.uid.toString()
 
                 db = FirebaseFirestore.getInstance()
                 ds = FirebaseStorage.getInstance()
+            val adminid = FirebaseAuth.getInstance().currentUser!!.uid
+
+
+                db.collection("user").document(uid).get().addOnCompleteListener{
+                    val mail = it.result!!.data?.getValue("email").toString().trim()
+                    val pass = it.result!!.data?.getValue("password").toString().trim()
                 db.collection("user").document(uid).delete().addOnCompleteListener {
-                    ds.reference.child("images/$uid.jpg").delete().addOnCompleteListener { ds.reference.child("images/$uid"+"f.jpg").delete()
-                        ds.reference.child("images/$uid"+"l.jpg").delete().addOnCompleteListener {
-                            db.collection("found objects").document(uid).delete().addOnCompleteListener { db.collection("lost objects").document(uid).delete()
-                                db.collection("feedback").document(uid).delete().addOnCompleteListener { db.collection("problem").document(uid).delete()
-                                    .addOnCompleteListener {
-                                        Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show()
-                                        finish() }
+                    ds.reference.child("images/$uid.jpg").delete()
+                    ds.reference.child("images/$uid"+"f.jpg").delete()
+                        ds.reference.child("images/$uid"+"l.jpg")
+                            db.collection("found objects").document(uid).delete()
+                    db.collection("lost objects").document(uid).delete()
+                                db.collection("feedback").document(uid).delete()
+                    db.collection("problem").document(uid).delete()
+
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(mail,pass).addOnCompleteListener {
+                        val user = Firebase.auth.currentUser!!
+
+                        user.delete()
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Log.d(TAG, "User account deleted.")
                                 }
                             }
+                        db.collection("user").document(adminid).get().addOnCompleteListener{
+                            val adminmail = it.result!!.data?.getValue("email").toString().trim()
+                            val adminpass = it.result!!.data?.getValue("password").toString().trim()
 
-                        }
+                        Toast.makeText(baseContext,resources.getString(R.string.user_deleted),Toast.LENGTH_LONG).show()
+                        finish()
+                        FirebaseAuth.getInstance().signInWithEmailAndPassword(adminmail,adminpass)
                     }
 
 
 
-                }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }
+                }.addOnFailureListener { Toast.makeText(baseContext,"Error!",Toast.LENGTH_LONG).show() }}}
 
          //UsersAdapter.Refresh(UsersAdapter(baseContext,null))
                   UsersAdapter.arr.remove(user)
 
 
     }
-
+    
 }

@@ -60,6 +60,7 @@ class NotificationsAdapter(var c:Context,val isAdmin:Boolean,val fm:FragmentMana
     }
 
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: VH, position: Int) {
 
         val item = data[position]

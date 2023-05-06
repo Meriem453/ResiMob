@@ -17,7 +17,7 @@ class FeedbackActivity : BaseActivity() {
     var president =""
 lateinit var progressBar: ProgressBar
     private val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
-    private val sdfid = SimpleDateFormat("yyyymmddhhmmss")
+    private val sdfid = SimpleDateFormat("yyyyMMddhhmmss")
 
 
     @SuppressLint("MissingInflatedId")

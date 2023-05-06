@@ -143,6 +143,7 @@ class TimingEditActivity : BaseActivity() {
         )
 
             db.collection("restau time").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
                 finish()
             }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
 

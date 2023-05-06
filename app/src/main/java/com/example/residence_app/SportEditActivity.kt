@@ -8,11 +8,13 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.Toast
 import com.example.residence_app.R
 import com.example.residence_app.data.SportData
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SportEditActivity : AppCompatActivity() {
     lateinit var sport:AutoCompleteTextView
@@ -25,6 +27,8 @@ class SportEditActivity : AppCompatActivity() {
     var selected_kind=""
     var selected_gender=""
     lateinit var tid:String
+    lateinit var  db : FirebaseFirestore
+    lateinit var d: String
 
 
 
@@ -123,7 +127,7 @@ class SportEditActivity : AppCompatActivity() {
 
         set.setOnClickListener {
         if(Check())    {
-            sendNewSport(SportData(selected_sport,selected_kind,selected_gender,time_from.text.toString()+"--"+time_to.text.toString())
+            sendNewSport(SportData(selected_sport,selected_kind,selected_gender,time_from.text.toString()+"---"+time_to.text.toString())
             ,intent.getIntExtra("day",0),
                intent.getIntExtra("position",0)
             )
@@ -134,8 +138,54 @@ class SportEditActivity : AppCompatActivity() {
         }
 
     private fun sendNewSport(sportData: SportData,day:Int,position:Int) {
-//TODO("send new sport")
-
+        db = FirebaseFirestore.getInstance()
+        var n : String
+        if(position == 0){
+            n = ""
+        }else{
+            if (position == 1){
+                n = "2"
+            }else{
+                n="3"
+            }
+        }
+        if(day == 0){
+            d = "sunday"
+        }else{
+            if (day == 1){
+                d = "monday"
+            }else{
+                if (day == 2){
+                    d = "thuesday"
+                }else{
+                    if (day == 3){
+                        d = "wednesday"
+                    }else{
+                        if (day == 4){
+                            d = "thursday"
+                        }else{
+                            if (day == 5){
+                                d = "friday"
+                            }else{
+                                if (day == 6){
+                                    d = "saturday"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        val sportMap = mapOf(
+            "sport"+n to sportData.sport,
+            "gender"+n to sportData.gender,
+            "kind"+n to sportData.kind,
+            "time" +n to sportData.time
+        )
+        db.collection("sport room").document(d).update(sportMap).addOnSuccessListener {
+            Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
+            finish()
+        }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
 
     }
 

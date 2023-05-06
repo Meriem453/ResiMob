@@ -32,8 +32,8 @@ lateinit var picture : TextInputEditText
 lateinit var imageUri:Uri
 
 
-    private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
-    private val sdfid = SimpleDateFormat("yyyymmddhhmmss")
+    private val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyyMMddhhmmss")
     var db = Firebase.firestore
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)

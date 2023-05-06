@@ -83,6 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
+            app:passwordToggleEnabled="true"
             android:layout_weight="1"
             android:textColorHint="@color/blue_button"
             app:startIconDrawable="@drawable/__icon__locked_"

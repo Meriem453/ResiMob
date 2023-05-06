@@ -35,8 +35,8 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
     var selected_type=""
     lateinit var type:AutoCompleteTextView
 
-    private val sdf = SimpleDateFormat("yyyy/mm/dd hh:mm:ss")
-    private val sdfid = SimpleDateFormat("yyyymmddhhmmss")
+    private val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyyMMddhhmmss")
 
      var imageUri : Uri? = null
     lateinit var db : FirebaseFirestore
@@ -140,13 +140,13 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                         "time" to sdf.format(Calendar.getInstance().time).toString()
                     )
                     db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
-                        Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
                         refreshAdapter.refresh()
                         //progressBar.visibility = View.GONE
                         this.dismiss()
                     }.addOnFailureListener {
 
-                        Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(requireContext(),"Failed!",Toast.LENGTH_SHORT).show()
                         //progressBar.visibility = View.GONE
                     }
                 }

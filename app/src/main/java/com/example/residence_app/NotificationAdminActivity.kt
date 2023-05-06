@@ -23,6 +23,9 @@ class NotificationAdminActivity : AppCompatActivity(),RefreshAdapter {
         }
         val rec=findViewById<RecyclerView>(R.id.adminnotif_rec)
         rec.layoutManager=LinearLayoutManager(baseContext,RecyclerView.VERTICAL,false)
+        var layoutManager :LinearLayoutManager= rec.layoutManager as LinearLayoutManager
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
         adapter=NotificationsAdapter(baseContext,true,supportFragmentManager)
         adapter.getNotifications()
         adapter.setOnItemClickListener(object : NotificationsAdapter.OnItemClickListener{
