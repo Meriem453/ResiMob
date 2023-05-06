@@ -117,7 +117,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
-                    android:text="@string/time"
+                    android:text="@string/info"
 
                     android:textSize="20sp" />
 
@@ -296,7 +296,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
-                    android:text="@string/problem"
+                    android:text="@string/problems"
 
                     android:textSize="20sp" />
 
