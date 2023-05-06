@@ -108,9 +108,7 @@ class AddUserActivity :BaseActivity() {
 
                 if (sCpassword == sPassword) {
                     val adminid = FirebaseAuth.getInstance().currentUser!!.uid
-                    db.collection("user").document(adminid).get().addOnCompleteListener{
-                        val adminmail = it.result!!.data?.getValue("email").toString().trim()
-                        val adminpass = it.result!!.data?.getValue("password").toString().trim()
+
 
 
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(sEmail,sPassword).addOnCompleteListener{
@@ -137,7 +135,10 @@ class AddUserActivity :BaseActivity() {
                                                 )
                                             db.collection("user").document(userId).set(userMap).addOnSuccessListener {
                                                 Toast.makeText(this, resources.getString(R.string.added_succesfully), Toast.LENGTH_SHORT).show()
-                                                FirebaseAuth.getInstance().signInWithEmailAndPassword(adminmail,adminpass)
+                                                db.collection("user").document(adminid).get().addOnCompleteListener{
+                                                    val adminmail = it.result!!.data?.getValue("email").toString().trim()
+                                                    val adminpass = it.result!!.data?.getValue("password").toString().trim()
+                                                FirebaseAuth.getInstance().signInWithEmailAndPassword(adminmail,adminpass)}
                                                 etFirstName.text.clear()
                                                 etLastName.text.clear()
                                                 etEmail.text.clear()
@@ -161,7 +162,7 @@ class AddUserActivity :BaseActivity() {
                         }
 
                     }
-                    }
+
                     }else{
                     progressBar.visibility = View.GONE
                     etCpassword.error = resources.getString(R.string.invalid_password)
