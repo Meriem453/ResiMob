@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.residence_app.R
 import com.example.residence_app.adapters.RestaurantTimingAdapter
 
 
 class Restaurant_timings : Fragment() {
 var isAdmin=false
-
+lateinit var adapter: RestaurantTimingAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,6 +24,10 @@ var isAdmin=false
         val view=inflater.inflate(R.layout.fragment_restaurant_timings, container, false)
         val recycler=view.findViewById<RecyclerView>(R.id.resturant_timing_rec)
         initRecyclerView(recycler)
+        val swipe=view.findViewById<SwipeRefreshLayout>(R.id.resto_t_swipe)
+        swipe.setOnRefreshListener {
+            swipe.setRefreshing(false)
+            adapter.getData()}
         return view
 
     }
@@ -33,7 +38,7 @@ private fun initRecyclerView(recycler: RecyclerView){
     var layoutManager :LinearLayoutManager= recycler.layoutManager as LinearLayoutManager
     layoutManager.setReverseLayout(true);
     layoutManager.setStackFromEnd(true);
-    val adapter=RestaurantTimingAdapter(requireContext(),isAdmin,requireActivity())
+     adapter=RestaurantTimingAdapter(requireContext(),isAdmin,requireActivity())
     adapter.getData()
     recycler.adapter=adapter
 }

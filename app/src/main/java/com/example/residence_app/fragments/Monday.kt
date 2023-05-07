@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.residence_app.R
 import com.example.residence_app.adapters.SportSportsAdapter
 
@@ -23,12 +24,17 @@ var isAdmin=false
         val view = inflater.inflate(R.layout.fragment_monday, container, false)
         val rec= view.findViewById<RecyclerView>(R.id.monday_rec)
         val adapter= SportSportsAdapter(requireContext(),isAdmin,requireActivity(),1)
+
         adapter.getData(1)
         rec.adapter=adapter
         rec.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
         var layoutManager :LinearLayoutManager= rec.layoutManager as LinearLayoutManager
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
+        val swipe=view.findViewById<SwipeRefreshLayout>(R.id.monday_swipe)
+        swipe.setOnRefreshListener {
+            swipe.setRefreshing(false)
+            adapter.getData(1)}
         return view
     }
 

@@ -4,11 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.Restaurant_programme">
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/resto_p_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/restaurant_programme_rec"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/restaurant_programme_card"
-        />
+        /></androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </FrameLayout>

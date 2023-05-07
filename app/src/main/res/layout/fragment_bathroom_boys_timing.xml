@@ -5,9 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".fragments.BathroomBoysTiming">
 
-
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/bath_b_swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bathroom_boystiming_rec"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </FrameLayout>

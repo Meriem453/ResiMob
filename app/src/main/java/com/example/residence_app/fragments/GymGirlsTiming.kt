@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.residence_app.R
 import com.example.residence_app.adapters.GymTimingAdapter
 
 
 class GymGirlsTiming : Fragment() {
     var isAdmin=false
+    lateinit var adapter:GymTimingAdapter
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,12 +25,15 @@ class GymGirlsTiming : Fragment() {
         val view=inflater.inflate(R.layout.fragment_gym_girls_timing, container, false)
         val recycler=view.findViewById<RecyclerView>(R.id.gym_girlstiming_rec)
         initRecyclerView(recycler)
-
+        val swipe=view.findViewById<SwipeRefreshLayout>(R.id.gym_g_swipe)
+        swipe.setOnRefreshListener {
+            swipe.setRefreshing(false)
+            adapter.getGymGirlsdata()}
         return view
     }
 
     private fun initRecyclerView(recycler: RecyclerView) {
-        val adapter= GymTimingAdapter(requireContext(),requireActivity(),isAdmin)
+       adapter= GymTimingAdapter(requireContext(),requireActivity(),isAdmin)
         adapter.getGymGirlsdata()
         recycler.adapter=adapter
         recycler.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)

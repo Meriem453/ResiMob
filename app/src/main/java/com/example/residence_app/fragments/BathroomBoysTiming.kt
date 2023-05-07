@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.residence_app.R
 import com.example.residence_app.adapters.TimingAdapter
 
 
 class BathroomBoysTiming : Fragment() {
 var isAdmin=false
+    lateinit var adapter: TimingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,12 +24,17 @@ var isAdmin=false
         val view=inflater.inflate(R.layout.fragment_bathroom_boys_timing, container, false)
         val recycler=view.findViewById<RecyclerView>(R.id.bathroom_boystiming_rec)
         initRecyclerView(recycler)
+        val swipe=view.findViewById<SwipeRefreshLayout>(R.id.bath_b_swipe)
+        swipe.setOnRefreshListener {
+            swipe.setRefreshing(false)
+            adapter.getBathroomBoysTimingData()
+        }
 
         return view
     }
 
     private fun initRecyclerView(recycler: RecyclerView) {
-        val adapter= TimingAdapter(requireContext(),requireActivity(),isAdmin)
+         adapter= TimingAdapter(requireContext(),requireActivity(),isAdmin)
         adapter.getBathroomBoysTimingData()
         recycler.adapter=adapter
         recycler.layoutManager= LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)

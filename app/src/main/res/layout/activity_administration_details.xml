@@ -25,12 +25,18 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
-
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/admin_swipe"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/admin_rec"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         tools:listitem="@layout/timing_card" />
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

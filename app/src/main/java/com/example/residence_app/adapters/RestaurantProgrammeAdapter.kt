@@ -68,6 +68,7 @@ class RestaurantProgrammeAdapter(var c:Context,val isAdmin:Boolean,val activity:
         }
     }
 init {
+    data.clear()
         db = FirebaseFirestore.getInstance()
         db.collection("programme restau")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {

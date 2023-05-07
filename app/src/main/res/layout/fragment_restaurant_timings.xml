@@ -4,10 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.Restaurant_timings">
-
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/resto_t_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/resturant_timing_rec"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/timing_card" />
+        tools:listitem="@layout/timing_card" /></androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </FrameLayout>

@@ -64,6 +64,7 @@ class GymTimingAdapter(var context : Context ,val activity: Activity,val isAdmin
         return data.size
     }
     fun getGymBoysdata(){
+        data.clear()
         place="Gym Boys"
         db = FirebaseFirestore.getInstance()
         db.collection("gym boys")
@@ -87,6 +88,7 @@ class GymTimingAdapter(var context : Context ,val activity: Activity,val isAdmin
             })
     }
     fun getGymGirlsdata(){
+        data.clear()
         place="Gym Girls"
         db = FirebaseFirestore.getInstance()
         db.collection("gym girls")

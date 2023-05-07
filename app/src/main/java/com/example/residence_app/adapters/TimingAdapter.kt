@@ -69,7 +69,8 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
     }
 
     fun getDoctorData(){
-        place=c.resources.getString(R.string.doctor)
+        data.clear()
+        place="Doctor"
         db = FirebaseFirestore.getInstance()
         var d1 : DocumentReference = db.collection("doctor").document("weekdays")
         d1.get().addOnCompleteListener(){
@@ -82,7 +83,8 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
             notifyDataSetChanged()}
     }
     fun getAdministrationData(){
-        place=c.resources.getString(R.string.administration)
+        data.clear()
+        place="Administration"
         db = FirebaseFirestore.getInstance()
         var d1 : DocumentReference = db.collection("Admin").document("weekdays")
         d1.get().addOnCompleteListener(){
@@ -96,6 +98,7 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
     }
 
     fun getBathroomGirlsTimingData(){
+        data.clear()
         place="Bathroom Girls"
         db = FirebaseFirestore.getInstance()
         db.collection("bathroom girls")
@@ -120,6 +123,7 @@ class TimingAdapter(var c:Context,val activity: Activity,val isAdmin:Boolean): R
     }
 
     fun getBathroomBoysTimingData(){
+        data.clear()
         place="Bathroom Boys"
         db = FirebaseFirestore.getInstance()
         db.collection("bathroom")

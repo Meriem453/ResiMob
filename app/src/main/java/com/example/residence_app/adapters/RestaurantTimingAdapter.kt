@@ -56,7 +56,7 @@ return data.size
                   itemView.setOnClickListener {
 
                       val intent=Intent(c,TimingEditActivity::class.java)
-                      intent.putExtra("place",c.resources.getString(R.string.restaurant))
+                      intent.putExtra("place","Restaurant")
                       intent.putExtra("title",data.get(position).title)
                       intent.putExtra("timing1",data.get(position).timing1)
                       intent.putExtra("timing2",data.get(position).timing2)
@@ -72,6 +72,8 @@ return data.size
     }
 
     fun getData(){
+
+        data.clear()
         db = FirebaseFirestore.getInstance()
         db.collection("restau timing")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {

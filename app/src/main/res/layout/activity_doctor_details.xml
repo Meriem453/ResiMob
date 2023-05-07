@@ -25,12 +25,17 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
+ <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+     android:id="@+id/doctor_swipe"
+     android:layout_width="match_parent"
+     android:layout_height="220dp">
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/doctor_rec"
+         android:layout_width="match_parent"
+         android:layout_height="220dp"
+         />
+ </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/doctor_rec"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        />
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@color/background"
