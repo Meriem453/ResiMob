@@ -151,7 +151,7 @@ if(personnn=="Loser"){getLoserData()}else{getFonderData()}
                 }
             })
         arr.sortedWith(compareBy({it.sort}))
-        arr.reverse()
+
 
 //arr.sortedWith(compareBy({it.Sort}))
         //notifyDataSetChanged()
@@ -176,11 +176,13 @@ if(personnn=="Loser"){getLoserData()}else{getFonderData()}
 
                         }
                     }
+                    arr.sortBy { it.sort }
+                    arr.reverse()
                     notifyDataSetChanged()
                 }
             })
-        arr.sortedWith(compareBy({it.sort}))
-        arr.reverse()
+
+
 
     }
 

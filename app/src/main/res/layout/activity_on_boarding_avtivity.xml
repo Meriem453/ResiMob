@@ -23,7 +23,9 @@
         android:background="@drawable/getstartedcard"
         app:layout_constraintBottom_toTopOf="@id/viewCenterNext"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-101dp">
+        tools:layout_editor_absoluteX="-101dp"
+        android:paddingBottom="50dp"
+        >
     </androidx.viewpager2.widget.ViewPager2>
 
 

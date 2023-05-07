@@ -118,7 +118,6 @@
                     android:hint="@string/password"
                     android:textColorHint="@color/blue_button"
                     android:textColor="@color/gray"
-                    android:inputType="textWebPassword"
 
 
 
@@ -145,6 +144,7 @@
                     android:textColorHint="@color/blue_button"
                     android:textColor="@color/gray"
                     android:inputType="text"
+                    android:hint="@string/room_bloc_numbre"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 <LinearLayout
