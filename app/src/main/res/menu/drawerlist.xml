@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group>
         <item android:title="@string/screens"
@@ -20,15 +21,23 @@
                 <item android:id="@+id/problem_screen"
                     android:icon="@drawable/baseline_report_problem_24"
                     android:title="@string/problem"/>
-            </menu></item>
+
+            </menu>
+        </item>
     </group>
 
-    <item android:id="@+id/Settings_screen"
-        android:icon="@drawable/baseline_settings_24"
-        android:title="@string/settings"/>
+    <item android:id="@+id/user_language"
+        android:icon="@drawable/icon_language"
+        android:title="@string/language"/>
+    <item
+        android:id="@+id/user_privacy"
+        android:title="@string/privacy_policy"
+        android:icon="@drawable/icon_privacy_tip"
+        />
     <item
         android:id="@+id/LogOut"
         android:icon="@drawable/baseline_logout_24"
         android:title="@string/logout" />
+
 
 </menu>

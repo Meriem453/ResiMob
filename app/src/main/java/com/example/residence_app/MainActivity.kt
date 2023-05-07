@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -114,6 +115,14 @@ class MainActivity : BaseActivity() {
                     }
                     R.id.feedback_screen -> {
                         startActivity(Intent(baseContext,FeedbackActivity::class.java))
+                    }
+                    R.id.user_language -> {
+                        ChangeLanguage().show(supportFragmentManager,"ll")
+                        true
+                    }
+                    R.id.user_privacy -> {
+                        startActivity(Intent(baseContext,PrivacyPolicy::class.java))
+                        true
                     }
                     R.id.LogOut-> {
                         LogoutUser(this).show(supportFragmentManager,"logout")
