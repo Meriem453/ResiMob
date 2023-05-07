@@ -14,6 +14,6 @@ data class ObjectData(
     val UserLastName:String?=null,
     val UserEmail:String?=null,
     val oid:String?=null,
-    val Date:String?=null,
+    val time:String?=null,
     val sort:String?=null
                       )

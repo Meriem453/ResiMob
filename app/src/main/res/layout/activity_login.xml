@@ -116,10 +116,11 @@
             android:textColor="@color/white"
             android:layout_marginHorizontal="50dp"
             android:textSize="20sp"
+            android:layout_marginBottom="50dp"
 
             />
 
-        <TextView
+      <!--  <TextView
             android:id="@+id/tv_contct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -127,7 +128,7 @@
             android:layout_marginBottom="15dp"
             android:layout_weight="1"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/forgot_password" />
+            android:text="@string/forgot_password" />-->
 
         <View
             android:id="@+id/eclipse"

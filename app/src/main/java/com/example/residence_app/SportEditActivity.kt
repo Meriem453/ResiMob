@@ -16,7 +16,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.firestore.FirebaseFirestore
 
-class SportEditActivity : AppCompatActivity() {
+class SportEditActivity : BaseActivity() {
     lateinit var sport:AutoCompleteTextView
     lateinit var kind:AutoCompleteTextView
     lateinit var gender:AutoCompleteTextView

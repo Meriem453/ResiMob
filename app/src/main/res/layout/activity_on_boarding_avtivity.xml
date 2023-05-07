@@ -53,16 +53,17 @@
         app:layout_constraintTop_toTopOf="@id/nextbutton"
         android:id="@+id/viewCenterNext"/>
 
-    <Button
+    <LinearLayout
         android:id="@+id/nextbutton"
         android:layout_width="114dp"
         android:layout_height="113dp"
         android:layout_margin="50dp"
         android:background="@drawable/nextarrow"
-
         app:layout_constraintBottom_toTopOf="@+id/dots_indicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

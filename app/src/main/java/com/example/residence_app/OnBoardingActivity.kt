@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.residence_app.adapters.OnBoardingItemsAdapter
@@ -46,7 +47,7 @@ class OnBoardingActivity : BaseActivity() {
             ViewPager.adapter = onBoardingItemsAdapter
             val dotsIndicator = findViewById<DotsIndicator>(R.id.dots_indicator)
             dotsIndicator.attachTo(ViewPager)
-            findViewById<Button>(R.id.nextbutton).setOnClickListener {
+            findViewById<LinearLayout>(R.id.nextbutton).setOnClickListener {
                 if (ViewPager.currentItem + 1 < onBoardingItemsAdapter.itemCount){
                     ViewPager.currentItem += 1
                 }else{

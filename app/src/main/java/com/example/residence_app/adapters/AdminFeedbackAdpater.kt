@@ -57,7 +57,7 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
            name.text="${arr[position].fname} ${arr[position].lname}"
            president.text=arr[position].president
            details.text=arr[position].description
-           date.text=arr[position].Date
+           date.text=arr[position].time
            Glide.with(c).load(arr[position].image).into(img)
            delete.setOnClickListener {
                this@AdminFeedbackAdpater.position =position

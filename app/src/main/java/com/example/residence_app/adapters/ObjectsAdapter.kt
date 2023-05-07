@@ -65,7 +65,7 @@ var arr=ArrayList<ObjectData>()
               place.text=arr[position].Place
               name.text="  "+arr[position].UserFirstName + " " + arr[position].UserLastName
               email.text="  "+arr[position].UserEmail
-              date.text=arr[position].Date
+              date.text=arr[position].time
 
               if(arr[position].Person== "Loser"){
                   img.visibility=View.GONE

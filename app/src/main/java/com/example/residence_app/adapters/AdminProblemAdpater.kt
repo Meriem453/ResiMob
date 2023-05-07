@@ -56,7 +56,7 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
            name.text="${arr[position].fname} ${arr[position].lname}"
            president.text=arr[position].president
            details.text=arr[position].details
-           date.text=arr[position].Date
+           date.text=arr[position].time
            Glide.with(c).load(arr[position].image).into(img)
            delete.setOnClickListener {
                this@AdminProblemAdpater.position=position

@@ -10,7 +10,7 @@ data class AdminProblemData(
     val president:String?= null,
     val details:String?= null,
     val pid:String?=null,
-    val Date:String?=null,
+    val time:String?=null,
     val sort:String?=null
 
 )
