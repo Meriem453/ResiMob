@@ -132,64 +132,56 @@ class TimingEditActivity : BaseActivity() {
     private fun sendNewTiming(newTime: TimingCardData) {
         db = FirebaseFirestore.getInstance()
 
-        var newProgramMap = mapOf(
+        var newTimeMap = mapOf(
 
             "title" to newTime.title,
-            "label1" to newTime.label1,
-            "label2" to newTime.label2,
             "timing1" to newTime.timing1,
             "timing2" to newTime.timing2
 
         )
             if(place.text.toString()=="Restaurant"){
-                db.collection("restau time").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                db.collection("restau timing").document(newTime.tid.toString()).update(newTimeMap).addOnSuccessListener {
                     Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
                     finish()
+
                 }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
             }else{
                 if(place.text.toString()=="Doctor"){
-                    db.collection("doctor").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                    db.collection("doctor").document("weekdays").update(newTimeMap).addOnSuccessListener {
                         Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
                         finish()
                     }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
                 }else{
                     if(place.text.toString()=="Administration"){
-                        db.collection("Admin").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                        db.collection("Admin").document("weekdays").update(newTimeMap).addOnSuccessListener {
                             Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
                             finish()
                         }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
                     }else{
-                        if(place.text.toString()=="Restaurant"){
-                            db.collection("restau time").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
-                                Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
-                                finish()
-                            }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
-                        }else{
+
                             if(place.text.toString()=="Bathroom Girls"){
-                                db.collection("bathroom girls").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                                db.collection("bathroom girls").document(newTime.tid.toString()).update(newTimeMap).addOnSuccessListener {
                                     Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
                                     finish()
                                 }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
                             }else{
                                 if(place.text.toString()=="Bathroom Boys"){
-                                    db.collection("bathroom").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                                    db.collection("bathroom").document(newTime.tid.toString()).update(newTimeMap).addOnSuccessListener {
                                         Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
                                         finish()
                                     }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
                                 }else{
                                     if(place.text.toString()=="Gym Girls"){
-                                        db.collection("gym girls").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                                        db.collection("gym girls").document(newTime.tid.toString()).update(newTimeMap).addOnSuccessListener {
                                             Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
                                             finish()
                                         }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
                                     }else{
                                         if(place.text.toString()=="Gym Boys"){
-                                            db.collection("gym boys").document(newTime.tid.toString()).update(newProgramMap).addOnSuccessListener {
+                                            db.collection("gym boys").document(newTime.tid.toString()).update(newTimeMap).addOnSuccessListener {
                                                 Toast.makeText(baseContext,"Succeed!", Toast.LENGTH_LONG).show()
                                                 finish()
                                             }.addOnFailureListener { Toast.makeText(baseContext,"Error!", Toast.LENGTH_LONG).show() }
-                                        }else{
-
                                         }
                                     }
                                 }
@@ -197,7 +189,7 @@ class TimingEditActivity : BaseActivity() {
                         }
                     }
                 }
-            }
+
 
 
 
