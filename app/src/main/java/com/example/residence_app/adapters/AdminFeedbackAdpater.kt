@@ -34,7 +34,7 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
     val title=itemView.findViewById<TextView>(R.id.adminfeedback_title)
     val name=itemView.findViewById<TextView>(R.id.adminfeedback_fullname)
     val president=itemView.findViewById<TextView>(R.id.adminfeedback_president)
-    val details=itemView.findViewById<TextView>(R.id.adminfeedback_president)
+    val details=itemView.findViewById<TextView>(R.id.adminfeedback_details)
     val delete=itemView.findViewById<ImageView>(R.id.adminfeedback_delete)
     val layout=itemView.findViewById<LinearLayout>(R.id.adminfeedback_layout)
     val date=itemView.findViewById<TextView>(R.id.adminfeedback_date)
