@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.residence_app.Interfaces.RefreshAdapter
 import com.example.residence_app.R
+import com.example.residence_app.notification.FcmNotificationsSender
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.textfield.TextInputEditText
@@ -157,7 +158,9 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
             print(e.message)
         })
                 }
-
+                val notifSender=FcmNotificationsSender("/topics/all","Nouvel Notification",
+                    "Vous avez un nouvel notification",requireContext(),requireActivity())
+            notifSender.SendNotifications()
 
                 this.dismiss()
 
