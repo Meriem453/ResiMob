@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
@@ -20,29 +22,53 @@ class HomeAdminActivity : BaseActivity(),LogoutInterface {
     lateinit var open:ImageView
     lateinit var binding:ActivityHomeAdminBinding
     lateinit var navview:NavigationView
+
+    lateinit var users:CardView
+    lateinit var feedback:CardView
+    lateinit var problem:CardView
+    lateinit var objects:CardView
+    lateinit var notif:CardView
+    lateinit var time:CardView
+
+    lateinit var li1:LinearLayout
+    lateinit var li2:LinearLayout
+    lateinit var li3:LinearLayout
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityHomeAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         supportActionBar?.hide()
         setContentView(R.layout.activity_home_admin)
+
+        val admin=intent.getIntExtra("admin",0)
+
+
+
         drawer=findViewById(R.id.admin_drawerlayout)
         open=findViewById(R.id.admin_navdrawer)
         navview=findViewById(R.id.admin_navview)
 
-        val users=findViewById<CardView>(R.id.admin_users)
-        val feedback = findViewById<CardView>(R.id.admin_feedback)
-        val problem = findViewById<CardView>(R.id.admin_problem)
-        val objects=findViewById<CardView>(R.id.admin_obj)
-        val notif = findViewById<CardView>(R.id.admin_notif)
-        val time=findViewById<CardView>(R.id.admin_time)
+         users=findViewById<CardView>(R.id.admin_users)
+         feedback = findViewById<CardView>(R.id.admin_feedback)
+         problem = findViewById<CardView>(R.id.admin_problem)
+         objects=findViewById<CardView>(R.id.admin_obj)
+         notif = findViewById<CardView>(R.id.admin_notif)
+         time=findViewById<CardView>(R.id.admin_time)
+
+        li1=findViewById(R.id.li1)
+        li2=findViewById(R.id.li2)
+        li3=findViewById(R.id.li3)
 
         open.setOnClickListener {
             drawer.open()
         }
         time.setOnClickListener {
-              startActivity(Intent(baseContext,TimeChangeActivity::class.java))
+            val intent=Intent(baseContext,TimeChangeActivity::class.java)
+            intent.putExtra("admin",admin)
+              startActivity(intent)
         }
         notif.setOnClickListener {
            startActivity(Intent(baseContext,NotificationAdminActivity::class.java))
@@ -86,6 +112,36 @@ class HomeAdminActivity : BaseActivity(),LogoutInterface {
                 }
                 else -> false
             }
+
+        }
+
+
+        //getting the nmr of the admin
+        when(admin){
+            1 -> {
+                objects.visibility= View.GONE
+                notif.visibility=View.GONE
+                time.visibility=View.GONE
+                li1.visibility=View.GONE
+            }
+            2 -> {
+                users.visibility=View.GONE
+                objects.visibility=View.GONE
+                li2.visibility=View.GONE
+            }
+            3 -> {
+                users.visibility=View.GONE
+            }
+            4 -> {
+                users.visibility=View.GONE
+                objects.visibility=View.GONE
+                li2.visibility=View.GONE
+
+            }
+            5 -> {
+                users.visibility=View.GONE
+            }
+
 
         }
 

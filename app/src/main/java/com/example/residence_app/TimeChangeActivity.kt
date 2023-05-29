@@ -3,6 +3,8 @@ package com.example.residence_app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 
 private lateinit var restaurant: CardView
@@ -62,6 +64,40 @@ class TimeChangeActivity : BaseActivity(){
             intent.putExtra("isAdmin",true)
             startActivity(intent)
         }
+
+        val lin1=findViewById<LinearLayout>(R.id.lin1)
+        val lin2=findViewById<LinearLayout>(R.id.lin2)
+        val lin3=findViewById<LinearLayout>(R.id.lin3)
+        val grid=findViewById<LinearLayout>(R.id.gridLayout)
+
+
+        when(intent.getIntExtra("admin",0)){
+            2 ->{restaurant.visibility=View.GONE
+                 bathroom.visibility=View.GONE
+                 administration.visibility=View.GONE
+            }
+            3->{
+                restaurant.visibility=View.GONE
+                administration.visibility=View.GONE
+                restaurant.visibility=View.GONE
+                gym.visibility=View.GONE
+                sport.visibility=View.GONE
+                lin1.visibility=View.GONE
+                lin2.visibility=View.GONE
+                grid.weightSum= 3F
+
+            }
+            4->{
+                bathroom.visibility=View.GONE
+                administration.visibility=View.GONE
+                doctor.visibility=View.GONE
+                gym.visibility=View.GONE
+                sport.visibility=View.GONE
+            }
+
+
+        }
+
     }
 
 
