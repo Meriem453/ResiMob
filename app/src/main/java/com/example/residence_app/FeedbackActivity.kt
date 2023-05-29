@@ -40,7 +40,7 @@ lateinit var progressBar: ProgressBar
         etTitle = findViewById(R.id.title_ID)
         etDescription = findViewById(R.id.description_ID)
         progressBar=findViewById(R.id.feedback_progressBar)
-        val options = resources.getStringArray(R.array.presidents)
+        val options = resources.getStringArray(R.array.presidents2)
 
 
 

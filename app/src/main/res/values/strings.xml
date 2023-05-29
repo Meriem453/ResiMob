@@ -35,6 +35,14 @@
     <string name="national">National</string>
     <string name="international">International</string>
     <string name="President">President</string>
+
+    <string-array name="presidents2">
+        <item>Chef service activité</item>
+        <item>Chef service restaurant</item>
+        <item>Chef service security et maintenance</item>
+        <item>Chef service hébergement</item>
+    </string-array>
+
     <string-array name="presidents">
         <item>Chef service activité</item>
         <item>Chef service restaurant</item>
