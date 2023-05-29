@@ -98,7 +98,7 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                 if (name == "Admin"|| name == "Chef" || name == "Co") {
                     Handler(Looper.getMainLooper()).postDelayed({
                         val intent = Intent(this, HomeAdminActivity::class.java)
-                        intent.putExtra("admin",3)
+                        intent.putExtra("admin",0)
                         startActivity(intent)
                         finish()
                     }, 1)

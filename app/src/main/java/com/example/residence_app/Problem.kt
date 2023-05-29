@@ -175,12 +175,7 @@ problems.clear()
                 for (i in 0..arr.size-1) {
                     problems.add(arr[i])
                 }            }
-            presidents[3] ->
-            {
-                val arr = resources.getStringArray(R.array.pre4_problems)
-                for (i in 0..arr.size-1) {
-                    problems.add(arr[i])
-                }}
+
         }
 
         adapter.notifyDataSetChanged()
@@ -250,27 +245,23 @@ when(selected_president){
                     details.add(arr[i])
                 }
             }
-
-        }
-    }
-    presidents[3]->{
-        when (selected_prblm){
-            problems[0]-> {
+            problems[3] -> {
                 val arr = resources.getStringArray(R.array.internal_details)
                 for (i in 0..arr.size-1) {
                     details.add(arr[i])
                 }
             }
-            problems[1]-> {
+            problems[4] -> {
                 val arr = resources.getStringArray(R.array.external_details)
                 for (i in 0..arr.size-1) {
                     details.add(arr[i])
                 }
-            }
 
+            }
 
         }
     }
+
 }
     adapter.notifyDataSetChanged()
 }

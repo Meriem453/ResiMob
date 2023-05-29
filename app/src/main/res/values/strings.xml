@@ -36,29 +36,27 @@
     <string name="international">International</string>
     <string name="President">President</string>
     <string-array name="presidents">
-        <item>Head of the Cultural, Sports and Health Activities Department</item>
-        <item>Head of the Catering Department</item>
-        <item>Head of the Maintenance Department</item>
-        <item>Head of the Security Department</item>
+        <item>Chef service activité</item>
+        <item>Chef service restaurant</item>
+        <item>Chef service security et maintenance</item>
     </string-array>
     <string-array name="pre1_problems">
         <item>Sport</item>
         <item>Culture</item>
-        <item>Health</item>
+        <item>Santé</item>
     </string-array>
     <string-array name="pre2_problems">
-        <item>Timing</item>
-        <item>Food</item>
+        <item>Horaires</item>
+        <item>Nourriture</item>
     </string-array>
     <string-array name="pre3_problems">
-        <item>Electricity</item>
-        <item>Plumbing</item>
+        <item>Electricité</item>
+        <item>Plombier</item>
         <item>DIY</item>
+        <item>Sécurité interne</item>
+        <item>Sécurité externe</item>
     </string-array>
-    <string-array name="pre4_problems">
-        <item>Internal</item>
-        <item>External</item>
-    </string-array>
+
     <string-array name="sport_details">
         <item>Timing not appropriate</item>
         <item>Tournament request</item>
