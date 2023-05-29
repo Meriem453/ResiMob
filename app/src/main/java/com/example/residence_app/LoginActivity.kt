@@ -94,8 +94,8 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         if(auth.currentUser != null) {
             db = FirebaseFirestore.getInstance()
             db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener() {
-                val name = it.result!!.data?.getValue("lname").toString().trim()
-                if (name == "Admin") {
+                val name = it.result!!.data?.getValue("fname").toString().trim()
+                if (name == "Admin"|| name == "Chef") {
                     Handler(Looper.getMainLooper()).postDelayed({
                         val intent = Intent(this, HomeAdminActivity::class.java)
                         intent.putExtra("admin",3)
