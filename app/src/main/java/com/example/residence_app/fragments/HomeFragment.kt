@@ -113,7 +113,7 @@ class HomeFragment : Fragment() {
             //image
             Glide.with(this).load(imgurl).into(userImage)
         }
-        
+
         return view
     }
 
