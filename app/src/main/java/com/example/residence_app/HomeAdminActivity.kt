@@ -118,6 +118,9 @@ class HomeAdminActivity : BaseActivity(),LogoutInterface {
 
         //getting the nmr of the admin
         when(admin){
+            0-> {
+
+            }
             1 -> {
                 objects.visibility= View.GONE
                 notif.visibility=View.GONE

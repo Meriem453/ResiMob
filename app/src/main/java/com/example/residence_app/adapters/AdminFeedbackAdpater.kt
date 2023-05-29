@@ -91,7 +91,6 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
                         if(dc.getType() == DocumentChange.Type.ADDED){
                             arr.add(dc.getDocument().toObject(AdminFeedbackData::class.java))
 
-
                         }
                     }
 
