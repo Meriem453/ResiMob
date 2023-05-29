@@ -94,7 +94,7 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
 
                         for (dc: DocumentChange in value?.documentChanges!!){
                             if(dc.getType() == DocumentChange.Type.ADDED){
-                                if(dc.getDocument().toObject(AdminProblemData::class.java).role == lname ||dc.getDocument().toObject(AdminProblemData::class.java).role == ""|| dc.getDocument().toObject(AdminProblemData::class.java).role == "Co" )
+                                if(dc.getDocument().toObject(AdminProblemData::class.java).role == lname ||lname == "Admin"|| lname == "" )
                                     arr.add(dc.getDocument().toObject(AdminProblemData::class.java))
 
 
