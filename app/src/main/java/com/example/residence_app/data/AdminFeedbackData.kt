@@ -11,5 +11,6 @@ data class AdminFeedbackData(
     val description:String?= null,
     val fid:String?=null,
     val time:String?=null,
-    val sort:String?=null
+    val sort:String?=null,
+    val role:String?=null
 )

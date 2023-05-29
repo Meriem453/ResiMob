@@ -21,12 +21,14 @@ import com.example.residence_app.data.AdminFeedbackData
 import com.example.residence_app.data.AdminProblemData
 import com.example.residence_app.dialogues.DeleteProblemFragment
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import org.w3c.dom.Text
 
 class AdminProblemAdpater(val c:Context,val fm:FragmentManager): RecyclerView.Adapter<AdminProblemAdpater.adminprVH>(),DeleteProblemInterface {
 var arr=ArrayList<AdminProblemData>()
     lateinit var db : FirebaseFirestore
+
     var position=0
 inner class adminprVH(itemView: View): ViewHolder(itemView){
     val img=itemView.findViewById<ShapeableImageView>(R.id.adminproblem_img)
@@ -78,27 +80,33 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
     init {
         arr.clear()
         db = FirebaseFirestore.getInstance()
-        db.collection("problem")
-            .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if(error != null){
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        db.collection("user").document(uid).get().addOnCompleteListener {
+            val lname = it.result!!.data?.getValue("lname")
+            db.collection("problem")
+                .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                    override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                        if(error != null){
 
-                        Log.e("Data base error!",error.message.toString())
-                        return
-                    }
-
-                    for (dc: DocumentChange in value?.documentChanges!!){
-                        if(dc.getType() == DocumentChange.Type.ADDED){
-                            arr.add(dc.getDocument().toObject(AdminProblemData::class.java))
-
-
+                            Log.e("Data base error!",error.message.toString())
+                            return
                         }
+
+                        for (dc: DocumentChange in value?.documentChanges!!){
+                            if(dc.getType() == DocumentChange.Type.ADDED){
+                                if(dc.getDocument().toObject(AdminProblemData::class.java).role == lname ||dc.getDocument().toObject(AdminProblemData::class.java).role == ""|| dc.getDocument().toObject(AdminProblemData::class.java).role == "Co" )
+                                    arr.add(dc.getDocument().toObject(AdminProblemData::class.java))
+
+
+                            }
+                        }
+                        arr.sortBy { it.sort }
+                        arr.reverse()
+                        notifyDataSetChanged()
                     }
-                    arr.sortBy { it.sort }
-                    arr.reverse()
-                    notifyDataSetChanged()
-                }
-            })
+                })
+        }
+
 //        arr.add(AdminProblemData("Resto","Meriem","Zemane",null,"Khoufach","paint"))
 //
 //        notifyDataSetChanged()

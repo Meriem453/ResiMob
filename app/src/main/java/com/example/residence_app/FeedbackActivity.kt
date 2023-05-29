@@ -18,6 +18,7 @@ class FeedbackActivity : BaseActivity() {
 lateinit var progressBar: ProgressBar
     private val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
     private val sdfid = SimpleDateFormat("yyyyMMddhhmmss")
+    private lateinit var role:String
 
 
     @SuppressLint("MissingInflatedId")
@@ -74,12 +75,17 @@ lateinit var progressBar: ProgressBar
                 }
                 progressBar.visibility = View.GONE
             }else{
+
                 when(president){
-//                    "" ->
-//                    "" ->
+                    "Chef service restaurant" -> role = "Restaurant"
+                    "Chef service activité" -> role = "Activities"
+                    "Chef service security et maintenance" -> role = "Entretien et sécurité"
+                    "Chef service hébergement" -> role = "Hébergement"
+
                 }
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
                 db.collection("user").document(uid).get().addOnCompleteListener{
+
                     val feedbackmap = hashMapOf(
                         "fname" to it.result!!.data?.getValue("fname").toString().trim(),
                         "lname" to it.result!!.data?.getValue("lname").toString().trim(),
@@ -89,7 +95,8 @@ lateinit var progressBar: ProgressBar
                         "image" to it.result!!.data?.getValue("image").toString().trim(),
                         "fid" to it.result!!.data?.getValue("uid").toString().trim(),
                         "time" to sdf.format(Calendar.getInstance().time).toString(),
-                        "sort" to sdfid.format(Calendar.getInstance().time).toString()
+                        "sort" to sdfid.format(Calendar.getInstance().time).toString(),
+                        "role" to role
                         )
                     db.collection("feedback").document(uid).set(feedbackmap).addOnSuccessListener {
                         Toast.makeText(this, resources.getString(R.string.added_succesfully), Toast.LENGTH_SHORT).show()

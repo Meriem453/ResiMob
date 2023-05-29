@@ -11,6 +11,7 @@ data class AdminProblemData(
     val details:String?= null,
     val pid:String?=null,
     val time:String?=null,
-    val sort:String?=null
+    val sort:String?=null,
+    val role:String?=null
 
 )
