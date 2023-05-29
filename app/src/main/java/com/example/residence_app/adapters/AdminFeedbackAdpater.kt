@@ -20,9 +20,11 @@ import com.example.residence_app.FeedbackActivity
 import com.example.residence_app.Interfaces.DeleteFeedbackInterface
 import com.example.residence_app.R
 import com.example.residence_app.data.AdminFeedbackData
+import com.example.residence_app.data.AdminProblemData
 import com.example.residence_app.data.ObjectData
 import com.example.residence_app.dialogues.DeleteFeedbackFragment
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 
 class AdminFeedbackAdpater(val c:Context,val fm:FragmentManager): DeleteFeedbackInterface,RecyclerView.Adapter<AdminFeedbackAdpater.adminfdVH>() {
@@ -78,27 +80,37 @@ inner class adminfdVH(itemView: View): ViewHolder(itemView){
     init {
         arr.clear()
         db = FirebaseFirestore.getInstance()
-        db.collection("feedback")
-            .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if(error != null){
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        db.collection("user").document(uid).get().addOnCompleteListener {
+            val lname = it.result!!.data?.getValue("lname")
+            db.collection("feedback")
+                .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                    override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                        if(error != null){
 
-                        Log.e("Data base error!",error.message.toString())
-                        return
-                    }
-
-                    for (dc: DocumentChange in value?.documentChanges!!){
-                        if(dc.getType() == DocumentChange.Type.ADDED){
-                            arr.add(dc.getDocument().toObject(AdminFeedbackData::class.java))
-
+                            Log.e("Data base error!",error.message.toString())
+                            return
                         }
-                    }
 
-                    arr.sortBy { it.sort }
-                    arr.reverse()
-                    notifyDataSetChanged()
-                }
-            })
+                        for (dc: DocumentChange in value?.documentChanges!!){
+                            if(dc.getType() == DocumentChange.Type.ADDED) {
+                                if (dc.getDocument()
+                                        .toObject(AdminProblemData::class.java).role == lname || lname == "Admin" || lname == ""
+                                ){
+                                    arr.add(
+                                        dc.getDocument().toObject(AdminFeedbackData::class.java)
+                                    )}
+
+                            }
+                        }
+
+                        arr.sortBy { it.sort }
+                        arr.reverse()
+                        notifyDataSetChanged()
+                    }
+                })
+        }
+
 
 
     }
