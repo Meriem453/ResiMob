@@ -18,10 +18,12 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.residence_app.Interfaces.RefreshAdapter
 import com.example.residence_app.R
 import com.example.residence_app.notification.FcmNotificationsSender
+import com.example.residence_app.notification.FirebaseMessagingService
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import java.text.SimpleDateFormat
@@ -53,6 +55,7 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
         val president = view.findViewById<AutoCompleteTextView>(R.id.addNotif_president)
          type=view.findViewById<AutoCompleteTextView>(R.id.addNotif_type)
         picture = view.findViewById<TextInputEditText>(R.id.addNotif_picture)!!
+
         val submit= view.findViewById<Button>(R.id.addNotif_submit)
         //setup president spinner
         val options = resources.getStringArray(R.array.presidents)
@@ -90,7 +93,7 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                 val title=title.text.toString()
                 val details=details.text.toString()
                 val president=presidents
-
+                FirebaseMessaging.getInstance().subscribeToTopic("all")
 
 
                     val nid = sdfid.format(Calendar.getInstance().time).toString()
@@ -117,6 +120,7 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                                         db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                                             //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
+
                                             refreshAdapter.refresh()
                                             this.dismiss()
                                         }.addOnFailureListener {
@@ -142,6 +146,7 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                     )
                     db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                         //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
+
                         refreshAdapter.refresh()
                         //progressBar.visibility = View.GONE
                         this.dismiss()
@@ -153,14 +158,14 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                 }
 
 
-
             ?.addOnFailureListener(OnFailureListener { e ->
             print(e.message)
         })
+//                val notifSender=FcmNotificationsSender("/topics/all","Nouvel Notification",
+//                    "Vous avez un nouvel notification",requireContext(),requireActivity())
+//                notifSender.SendNotifications()
                 }
-                val notifSender=FcmNotificationsSender("/topics/all","Nouvel Notification",
-                    "Vous avez un nouvel notification",requireContext(),requireActivity())
-            notifSender.SendNotifications()
+
 
                 this.dismiss()
 

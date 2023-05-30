@@ -148,6 +148,7 @@ data.clear()
     }
 
 
+    @SuppressLint("SuspiciousIndentation")
     override fun DeleteNotification() {
 
         val notif=data[position]
