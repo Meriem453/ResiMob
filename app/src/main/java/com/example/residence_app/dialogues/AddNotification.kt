@@ -161,7 +161,7 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
             ?.addOnFailureListener(OnFailureListener { e ->
             print(e.message)
         })
-                val notifSender=FcmNotificationsSender("/topics/all","Nouvel Notification",
+                val notifSender=FcmNotificationsSender("/topics/all","ResiMob: Nouvel Notification",
                    "Vous avez un nouvel notification",requireContext(),requireActivity())
                 notifSender.SendNotifications()
                 }
