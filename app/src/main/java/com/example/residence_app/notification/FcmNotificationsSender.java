@@ -11,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.residence_app.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,9 +51,7 @@ public class FcmNotificationsSender  {
             JSONObject notiObject = new JSONObject();
             notiObject.put("title", title);
             notiObject.put("body", body);
-            notiObject.put("icon", "icon"); // enter icon that exists in drawable only
-
-
+            notiObject.put("icon", R.drawable.white_logo); // enter icon that exists in drawable only
 
             mainObj.put("notification", notiObject);
 
