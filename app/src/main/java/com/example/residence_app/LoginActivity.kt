@@ -58,10 +58,34 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
                         db = FirebaseFirestore.getInstance()
                           db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener {
                               val admin = it.result!!.data?.getValue("fname")
+                              val ladmin = it.result!!.data?.getValue("lname")
                               if(admin == "Admin" || admin == "Chef" || admin == "Co"){
                                   Handler(Looper.getMainLooper()).postDelayed({
                                       val intent = Intent(this, HomeAdminActivity::class.java)
-                                      intent.putExtra("admin",0)
+                                      if(ladmin == "" ){
+                                          intent.putExtra("admin",0)
+                                      }else{
+                                          if(ladmin == "Admin" ){
+                                              intent.putExtra("admin",5)
+                                          }else{
+                                              if(ladmin == "Entretien et securité" ){
+                                                  intent.putExtra("admin",3)
+                                              }else{
+                                                  if(ladmin == "Activities" ){
+                                                      intent.putExtra("admin",2)
+                                                  }else{
+                                                      if(ladmin == "Restaurant" ){
+                                                          intent.putExtra("admin",4)
+                                                      }else{
+                                                          if(ladmin == "Hébergement" ){
+                                                              intent.putExtra("admin",1)
+                                                          }
+                                                      }
+                                                  }
+                                              }
+                                          }
+                                      }
+
                                       startActivity(intent)
                                       finish()
                                   }, 1)
@@ -95,10 +119,33 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
             db = FirebaseFirestore.getInstance()
             db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener() {
                 val name = it.result!!.data?.getValue("fname").toString().trim()
+                val ladmin = it.result!!.data?.getValue("fname").toString().trim()
                 if (name == "Admin"|| name == "Chef" || name == "Co") {
                     Handler(Looper.getMainLooper()).postDelayed({
                         val intent = Intent(this, HomeAdminActivity::class.java)
-                        intent.putExtra("admin",0)
+                        if(ladmin == "" ){
+                            intent.putExtra("admin",0)
+                        }else{
+                            if(ladmin == "Admin" ){
+                                intent.putExtra("admin",5)
+                            }else{
+                                if(ladmin == "Entretien et securité" ){
+                                    intent.putExtra("admin",3)
+                                }else{
+                                    if(ladmin == "Activities" ){
+                                        intent.putExtra("admin",2)
+                                    }else{
+                                        if(ladmin == "Restaurant" ){
+                                            intent.putExtra("admin",4)
+                                        }else{
+                                            if(ladmin == "Hébergement" ){
+                                                intent.putExtra("admin",1)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         startActivity(intent)
                         finish()
                     }, 1)
