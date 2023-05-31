@@ -162,7 +162,7 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
             print(e.message)
         })
                 val notifSender=FcmNotificationsSender("/topics/all","ResiMob: Nouvel Notification",
-                   "Vous avez un nouvel notification",requireContext(),requireActivity())
+                   title,requireContext(),requireActivity())
                 notifSender.SendNotifications()
                 }
 
