@@ -113,7 +113,7 @@ send.setOnClickListener {
         when(selected_president){
             "Chef service restaurant" -> role = "Restaurant"
             "Chef service activité" -> role = "Activities"
-            "Chef service security et maintenance" -> role = "Entretien et sécurité"
+            "Chef service security et maintenance" -> role = "Entretien et securité"
             "Chef service hébergement" -> role = "Hébergement"
 
         }
