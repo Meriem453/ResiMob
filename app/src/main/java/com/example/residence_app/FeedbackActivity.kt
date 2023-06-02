@@ -16,8 +16,8 @@ class FeedbackActivity : BaseActivity() {
     lateinit var option : AutoCompleteTextView
     var president =""
 lateinit var progressBar: ProgressBar
-    private val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
-    private val sdfid = SimpleDateFormat("yyyyMMddhhmmss")
+    private val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyyMMddHHmmss")
     private lateinit var role:String
 
 

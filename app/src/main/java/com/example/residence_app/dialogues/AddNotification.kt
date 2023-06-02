@@ -38,8 +38,8 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
     var selected_type=""
     lateinit var type:AutoCompleteTextView
 
-    private val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
-    private val sdfid = SimpleDateFormat("yyyyMMddhhmmss")
+    private val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyyMMddHHmmss")
 
      var imageUri : Uri? = null
     lateinit var db : FirebaseFirestore
@@ -120,9 +120,6 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                                         db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                                             //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
-                                            val notifSender=FcmNotificationsSender("/topics/all","ResiMob: Nouvel Notification",
-                                                title,requireContext(),requireActivity())
-                                            notifSender.SendNotifications()
                                             refreshAdapter.refresh()
                                             this.dismiss()
                                         }.addOnFailureListener {
@@ -148,9 +145,7 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                     )
                     db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                         //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
-                        val notifSender=FcmNotificationsSender("/topics/all","ResiMob: Nouvel Notification",
-                            title,requireContext(),requireActivity())
-                        notifSender.SendNotifications()
+
                         refreshAdapter.refresh()
                         //progressBar.visibility = View.GONE
                         this.dismiss()
@@ -162,9 +157,13 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                 }
 
 
+
             ?.addOnFailureListener(OnFailureListener { e ->
             print(e.message)
         })
+                val notifSender=FcmNotificationsSender("/topics/all","ResiMob: Nouvel Notification",
+                    title,requireContext(),requireActivity())
+                notifSender.SendNotifications()
 
                 }
 

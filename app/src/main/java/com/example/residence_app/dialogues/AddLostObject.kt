@@ -24,8 +24,8 @@ import java.util.Calendar
 class AddLostObject(val c:Context,val refresh:AddObjectInterface): AppCompatDialogFragment() {
 lateinit var etitle: TextInputEditText
 
-    private val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
-    private val sdfid = SimpleDateFormat("yyyyMMddhhmmss")
+    private val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyyMMddHHmmss")
     var db = Firebase.firestore
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -35,8 +35,8 @@ class Problem : BaseActivity() {
     lateinit var detailsAdapter:ArrayAdapter<String>
     lateinit var progress_bar:ProgressBar
     var db = Firebase.firestore
-    private val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
-    private val sdfid = SimpleDateFormat("yyyyMMddhhmmss")
+    private val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+    private val sdfid = SimpleDateFormat("yyyyMMddHHmmss")
     lateinit var role : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -154,10 +154,11 @@ send.setOnClickListener {
                 }
                 FirebaseAuth.getInstance().signInWithEmailAndPassword("chef"+c+"@gmail.com","123456").addOnCompleteListener {
                     FirebaseAuth.getInstance().currentUser!!.getIdToken(true).addOnSuccessListener { result ->
-                        val token = result.token
-                        val notifSender= FcmNotificationsSender(token,"ResiMob: Nouvel Problem",
-                            selected_prblm,requireContext(),requireActivity())
-                        notifSender.SendNotifications()
+//                        val token = result.token
+//                        val notifSender= FcmNotificationsSender(token,"ResiMob: Nouvel Problem",
+//                            selected_prblm,requireContext(),requireActivity())
+//                        notifSender.SendNotifications()
+                        Toast.makeText(baseContext,"changing acc",Toast.LENGTH_SHORT).show()
                     }
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(usermail,userpass)
                 }
