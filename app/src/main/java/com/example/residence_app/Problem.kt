@@ -10,8 +10,10 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.residence_app.data.ProblemData
 import com.example.residence_app.databinding.ActivityProblemBinding
+import com.example.residence_app.notification.FcmNotificationsSender
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -119,6 +121,8 @@ send.setOnClickListener {
         }
         var uid = FirebaseAuth.getInstance().currentUser!!.uid
         db.collection("user").document(uid).get().addOnCompleteListener{
+            val usermail =it.result!!.data?.getValue("email").toString().trim()
+            val userpass =it.result!!.data?.getValue("password").toString().trim()
             val problemmap = hashMapOf(
                 "fname" to it.result!!.data?.getValue("fname").toString().trim(),
                 "lname" to it.result!!.data?.getValue("lname").toString().trim(),
@@ -132,7 +136,31 @@ send.setOnClickListener {
                 "role" to role
             )
             db.collection("problem").document(uid).set(problemmap).addOnSuccessListener {
-
+                var c : String =""
+                if(role=="Restaurant"){
+                    c="r"
+                }else{
+                    if(role=="Activities"){
+                        c="a"
+                    }else{
+                        if(role=="Entretien et securité"){
+                            c="e"
+                        }else{
+                            if(role=="Hébergement"){
+                                c="h"
+                            }
+                        }
+                    }
+                }
+                FirebaseAuth.getInstance().signInWithEmailAndPassword("chef"+c+"@gmail.com","123456").addOnCompleteListener {
+                    FirebaseAuth.getInstance().currentUser!!.getIdToken(true).addOnSuccessListener { result ->
+                        val token = result.token
+                        val notifSender= FcmNotificationsSender(token,"ResiMob: Nouvel Problem",
+                            selected_prblm,requireContext(),requireActivity())
+                        notifSender.SendNotifications()
+                    }
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(usermail,userpass)
+                }
 
                 progress_bar.visibility = View.GONE
                 Toast.makeText(baseContext,"Problem sent",Toast.LENGTH_SHORT).show()

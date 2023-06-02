@@ -120,7 +120,9 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                                         db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                                             //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
                                             //progressBar.visibility = View.GONE
-
+                                            val notifSender=FcmNotificationsSender("/topics/all","ResiMob: Nouvel Notification",
+                                                title,requireContext(),requireActivity())
+                                            notifSender.SendNotifications()
                                             refreshAdapter.refresh()
                                             this.dismiss()
                                         }.addOnFailureListener {
@@ -146,7 +148,9 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
                     )
                     db.collection("notifications").document(nid).set(notificationMap).addOnSuccessListener {
                         //Toast.makeText(requireContext(),"Notification Added successfully",Toast.LENGTH_SHORT).show()
-
+                        val notifSender=FcmNotificationsSender("/topics/all","ResiMob: Nouvel Notification",
+                            title,requireContext(),requireActivity())
+                        notifSender.SendNotifications()
                         refreshAdapter.refresh()
                         //progressBar.visibility = View.GONE
                         this.dismiss()
@@ -161,9 +165,7 @@ class AddNotification(val refreshAdapter: RefreshAdapter) : AppCompatDialogFragm
             ?.addOnFailureListener(OnFailureListener { e ->
             print(e.message)
         })
-                val notifSender=FcmNotificationsSender("/topics/all","ResiMob: Nouvel Notification",
-                   title,requireContext(),requireActivity())
-                notifSender.SendNotifications()
+
                 }
 
 
