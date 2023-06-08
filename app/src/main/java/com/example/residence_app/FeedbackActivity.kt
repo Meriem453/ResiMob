@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.core.view.get
+import com.example.residence_app.notification.FcmNotificationsSender
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
@@ -85,7 +87,8 @@ lateinit var progressBar: ProgressBar
                 }
                 var uid = FirebaseAuth.getInstance().currentUser!!.uid
                 db.collection("user").document(uid).get().addOnCompleteListener{
-
+                    val usermail =it.result!!.data?.getValue("email").toString().trim()
+                    val userpass =it.result!!.data?.getValue("password").toString().trim()
                     val feedbackmap = hashMapOf(
                         "fname" to it.result!!.data?.getValue("fname").toString().trim(),
                         "lname" to it.result!!.data?.getValue("lname").toString().trim(),
@@ -99,11 +102,40 @@ lateinit var progressBar: ProgressBar
                         "role" to role
                         )
                     db.collection("feedback").document(uid).set(feedbackmap).addOnSuccessListener {
-                        Toast.makeText(this, resources.getString(R.string.added_succesfully), Toast.LENGTH_SHORT).show()
+
+
                         etTitle.text.clear()
                         etDescription.text.clear()
                         progressBar.visibility = View.GONE
+                        var c : String =""
+                        if(role=="Restaurant"){
+                            c="r"
+                        }else{
+                            if(role=="Activities"){
+                                c="a"
+                            }else{
+                                if(role=="Entretien et securité"){
+                                    c="e"
+                                }else{
+                                    if(role=="Hébergement"){
+                                        c="h"
+                                    }
+                                }
+                            }
+                        }
+                        FirebaseAuth.getInstance().signInWithEmailAndPassword("chef"+c+"@gmail.com","123456").addOnCompleteListener {
+                            FirebaseDatabase.getInstance().getReference("tokens").child(FirebaseAuth.getInstance().currentUser!!.uid).get().addOnCompleteListener {
+                                val token =  it.result!!.value.toString().trim()
+                                val notifSender= FcmNotificationsSender(token,"ResiMob: Nouvel Problem",
+                                    title,baseContext,this@FeedbackActivity)
+                                notifSender.SendNotifications()
+                                Toast.makeText(baseContext,"changing acc",Toast.LENGTH_SHORT).show()
 
+                                FirebaseAuth.getInstance().signInWithEmailAndPassword(usermail,userpass)
+                            }
+
+                        }
+                        Toast.makeText(this, resources.getString(R.string.added_succesfully), Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener {
 
                         Toast.makeText(this, resources.getString(R.string.failed), Toast.LENGTH_SHORT).show()

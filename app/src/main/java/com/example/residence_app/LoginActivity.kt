@@ -146,7 +146,7 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
                     // Get new FCM registration token
                     val token = task.result
-                    
+
                     FirebaseDatabase.getInstance().getReference("tokens").child(auth.currentUser!!.uid).setValue(token)
 
                 })
