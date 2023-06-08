@@ -15,6 +15,8 @@ import com.example.residence_app.data.ProblemData
 import com.example.residence_app.databinding.ActivityProblemBinding
 import com.example.residence_app.notification.FcmNotificationsSender
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
@@ -153,14 +155,16 @@ send.setOnClickListener {
                     }
                 }
                 FirebaseAuth.getInstance().signInWithEmailAndPassword("chef"+c+"@gmail.com","123456").addOnCompleteListener {
-                    FirebaseAuth.getInstance().currentUser!!.getIdToken(true).addOnSuccessListener { result ->
-                       val token = result.token
-                        val notifSender= FcmNotificationsSender(token,"ResiMob: Nouvel Problem",
-                           selected_prblm,baseContext,this@Problem)
-                        notifSender.SendNotifications()
-                        Toast.makeText(baseContext,"changing acc",Toast.LENGTH_SHORT).show()
-                    }
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(usermail,userpass)
+                        FirebaseDatabase.getInstance().getReference("tokens").child(FirebaseAuth.getInstance().currentUser!!.uid).get().addOnCompleteListener {
+                            val token =  it.result!!.value.toString().trim()
+                            val notifSender= FcmNotificationsSender(token,"ResiMob: Nouvel Problem",
+                                selected_prblm,baseContext,this@Problem)
+                            notifSender.SendNotifications()
+                            Toast.makeText(baseContext,"changing acc",Toast.LENGTH_SHORT).show()
+
+                            FirebaseAuth.getInstance().signInWithEmailAndPassword(usermail,userpass)
+                        }
+
                 }
 
                 progress_bar.visibility = View.GONE

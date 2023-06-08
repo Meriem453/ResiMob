@@ -1,25 +1,31 @@
 package com.example.residence_app
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.residence_app.databinding.ActivityLoginBinding
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 class LoginActivity : BaseActivity() {
 private lateinit var binding:ActivityLoginBinding
 private lateinit var auth: FirebaseAuth
 private lateinit var db :FirebaseFirestore
+private lateinit var rdb : FirebaseDatabase
 private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     @SuppressLint("SuspiciousIndentation")
@@ -54,6 +60,20 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
             }else{
                 auth.signInWithEmailAndPassword(email,password).addOnCompleteListener{
                     if (it.isSuccessful){
+                        // token
+                        FirebaseMessaging.getInstance().token.addOnCompleteListener(
+                            OnCompleteListener { task ->
+                            if (!task.isSuccessful) {
+                                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                                return@OnCompleteListener
+                            }
+
+                            // Get new FCM registration token
+                            val token = task.result
+
+                                FirebaseDatabase.getInstance().getReference("tokens").child(auth.currentUser!!.uid).setValue(token)
+                        })
+                        // data
                         progressBar.visibility = View.GONE
                         db = FirebaseFirestore.getInstance()
                           db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener {
@@ -116,6 +136,20 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
     override fun onStart() {
         super.onStart()
         if(auth.currentUser != null) {
+            // token
+            FirebaseMessaging.getInstance().token.addOnCompleteListener(
+                OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                        return@OnCompleteListener
+                    }
+
+                    // Get new FCM registration token
+                    val token = task.result
+                    
+                    FirebaseDatabase.getInstance().getReference("tokens").child(auth.currentUser!!.uid).setValue(token)
+
+                })
             db = FirebaseFirestore.getInstance()
             db.collection("user").document(auth.currentUser!!.uid).get().addOnCompleteListener() {
                 val name = it.result!!.data?.getValue("fname").toString().trim()
