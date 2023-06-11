@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -20,8 +21,10 @@ import com.example.residence_app.R
 import com.example.residence_app.data.AdminFeedbackData
 import com.example.residence_app.data.AdminProblemData
 import com.example.residence_app.dialogues.DeleteProblemFragment
+import com.example.residence_app.notification.FcmNotificationsSender
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.*
 import org.w3c.dom.Text
 
@@ -39,6 +42,8 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
     val delete=itemView.findViewById<ImageView>(R.id.adminproblem_delete)
     val layout=itemView.findViewById<LinearLayout>(R.id.adminproblem_layout)
     val date=itemView.findViewById<TextView>(R.id.adminproblem_date)
+    val EtReply=itemView.findViewById<EditText>(R.id.adminproblem_reply)
+    val send_reply=itemView.findViewById<TextView>(R.id.adminproblem_send_reply)
 }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): adminprVH {
@@ -60,11 +65,24 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
            details.text=arr[position].details
            date.text=arr[position].time
            Glide.with(c).load(arr[position].image).into(img)
+           val reply = EtReply.text.toString().trim()
            delete.setOnClickListener {
                this@AdminProblemAdpater.position=position
                DeleteProblemFragment(this@AdminProblemAdpater).show(fm,"ffff")
 
            }
+           send_reply.setOnClickListener {
+                val uid =   arr[position].pid
+                   FirebaseDatabase.getInstance().getReference("tokens").child(uid.toString()).get().addOnCompleteListener {
+                       val token = it.result!!.value.toString().trim()
+                       val notifSender = FcmNotificationsSender(
+                           token, "ResiMob: "+president.text,
+                           reply, baseContext, this@ProblemAdminActivity
+                       )
+                       notifSender.SendNotifications()
+                   }
+               }
+           
 
            itemView.setOnClickListener {
                if(layout.visibility== View.GONE){
