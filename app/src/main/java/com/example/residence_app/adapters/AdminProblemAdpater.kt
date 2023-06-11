@@ -81,6 +81,8 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
                            reply, c, act
                        )
                        notifSender.SendNotifications()
+                       Toast.makeText(c,"Reply sent!",Toast.LENGTH_LONG).show()
+                       EtReply.text.clear()
                    }
                }
            
