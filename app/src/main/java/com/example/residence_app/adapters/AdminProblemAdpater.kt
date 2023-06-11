@@ -1,5 +1,6 @@
 package com.example.residence_app.adapters
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -28,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.*
 import org.w3c.dom.Text
 
-class AdminProblemAdpater(val c:Context,val fm:FragmentManager): RecyclerView.Adapter<AdminProblemAdpater.adminprVH>(),DeleteProblemInterface {
+class AdminProblemAdpater(val c:Context,val fm:FragmentManager,val act:Activity): RecyclerView.Adapter<AdminProblemAdpater.adminprVH>(),DeleteProblemInterface {
 var arr=ArrayList<AdminProblemData>()
     lateinit var db : FirebaseFirestore
 
@@ -77,7 +78,7 @@ inner class adminprVH(itemView: View): ViewHolder(itemView){
                        val token = it.result!!.value.toString().trim()
                        val notifSender = FcmNotificationsSender(
                            token, "ResiMob: "+president.text,
-                           reply, baseContext, this@ProblemAdminActivity
+                           reply, c, act
                        )
                        notifSender.SendNotifications()
                    }
