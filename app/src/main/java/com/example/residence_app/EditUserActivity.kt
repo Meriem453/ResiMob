@@ -38,7 +38,7 @@ class EditUserActivity : BaseActivity(), DeleteUserInterface {
 
     lateinit var fname:TextInputEditText
     lateinit var lname:TextInputEditText
-    lateinit var passwrd:TextInputEditText
+    //lateinit var passwrd:TextInputEditText
     lateinit var email:TextInputEditText
     lateinit var room:TextInputEditText
     lateinit var img:ShapeableImageView
@@ -66,7 +66,7 @@ class EditUserActivity : BaseActivity(), DeleteUserInterface {
 
         fname=findViewById(R.id.edit_first_name)
         lname=findViewById(R.id.edit_last_name)
-         passwrd=findViewById(R.id.edit_password)
+         //passwrd=findViewById(R.id.edit_password)
          email=findViewById(R.id.edit_email_address)
          room=findViewById(R.id.edit_room)
          img=findViewById(R.id.edit_imageView)
@@ -99,7 +99,7 @@ class EditUserActivity : BaseActivity(), DeleteUserInterface {
                 user.fname = fname.text.toString()
                 user.lname = lname.text.toString()
                 user.email = email.text.toString()
-                user.password = passwrd.text.toString()
+                //user.password = passwrd.text.toString()
                 user.room=room.text.toString()
                 if (changePhoto) {
                     user.image = uri.toString()
@@ -123,7 +123,7 @@ class EditUserActivity : BaseActivity(), DeleteUserInterface {
 
         fname.isEnabled=value
         lname.isEnabled=value
-        passwrd.isEnabled=value
+        //passwrd.isEnabled=value
         email.isEnabled=value
         img.isEnabled=value
         room.isEnabled=value
@@ -141,7 +141,7 @@ if(value){
     set.visibility=View.GONE
     fname.setText(user.fname)
     lname.setText(user.lname)
-    passwrd.setText(user.password)
+    //passwrd.setText(user.password)
     email.setText(user.email)
      room.setText(user.room)
     image= user.image.toString()
@@ -167,10 +167,10 @@ fun Check():Boolean{
         email.error=resources.getString(R.string.please_enter_a_text)
         valid=false
     }
-    if(passwrd.text.toString().trim()==""){
+    /*if(passwrd.text.toString().trim()==""){
         passwrd.error=resources.getString(R.string.please_enter_a_text)
         valid=false
-    }
+    }*/
     if(room.text.toString().trim()==""){
         room.error=resources.getString(R.string.please_enter_a_text)
         valid=false
